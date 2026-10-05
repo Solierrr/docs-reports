@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEMPLATE — Relatório</title>
+<style>
+:root {
+  --brand-ink: #202020;
+  --brand-paper: #ffffff;
+  --brand-accent: #404040;
+  --brand-muted: #595959;
+  --brand-line: #d5d5d5;
+  --brand-cover: #252525;
+  --brand-cover-ink: #ffffff;
+  --font-body: Arial, sans-serif;
+  --font-heading: Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: #e8e8e8; color: var(--brand-ink); font-family: var(--font-body); }
+body { margin: 0; font-size: 11pt; line-height: 1.55; }
+.page { width: 210mm; min-height: 297mm; margin: 8mm auto; padding: 22mm 22mm 27mm; position: relative; background: var(--brand-paper); }
+.cover { background: var(--brand-cover); color: var(--brand-cover-ink); display: flex; flex-direction: column; }
+.cover h1 { font-size: 34pt; line-height: 1.12; margin: 35mm 0 9mm; max-width: 150mm; }
+.cover .subtitle { font-size: 17pt; max-width: 145mm; }
+.cover .cover-meta { margin-top: auto; border-top: 1px solid currentColor; padding-top: 7mm; }
+.eyebrow { font-size: 10pt; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+.template-label { display: inline-block; border: 1px solid currentColor; padding: 1mm 3mm; font-size: 9pt; margin-top: 3mm; align-self: flex-start; }
+h1, h2, h3 { font-family: var(--font-heading); line-height: 1.2; overflow-wrap: anywhere; }
+h1 { font-size: 26pt; margin: 8mm 0; }
+h2 { font-size: 17pt; margin: 9mm 0 4mm; }
+h3 { font-size: 12pt; margin: 6mm 0 3mm; }
+p { margin: 0 0 4mm; overflow-wrap: anywhere; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.toc { list-style: none; padding: 0; margin: 10mm 0; }
+.toc li { display: flex; justify-content: space-between; gap: 5mm; border-bottom: 1px solid var(--brand-line); padding: 4mm 0; }
+.toc a { text-decoration: none; }
+.toc .page-number { font-variant-numeric: tabular-nums; }
+.note { border-left: 3px solid var(--brand-accent); padding: 4mm 5mm; margin: 7mm 0; }
+.metadata { display: grid; grid-template-columns: 34mm 1fr; gap: 2mm 4mm; margin: 6mm 0; }
+.metadata dt { font-weight: 700; }
+.metadata dd { margin: 0; overflow-wrap: anywhere; }
+table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: 7mm 0 2mm; font-size: 10pt; }
+caption { text-align: left; font-size: 10pt; font-weight: 700; margin-bottom: 3mm; }
+th, td { border-bottom: 1px solid var(--brand-line); text-align: left; vertical-align: top; padding: 3mm 2mm; overflow-wrap: anywhere; }
+th { border-top: 2px solid var(--brand-accent); }
+thead { display: table-header-group; }
+tr, figure { break-inside: avoid; }
+.source { font-size: 9pt; color: var(--brand-muted); }
+figure { margin: 7mm 0; }
+.figure-placeholder { border: 1px solid var(--brand-line); padding: 12mm 6mm; color: var(--brand-muted); }
+figcaption { font-size: 10pt; margin-top: 3mm; }
+.steps { padding-left: 7mm; }
+.steps li { margin-bottom: 6mm; padding-left: 2mm; }
+.references { padding-left: 6mm; }
+.references li { margin-bottom: 5mm; overflow-wrap: anywhere; }
+.footer { position: absolute; bottom: 13mm; left: 22mm; right: 22mm; border-top: 1px solid var(--brand-line); padding-top: 3mm; display: flex; justify-content: space-between; gap: 5mm; font-size: 9pt; color: var(--brand-muted); }
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  html { background: var(--brand-paper); }
+  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .page { margin: 0; min-height: 297mm; break-after: page; }
+  .page:last-child { break-after: auto; }
+  h1, h2, h3 { break-after: avoid; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="page cover" aria-label="Capa">
+  <div class="eyebrow">{{organizacao}}</div>
+  <span class="template-label">TEMPLATE · IDENTIDADE PENDENTE</span>
+  <h1>{{titulo_relatorio}}</h1>
+  <p class="subtitle">{{subtitulo_relatorio}}</p>
+  <p>{{periodo_referencia}}</p>
+  <div class="cover-meta"><p>{{unidade_responsavel}}</p><p>{{local_publicacao}} · {{data_publicacao}}</p><p>{{classificacao_documento}} · {{versao}}</p></div>
+</section>
+<section class="page" id="sumario">
+  <div class="eyebrow">{{titulo_curto}}</div><h1>Sumário</h1>
+  <nav aria-label="Sumário"><ol class="toc">
+    <li><a href="#sintese">1 Síntese e contexto</a><span class="page-number">3</span></li>
+    <li><a href="#analise">2 Análise e evidências</a><span class="page-number">4</span></li>
+    <li><a href="#conclusoes">3 Conclusões e referências</a><span class="page-number">5</span></li>
+    <li><a href="#anexo">Anexo A — Material complementar</a><span class="page-number">6</span></li>
+  </ol></nav>
+  <h2>Identificação do documento</h2>
+  <dl class="metadata"><dt>Responsável</dt><dd>{{responsavel}}</dd><dt>Versão</dt><dd>{{versao}}</dd><dt>Escopo</dt><dd>{{escopo}}</dd><dt>Data de corte</dt><dd>{{data_corte}}</dd></dl>
+  <div class="note"><p>Modelo estrutural. Substituir os marcadores e preencher a identidade antes de publicar.</p></div>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>2</span></footer>
+</section>
+<section class="page" id="sintese">
+  <div class="eyebrow">Relatório · {{periodo_referencia}}</div><h1>1 Síntese e contexto</h1>
+  <h2>1.1 Síntese executiva</h2><p>{{sintese_executiva}}</p>
+  <h2>1.2 Objetivo e abrangência</h2><p>{{objetivo}}</p><p>{{abrangencia_e_exclusoes}}</p>
+  <h2>1.3 Método e fontes</h2><p>{{metodo}}</p><p>{{fontes_e_data_corte}}</p>
+  <div class="note"><h3>Limitações da análise</h3><p>{{limitacoes_e_incertezas}}</p></div>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>3</span></footer>
+</section>
+<section class="page" id="analise">
+  <div class="eyebrow">Evidências</div><h1>2 Análise e evidências</h1>
+  <h2>2.1 Resultados e interpretação</h2><p>{{analise_principal}}</p>
+  <table><caption>Tabela 1 — {{titulo_tabela}}</caption><thead><tr><th scope="col">{{coluna_indicador}}</th><th scope="col">{{coluna_resultado}}</th><th scope="col">{{coluna_interpretacao}}</th></tr></thead><tbody><tr><th scope="row">{{indicador}}</th><td>{{resultado_e_unidade}}</td><td>{{interpretacao}}</td></tr></tbody></table>
+  <p class="source">Fonte: {{fonte_tabela}}. {{nota_metodologica_tabela}}</p>
+  <figure><div class="figure-placeholder">{{figura_com_texto_alternativo}}</div><figcaption>Figura 1 — {{titulo_figura}}</figcaption><p class="source">Fonte: {{fonte_figura}}.</p></figure>
+  <h2>2.2 Implicações</h2><p>{{implicacoes_dos_resultados}}</p>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>4</span></footer>
+</section>
+<section class="page" id="conclusoes">
+  <div class="eyebrow">Encerramento</div><h1>3 Conclusões e referências</h1>
+  <h2>3.1 Conclusões</h2><p>{{conclusoes_sustentadas}}</p>
+  <h2>3.2 Recomendações</h2><p>{{recomendacoes_e_condicoes}}</p>
+  <h2>3.3 Referências</h2>
+  <ol class="references"><li>{{referencia_com_autor_titulo_data_e_localizador}}</li><li>{{referencia_com_url_e_data_acesso}}</li></ol>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>5</span></footer>
+</section>
+<section class="page" id="anexo">
+  <div class="eyebrow">Material complementar</div><h1>Anexo A — {{titulo_anexo}}</h1>
+  <p>{{contexto_do_anexo}}</p><h2>A.1 {{titulo_material_complementar}}</h2><p>{{material_complementar}}</p>
+  <p class="source">Fonte: {{fonte_anexo}}.</p>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>6</span></footer>
+</section>
+</main>
+</body>
+</html>

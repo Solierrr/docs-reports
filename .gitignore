@@ -1,0 +1,10 @@
+.sdd/
+.claude/
+docs/specs/
+specs/
+.runs/
+.verification/
+__pycache__/
+*.pyc
+.DS_Store
+Thumbs.db
