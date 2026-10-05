@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TEMPLATE — Manual</title>
+<style>
+:root {
+  --brand-ink: #202020;
+  --brand-paper: #ffffff;
+  --brand-accent: #404040;
+  --brand-muted: #595959;
+  --brand-line: #d5d5d5;
+  --brand-cover: #252525;
+  --brand-cover-ink: #ffffff;
+  --font-body: Arial, sans-serif;
+  --font-heading: Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html { background: #e8e8e8; color: var(--brand-ink); font-family: var(--font-body); }
+body { margin: 0; font-size: 11pt; line-height: 1.55; }
+.page { width: 210mm; min-height: 297mm; margin: 8mm auto; padding: 22mm 22mm 27mm; position: relative; background: var(--brand-paper); }
+.cover { background: var(--brand-cover); color: var(--brand-cover-ink); display: flex; flex-direction: column; }
+.cover h1 { font-size: 34pt; line-height: 1.12; margin: 35mm 0 9mm; max-width: 150mm; }
+.cover .subtitle { font-size: 17pt; max-width: 145mm; }
+.cover .cover-meta { margin-top: auto; border-top: 1px solid currentColor; padding-top: 7mm; }
+.eyebrow { font-size: 10pt; letter-spacing: .06em; text-transform: uppercase; font-weight: 700; }
+.template-label { display: inline-block; border: 1px solid currentColor; padding: 1mm 3mm; font-size: 9pt; margin-top: 3mm; align-self: flex-start; }
+h1, h2, h3 { font-family: var(--font-heading); line-height: 1.2; overflow-wrap: anywhere; }
+h1 { font-size: 26pt; margin: 8mm 0; }
+h2 { font-size: 17pt; margin: 9mm 0 4mm; }
+h3 { font-size: 12pt; margin: 6mm 0 3mm; }
+p { margin: 0 0 4mm; overflow-wrap: anywhere; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 2px; overflow-wrap: anywhere; }
+.toc { list-style: none; padding: 0; margin: 10mm 0; }
+.toc li { display: flex; justify-content: space-between; gap: 5mm; border-bottom: 1px solid var(--brand-line); padding: 4mm 0; }
+.toc a { text-decoration: none; }
+.toc .page-number { font-variant-numeric: tabular-nums; }
+.note { border-left: 3px solid var(--brand-accent); padding: 4mm 5mm; margin: 7mm 0; }
+.metadata { display: grid; grid-template-columns: 34mm 1fr; gap: 2mm 4mm; margin: 6mm 0; }
+.metadata dt { font-weight: 700; }
+.metadata dd { margin: 0; overflow-wrap: anywhere; }
+table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: 7mm 0 2mm; font-size: 10pt; }
+caption { text-align: left; font-size: 10pt; font-weight: 700; margin-bottom: 3mm; }
+th, td { border-bottom: 1px solid var(--brand-line); text-align: left; vertical-align: top; padding: 3mm 2mm; overflow-wrap: anywhere; }
+th { border-top: 2px solid var(--brand-accent); }
+thead { display: table-header-group; }
+tr, figure { break-inside: avoid; }
+.source { font-size: 9pt; color: var(--brand-muted); }
+figure { margin: 7mm 0; }
+.figure-placeholder { border: 1px solid var(--brand-line); padding: 12mm 6mm; color: var(--brand-muted); }
+figcaption { font-size: 10pt; margin-top: 3mm; }
+.steps { padding-left: 7mm; }
+.steps li { margin-bottom: 6mm; padding-left: 2mm; }
+.references { padding-left: 6mm; }
+.references li { margin-bottom: 5mm; overflow-wrap: anywhere; }
+.footer { position: absolute; bottom: 13mm; left: 22mm; right: 22mm; border-top: 1px solid var(--brand-line); padding-top: 3mm; display: flex; justify-content: space-between; gap: 5mm; font-size: 9pt; color: var(--brand-muted); }
+@page { size: A4 portrait; margin: 0; }
+@media print {
+  html { background: var(--brand-paper); }
+  body { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+  .page { margin: 0; min-height: 297mm; break-after: page; }
+  .page:last-child { break-after: auto; }
+  h1, h2, h3 { break-after: avoid; }
+  p { orphans: 3; widows: 3; }
+}
+</style>
+</head>
+<body>
+<main>
+<section class="page cover" aria-label="Capa">
+  <div class="eyebrow">{{organizacao}}</div>
+  <span class="template-label">TEMPLATE · IDENTIDADE PENDENTE</span>
+  <h1>{{titulo_manual}}</h1><p class="subtitle">{{subtitulo_manual}}</p><p>{{versao}}</p>
+  <div class="cover-meta"><p>{{unidade_responsavel}}</p><p>{{local_publicacao}} · {{data_publicacao}}</p><p>{{classificacao_documento}}</p></div>
+</section>
+<section class="page" id="sumario">
+  <div class="eyebrow">{{titulo_curto}}</div><h1>Sumário</h1>
+  <nav aria-label="Sumário"><ol class="toc">
+    <li><a href="#preparacao">1 Objetivo e preparação</a><span class="page-number">3</span></li>
+    <li><a href="#procedimentos">2 Procedimentos</a><span class="page-number">4</span></li>
+    <li><a href="#problemas">3 Solução de problemas</a><span class="page-number">5</span></li>
+    <li><a href="#referencias">4 Referências e manutenção</a><span class="page-number">6</span></li>
+  </ol></nav>
+  <h2>Identificação do documento</h2>
+  <dl class="metadata"><dt>Responsável</dt><dd>{{responsavel}}</dd><dt>Público</dt><dd>{{publico}}</dd><dt>Versão</dt><dd>{{versao}}</dd><dt>Aplicabilidade</dt><dd>{{sistema_e_versoes_aplicaveis}}</dd></dl>
+  <div class="note"><p>Modelo estrutural. Substituir os marcadores e preencher a identidade antes de publicar.</p></div>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>2</span></footer>
+</section>
+<section class="page" id="preparacao">
+  <div class="eyebrow">Manual · {{versao}}</div><h1>1 Objetivo e preparação</h1>
+  <h2>1.1 Objetivo e escopo</h2><p>{{objetivo}}</p><p>{{escopo_e_exclusoes}}</p>
+  <h2>1.2 Pré-requisitos</h2><ul><li>{{requisito_de_acesso}}</li><li>{{requisito_de_ambiente}}</li><li>{{conhecimento_necessario}}</li></ul>
+  <h2>1.3 Termos e convenções</h2><dl class="metadata"><dt>{{termo}}</dt><dd>{{definicao}}</dd><dt>{{convencao}}</dt><dd>{{explicacao_convencao}}</dd></dl>
+  <div class="note"><h3>Condições antes de começar</h3><p>{{condicoes_e_cuidados_aplicaveis}}</p></div>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>3</span></footer>
+</section>
+<section class="page" id="procedimentos">
+  <div class="eyebrow">Execução</div><h1>2 Procedimentos</h1>
+  <h2>2.1 {{titulo_procedimento}}</h2><p>{{objetivo_procedimento}}</p>
+  <ol class="steps"><li><h3>{{titulo_passo_1}}</h3><p>{{acao_passo_1}}</p><p>Resultado esperado: {{resultado_passo_1}}</p></li><li><h3>{{titulo_passo_2}}</h3><p>{{acao_passo_2}}</p><p>Resultado esperado: {{resultado_passo_2}}</p></li></ol>
+  <figure><div class="figure-placeholder">{{ilustracao_com_texto_alternativo}}</div><figcaption>Figura 1 — {{titulo_ilustracao}}</figcaption><p class="source">Fonte: {{fonte_ilustracao}}.</p></figure>
+  <h2>2.2 Verificação final</h2><p>{{criterios_de_sucesso_e_comprovacao}}</p>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>4</span></footer>
+</section>
+<section class="page" id="problemas">
+  <div class="eyebrow">Diagnóstico</div><h1>3 Solução de problemas</h1>
+  <p>{{orientacao_de_diagnostico}}</p>
+  <table><caption>Tabela 1 — {{titulo_tabela_diagnostico}}</caption><thead><tr><th scope="col">Sintoma</th><th scope="col">Verificação</th><th scope="col">Ação</th></tr></thead><tbody><tr><th scope="row">{{sintoma}}</th><td>{{verificacao}}</td><td>{{acao_corretiva}}</td></tr></tbody></table>
+  <p class="source">Fonte: {{fonte_diagnostico}}.</p>
+  <h2>3.1 Recuperação</h2><p>{{procedimento_recuperacao}}</p>
+  <h2>3.2 Escalonamento</h2><p>{{quando_e_como_escalonar}}</p>
+  <div class="note"><h3>Informações para suporte</h3><p>{{evidencias_necessarias_sem_segredos}}</p></div>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>5</span></footer>
+</section>
+<section class="page" id="referencias">
+  <div class="eyebrow">Referência</div><h1>4 Referências e manutenção</h1>
+  <h2>4.1 Referências</h2><ol class="references"><li>{{referencia_com_autor_titulo_data_e_localizador}}</li><li>{{referencia_com_url_e_data_acesso}}</li></ol>
+  <h2>4.2 Histórico de versões</h2>
+  <table><caption>Tabela 2 — Histórico do manual</caption><thead><tr><th scope="col">Versão / data</th><th scope="col">Alteração</th><th scope="col">Responsável</th></tr></thead><tbody><tr><th scope="row">{{versao_e_data}}</th><td>{{alteracao}}</td><td>{{responsavel_alteracao}}</td></tr></tbody></table>
+  <h2>4.3 Revisão e validade</h2><p>{{criterio_de_revisao_e_validade}}</p>
+  <footer class="footer"><span>{{titulo_curto}}</span><span>6</span></footer>
+</section>
+</main>
+</body>
+</html>
