@@ -1,22 +1,24 @@
-# Templates de documentos
+# Modelos
 
-`report.html` e `manual.html` são bases estruturais reutilizáveis, com CSS interno, sem scripts ou recursos remotos. A aparência neutra permite inspecionar a estrutura antes de preencher o design system; não define a identidade Solaria e não autoriza gerar um documento final sem ela.
+Três modelos HTML com a identidade Solaria já aplicada (cores, tipografia, capa, logo). Não têm scripts nem recursos remotos; o logo está embutido como imagem. O agente só escreve o conteúdo nos espaços marcados.
+
+| Modelo | Uso | Páginas de exemplo |
+| --- | --- | --- |
+| [report.html](report.html) | Relatório: capa, sumário, síntese, análise, conclusões, anexo | 6 |
+| [manual.html](manual.html) | Manual de instrução: capa, sumário, preparação, procedimentos, problemas, referências | 6 |
+| [document.html](document.html) | Documento curto sem capa nem sumário: proposta, ata, comunicado, one-pager | 2 |
 
 ## Contrato de preenchimento
 
-- Copiar o template adequado para `documents/<nome>/<nome>.html`.
-- Substituir todos os marcadores `{{campo}}` por conteúdo aprovado, escapando texto para HTML. Os nomes descrevem o conteúdo esperado; campos repetidos devem receber o mesmo valor.
-- Remover o selo TEMPLATE e os textos instrucionais apenas após preencher e revisar o documento.
-- Resolver cores, fontes, escala tipográfica e elementos de marca a partir de `design-system/`. Substituir os valores CSS neutros de `--brand-ink`, `--brand-paper`, `--brand-accent`, `--brand-muted`, `--brand-line`, `--brand-cover` e `--brand-cover-ink`, além de `--font-body` e `--font-heading`. Esses valores válidos são somente defaults de prévia, nunca identidade aprovada.
-- Incorporar logos, imagens e fontes como dados embutidos quando necessários. O HTML final deve abrir offline sem arquivo CSS separado ou dependência de arquivos externos. Preservar texto real, headings, listas, tabelas e legendas sem converter páginas em imagens.
-- Repetir, adaptar ou remover as páginas de miolo conforme a especificação aprovada. Manter os IDs únicos, os links do sumário e a numeração física de todas as páginas sincronizados. A capa conta como página 1, mas não mostra número; o sumário mostra 2. Os números são explícitos para conversão consistente, não calculados pelo navegador.
+- Copie o modelo para `documents/<nome>/<nome>.html`.
+- Cada espaço de conteúdo é `<span data-slot="campo">{{campo}}</span>`. Substitua o elemento inteiro pelo conteúdo aprovado, escapando o texto para HTML. Campos repetidos recebem o mesmo valor. A exceção é o `<title>`, que traz o marcador puro `{{titulo_curto}}`.
+- No final não pode restar `{{`, `}}` nem `data-slot`. Os textos de exemplo (tabelas e figuras de demonstração) são estruturais, nunca dado real: substitua ou remova.
+- Repita, adapte ou remova as páginas de miolo conforme a especificação. Mantenha IDs únicos, links do sumário e a numeração física das páginas sincronizados. A capa é a página 1 e não mostra número; o sumário mostra 2. Os números são explícitos para que a impressão seja consistente.
+- Figuras reais levam texto alternativo, legenda e fonte. O logo e o estilo não mudam: se faltar um componente, pare e consulte o responsável.
+- A identidade vive em [design-system/](../design-system/README.md). Ao mudá-la, atualize as variáveis `--brand-*`, as fontes e o logo embutido nos três modelos.
 
-## Paginação e estrutura
+## Paginação e impressão
 
-As seis páginas de cada modelo demonstram capa, sumário e miolo. São A4 retrato, com margens internas de 22 mm, rodapé e quebras explícitas. A capa tem composição corporativa com título, período ou versão e identificação editorial. Relatório e manual compartilham a linguagem visual; suas estruturas de conteúdo diferem.
+Páginas A4 retrato, margens internas de 22 mm, rodapé e quebras explícitas. Para imprimir: A4, escala 100%, margens zero, fundos ativados, sem cabeçalho e rodapé do navegador. Não reduza o texto para caber: divida em páginas adicionais, repita cabeçalhos de tabela e atualize sumário e rodapés. Nunca use paisagem, altura com corte ou conteúdo escondido.
 
-Os templates adotam convenções editoriais de títulos numerados, sumário navegável, legendas, fontes e referências. Não representam certificação de conformidade integral à ABNT. Identificar referências com dados bibliográficos disponíveis e não inventar autores, datas ou fontes.
-
-Renderizar com tamanho A4, escala 100%, margens de impressão zero, fundos habilitados e cabeçalhos/rodapés automáticos do navegador desabilitados. O template fornece suas próprias margens e rodapés. Conferir cada página no PDF após alterações. Não reduzir o texto para acomodar conteúdo longo: dividir parágrafos, tabelas e procedimentos em páginas adicionais, repetir cabeçalhos de tabelas e atualizar sumário e rodapés. Nunca usar paisagem, altura com clipping ou conteúdo escondido para corrigir overflow.
-
-Os blocos de evidências e tabelas são placeholders estruturais, não dados de exemplo ou resultados factuais. Uma figura real deve incluir texto alternativo, legenda e fonte; o espaço reservado deve ser substituído ou removido. Validar que o PDF tenha texto selecionável e não contenha marcadores, instruções ou o selo TEMPLATE antes da entrega.
+Convenções de estrutura, tabelas, figuras e fontes em [editorial.md](../editorial.md).

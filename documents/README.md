@@ -6,9 +6,8 @@ Cada documento concluído ocupa uma pasta em kebab-case:
 documents/
   <nome>/
     <nome>.html
-    <nome>.pdf
 ```
 
-O HTML contém CSS e assets de renderização internos. O PDF é A4 retrato em todas as páginas e corresponde ao HTML aprovado.
+O HTML é autocontido: CSS, logo e imagens embutidos, sem depender de rede. Um PDF só existe se o usuário pedir, gerado pela impressão do navegador (A4 retrato, margens zero, fundos ativados), e corresponde ao HTML aprovado.
 
-Contratos, fontes de trabalho, imagens de QA e logs ficam em `.runs/<nome>/`, ignorado pelo Git. Não incluir arquivos CSS, documentos de especificação ou PDFs provisórios nesta pasta. Não sobrescrever outra edição sem autorização.
+Especificação, fontes, conteúdo, log, revisão e capturas ficam em `.runs/<nome>/`, ignorado pelo Git. Não incluir arquivos CSS, especificações ou rascunhos nesta pasta. Não sobrescrever outro documento sem autorização.
