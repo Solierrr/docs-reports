@@ -1,26 +1,19 @@
 # Identidade visual
 
-Preencha esta pasta antes de gerar documentos. Há uma única identidade para todos os templates; não é preciso criar subdiretório por marca.
+Identidade única da Solaria para todos os modelos. Derivada do design system do VersioSpec (`projects/solaria/design-system/`) e dos SVGs da marca do `web-app`. É a única fonte visual: o agente não escolhe cor, fonte, espaçamento ou layout fora daqui.
 
-| Diretório | O que fornecer |
+| Caminho | Conteúdo |
 | --- | --- |
-| `tokens/` | Arquivo Markdown com cores e papéis, tipografia, escala, espaçamento, linhas e regras de uso |
-| `logos/` | Logo aprovado e variantes necessárias para capa/miolo |
-| `fonts/` | Fontes locais autorizadas para incorporação, ou indicação explícita das fontes disponíveis |
-| `assets/` | Elementos gráficos/assinatura, se adotados |
-| `guidelines/` | Regras de capa, uso da marca e restrições; declarar ausência de assets opcionais |
+| [tokens/solaria.md](tokens/solaria.md) | Cores, tipografia, forma, espaço e regras do logo |
+| [logos/](logos/) | `elos-logo.svg` (marca completa), `hexagon.svg` e `hands.svg` (partes) |
+| [fonts/README.md](fonts/README.md) | Plus Jakarta Sans: não incorporada, instalada na máquina |
+| [guidelines/capa-e-marca.md](guidelines/capa-e-marca.md) | Capa, uso da marca e restrições |
 
-Os diretórios estão preparados com `.gitkeep`; não há identidade presumida.
+## Como a identidade chega aos documentos
 
-## Checklist obrigatório
+Os modelos em [`templates/`](../templates/README.md) já aplicam estes tokens e trazem o logo embutido. Ao gerar um documento, a identidade não é reaplicada: ela vem do modelo. Para mudar a identidade, edite os arquivos desta pasta e depois atualize as variáveis CSS e o logo nos três modelos.
 
-- [ ] Nome de exibição da organização e logo aprovado, ou decisão explícita de usar somente assinatura textual.
-- [ ] Cores com valores exatos e função: fundo da capa, texto da capa, papel, texto, texto secundário, acento e linhas.
-- [ ] Fontes para título, corpo e dados, pesos e tamanhos, com disponibilidade local e permissão de incorporação verificadas.
-- [ ] Espaçamento e área de leitura compatíveis com A4 retrato; se aceitar a base estrutural do template, declarar isso explicitamente.
-- [ ] Regras de composição da capa/assinatura e uso de variantes de logo.
-- [ ] Assets opcionais listados ou ausência explicitamente indicada.
+## Pendências conhecidas
 
-As fontes podem ser locais autorizadas ou uma pilha explicitamente aprovada. Quando dependerem de instalação local, o agente verifica a fonte disponível e o PDF; não permite substituição silenciosa. Para portabilidade, prefira incorporar arquivos autorizados ao HTML.
-
-Os templates apresentam valores neutros exclusivamente para visualizar sua estrutura. Eles não definem a identidade Solaria. A pipeline deve parar e listar ausências antes de produzir qualquer documento final.
+- Fonte: Plus Jakarta Sans não é incorporada; depende de estar instalada na máquina (ver `fonts/README.md`).
+- Tema escuro e ilustrações não fazem parte desta identidade.
