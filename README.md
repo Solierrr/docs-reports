@@ -1,36 +1,32 @@
 # docs-reports
 
-Templates e pipeline local para produzir relatórios e manuais da Solaria em HTML autocontido e PDF A4 retrato.
+Repositório para produzir **relatórios, documentos e manuais de instrução da Solaria em HTML**, com agentes de IA. Os modelos já trazem a identidade visual; o agente escreve o conteúdo por cima.
+
+## Como usar
+
+1. Abra uma sessão de um assistente de IA (Claude Code, Gemini, Codex...) na raiz do repositório. Ele lê o [AGENTS.md](AGENTS.md) e assume o papel de orquestrador.
+2. Diga o que precisa: um relatório, um manual ou um documento. O orquestrador conduz uma entrevista (grilling) e grava uma especificação.
+3. **Aprove a especificação.** Nada é gerado antes disso.
+4. O orquestrador despacha os agentes (pesquisa, redação, diagramação) e uma revisão independente, e repete até aprovar ou atingir 3 ciclos.
+5. O resultado fica em `documents/<nome>/<nome>.html`.
 
 ## Estrutura
 
-| Diretório | Conteúdo |
+| Caminho | Conteúdo |
 | --- | --- |
-| [pipeline/](pipeline/README.md) | Instruções operacionais, entrevista, contratos e critérios de revisão |
-| [templates/](templates/README.md) | Modelos HTML de relatório e manual com CSS interno |
-| [design-system/](design-system/README.md) | Identidade visual única, preenchida pelo responsável |
-| [documents/](documents/README.md) | Entregáveis HTML e PDF, organizados por documento |
-| `.runs/<nome>/` | Especificação, fontes, decisões e revisões locais; ignorado pelo Git |
+| [AGENTS.md](AGENTS.md) | Fonte única de instruções. `CLAUDE.md` e `GEMINI.md` apontam para ele |
+| [.claude/agents/](.claude/agents/) | Agentes: orquestrador, pesquisador, redator, diagramador e revisor, com suas personas (lentes) |
+| [.claude/skills/grilling/](.claude/skills/grilling/SKILL.md) | Skill obrigatória de entrevista antes de gerar |
+| [templates/](templates/README.md) | `report.html`, `manual.html` e `document.html` com identidade e espaços `data-slot` |
+| [design-system/](design-system/README.md) | Identidade Solaria: tokens, logos, fontes, diretrizes |
+| [editorial.md](editorial.md) | Convenções editoriais |
+| [documents/](documents/README.md) | Entregáveis |
+| `.runs/<nome>/` | Trabalho local ignorado pelo Git |
 
-## Começar
-
-1. Preencha a identidade conforme [design-system/README.md](design-system/README.md).
-2. Instrua o agente a ler [pipeline/README.md](pipeline/README.md) integralmente e iniciar uma geração, informando objetivo, tipo de documento e fontes disponíveis.
-3. Responda à entrevista e aprove a especificação antes da implementação.
-4. O orquestrador executa cada estágio com um subagente novo sem histórico herdado, confere as saídas e entrega os dois arquivos em `documents/<nome>/`.
-
-Não há aplicação, executor, comando de build, workflow ou agendamento neste repositório. Os arquivos Markdown são instruções para o agente local, que utiliza as ferramentas disponíveis no ambiente. Se não houver subagentes, cada estágio exige uma sessão nova e transferência explícita dos arquivos de contrato.
-
-## Padrão editorial
-
-A4 exclusivamente retrato, capa corporativa, sumário, hierarquia numerada, legendas e fontes de tabelas/figuras, referências e anexos quando aplicáveis. A organização editorial do relatório gerencial do Itaú inspira capa, divisórias e miolo; Firecrawl e Cloudflare são referências complementares de clareza e hierarquia. A identidade final vem somente de `design-system/`.
-
-São convenções selecionadas para documentos corporativos. Não se declara conformidade integral com normas ABNT. HTML e PDF devem apresentar o mesmo conteúdo, com texto selecionável, sem depender de animação, interação ou acesso à rede.
+Não há aplicação, build, workflow nem dependências. HTML e PDF (sob pedido, pela impressão do navegador) em A4 retrato; o PDF não é o entregável padrão.
 
 ## Contribuição e licença
 
-Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses. Publicar a branch; abrir PR e mergear somente quando solicitado. Não versionar registros intermediários, credenciais ou atribuições de assistentes.
-
-A pipeline e os templates são o produto deste repositório e são versionados. O planejamento da implementação e os registros de execução permanecem fora dos entregáveis.
+Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses. Publicar a branch; abrir PR e mergear somente quando solicitado. Não versionar `.runs/`, credenciais ou registros intermediários. Neste repositório os arquivos de configuração de IA (`AGENTS.md`, `.claude/agents/`, skills) são versionados de propósito.
 
 Licença: [CC0 1.0 Universal](LICENSE).

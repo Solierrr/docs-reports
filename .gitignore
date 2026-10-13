@@ -1,5 +1,7 @@
 .sdd/
-.claude/
+.claude/*
+!.claude/agents/
+!.claude/skills/
 docs/specs/
 specs/
 .runs/
