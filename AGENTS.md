@@ -30,6 +30,7 @@ Nenhum documento começa sem uma rodada de **grilling** (skill em [.claude/skill
 | [design-system/](design-system/README.md) | Identidade única: tokens, logos, fontes e diretrizes. É a fonte de verdade visual |
 | [documents/](documents/README.md) | Entregáveis: `documents/<nome>/<nome>.html` |
 | [editorial.md](editorial.md) | Convenções de estrutura, tabelas, figuras, fontes e impressão |
+| [Makefile](Makefile) | `make vault` extrai do Infisical o acesso ao databricks-sync (`.env` ignorado pelo Git) |
 | `.runs/<nome>/` | Trabalho local ignorado pelo Git: `especificacao.md`, `fontes.md`, `conteudo.md`, `log.md`, `revisao.md`, `fontes/` e `capturas/` |
 
 ## Regras gerais
@@ -40,6 +41,27 @@ Nenhum documento começa sem uma rodada de **grilling** (skill em [.claude/skill
 - **Fatos:** não invente dados, números, citações, metadados bibliográficos nem instruções operacionais. Toda afirmação factual tem fonte registrada. Pesquisa na internet é permitida, com origem, data e limitações.
 - **Sobrescrita:** não sobrescreva um documento existente sem autorização do usuário; o histórico fica no Git. Se o nome já existir, pergunte se é revisão ou documento novo.
 - **Idioma:** instruções e documentos em português do Brasil, salvo pedido diferente na especificação.
+
+## Relatórios por período (métricas do databricks-sync)
+
+Relatórios de período (hoje, ontem, últimos 7 ou 30 dias, mês atual, mês anterior ou um intervalo) são gerados a partir de **métricas agregadas** servidas pelo serviço `databricks-sync`. O agente nunca lê linhas de usuário, só os agregados devolvidos. O grilling e a especificação aprovada continuam obrigatórios; o prompt do período entra como a primeira resposta do grilling.
+
+### Credencial
+
+1. Rode `make vault` (usa o Infisical CLI; peça ao usuário para executar `infisical login` se não houver sessão). O comando grava `.env`, ignorado pelo Git, com as variáveis da pasta `/reports` do Infisical.
+2. Leia as variáveis `DATABRICKS_SYNC_URL` e `DATABRICKS_SYNC_API_TOKEN` do ambiente (`set -a; . ./.env; set +a`), sem imprimir o valor.
+3. **Nunca** escreva o token neste arquivo, em prompt, em log, em `.runs/`, em commit ou em documento. Mostre apenas o nome da variável.
+
+### Consulta
+
+- `GET $DATABRICKS_SYNC_URL/health` acorda o serviço (Render gratuito dorme cerca de 30 s). Tente de novo com espera até responder 200.
+- `GET $DATABRICKS_SYNC_URL/reports/metrics?period=<today|yesterday|last_7_days|last_30_days|current_month|previous_month>` ou `?from=AAAA-MM-DD&to=AAAA-MM-DD`, com `Authorization: Bearer $DATABRICKS_SYNC_API_TOKEN`. Fuso de São Paulo.
+- O endpoint `/reports/metrics` ainda não existe: depende do contrato do `analyticsdb`. Enquanto isso, pare e avise o usuário em vez de inventar números.
+- Registre em `.runs/<nome>/fontes.md` o período, a data e a hora da consulta e o JSON agregado recebido.
+
+### Entrega
+
+Gere o HTML com `templates/report.html` em `documents/relatorio-<periodo>/relatorio-<periodo>.html`, siga as regras gerais e a seção Git abaixo, publique em branch `docs/report-<data>` (sem referência a IA no nome) e abra a PR em português com o template do repositório. Sem merge automático.
 
 ## Verificação
 
