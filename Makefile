@@ -4,14 +4,14 @@
 
 # ---- especifico deste repositorio ----
 VAULT_FOLDERS ?= /reports
-INSTALL_CMD   ?=
-DEV_CMD       ?=
-BUILD_CMD     ?=
-TEST_CMD      ?=
+INSTALL_CMD   ?= npm --prefix gallery ci --ignore-scripts
+DEV_CMD       ?= npm --prefix gallery run dev
+BUILD_CMD     ?= npm --prefix gallery run build
+TEST_CMD      ?= npm --prefix gallery run typecheck
 LINT_CMD      ?=
 FORMAT_CMD    ?=
-CLEAN_PATHS   ?=
-DOCTOR_TOOLS  ?= git
+CLEAN_PATHS   ?= gallery/dist gallery/node_modules
+DOCTOR_TOOLS  ?= git node npm
 # ---- padrao (nao editar por repositorio) ----
 INFISICAL_PROJECT_ID ?= 2296d19c-5f3b-41e1-afa3-fcde39966a71
 ENV ?= local

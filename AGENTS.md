@@ -65,7 +65,7 @@ Gere o HTML com `templates/report.html` em `documents/relatorio-<periodo>/relato
 
 ## Verificação
 
-Sem scripts nem dependências no repositório. O revisor abre o HTML no navegador disponível no ambiente e confere overflow horizontal, imagens quebradas, links internos, marcadores esquecidos e a visualização de impressão A4. As capturas ficam em `.runs/<nome>/capturas/`. Sem navegador disponível, relate a limitação: não declare o documento verificado.
+Sem scripts nem dependências para gerar documentos; só a galeria de prévia (`gallery/`) usa Node. O revisor abre o HTML no navegador disponível no ambiente e confere overflow horizontal, imagens quebradas, links internos, marcadores esquecidos e a visualização de impressão A4. As capturas ficam em `.runs/<nome>/capturas/`. Sem navegador disponível, relate a limitação: não declare o documento verificado.
 
 ## Git
 
