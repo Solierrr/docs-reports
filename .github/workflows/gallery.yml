@@ -1,0 +1,60 @@
+name: Templates gallery
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - "gallery/**"
+      - "templates/**"
+      - "design-system/logos/**"
+      - ".github/workflows/gallery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: gallery-${{ github.event_name == 'pull_request' && github.ref || 'pages' }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Assemble the site
+        run: |
+          mkdir site
+          cp gallery/index.html site/index.html
+          cp templates/report.html templates/manual.html templates/document.html site/
+          cp design-system/logos/hexagon.svg site/favicon.svg
+          touch site/.nojekyll
+          for file in index report manual document; do
+            test -s "site/$file.html" || { echo "missing site/$file.html"; exit 1; }
+          done
+          if grep -R --include='*.html' -nE 'src="https?://|href="https?://[^"]*\.(css|js)"' site/report.html site/manual.html site/document.html; then
+            echo "templates must not load remote resources"
+            exit 1
+          fi
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: PREVIEW
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/configure-pages@v5
+      - id: deployment
+        uses: actions/deploy-pages@v4
