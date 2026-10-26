@@ -21,9 +21,10 @@ Repositório para produzir **relatórios, documentos e manuais de instrução da
 | [design-system/](design-system/README.md) | Identidade Solaria: tokens, logos, fontes, diretrizes |
 | [editorial.md](editorial.md) | Convenções editoriais |
 | [documents/](documents/README.md) | Entregáveis |
+| [gallery/](gallery/) | Prévia dos modelos no GitHub Pages (app Vite com React) |
 | `.runs/<nome>/` | Trabalho local ignorado pelo Git |
 
-Não há aplicação, build, workflow nem dependências. HTML e PDF (sob pedido, pela impressão do navegador) em A4 retrato; o PDF não é o entregável padrão.
+A geração de documentos não usa aplicação, build nem dependências. A galeria de prévia dos modelos (`gallery/`, publicada no GitHub Pages) é um app Vite separado, com CI, release-please e Dependabot. HTML e PDF (sob pedido, pela impressão do navegador) em A4 retrato; o PDF não é o entregável padrão.
 
 ## Contribuição e licença
 
