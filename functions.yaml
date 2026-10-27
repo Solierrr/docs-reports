@@ -1,0 +1,76 @@
+# Papéis e scripts do SDD em formato de consulta. NNN é o número do documento (001, 002...).
+# Caminhos relativos à raiz do repositório. Leia só a chave de que precisa.
+
+agents:
+  orchestrator:
+    file: agents/orchestrator.md
+    role: Sessão principal. Conduz o grilling, despacha, faz a reflexão do ciclo e decide.
+    when: sempre; é quem recebe o pedido
+    reads: [AGENTS.md, skills/grilling/SKILL.md, checklists/orchestrator.md, .work/NNN/review.md]
+    writes: [.work/NNN/spec.md, .work/NNN/log.md, documents/NNN/checklist.md]
+    checklist: checklists/orchestrator.md
+    scripts: [new, check, index, commit]
+    context: principal
+  writer:
+    file: agents/writer.md
+    role: Refinador e idealizador. Escreve o conteúdo em Markdown, um bloco por espaço do modelo.
+    when: depois da spec aprovada, e quando a reflexão devolve uma falha de conteúdo
+    reads: [.work/NNN/spec.md, .work/NNN/sources.md, templates/<type>.html, editorial.md]
+    writes: [.work/NNN/content.md]
+    checklist: lentes em agents/writer.md
+    scripts: []
+    context: novo ou principal, nunca o do reviewer
+  builder:
+    file: agents/builder.md
+    role: Implementador. Aplica o conteúdo no modelo e gera o PDF depois da aprovação.
+    when: depois do writer, quando a reflexão devolve uma falha de montagem, e no PDF final
+    reads: [.work/NNN/spec.md, .work/NNN/content.md, documents/NNN/index.html, templates/AGENTS.md, design/AGENTS.md, editorial.md]
+    writes: [documents/NNN/index.html, documents/NNN/NNN.pdf]
+    checklist: checklists/structure.md
+    scripts: [check, pdf]
+    context: novo ou principal, nunca o do reviewer
+  reviewer:
+    file: agents/reviewer.md
+    role: Revisor de design bruto. Ortografia, texto cortado, legibilidade, contraste e organização. Só aponta.
+    when: depois de cada montagem com check.sh limpo, e uma olhada final no PDF
+    reads: [documents/NNN/index.html, documents/NNN/checklist.md, checklists/reviewer.md]
+    writes: [.work/NNN/review.md, .work/NNN/captures/]
+    checklist: checklists/reviewer.md
+    scripts: [check]
+    context: sempre separado de quem escreveu ou montou
+  researcher:
+    file: agents/researcher.md
+    role: Opcional. Reúne fontes com origem, data e limitações.
+    when: quando a spec aponta lacuna de fontes, e em relatórios por período
+    reads: [.work/NNN/spec.md, material do usuário]
+    writes: [.work/NNN/sources.md, .work/NNN/sources/]
+    checklist: regras em agents/researcher.md
+    scripts: []
+    context: novo
+
+scripts:
+  new:
+    usage: sh scripts/new.sh <type> <slug> "<título>"
+    args: {type: report | manual | document, slug: uma palavra em inglês, título: título do documento}
+    does: Cria documents/NNN/ com o modelo e o checklist do documento, e .work/NNN/ com spec, content, review e log vazios. NNN é o maior número existente mais um.
+    output: o número criado, os caminhos e o documento anterior (número e título)
+  check:
+    usage: sh scripts/check.sh <NNN>
+    does: Verificações estruturais de checklists/structure.md no HTML, no PDF (se existir) e no checklist.md.
+    output: só as falhas, uma por linha; "ok NNN" se nada falhar
+    exit: 0 sem falhas, 1 com falhas
+  pdf:
+    usage: sh scripts/pdf.sh <NNN>
+    does: Converte documents/NNN/index.html em documents/NNN/NNN.pdf com Chrome ou Edge headless (BROWSER sobrescreve).
+    output: caminho do PDF e número de páginas
+    exit: 0 gerado, 1 sem navegador ou falha
+  index:
+    usage: sh scripts/index.sh [docs]
+    does: Imprime os cabeçalhos YAML dos AGENTS.md, agentes e checklists; com "docs", lista os documentos.
+    output: uma linha por arquivo ou documento
+  commit:
+    usage: sh scripts/commit.sh <NNN>
+    does: Roda check.sh, cria a branch docs/NNN a partir da main, commita só documents/NNN, faz push e abre a PR.
+    env: {AI_TRAILER: linha de coautoria opcional acrescentada ao commit}
+    output: a URL da PR
+    exit: 0 PR aberta, 1 falha de verificação ou de git
