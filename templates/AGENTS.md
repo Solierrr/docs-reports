@@ -22,10 +22,26 @@ Cada modelo é um documento completo com conteúdo de exemplo realista: mostra a
 - O `source.html` é corrido: não tem páginas, rodapé, numeração nem sumário escritos. O build pagina em A4, preenche o sumário com as páginas reais, numera capítulos, aberturas e passos e escreve cabeçalho e rodapé.
 - **Capa e contracapa:** `<section class="cover">` e `<section class="back">`. Troque os textos e os metadados; não mude a estrutura.
 - **Sumário:** página dividida de folha inteira, `<section class="contents">` com `.side` (título e linha de apoio, sem eyebrow) e `.main` com `<nav class="toc"></nav>` vazio. O painel laranja com a grade de quadrados vem do CSS; troque só a linha de apoio. Nada além da lista no `.main`.
-- **Capítulos:** `<section class="chapter" id="slug" data-title="Título no sumário" data-summary="Uma linha">`. Cada um começa numa folha nova. No relatório, abra com `.runhead` (título-ação e pergunta da página); no manual, com `.opener` deixando `<span class="num"></span>` vazio.
-- **Gráficos:** `<div data-chart='{"type": ...}'></div>` dentro de uma `figure.fig`; o build desenha o SVG. Tipos e campos no [catálogo](../design/components.html).
+- **Capítulos:** `<section class="chapter" id="slug" data-title="Título no sumário" data-summary="Uma linha">`. Cada um começa numa folha nova. A abertura muda por tipo, e todas deixam `<span class="num"></span>` vazio para o build:
+  - **Relatório:** `header.band.brand` como primeiro filho, com o número, o título-ação e a `.question`. A faixa sangra até as bordas e a folha fica sem cabeçalho.
+  - **Manual:** `section.chapter.strip`, com uma coluna laranja em todas as folhas do capítulo, e `.opener` com título e linha de apoio.
+  - **Documento longo:** `data-opener="divider"` no capítulo; o build cria uma folha laranja inteira antes dele.
+  - **Sem variação:** `.runhead` e `.opener` continuam valendo.
+- **Superfície da marca:** todo laranja chapado usa `.brand`, que já tem a grade de quadrados:
+  - `.narrow` para cartões e colunas;
+  - `.fade` para devolver o laranja liso até o pé;
+  - `.quiet` para só a grade, quando o texto ocupa a largura toda;
+  - `.page` para folha inteira.
+
+  Componentes que a levam: `.counter`, `.kpi` em `.kpis.cards`, `.score`, `.summary`, `.facts`, `.trail`, `.themes`, `.ask` e `.back`.
+- **Gráficos:** `<div data-chart='{"type": ...}'></div>` dentro de uma `figure.fig`; o build desenha o SVG.
+  - **Tipos:** `bar`, `rank`, `group`, `stack`, `line`, `area`, `variance`, `waterfall`, `donut`, `boxplot`, `histogram`, `scatter`, `heatmap`, `funnel`, `bullet`, `dumbbell` e `spark`. Campos e exemplos no [catálogo](../design/components.html).
+  - **Leitura analítica:** valor escrito nas marcas; `target` para meta, `average` para média e `table` para a tabela com os números.
+  - **Cor:** `highlight` põe em laranja o que a página discute; o resto fica cinza.
+  - **Séries:** até quatro, cada uma com cor e padrão (liso, listras, pontos, listras cruzadas), como nos comparativos de benchmark. Mais que isso vira "Outros".
+  - **Eixo:** um só por gráfico. Duas medidas de escala diferente viram dois gráficos lado a lado em `.cols`.
 - **Exemplo:** remova o selo `<span class="sample">` e troque todo o conteúdo de exemplo, inclusive o `<title>`. O `check.sh` acusa selo e título que sobrarem.
-- Não acrescente CSS nem estilo inline além de `--count` dos KPIs e da largura de capturas. Se faltar um componente, pare e pergunte.
+- Não acrescente CSS nem estilo inline além de `--count` (KPIs, progresso, trilha e temas) e da largura de capturas. Se faltar um componente, pare e pergunte.
 
 ## Impressão
 

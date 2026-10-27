@@ -16,12 +16,30 @@ Não esconda overflow para disfarçar conteúdo que não cabe. Adicione páginas
 
 Capa com título, linha de apoio, período, responsável, versão e classificação; contracapa com a marca. Sumário, numeração, cabeçalho (capítulo e progresso) e rodapé (título e página) são gerados pelo build. A conclusão vem antes do detalhe, no documento e em cada seção. Centralizado só em capa, contracapa e destaque de número; o corpo é alinhado à esquerda, sem moldura, separado por espaço e filetes.
 
-- **Relatório gerencial** (`report.html`): sumário executivo (KPIs com fórmula, SCQA, decisão pedida) → um capítulo por achado, com título-ação e a pergunta da página → recomendação com responsáveis e prazos → proveniência dos dados. Gráficos no padrão IBCS: real cheio, plano em contorno, variação em verde e vermelho.
+- **Relatório gerencial** (`report.html`): sumário executivo (contador com o número da história, KPIs com fórmula, SCQA, decisão pedida) → um capítulo por achado, aberto pela faixa laranja com título-ação e a pergunta da página → recomendação com responsáveis e prazos → proveniência dos dados. Real contra plano no padrão IBCS: real cheio, plano em contorno, variação em verde e vermelho.
 - **Manual de uso** (`manual.html`), no formato how-to: antes de começar (o que é preciso, tempo, resultado) → procedimento em passos no imperativo, cada um com o resultado esperado → problemas comuns com causa e solução. Explicação longa vai para outra seção, não para dentro dos passos.
 - **Perguntas frequentes** (`faq.html`): só perguntas reais, agrupadas por tema; a primeira frase da resposta já responde e o resto aponta onde saber mais.
 - **Documento curto** (`document.html`): proposta, ata, comunicado ou one-pager, sem capa nem sumário. Cabeçalho com tipo, título e metadados, decisão pedida quando houver e seções curtas.
 
 As seções variam conforme a especificação aprovada. Não adicione KPIs, recomendações ou solução de problemas só para preencher o modelo.
+
+## Gráficos
+
+Cada gráfico responde a uma pergunta da página e mostra os números, não só a forma: valor nas barras e no fim das linhas, meta e média quando existirem, e a tabela (`"table": true`) quando o leitor precisar do valor exato. O que a página discute fica em laranja; o resto, em cinza. Séries diferentes ganham cor e padrão para continuar distintas impressas em preto e branco e para quem não distingue cores. Nunca dois eixos verticais: duas medidas viram dois gráficos. Escolha a forma pela tarefa:
+
+| Tarefa | Tipo |
+| --- | --- |
+| Comparar categorias | `bar`, `rank`, `group` |
+| Partes de um todo | `stack` (100% com `percent`), `donut` até cinco partes |
+| Evolução no tempo | `line`, `area` |
+| Real contra plano ou meta | `variance`, `bullet` |
+| Explicar uma diferença | `waterfall` |
+| Antes e depois | `dumbbell` |
+| Distribuição | `histogram`, `boxplot` |
+| Relação entre duas medidas | `scatter` |
+| Intensidade em duas dimensões | `heatmap` |
+| Conversão por etapas | `funnel` |
+| Tendência num cartão | `spark` |
 
 ## Figuras, tabelas e fontes
 

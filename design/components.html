@@ -8,28 +8,77 @@
 </head>
 <body>
 
-<section class="chapter" id="texto" data-title="Texto, aberturas e avisos">
-  <div>
-    <span class="eyebrow">Componentes</span>
-    <h1 class="title">Texto, aberturas e avisos</h1>
-    <p class="lead">Cada bloco traz o nome da classe em <b>document.css</b>. O agente combina estes trechos; não cria estilo novo.</p>
+<section class="chapter" id="aberturas" data-title="Aberturas e superfície da marca">
+  <header class="band brand">
+    <span class="num"></span>
+    <h1 class="title">Aberturas e superfície da marca</h1>
+    <p class="question">Cada bloco traz o nome da classe em document.css. O agente combina estes trechos; não cria estilo novo.</p>
+  </header>
+  <div class="specimen">
+    <code>header.band.brand · span.num vazio, .title, .question</code>
+    <p class="muted small">A faixa acima: abre o capítulo sangrando até as bordas da folha, sem cabeçalho. Use como primeiro filho do capítulo.</p>
   </div>
   <div class="specimen">
-    <code>.opener</code>
+    <code>section.chapter.strip</code>
+    <p class="muted small">Coluna laranja em todas as folhas do capítulo, com número e nome; veja o capítulo de procedimentos deste catálogo.</p>
+  </div>
+  <div class="specimen">
+    <code>section.chapter[data-opener="divider"]</code>
+    <p class="muted small">O build cria uma folha laranja inteira antes do capítulo, com número, título e data-summary; veja a abertura dos gráficos.</p>
+  </div>
+  <div class="specimen">
+    <code>.opener · .runhead</code>
     <header class="opener">
-      <span class="num"></span>
+      <span class="num">01</span>
       <div>
         <h2 class="title">Título da seção com a conclusão</h2>
         <p class="lead">Uma frase que diz o que a seção prova.</p>
       </div>
     </header>
-  </div>
-  <div class="specimen">
-    <code>.runhead</code>
     <header class="runhead">
       <h2 class="title">Título-ação: a conclusão da página</h2>
       <p class="question">Que pergunta esta página responde?</p>
     </header>
+  </div>
+  <div class="specimen">
+    <code>.brand · .brand.narrow · .brand.fade</code>
+    <div class="cols">
+      <div class="summary brand narrow"><span class="label">.brand.narrow</span><b>Cartões e colunas</b></div>
+      <div class="summary brand"><span class="label">.brand</span><b>Blocos largos: onda no alto, à direita</b></div>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="texto" data-title="Texto, informação e avisos">
+  <h2 class="title">Texto, informação e avisos</h2>
+  <div class="specimen">
+    <code>.split &gt; .prose + aside.summary.brand.narrow.fade</code>
+    <div class="split">
+      <div class="prose"><h3>Texto corrido</h3><p>O conteúdo principal fica à esquerda, em largura de leitura. O resumo à direita é para quem só passa os olhos.</p><ul><li>Um ponto do texto.</li><li>Outro ponto do texto.</li></ul></div>
+      <aside class="summary brand narrow fade"><span class="label">Em resumo</span><b>A frase que fica</b><ul><li>Primeiro ponto</li><li>Segundo ponto</li><li>Terceiro ponto</li></ul></aside>
+    </div>
+  </div>
+  <div class="specimen">
+    <code>.facts · .facts.brand.quiet</code>
+    <div class="facts">
+      <div><span>Você precisa de</span><b>Pré-requisito</b></div>
+      <div><span>Tempo</span><b>Duração estimada</b></div>
+      <div><span>Resultado</span><b>O que muda no fim</b></div>
+    </div>
+    <div class="facts brand quiet">
+      <div><span>Você precisa de</span><b>Pré-requisito</b></div>
+      <div><span>Tempo</span><b>Duração estimada</b></div>
+      <div><span>Resultado</span><b>O que muda no fim</b></div>
+    </div>
+  </div>
+  <div class="specimen">
+    <code>.pull · ol.keys &gt; li</code>
+    <div class="pull"><span class="big">64%</span><p>O número de destaque da página, com a frase que o explica.</p></div>
+    <ol class="keys"><li>Primeiro ponto-chave, numerado pelo build.</li><li>Segundo ponto-chave.</li></ol>
+  </div>
+  <div class="specimen">
+    <code>.hero</code>
+    <div class="hero"><span class="big">64%</span><p>O achado principal da página, em uma frase, centralizado.</p></div>
   </div>
   <div class="specimen">
     <code>.note · .note.tip · .note.warn · .note.stop</code>
@@ -40,10 +89,11 @@
   </div>
 </section>
 
-<section class="chapter" id="dados" data-title="Números e tabelas">
-  <div>
-    <span class="eyebrow">Componentes</span>
-    <h2 class="title">Números e tabelas</h2>
+<section class="chapter" id="numeros" data-title="Números e decisões">
+  <h2 class="title">Números e decisões</h2>
+  <div class="specimen">
+    <code>.counter.brand</code>
+    <div class="counter brand"><span class="big">−6,1%</span><p>O número que resume a página, com a frase que diz contra o quê e por quê.</p></div>
   </div>
   <div class="specimen">
     <code>.kpis &gt; .kpi</code>
@@ -54,8 +104,20 @@
     </div>
   </div>
   <div class="specimen">
-    <code>.hero</code>
-    <div class="hero"><span class="big">64%</span><p>O achado principal da página, em uma frase.</p></div>
+    <code>.kpis.cards &gt; .kpi.brand.narrow + .kpi</code>
+    <div class="kpis cards" style="--count:3">
+      <div class="kpi brand narrow"><span class="label">Destaque</span><div class="row"><span class="value">4.812</span><div data-chart='{"type":"spark","on":true,"values":[3,4,4,5,6,5]}'></div></div><span class="delta">−6,1% vs. plano</span><span class="formula">Como o número é calculado</span></div>
+      <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">R$ 1,9 mi</span><div data-chart='{"type":"spark","values":[5,5,6,6,7,6]}'></div></div><span class="delta up">+3,4%</span><span class="formula">Como o número é calculado</span></div>
+      <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">9,4 h</span><div data-chart='{"type":"spark","values":[6,6,7,8,9,12]}'></div></div><span class="delta down">+3,1 h</span><span class="formula">Como o número é calculado</span></div>
+    </div>
+  </div>
+  <div class="specimen">
+    <code>.score.brand · .kpis.tiles</code>
+    <div class="score brand"><b>Dois de quatro indicadores ficaram no plano.</b><span class="marks"><i class="on"></i><i class="on"></i><i></i><i></i></span></div>
+    <div class="kpis tiles">
+      <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">4.812</span><div data-chart='{"type":"spark","values":[3,4,4,5,6,5]}'></div></div><span class="delta down">−6,1% vs. plano</span></div>
+      <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">4,7</span><div data-chart='{"type":"spark","values":[4.6,4.7,4.7,4.6,4.7,4.7]}'></div></div><span class="delta up">estável</span></div>
+    </div>
   </div>
   <div class="specimen">
     <code>dl.scqa</code>
@@ -66,8 +128,9 @@
     </dl>
   </div>
   <div class="specimen">
-    <code>.ask</code>
+    <code>.ask · .ask.brand &gt; .when</code>
     <div class="ask"><span class="eyebrow">Decisão pedida</span><p>O que o leitor precisa aprovar, com prazo.</p></div>
+    <div class="ask brand"><span class="eyebrow">Decisão pedida</span><p>O que o leitor precisa aprovar, com prazo.</p><div class="when"><div>Decidir até<b>20/10/2026</b></div><div>Quem decide<b>Comitê</b></div></div></div>
   </div>
   <div class="specimen">
     <code>table.data</code>
@@ -81,62 +144,116 @@
   </div>
 </section>
 
-<section class="chapter" id="graficos" data-title="Gráficos">
-  <div>
-    <span class="eyebrow">Componentes</span>
-    <h2 class="title">Gráficos</h2>
-    <p class="lead">O agente escreve só o bloco <b>data-chart</b>; o script desenha o SVG com a paleta da Solaria.</p>
+<section class="chapter" id="graficos" data-title="Gráficos" data-summary="Dezessete tipos, do ranking ao boxplot, com a mesma paleta e os mesmos padrões" data-opener="divider">
+  <h2 class="title">Gráficos</h2>
+  <p class="lead">O agente escreve só o bloco <b>data-chart</b>; o build desenha o SVG com a paleta da Solaria. Campos comuns: <b>alt</b>, <b>size</b> (full, half, tall), <b>height</b>, <b>prefix</b>, <b>suffix</b>, <b>decimals</b>, <b>compact</b>, <b>highlight</b>, <b>target</b>, <b>average</b> e <b>table</b>. Até quatro séries: laranja, azul, verde-água e violeta, com liso, listras, pontos e listras cruzadas; "tone": "neutral" e "pattern" mudam uma série.</p>
+  <figure class="fig specimen">
+    <code>"type": "bar" · highlight, target, average</code>
+    <div data-chart='{"type":"bar","alt":"Pedidos concluídos por mês, setembro em destaque, meta de 1.700","highlight":"Set","target":{"value":1700,"label":"Meta"},"data":[["Jan",1210],["Fev",1302],["Mar",1388],["Abr",1450],["Mai",1520],["Jun",1490],["Jul",1612],["Ago",1620],["Set",1580]]}'></div>
+  </figure>
+  <figure class="fig specimen">
+    <code>"type": "group" · séries com padrão, como os comparativos de benchmark · table</code>
+    <div data-chart='{"type":"group","alt":"Taxa de sucesso por tarefa, com e sem assistente, contra dois concorrentes","suffix":"%","decimals":1,"labels":["Busca","Cadastro","Pagamento","Suporte"],"series":[{"name":"Solaria","values":[82.4,76.1,91.3,68.9]},{"name":"Solaria com assistente","values":[88.9,81.5,93.2,79.4],"tone":"accent","pattern":"stripes"},{"name":"Concorrente A","values":[74.2,70.8,86.1,61.7],"tone":"neutral","pattern":"solid"},{"name":"Concorrente B","values":[69.5,72.3,84.4,58.2],"tone":"neutral","pattern":"hatch"}],"table":true}'></div>
+  </figure>
+  <div class="cols">
+    <figure class="fig specimen">
+      <code>"type": "rank"</code>
+      <div data-chart='{"type":"rank","size":"half","alt":"Receita por categoria","highlight":["Reformas"],"prefix":"R$ ","suffix":" mil","data":[["Reformas",520],["Elétrica",398],["Hidráulica",298],["Pintura",240],["Limpeza",198]]}'></div>
+    </figure>
+    <figure class="fig specimen">
+      <code>"type": "group", "horizontal": true</code>
+      <div data-chart='{"type":"group","horizontal":true,"size":"half","alt":"Primeira resposta por categoria em agosto e setembro","suffix":" h","labels":["Reformas","Elétrica","Hidráulica"],"series":[{"name":"Agosto","values":[11.2,9.8,9.1]},{"name":"Setembro","values":[16.2,13.8,12.5]}]}'></div>
+    </figure>
   </div>
   <div class="cols">
     <figure class="fig specimen">
-      <code>"type": "bar"</code>
-      <div data-chart='{"type":"bar","size":"half","alt":"Exemplo de barras","highlight":"C","data":[["A",12],["B",18],["C",25],["D",9]]}'></div>
+      <code>"type": "stack"</code>
+      <div data-chart='{"type":"stack","size":"half","alt":"Pedidos por situação","labels":["Jul","Ago","Set"],"series":[{"name":"Concluídos","values":[1612,1620,1580]},{"name":"Em andamento","values":[220,260,310]},{"name":"Cancelados","values":[96,140,210]}]}'></div>
     </figure>
     <figure class="fig specimen">
-      <code>"type": "rank"</code>
-      <div data-chart='{"type":"rank","size":"half","alt":"Exemplo de ranking","highlight":"B","data":[["A",12],["B",30],["C",18],["D",9]]}'></div>
+      <code>"type": "stack", "percent": true, "horizontal": true</code>
+      <div data-chart='{"type":"stack","percent":true,"horizontal":true,"size":"half","alt":"Faixa de resposta por categoria","labels":["Reformas","Elétrica","Pintura"],"series":[{"name":"Até 4 h","values":[40,48,70]},{"name":"4 a 12 h","values":[35,32,22]},{"name":"Mais de 12 h","values":[25,20,8]}]}'></div>
     </figure>
-    <figure class="fig specimen">
-      <code>"type": "line"</code>
-      <div data-chart='{"type":"line","size":"half","alt":"Exemplo de linhas","labels":["1","2","3","4","5","6"],"series":[{"name":"Real","values":[3,4,4,6,7,8]},{"name":"Plano","values":[3,4,5,6,7,8],"dashed":true}]}'></div>
-    </figure>
+  </div>
+  <figure class="fig specimen">
+    <code>"type": "line" · "mark" (máximo e mínimo), "dashed", target</code>
+    <div data-chart='{"type":"line","alt":"Primeira resposta semanal contra o plano","suffix":" h","mark":true,"target":{"value":8,"label":"Meta"},"labels":["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"series":[{"name":"Resposta","values":[6,6.2,6.1,6.4,6.8,7.5,8.2,8.9,9.6,10.8,11.9,12.4,12.1]},{"name":"Plano","values":[6,6,6,6.2,6.2,6.4,6.4,6.6,6.6,6.8,6.8,7,7],"dashed":true,"tone":"neutral"}]}'></div>
+  </figure>
+  <div class="cols">
     <figure class="fig specimen">
       <code>"type": "area"</code>
-      <div data-chart='{"type":"area","size":"half","alt":"Exemplo de área","labels":["1","2","3","4","5","6"],"series":[{"name":"Total","values":[2,3,5,4,6,8]}]}'></div>
+      <div data-chart='{"type":"area","size":"half","alt":"Usuários ativos","compact":true,"labels":["Jan","Fev","Mar","Abr","Mai","Jun"],"series":[{"name":"Usuários","values":[12000,13500,16000,15800,19000,22400]}]}'></div>
     </figure>
     <figure class="fig specimen">
-      <code>"type": "variance"</code>
-      <div data-chart='{"type":"variance","size":"half","alt":"Exemplo de real contra plano","data":[["T1",120,110],["T2",130,140],["T3",150,150]]}'></div>
+      <code>"type": "variance" (IBCS)</code>
+      <div data-chart='{"type":"variance","size":"half","alt":"Real contra plano por mês","data":[["Jul",1612,1600],["Ago",1620,1725],["Set",1580,1800]]}'></div>
     </figure>
+  </div>
+  <figure class="fig specimen">
+    <code>"type": "waterfall" · start, data, end, "zero": false</code>
+    <div data-chart='{"type":"waterfall","alt":"Ponte da receita do 2º para o 3º trimestre","prefix":"R$ ","suffix":" mil","start":["2º tri",1240],"data":[["Novos clientes",420],["Ticket médio",160],["Cancelamentos",-310],["Descontos",-120]],"end":"3º tri"}'></div>
+  </figure>
+  <div class="cols">
     <figure class="fig specimen">
       <code>"type": "donut"</code>
-      <div data-chart='{"type":"donut","size":"half","alt":"Exemplo de rosca","data":[["Sim",68],["Não",32]]}'></div>
+      <div data-chart='{"type":"donut","size":"half","alt":"Pedidos por canal","totalLabel":"pedidos","data":[["App",2860],["Web",1420],["Parceiros",532]]}'></div>
+    </figure>
+    <figure class="fig specimen">
+      <code>"type": "histogram"</code>
+      <div data-chart='{"type":"histogram","size":"half","alt":"Distribuição do tempo de resposta","suffix":" h","values":[1,2,2,3,3,3,4,4,4,4,5,5,5,6,6,7,7,8,9,10,11,12,13,15,18,22,26,30],"bins":7}'></div>
     </figure>
   </div>
+  <figure class="fig specimen">
+    <code>"type": "boxplot" · valores brutos ou [mín, q1, mediana, q3, máx]</code>
+    <div data-chart='{"type":"boxplot","alt":"Distribuição do tempo de resposta por categoria","suffix":" h","highlight":"Reformas","raw":true,"data":[["Reformas",[2,6.5,11,16,28,3,4,8,9,12,14,15,18,22,41,7,10]],["Elétrica",[1,4,7,9,12,14,16,19,8,6,5,3,24]],["Hidráulica",[2,3,6,8,9,11,13,15,17,10,7]],["Pintura",[1,2,3,4,5,6,7,8,9,5,4,6,19]],["Limpeza",[1,2,2,3,4,5,6,4,3,5]]]}'></div>
+  </figure>
+  <div class="cols">
+    <figure class="fig specimen">
+      <code>"type": "scatter" · trend, quadrants</code>
+      <div data-chart='{"type":"scatter","size":"half","alt":"Tempo de resposta contra cancelamento por categoria","xName":"Resposta (h)","yName":"Cancelamento (%)","highlight":["Reformas"],"trend":true,"quadrants":true,"labelAll":true,"points":[[16.2,11.1,"Reformas"],[13.8,9.4,"Elétrica"],[12.5,8.8,"Hidráulica"],[7.1,4.2,"Pintura"],[5.4,3.1,"Limpeza"]]}'></div>
+    </figure>
+    <figure class="fig specimen">
+      <code>"type": "dumbbell"</code>
+      <div data-chart='{"type":"dumbbell","size":"half","alt":"Primeira resposta de agosto para setembro","suffix":" h","names":["Agosto","Setembro"],"data":[["Reformas",11.2,16.2],["Elétrica",9.8,13.8],["Hidráulica",9.1,12.5]]}'></div>
+    </figure>
+  </div>
+  <figure class="fig specimen">
+    <code>"type": "heatmap"</code>
+    <div data-chart='{"type":"heatmap","alt":"Pedidos por dia e período","height":200,"x":["Seg","Ter","Qua","Qui","Sex","Sáb","Dom"],"y":["Manhã","Tarde","Noite"],"data":[[0,0,120],[1,0,132],[2,0,128],[3,0,140],[4,0,151],[5,0,88],[6,0,42],[0,1,210],[1,1,198],[2,1,220],[3,1,231],[4,1,240],[5,1,160],[6,1,90],[0,2,80],[1,2,85],[2,2,92],[3,2,99],[4,2,110],[5,2,130],[6,2,70]]}'></div>
+  </figure>
+  <figure class="fig specimen">
+    <code>"type": "funnel"</code>
+    <div data-chart='{"type":"funnel","alt":"Funil de pedidos","height":220,"data":[["Busca",12400],["Perfil do fornecedor",6820],["Pedido enviado",2310],["Pedido aceito",1710],["Concluído",1580]]}'></div>
+  </figure>
+  <figure class="fig specimen">
+    <code>"type": "bullet" · realizado, meta e faixas</code>
+    <div data-chart='{"type":"bullet","alt":"Indicadores contra a meta","suffix":"%","max":100,"height":170,"data":[["Conclusão",81,85,[70,80,100]],["Satisfação",92,90,[75,88,100]],["Retenção",64,70,[50,65,100]]]}'></div>
+  </figure>
 </section>
 
-<section class="chapter" id="procedimento" data-title="Procedimentos e perguntas">
-  <div>
-    <span class="eyebrow">Componentes</span>
-    <h2 class="title">Procedimentos e perguntas</h2>
-  </div>
+<section class="chapter strip" id="procedimento" data-title="Procedimentos e perguntas">
+  <h2 class="title">Procedimentos e perguntas</h2>
   <div class="specimen">
-    <code>.facts</code>
-    <div class="facts">
-      <div><span>Você precisa de</span><b>Pré-requisito</b></div>
-      <div><span>Tempo</span><b>Duração estimada</b></div>
-      <div><span>Resultado</span><b>O que muda no fim</b></div>
-    </div>
-  </div>
-  <div class="specimen">
-    <code>ol.steps &gt; li.step · .result · .ui</code>
+    <code>.progress · ol.steps &gt; li.step · .result · .ui</code>
+    <div class="progress"><span>Primeiro</span><span>Segundo</span><span>Terceiro</span><span>Quarto</span></div>
     <ol class="steps">
-      <li class="step"><div><h3>Ação no imperativo</h3><p>Onde clicar: <span class="ui">Botão</span>.</p><p class="result">o que aparece na tela.</p></div></li>
-      <li class="step"><div><h3>Próxima ação</h3><p>Detalhe curto.</p><p class="result">o que aparece na tela.</p></div></li>
+      <li class="step"><div><h3>Ação no imperativo</h3><p>Onde clicar: <span class="ui">Botão</span>.</p><p class="result">O que aparece na tela.</p></div></li>
+      <li class="step"><div><h3>Próxima ação</h3><p>Detalhe curto.</p><p class="result">O que aparece na tela.</p></div></li>
     </ol>
   </div>
   <div class="specimen">
-    <code>.shot</code>
+    <code>ol.steps.cards</code>
+    <ol class="steps cards">
+      <li class="step"><div><h3>Passo curto</h3><p>Uma ou duas frases.</p><p class="result">O que aparece.</p></div></li>
+      <li class="step"><div><h3>Outro passo</h3><p>Uma ou duas frases.</p><p class="result">O que aparece.</p></div></li>
+    </ol>
+  </div>
+  <div class="specimen">
+    <code>.trail.brand &gt; .title + ol &gt; li.on</code>
+    <div class="trail brand"><h3 class="title">O passo em detalhe</h3><ol><li>Cadastro</li><li class="on">Dados</li><li>Área e fotos</li><li>Publicação</li></ol></div>
+  </div>
+  <div class="specimen">
+    <code>.shot · .button · .mark</code>
     <div class="shot" style="width:90mm" aria-label="Exemplo de captura desenhada">
       <div class="bar"><i></i><i></i><i></i></div>
       <div class="screen">
@@ -146,11 +263,12 @@
     </div>
   </div>
   <div class="specimen">
-    <code>section.faq</code>
+    <code>.themes.brand &gt; div.on · section.faq</code>
+    <div class="themes brand" style="--count:4"><div class="on"><b>Tema atual</b><span>3 perguntas</span></div><div><b>Outro tema</b><span>2 perguntas</span></div><div><b>Outro tema</b><span>4 perguntas</span></div><div><b>Outro tema</b><span>1 pergunta</span></div></div>
     <section class="faq">
-      <h2>Tema<small>Do que trata o grupo</small></h2>
+      <h2>Tema<small>Subtítulo do tema</small></h2>
       <dl>
-        <div><dt>Pergunta como o leitor faria?</dt><dd><strong>A resposta na primeira frase.</strong> O detalhe e onde saber mais.</dd></div>
+        <div><dt>A pergunta como o usuário escreve?</dt><dd><strong>A resposta na primeira frase.</strong> O detalhe depois.</dd></div>
       </dl>
     </section>
   </div>

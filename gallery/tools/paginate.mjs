@@ -12,17 +12,21 @@ import { renderCharts } from "../charts/render.mjs";
 const root = new URL("../../", import.meta.url);
 const modules = new URL("../node_modules/", import.meta.url);
 
-// Numera os capítulos, preenche o <nav class="toc"></nav> e o número das aberturas (.opener .num).
+// Numera os capítulos, preenche o <nav class="toc"></nav> e o número das aberturas (.opener e .band),
+// e cria a folha divisória dos capítulos marcados com data-opener="divider".
 function contents(html) {
   const entries = [];
-  const numbered = html.replace(/<section class="chapter"([^>]*)>/g, (tag, attributes) => {
+  const numbered = html.replace(/<section class="chapter((?: [\w-]+)*)"([^>]*)>/g, (tag, variant, attributes) => {
     const id = attributes.match(/\bid="([^"]+)"/)?.[1];
     const title = attributes.match(/\bdata-title="([^"]+)"/)?.[1];
     if (!id || !title) return tag;
     const summary = attributes.match(/\bdata-summary="([^"]+)"/)?.[1] ?? "";
     const number = String(entries.length + 1).padStart(2, "0");
     entries.push({ id, title, summary, number });
-    return `<section class="chapter"${attributes} data-label="${number} · ${title}">`;
+    const divider = /\bdata-opener="divider"/.test(attributes)
+      ? `<section class="divider brand page"><span class="num">${number}</span><h2 class="title">${title}</h2>${summary ? `<p class="lead">${summary}</p>` : ""}</section>\n`
+      : "";
+    return `${divider}<section class="chapter${variant}"${attributes} data-label="${number} · ${title}">`;
   });
   const items = entries
     .map(
@@ -31,16 +35,16 @@ function contents(html) {
     )
     .join("\n      ");
   const withNumbers = numbered
-    .split('<section class="chapter"')
-    .map((part, index) => {
-      const label = index ? part.match(/data-label="(\d+) · /)?.[1] : undefined;
+    .split(/(?=<section class="chapter[ "])/)
+    .map((part) => {
+      const label = part.match(/^<section class="chapter[^>]*data-label="(\d+) · /)?.[1];
       return label ? part.replace('<span class="num"></span>', `<span class="num">${label}</span>`) : part;
     })
-    .join('<section class="chapter"');
-  // Passos numerados aqui: contadores de CSS não sobrevivem à fragmentação do Paged.js.
-  const withSteps = withNumbers.replace(/<ol class="steps">[\s\S]*?<\/ol>/g, (list) => {
+    .join("");
+  // Passos e pontos-chave numerados aqui: contadores de CSS não sobrevivem à fragmentação do Paged.js.
+  const withSteps = withNumbers.replace(/<ol class="(?:steps|keys)\b[^"]*">[\s\S]*?<\/ol>/g, (list) => {
     let step = 0;
-    return list.replace(/<li class="step">/g, () => `<li class="step" data-step="${++step}">`);
+    return list.replace(/<li\b(?![^>]*data-step)/g, () => `<li data-step="${++step}"`);
   });
   return withSteps.replace(/<nav class="toc">\s*<\/nav>/, () => `<nav class="toc">\n      ${items}\n    </nav>`);
 }
@@ -86,8 +90,17 @@ function finish() {
   pages.forEach((page, index) => {
     const start = page.querySelector(".chapter[data-label]:not([data-split-from])");
     if (start) chapter = start.dataset.label;
-    write(page, "top-left", chapter);
-    write(page, "top-right", `${index + 1} de ${pages.length}`);
+    // A faixa de abertura ocupa o alto da folha: ela já diz o capítulo, então o cabeçalho sai.
+    const banded = Boolean(page.querySelector(".band"));
+    write(page, "top-left", banded ? "" : chapter);
+    write(page, "top-right", banded ? "" : `${index + 1} de ${pages.length}`);
+    // Coluna lateral dos capítulos .strip, desenhada em cada folha deles.
+    if (page.classList.contains("pagedjs_strip_page") && chapter) {
+      const [number, name] = chapter.split(" · ");
+      const sheet = page.querySelector(".pagedjs_sheet");
+      sheet.style.position = "relative";
+      sheet.insertAdjacentHTML("beforeend", `<div class="side-strip brand narrow fade"><span class="n">${number}</span><span class="v">${name}</span></div>`);
+    }
     write(page, "bottom-left", title);
     write(page, "bottom-right", String(index + 1));
   });
