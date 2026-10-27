@@ -9,7 +9,7 @@ read: quando o check.sh apontar uma falha e o motivo não for óbvio
 | Código | Falha quando |
 | --- | --- |
 | `source` | `documents/NNN/source.html` não existe. |
-| `example` | Sobrou o selo `<span class="sample">` do modelo. |
+| `example` | Sobrou o selo `<span class="sample">` do modelo. Não vale quando o `checklist.md` declara `sample: true` (documento fictício por decisão do dono). |
 | `lang` | O `<html>` não declara `lang`. |
 | `title` | O `<title>` está vazio ou ainda é o de um modelo. |
 | `id` | Algum `id` aparece mais de uma vez. |

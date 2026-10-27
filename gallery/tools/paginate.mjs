@@ -57,7 +57,13 @@ function contents(html) {
     let step = 0;
     return trail.replace(/<li\b(?![^>]*data-step)/g, () => `<li data-step="${++step}"`);
   });
-  return withTrail.replace(/<nav class="toc">\s*<\/nav>/, () => `<nav class="toc">\n      ${items}\n    </nav>`);
+  // O título do tema entra na primeira pergunta, que não quebra: assim ele nunca fica sozinho no pé da folha.
+  // O Paged.js parte um título com float mesmo com break-inside: avoid e deixa o filete do tema para trás.
+  const withFaq = withTrail.replace(
+    /(<section class="faq"[^>]*>\s*)(<h2>[\s\S]*?<\/h2>)(\s*<dl>\s*)<div>/g,
+    (_, open, title, list) => `${open}${list}<div class="first">${title}`,
+  );
+  return withFaq.replace(/<nav class="toc">\s*<\/nav>/, () => `<nav class="toc">\n      ${items}\n    </nav>`);
 }
 
 // Só na prévia da galeria: a Plus Jakarta Sans embutida, para paginar e mostrar com a fonte da marca.
