@@ -23,7 +23,7 @@ Os documentos referenciam `document.css` e `logos/elos.svg`; o `build.sh` embute
 
 ## Fonte
 
-**Plus Jakarta Sans** (SIL Open Font License 1.1), pesos 500, 600, 700 e 800. Não é incorporada nem versionada: os modelos declaram `"Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif`, e quem abre ou imprime precisa tê-la instalada. Sem ela, o navegador usa a fonte seguinte e o documento continua legível, com pequenas diferenças de largura.
+**Plus Jakarta Sans** (SIL Open Font License 1.1), pesos 500, 600, 700 e 800. Versionada em [fonts/](fonts/) (subconjunto latino em woff2, com a licença em `fonts/OFL.txt`) e embutida pelo build em todo `index.html`, então o HTML e o PDF saem com ela em qualquer máquina. O `source.html` aberto direto declara `"Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif` e usa a fonte seguinte se ela não estiver instalada; a paginação vale só para o documento gerado.
 
 - Não adicione `@font-face`, `<link>` de fontes externas nem arquivos de fonte aos documentos.
 - Não troque a pilha por outra família.

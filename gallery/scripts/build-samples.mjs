@@ -15,7 +15,7 @@ const sources = {
 
 await mkdir(output, { recursive: true });
 for (const [id, path] of Object.entries(sources)) {
-  const { html, pages } = await paginate(await readFile(new URL(path, root), "utf8"), { previewFont: true });
+  const { html, pages } = await paginate(await readFile(new URL(path, root), "utf8"));
   await writeFile(new URL(`${id}.html`, output), html);
   console.log(`samples/${id}.html (${pages} páginas)`);
 }
