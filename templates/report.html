@@ -10,8 +10,9 @@
 <!--
   Relatório gerencial. Troque todo o exemplo, inclusive o title, e remova o selo .sample.
   Capa e contracapa: só textos. Sumário: deixe o nav.toc vazio; o build preenche.
-  Um section.chapter (com id, data-title e data-summary) por achado, aberto por .runhead com o título-ação
-  (a conclusão) e a pergunta da página. Gráficos só pelo bloco data-chart. Componentes em design/components.html.
+  Um section.chapter (com id, data-title e data-summary) por achado, aberto pela faixa header.band.brand com o
+  span.num vazio, o título-ação (a conclusão) e a pergunta da página. Gráficos só pelo bloco data-chart, com
+  meta, média ou tabela quando ajudarem a leitura. Componentes e tipos de gráfico em design/components.html.
 -->
 
 <section class="cover" id="capa">
@@ -40,17 +41,16 @@
 </section>
 
 <section class="chapter" id="executivo" data-title="Sumário executivo" data-summary="A resposta, os números e a decisão pedida">
-  <header class="runhead">
+  <header class="band brand">
+    <span class="num"></span>
     <h2 class="title">O trimestre fechou 6% abaixo do plano por causa de setembro</h2>
     <p class="question">Estamos no ritmo da meta anual e o que precisa mudar?</p>
   </header>
+  <div class="counter brand">
+    <span class="big">−6,1%</span>
+    <p>Pedidos concluídos contra o plano do trimestre: 4.812 de 5.125. Toda a perda está em agosto e setembro.</p>
+  </div>
   <div class="kpis" style="--count:3">
-    <div class="kpi">
-      <span class="label">Pedidos concluídos</span>
-      <div class="row"><span class="value">4.812</span><div data-chart='{"type":"spark","values":[1480,1550,1610,1690,1640,1482]}'></div></div>
-      <span class="delta down">−6,1% vs. plano (5.125)</span>
-      <span class="formula">Pedidos com entrega confirmada pelo cliente no período</span>
-    </div>
     <div class="kpi">
       <span class="label">Receita intermediada</span>
       <div class="row"><span class="value">R$ 1,9 mi</span><div data-chart='{"type":"spark","values":[540,580,610,650,640,610]}'></div></div>
@@ -63,6 +63,12 @@
       <span class="delta down">+3,1 h vs. 2º tri</span>
       <span class="formula">Mediana entre o pedido e a primeira mensagem</span>
     </div>
+    <div class="kpi">
+      <span class="label">Cancelamento</span>
+      <div class="row"><span class="value">8,7%</span><div data-chart='{"type":"spark","values":[4.0,4.3,4.6,6.1,7.9,10.8]}'></div></div>
+      <span class="delta down">+3,2 p.p. vs. 2º tri</span>
+      <span class="formula">Pedidos cancelados sobre pedidos abertos</span>
+    </div>
   </div>
   <dl class="scqa">
     <dt>Situação</dt><dd>O marketplace cresceu nos três trimestres anteriores e o plano de 2026 previa 5.125 pedidos concluídos no 3º trimestre.</dd>
@@ -70,70 +76,79 @@
     <dt>Questão</dt><dd>A queda vem da demanda ou da capacidade de resposta dos fornecedores?</dd>
     <dt>Resposta</dt><dd class="answer">Da capacidade de resposta: a demanda seguiu o plano, e os pedidos que esperaram mais de 12 horas foram cancelados três vezes mais.</dd>
   </dl>
-  <div class="ask">
+  <div class="ask brand">
     <span class="eyebrow">Decisão pedida</span>
     <p>Aprovar o alerta automático de 4 horas para pedidos sem resposta nas três maiores categorias a partir de novembro.</p>
+    <div class="when"><div>Decidir até<b>20/10/2026</b></div><div>Avaliação<b>dezembro de 2026</b></div><div>Quem decide<b>Comitê de produto</b></div></div>
   </div>
 </section>
 
 <section class="chapter" id="conclusao" data-title="Conclusão de pedidos abaixo do plano" data-summary="Onde a perda aconteceu, mês a mês">
-  <header class="runhead">
+  <header class="band brand">
+    <span class="num"></span>
     <h2 class="title">Setembro concluiu 220 pedidos a menos que o plano</h2>
     <p class="question">A perda do trimestre está espalhada ou concentrada?</p>
   </header>
   <figure class="fig">
     <div class="head"><b>Pedidos concluídos, real × plano</b><span>Por mês, em pedidos · barra cheia: real · contorno: plano · acima: variação</span></div>
-    <div data-chart='{"type":"variance","alt":"Real contra plano por mês: julho +12, agosto −105, setembro −220","data":[["Jul",1612,1600],["Ago",1620,1725],["Set",1580,1800]]}'></div>
+    <div data-chart='{"type":"variance","alt":"Real contra plano por mês: julho +12, agosto −105, setembro −220","table":true,"data":[["Jul",1612,1600],["Ago",1620,1725],["Set",1580,1800]]}'></div>
     <figcaption>painel de operação, extraído em 03/10/2026; plano aprovado em 18/06/2026.</figcaption>
   </figure>
-  <div class="cols">
-    <div class="prose">
-      <h3>O que os números mostram</h3>
-      <p>Julho fechou acima do plano. A diferença começa em agosto e dobra em setembro, quando a demanda continuou subindo: os pedidos abertos cresceram 4% no mês.</p>
-      <p>O cancelamento antes da primeira resposta respondeu por 81% dos pedidos perdidos em setembro.</p>
-    </div>
-    <table class="data">
-      <thead><tr><th>Mês</th><th class="num">Plano</th><th class="num">Real</th><th class="num">Var.</th></tr></thead>
-      <tbody>
-        <tr><td>Julho</td><td class="num">1.600</td><td class="num">1.612</td><td class="num">+0,8%</td></tr>
-        <tr><td>Agosto</td><td class="num">1.725</td><td class="num">1.620</td><td class="num">−6,1%</td></tr>
-        <tr><td>Setembro</td><td class="num">1.800</td><td class="num">1.580</td><td class="num">−12,2%</td></tr>
-        <tr class="total"><td>Trimestre</td><td class="num">5.125</td><td class="num">4.812</td><td class="num">−6,1%</td></tr>
-      </tbody>
-    </table>
+  <div class="prose">
+    <h3>O que os números mostram</h3>
+    <p>Julho fechou acima do plano. A diferença começa em agosto e dobra em setembro, quando a demanda continuou subindo: os pedidos abertos cresceram 4% no mês. O cancelamento antes da primeira resposta respondeu por 81% dos pedidos perdidos.</p>
   </div>
+  <figure class="fig">
+    <div class="head"><b>Do plano ao realizado</b><span>Pedidos concluídos no trimestre · verde soma, vermelho tira</span></div>
+    <div data-chart='{"type":"waterfall","alt":"Ponte do plano de 5.125 ao real de 4.812: demanda acima do plano +96, cancelados sem resposta −330, outros cancelamentos −79","start":["Plano",5125],"data":[["Demanda acima do plano",96],["Cancelados sem resposta",-330],["Outros cancelamentos",-79]],"end":"Realizado","zero":false,"height":260}'></div>
+    <figcaption>painel de operação; plano aprovado em 18/06/2026.</figcaption>
+  </figure>
 </section>
 
 <section class="chapter" id="categorias" data-title="Concentração em três categorias" data-summary="Receita e prazo de resposta por categoria">
-  <header class="runhead">
+  <header class="band brand">
+    <span class="num"></span>
     <h2 class="title">Três categorias concentram a receita e o atraso</h2>
     <p class="question">Onde agir primeiro para recuperar o ritmo?</p>
   </header>
-  <div class="hero">
+  <div class="pull">
     <span class="big">64%</span>
     <p>da receita do trimestre veio de Reformas, Elétrica e Hidráulica, as mesmas categorias com maior tempo de primeira resposta.</p>
   </div>
   <div class="cols">
     <figure class="fig">
       <div class="head"><b>Receita por categoria</b><span>3º tri 2026, em R$ mil</span></div>
-      <div data-chart='{"type":"rank","size":"half","alt":"Receita por categoria","highlight":"Reformas","data":[["Reformas",520],["Elétrica",398],["Hidráulica",298],["Pintura",240],["Limpeza",198],["Outras",246]]}'></div>
+      <div data-chart='{"type":"rank","size":"half","alt":"Receita por categoria: Reformas 520, Elétrica 398, Hidráulica 298, Pintura 240, Limpeza 198, Outras 146","highlight":["Reformas","Elétrica","Hidráulica"],"data":[["Reformas",520],["Elétrica",398],["Hidráulica",298],["Pintura",240],["Limpeza",198],["Outras",146]]}'></div>
       <figcaption>painel de operação.</figcaption>
     </figure>
     <figure class="fig">
-      <div class="head"><b>Primeira resposta em setembro</b><span>Mediana, em horas</span></div>
-      <div data-chart='{"type":"bar","size":"half","alt":"Primeira resposta por categoria em setembro","highlight":"Reformas","suffix":" h","data":[["Reformas",16.2],["Elétrica",13.8],["Hidráulica",12.5],["Pintura",7.1],["Limpeza",5.4]]}'></div>
+      <div class="head"><b>Primeira resposta, agosto → setembro</b><span>Mediana por categoria, em horas</span></div>
+      <div data-chart='{"type":"dumbbell","size":"half","alt":"Primeira resposta subiu em todas as categorias de agosto para setembro, mais em Reformas: de 11,2 h para 16,2 h","suffix":" h","names":["Agosto","Setembro"],"data":[["Reformas",11.2,16.2],["Elétrica",9.8,13.8],["Hidráulica",9.1,12.5],["Pintura",6.4,7.1],["Limpeza",4.9,5.4]]}'></div>
       <figcaption>mensagens do chat do marketplace.</figcaption>
     </figure>
   </div>
-  <figure class="fig">
-    <div class="head"><b>Primeira resposta e cancelamento</b><span>Mediana semanal, jul. a set. 2026</span></div>
-    <div data-chart='{"type":"line","alt":"Tempo de resposta e taxa de cancelamento sobem juntos em setembro","labels":["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"series":[{"name":"Resposta (h)","values":[6,6.2,6.1,6.4,6.8,7.5,8.2,8.9,9.6,10.8,11.9,12.4,12.1]},{"name":"Cancel. (%)","values":[4,4.1,3.9,4.3,4.6,5.2,6.1,6.8,7.9,9.2,10.4,11.1,10.8]}]}'></div>
-    <figcaption>painel de operação e chat do marketplace.</figcaption>
-  </figure>
+  <ol class="keys">
+    <li>Reformas tem a maior receita e a pior resposta: 16,2 h em setembro, 5 h a mais que em agosto.</li>
+    <li>Elétrica e Hidráulica passaram de 12 h a partir da semana 10.</li>
+    <li>Pintura e Limpeza seguiram abaixo de 8 h em todo o trimestre.</li>
+  </ol>
+  <div class="cols">
+    <figure class="fig">
+      <div class="head"><b>Primeira resposta</b><span>Mediana semanal, em horas · meta de 8 h</span></div>
+      <div data-chart='{"type":"line","size":"half","alt":"Tempo de primeira resposta sobe de 6 h para 12 h ao longo do trimestre e passa da meta de 8 h na semana 7","suffix":" h","target":{"value":8,"label":"Meta"},"labels":["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"series":[{"name":"Resposta","values":[6,6.2,6.1,6.4,6.8,7.5,8.2,8.9,9.6,10.8,11.9,12.4,12.1]}]}'></div>
+      <figcaption>chat do marketplace.</figcaption>
+    </figure>
+    <figure class="fig">
+      <div class="head"><b>Cancelamento</b><span>Semanal, em % dos pedidos abertos</span></div>
+      <div data-chart='{"type":"area","size":"half","alt":"Cancelamento sobe de 4% para 11% no mesmo período","suffix":"%","labels":["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"series":[{"name":"Cancelamento","values":[4,4.1,3.9,4.3,4.6,5.2,6.1,6.8,7.9,9.2,10.4,11.1,10.8]}]}'></div>
+      <figcaption>painel de operação.</figcaption>
+    </figure>
+  </div>
 </section>
 
 <section class="chapter" id="recomendacao" data-title="Recomendação e próximos passos" data-summary="Decisão, responsáveis e proveniência dos dados">
-  <header class="runhead">
+  <header class="band brand">
+    <span class="num"></span>
     <h2 class="title">Alertar o fornecedor em 4 horas recupera a maior parte da perda</h2>
     <p class="question">O que fazer, quem faz e até quando?</p>
   </header>
@@ -164,7 +179,7 @@
   </div>
 </section>
 
-<section class="back" id="contracapa">
+<section class="back brand page" id="contracapa">
   <img class="logo" src="../design/logos/elos.svg" alt="Elos">
   <span class="rule"></span>
   <p><b>Solaria</b> · Operações</p>
