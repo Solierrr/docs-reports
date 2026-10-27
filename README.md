@@ -26,7 +26,7 @@ SDD de suporte para produzir **relatórios, manuais e documentos da Solaria em H
 | [agents/](agents/AGENTS.md) | orchestrator, writer, builder, reviewer e researcher |
 | [checklists/](checklists/AGENTS.md) | Revisão de design bruto, reflexão do ciclo e verificações estruturais |
 | [scripts/](scripts/AGENTS.md) | `new`, `check`, `pdf`, `index` e `commit` |
-| [skills/grilling/](skills/grilling/SKILL.md) | Entrevista obrigatória |
+| [skills/](skills/) | Entrevista obrigatória, fontes em arquivo e aplicação de revisões |
 | [templates/](templates/AGENTS.md) | Modelos `report`, `manual` e `document` |
 | [design/](design/AGENTS.md) | Identidade Solaria: tokens, logos e capa |
 | [editorial.md](editorial.md) | Convenções editoriais |

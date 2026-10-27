@@ -44,7 +44,7 @@ O que cada um lê, escreve e precisa está em [functions.yaml](functions.yaml). 
 | [agents/](agents/AGENTS.md) | Instruções de cada papel |
 | [checklists/](checklists/AGENTS.md) | Checklists genéricos de revisão e o esqueleto do checklist de cada documento |
 | [scripts/](scripts/AGENTS.md) | `new`, `check`, `pdf`, `index` e `commit`, para economizar tokens |
-| [skills/grilling/](skills/grilling/SKILL.md) | Entrevista obrigatória |
+| [skills/](skills/) | `grilling` (entrevista obrigatória), `sources` (fontes em arquivo) e `fix` (aplicar uma revisão) |
 | [templates/](templates/AGENTS.md) | Modelos `report`, `manual` e `document`, e o esqueleto da spec |
 | [design/](design/AGENTS.md) | Identidade visual: tokens, logos e capa |
 | [editorial.md](editorial.md) | Convenções de estrutura, tabelas, figuras, fontes e impressão |
