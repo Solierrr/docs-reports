@@ -14,7 +14,7 @@ Não esconda overflow para disfarçar conteúdo que não cabe. Adicione páginas
 
 ## Estrutura por tipo
 
-Capa com tipo, título, linha de apoio, período, responsável, versão e classificação; contracapa com a marca. Sumário, numeração, cabeçalho (capítulo e progresso) e rodapé (título e página) são gerados pelo build. A conclusão vem antes do detalhe, no documento e em cada seção. Centralizado só em capa, contracapa e destaque de número; o corpo é alinhado à esquerda, sem moldura, separado por espaço e filetes.
+Capa com título, linha de apoio, período, responsável, versão e classificação; contracapa com a marca. Sumário, numeração, cabeçalho (capítulo e progresso) e rodapé (título e página) são gerados pelo build. A conclusão vem antes do detalhe, no documento e em cada seção. Centralizado só em capa, contracapa e destaque de número; o corpo é alinhado à esquerda, sem moldura, separado por espaço e filetes.
 
 - **Relatório gerencial** (`report.html`): sumário executivo (KPIs com fórmula, SCQA, decisão pedida) → um capítulo por achado, com título-ação e a pergunta da página → recomendação com responsáveis e prazos → proveniência dos dados. Gráficos no padrão IBCS: real cheio, plano em contorno, variação em verde e vermelho.
 - **Manual de uso** (`manual.html`), no formato how-to: antes de começar (o que é preciso, tempo, resultado) → procedimento em passos no imperativo, cada um com o resultado esperado → problemas comuns com causa e solução. Explicação longa vai para outra seção, não para dentro dos passos.

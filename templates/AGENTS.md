@@ -21,7 +21,7 @@ Cada modelo é um documento completo com conteúdo de exemplo realista: mostra a
 - O `new.sh` copia o modelo para `documents/NNN/source.html`. **O agente só edita o `source.html`**; o `index.html` é gerado pelo `build.sh` e nunca é editado à mão.
 - O `source.html` é corrido: não tem páginas, rodapé, numeração nem sumário escritos. O build pagina em A4, preenche o sumário com as páginas reais, numera capítulos, aberturas e passos e escreve cabeçalho e rodapé.
 - **Capa e contracapa:** `<section class="cover">` e `<section class="back">`. Troque os textos e os metadados; não mude a estrutura.
-- **Sumário:** deixe `<nav class="toc"></nav>` vazio dentro de um `<section class="chapter">` sem `data-title`.
+- **Sumário:** página dividida de folha inteira, `<section class="contents">` com `.side` (título e linha de apoio, sem eyebrow) e `.main` com `<nav class="toc"></nav>` vazio. O painel laranja com o padrão de hexágonos vem do CSS; troque só a linha de apoio e o aviso opcional abaixo da lista.
 - **Capítulos:** `<section class="chapter" id="slug" data-title="Título no sumário" data-summary="Uma linha">`. Cada um começa numa folha nova. No relatório, abra com `.runhead` (título-ação e pergunta da página); no manual, com `.opener` deixando `<span class="num"></span>` vazio.
 - **Gráficos:** `<div data-chart='{"type": ...}'></div>` dentro de uma `figure.fig`; o build desenha o SVG. Tipos e campos no [catálogo](../design/components.html).
 - **Exemplo:** remova o selo `<span class="sample">` e troque todo o conteúdo de exemplo, inclusive o `<title>`. O `check.sh` acusa selo e título que sobrarem.
