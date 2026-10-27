@@ -46,7 +46,18 @@ function contents(html) {
     let step = 0;
     return list.replace(/<li\b(?![^>]*data-step)/g, () => `<li data-step="${++step}"`);
   });
-  return withSteps.replace(/<nav class="toc">\s*<\/nav>/, () => `<nav class="toc">\n      ${items}\n    </nav>`);
+  // Cada etapa da barra de progresso ganha o padrão da sua posição (liso, listras, pontos, listras cruzadas).
+  const order = ["solid", "stripes", "dots", "cross"];
+  const withProgress = withSteps.replace(/<div class="progress"[^>]*>[\s\S]*?<\/div>/g, (bar) => {
+    let index = 0;
+    return bar.replace(/<span\b(?![^>]*data-pattern)/g, () => `<span data-pattern="${order[index++ % order.length]}"`);
+  });
+  // A trilha numera os seus passos do mesmo jeito.
+  const withTrail = withProgress.replace(/<div class="trail\b[^"]*">[\s\S]*?<\/ol>/g, (trail) => {
+    let step = 0;
+    return trail.replace(/<li\b(?![^>]*data-step)/g, () => `<li data-step="${++step}"`);
+  });
+  return withTrail.replace(/<nav class="toc">\s*<\/nav>/, () => `<nav class="toc">\n      ${items}\n    </nav>`);
 }
 
 // Só na prévia da galeria: a Plus Jakarta Sans embutida, para paginar e mostrar com a fonte da marca.
