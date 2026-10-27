@@ -28,3 +28,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 1 | ok | Pendências a resolver: 2 bloqueantes (tema solto no pé da p. 3, regra dos indicadores invertida) e 10 menores | Conteúdo ao writer, montagem ao builder, quebra do tema corrigida no design e no build | Corrigir |
 | 2 | ok | Aprovado sem pendências relevantes; menor aceita: e-mail da Ouvidoria encosta na coluna da tabela de canais | Itens deste documento comprovados; contraste do modelo na capa e contracapa fora do escopo | Gerar o PDF |
 | PDF | ok | Aprovado sem pendências relevantes, 27 páginas A4 | PDF com a fonte de reserva Segoe UI, sem a Plus Jakarta Sans instalada | Publicar |
+| 3 | ok | Aprovado sem pendências relevantes, com a Plus Jakarta Sans embutida; e-mails da tabela de canais quebram depois do @ | Capítulo 02 enxugado para caber em 2 folhas com a fonte da marca | Publicar |
