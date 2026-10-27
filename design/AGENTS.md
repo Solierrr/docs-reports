@@ -32,3 +32,7 @@ Os documentos referenciam `document.css` e `logos/elos.svg`; o `build.sh` embute
 ## Fora desta identidade
 
 Tema escuro, ilustrações e ícones. Se um documento precisar deles, pare e pergunte.
+
+## Ao editar o CSS
+
+O Paged.js descarta regras com seletor de irmão (`+`, `~`) e `:nth-child`, e contadores de CSS (`counter()`) não sobrevivem à paginação. Use `:first-child` ou classes. Quando algo depende da posição (numeração de passos, pontos-chave, referências e trilha; padrão de cada etapa do progresso), o `paginate.mjs` marca `data-step` ou `data-pattern` antes de paginar.

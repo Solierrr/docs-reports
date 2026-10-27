@@ -499,12 +499,23 @@ function quartiles(values) {
   return { box: [inside[0], q1, median, q3, inside[inside.length - 1]], outliers: sorted.filter((value) => !inside.includes(value)) };
 }
 
-// Boxplot por categoria: caixa de Q1 a Q3, mediana escrita ao lado, bigodes e pontos fora da curva.
+// Pílula de texto: valor ou variação num fundo arredondado, como o selo de exemplo da capa.
+const pill = (tone = "neutral") => ({
+  backgroundColor: tone === "good" ? "#e7f4ee" : tone === "bad" ? "#fdecea" : tone === "accent" ? color.accentWash : "#f1f2f4",
+  padding: [2, 6],
+  borderRadius: 8,
+  ...text(9.5, 800, tone === "good" ? color.good : tone === "bad" ? color.bad : tone === "accent" ? color.accentDark : color.text),
+});
+
+// Boxplot por categoria: caixa de Q1 a Q3 com padrão (laranja com listras no destaque, cinza hachurado nos outros),
+// mediana como um traço grosso com o valor numa pílula, bigodes finos e pontos fora da curva cheios, com anel de papel.
 // data: [["Nome", [mín, q1, mediana, q3, máx]]] ou [["Nome", [valores brutos...]]]
 function boxplot(spec) {
   const marked = highlights(spec);
   const rows = spec.data.map(([name, values]) => ({ name, ...(values.length === 5 && spec.raw !== true ? { box: values, outliers: [] } : quartiles(values)) }));
   const labels = rows.map(({ name }) => name);
+  const on = (name) => (marked.size ? marked.has(name) : true);
+  const width = Math.min(44, Math.floor(((spec.width ?? 640) - 90) / labels.length) * 0.45);
   return {
     ...base(spec, { grid: { left: 4, right: 12, top: 18, bottom: 4, containLabel: true } }),
     xAxis: xCategory(labels, spec),
@@ -512,51 +523,77 @@ function boxplot(spec) {
     series: [
       {
         type: "boxplot",
-        boxWidth: [14, 34],
-        data: rows.map(({ name, box }) => {
-          const on = marked.size ? marked.has(name) : true;
-          return { value: box, itemStyle: { color: on ? color.accentWash : "#f1f2f4", borderColor: on ? color.accent : color.neutralDark, borderWidth: 1.5 } };
-        }),
+        boxWidth: [width, width],
+        data: rows.map(({ name, box }) => ({
+          value: box,
+          itemStyle: on(name)
+            ? { color: color.accent, decal: patterns.stripes, borderColor: color.accentDark, borderWidth: 1.4 }
+            : { color: color.neutral, decal: patterns.muted, borderColor: color.neutralDark, borderWidth: 1.2 },
+        })),
       },
+      // Mediana: traço grosso na largura da caixa.
+      {
+        type: "scatter",
+        symbol: "rect",
+        symbolSize: [width + 6, 4],
+        z: 4,
+        data: rows.map(({ name, box }, index) => ({ value: [index, box[2]], itemStyle: { color: on(name) ? color.accentDark : color.ink } })),
+      },
+      // O valor da mediana numa pílula acima do bigode de cima, alinhada à caixa.
       {
         type: "scatter",
         symbolSize: 1,
         itemStyle: { color: "transparent" },
-        data: rows.map(({ box }, index) => [index, box[2]]),
-        label: { show: true, position: "right", distance: 20, ...text(10, 800, color.ink), formatter: ({ value }) => number(value[1], spec) },
+        data: rows.map(({ name, box }, index) => ({
+          value: [index, box[4]],
+          label: { show: true, position: "top", distance: 6, ...pill(on(name) ? "accent" : "neutral"), formatter: `mediana ${number(box[2], spec)}` },
+        })),
       },
+      // Fora da curva: pontos cheios, com o padrão da categoria e anel de papel.
       {
         type: "scatter",
-        symbolSize: 6,
-        itemStyle: { color: color.paper, borderColor: color.neutralDark, borderWidth: 1.5 },
-        data: rows.flatMap(({ outliers }, index) => outliers.map((value) => [index, value])),
+        symbolSize: 11,
+        z: 5,
+        data: rows.flatMap(({ name, outliers }, index) =>
+          outliers.map((value) => ({
+            value: [index, value],
+            itemStyle: on(name)
+              ? { color: color.accent, decal: patterns.dots, borderColor: color.paper, borderWidth: 2 }
+              : { color: color.neutralDark, decal: patterns.dots, borderColor: color.paper, borderWidth: 2 },
+            label: { show: true, position: "right", distance: 6, ...text(9.5, 700, color.muted), formatter: number(value, spec) },
+          })),
+        ),
       },
     ],
   };
 }
 
-// Histograma: distribuição em faixas encostadas, com média ou mediana marcadas.
-// values: [números] e bins (quantidade de faixas), ou data: [["faixa", contagem]]
+// Histograma: faixas encostadas em laranja; a faixa da mediana lisa, as de baixo com listras e as de cima com listras
+// cruzadas, e um traço marcando a mediana. values: [números] e bins (quantidade de faixas), ou data: [["faixa", contagem]]
 function histogram(spec) {
   let rows = spec.data;
+  let middle;
   if (!rows) {
-    const values = spec.values;
-    const min = spec.min ?? Math.min(...values);
-    const max = spec.max ?? Math.max(...values);
+    const values = [...spec.values].sort((a, b) => a - b);
+    const min = spec.min ?? values[0];
+    const max = spec.max ?? values[values.length - 1];
     const bins = spec.bins ?? 8;
     const step = (max - min) / bins;
+    const median = values.length % 2 ? values[(values.length - 1) / 2] : (values[values.length / 2 - 1] + values[values.length / 2]) / 2;
     rows = Array.from({ length: bins }, (_, index) => {
       const from = min + step * index;
       const to = from + step;
       const count = values.filter((value) => value >= from && (index === bins - 1 ? value <= to : value < to)).length;
+      if (median >= from && (median < to || index === bins - 1) && middle === undefined) middle = { index, median };
       const edge = (value) => number(value, { decimals: spec.binDecimals ?? 0 });
       return [`${edge(from)}–${edge(to)}`, count];
     });
   }
+  const names = rows.map(([name]) => name);
   return {
-    ...base(spec, { grid: { left: 4, right: 12, top: 26, bottom: 4, containLabel: true } }),
+    ...base(spec, { grid: { left: 4, right: 12, top: 30, bottom: 4, containLabel: true } }),
     xAxis: {
-      ...categoryAxis(rows.map(([name]) => name), spec),
+      ...categoryAxis(names, spec),
       axisLabel: { ...text(9.5, 600, color.text), interval: 0 },
       name: spec.xName ?? (spec.suffix ? `faixas, em${spec.suffix}` : undefined),
     },
@@ -565,24 +602,44 @@ function histogram(spec) {
       {
         type: "bar",
         barCategoryGap: 2,
-        data: rows.map(([, count]) => count),
-        itemStyle: { color: color.accent, borderRadius: [3, 3, 0, 0] },
+        data: rows.map(([, count], index) => ({
+          value: count,
+          itemStyle:
+            middle && index === middle.index
+              ? { color: color.accent, borderRadius: [3, 3, 0, 0] }
+              : middle && index > middle.index
+                ? { color: color.accentDark, decal: patterns.cross, borderRadius: [3, 3, 0, 0] }
+                : { color: color.accent, decal: patterns.stripes, borderRadius: [3, 3, 0, 0] },
+        })),
         label: { show: true, position: "top", ...text(10, 700, color.ink) },
+        markLine: middle
+          ? {
+              silent: true,
+              symbol: "none",
+              lineStyle: { color: color.ink, type: [4, 3], width: 1 },
+              label: { ...pill("accent"), position: "end", formatter: `mediana ${number(middle.median, spec)}` },
+              data: [{ xAxis: names[middle.index] }],
+            }
+          : undefined,
       },
     ],
   };
 }
 
-// Dispersão: cada ponto com 2 px de papel em volta, os destacados com nome, tendência linear e médias opcionais.
-// points: [[x, y, "nome"?], ...]; xName e yName dizem as unidades.
+// Dispersão: pontos grandes com anel de papel; os destacados em laranja liso com o nome, os outros em cinza com
+// hachura. Com "quadrants", a área acima das duas médias ganha uma lavagem laranja e as médias viram eixos de
+// referência; com "trend", uma reta de tendência tracejada. Um quarto valor no ponto vira o tamanho da bolha.
+// points: [[x, y, "nome"?, tamanho?], ...]; xName e yName dizem as unidades.
 function scatter(spec) {
   const marked = highlights(spec);
   const points = spec.points;
+  const n = points.length;
+  const mx = points.reduce((s, [x]) => s + x, 0) / n;
+  const my = points.reduce((s, [, y]) => s + y, 0) / n;
+  const sizes = points.map((point) => point[3]).filter((value) => typeof value === "number");
+  const big = sizes.length ? Math.max(...sizes) : 1;
   const extra = [];
   if (spec.trend) {
-    const n = points.length;
-    const mx = points.reduce((s, [x]) => s + x, 0) / n;
-    const my = points.reduce((s, [, y]) => s + y, 0) / n;
     const slope = points.reduce((s, [x, y]) => s + (x - mx) * (y - my), 0) / points.reduce((s, [x]) => s + (x - mx) ** 2, 0);
     const xs = points.map(([x]) => x);
     const [x0, x1] = [Math.min(...xs), Math.max(...xs)];
@@ -590,41 +647,64 @@ function scatter(spec) {
       type: "line",
       silent: true,
       symbol: "none",
+      z: 1,
       data: [
         [x0, my + slope * (x0 - mx)],
         [x1, my + slope * (x1 - mx)],
       ],
-      lineStyle: { color: color.neutralDark, type: [5, 4], width: 1.2 },
+      lineStyle: { color: color.accent, type: [6, 4], width: 1.4, opacity: 0.8 },
     });
   }
-  const means = spec.quadrants
-    ? {
-        silent: true,
-        symbol: "none",
-        lineStyle: { color: color.axis, type: "solid" },
-        label: { ...text(9.5, 600, color.faint), position: "insideEndTop", formatter: ({ value }) => `média ${number(value, spec)}` },
-        data: [{ type: "average", valueDim: "x" }, { type: "average", valueDim: "y" }],
-      }
-    : undefined;
-  const axis = (name, extraAxis) => ({ ...valueAxis(spec), name, nameLocation: "middle", nameGap: 26, nameTextStyle: text(10, 600, color.muted), scale: true, ...extraAxis });
+  const reference = (value, name) => ({
+    lineStyle: { color: color.neutralDark, type: [2, 3], width: 1 },
+    label: { ...pill(), position: "end", formatter: `${name} ${number(value, spec)}` },
+  });
+  const axis = (name, extraAxis) => ({
+    ...valueAxis(spec),
+    name,
+    nameLocation: "middle",
+    nameGap: 28,
+    nameTextStyle: text(10, 700, color.text),
+    scale: true,
+    ...extraAxis,
+  });
   return {
-    ...base(spec, { grid: { left: 12, right: 72, top: 22, bottom: 22, containLabel: true } }),
-    xAxis: axis(spec.xName, { splitLine: { lineStyle: { color: color.grid } }, axisLine: { show: false } }),
-    yAxis: { ...axis(spec.yName), nameGap: 34 },
+    ...base(spec, { grid: { left: 14, right: 84, top: 26, bottom: 26, containLabel: true } }),
+    xAxis: axis(spec.xName, { splitLine: { lineStyle: { color: color.grid } }, axisLine: { lineStyle: { color: color.axis } } }),
+    yAxis: { ...axis(spec.yName), nameGap: 36 },
     series: [
       {
         type: "scatter",
-        symbolSize: 10,
-        data: points.map(([x, y, name]) => {
+        z: 3,
+        data: points.map(([x, y, name, size]) => {
           const on = name && marked.has(name);
           return {
             value: [x, y],
             name,
-            itemStyle: { color: on ? color.accent : color.neutral, borderColor: color.paper, borderWidth: 2, opacity: 1 },
-            label: { show: Boolean(on || (name && spec.labelAll)), position: "right", ...text(10, on ? 700 : 600, on ? color.ink : color.muted), formatter: name },
+            symbolSize: typeof size === "number" ? 10 + 22 * Math.sqrt(size / big) : on ? 16 : 13,
+            itemStyle: on
+              ? { color: color.accent, borderColor: color.paper, borderWidth: 2.5 }
+              : { color: color.neutral, decal: patterns.muted, borderColor: color.paper, borderWidth: 2.5 },
+            label: {
+              show: Boolean(on || (name && spec.labelAll)),
+              position: "right",
+              distance: 7,
+              ...(on ? pill("accent") : text(10, 600, color.muted)),
+              formatter: name,
+            },
           };
         }),
-        markLine: means,
+        markArea: spec.quadrants
+          ? {
+              silent: true,
+              itemStyle: { color: "rgba(255,101,0,0.06)" },
+              label: { show: Boolean(spec.quadrantLabel), position: "insideTopRight", ...text(9.5, 700, color.accentDark), formatter: spec.quadrantLabel ?? "" },
+              data: [[{ coord: [mx, my] }, { coord: ["max", "max"] }]],
+            }
+          : undefined,
+        markLine: spec.quadrants
+          ? { silent: true, symbol: "none", data: [{ xAxis: mx, ...reference(mx, "média") }, { yAxis: my, ...reference(my, "média") }] }
+          : undefined,
       },
       ...extra,
     ],
@@ -670,77 +750,99 @@ function heatmap(spec) {
   };
 }
 
-// Funil: etapas em barras horizontais decrescentes, com o valor e a conversão desde a etapa anterior.
+// Funil: etapas em barras horizontais decrescentes. A primeira em cinza hachurado, as do meio em laranja com
+// listras e a última, o resultado, em laranja liso; o valor em negrito e a conversão numa pílula.
 function funnel(spec) {
   const rows = spec.data;
   const first = rows[0][1];
+  const last = rows.length - 1;
   return {
-    ...base(spec, { grid: { left: nameWidth(rows.map(([name]) => name)), right: 170, top: 6, bottom: 4, containLabel: false } }),
+    ...base(spec, { grid: { left: nameWidth(rows.map(([name]) => name)), right: 190, top: 6, bottom: 4, containLabel: false } }),
     xAxis: { type: "value", show: false, max: first },
     yAxis: { ...categoryAxis(rows.map(([name]) => name), spec), inverse: true, axisLine: { show: false } },
     series: [
       {
         type: "bar",
-        barMaxWidth: 26,
+        barMaxWidth: 28,
         data: rows.map(([, value], index) => ({
           value,
-          itemStyle: { color: index === rows.length - 1 ? color.accent : color.neutral, borderRadius: [0, 4, 4, 0] },
+          itemStyle:
+            index === 0
+              ? { color: color.neutral, decal: patterns.muted, borderRadius: [0, 4, 4, 0] }
+              : index === last
+                ? { color: color.accent, borderRadius: [0, 4, 4, 0] }
+                : { color: color.accent, decal: patterns.stripes, borderRadius: [0, 4, 4, 0] },
         })),
         label: {
           show: true,
           position: "right",
+          distance: 8,
           formatter: ({ value, dataIndex }) =>
-            `{v|${number(value, spec)}}{p|${dataIndex ? `${percent((value / rows[dataIndex - 1][1]) * 100)} da etapa anterior` : "100%"}}`,
-          rich: { v: text(11, 800, color.ink), p: { ...text(10, 500, color.muted), padding: [0, 0, 0, 6] } },
+            `{v|${number(value, spec)}}{p|${dataIndex ? `${percent((value / rows[dataIndex - 1][1]) * 100)} da anterior` : "início"}}`,
+          rich: { v: { ...text(11, 800, color.ink), padding: [0, 6, 0, 0] }, p: pill() },
         },
       },
     ],
   };
 }
 
-// Bullet: realizado (barra fina) contra a meta (traço) sobre faixas de referência em cinza.
-// data: [["Indicador", realizado, meta, [ruim, ok, bom]?]]
+// Bullet: realizado contra a meta sobre três faixas de referência em cinza (ruim com hachura leve, ok e bom lisos,
+// cada vez mais claros). O realizado em laranja liso quando bate a meta e com listras quando fica abaixo; à direita, o valor e
+// a distância da meta numa pílula. data: [["Indicador", realizado, meta, [ruim, ok, bom]?]]
 function bullet(spec) {
   const rows = spec.data;
   const max = spec.max ?? Math.max(...rows.flatMap(([, actual, target, bands = []]) => [actual, target, ...bands])) * 1.05;
-  const bandTones = ["#e3e5e8", "#eceef1", "#f5f6f8"];
+  const bandLooks = [{ color: "#e6e8eb", decal: patterns.muted }, { color: "#eef0f2" }, { color: "#f7f8f9" }];
   const bandSeries = [0, 1, 2].map((step) => ({
     type: "bar",
     stack: "bands",
     silent: true,
-    barWidth: 22,
+    barWidth: 26,
     data: rows.map(([, , , bands = [max * 0.6, max * 0.85, max]]) => (bands[step] ?? max) - (step ? bands[step - 1] : 0)),
-    itemStyle: { color: bandTones[step] },
+    itemStyle: { ...bandLooks[step], borderRadius: step === 2 ? [0, 3, 3, 0] : step === 0 ? [3, 0, 0, 3] : 0 },
   }));
   return {
-    ...base(spec, { grid: { left: nameWidth(rows.map(([name]) => name)), right: 56, top: 16, bottom: 22, containLabel: false } }),
+    ...base(spec, { grid: { left: nameWidth(rows.map(([name]) => name)), right: 120, top: 18, bottom: 22, containLabel: false } }),
     xAxis: { ...valueAxis(spec), max, show: spec.axis !== false },
     yAxis: { ...categoryAxis(rows.map(([name]) => name), spec), inverse: true, axisLine: { show: false } },
     series: [
       ...bandSeries,
       {
         type: "bar",
-        barWidth: 8,
-        barGap: "-68%",
+        barWidth: 10,
+        barGap: "-69%",
         z: 3,
-        data: rows.map(([, actual, target]) => ({ value: actual, itemStyle: { color: actual >= target ? color.ink : color.accent, borderRadius: 2 } })),
+        data: rows.map(([, actual, target]) => ({
+          value: actual,
+          itemStyle: actual >= target ? { color: color.accent, borderRadius: 3 } : { color: color.accent, decal: patterns.stripes, borderRadius: 3 },
+        })),
       },
-      // O realizado escrito à direita da faixa, longe do traço da meta.
+      // O realizado e a distância da meta, à direita das faixas.
       {
         type: "scatter",
         symbolSize: 1,
         itemStyle: { color: "transparent" },
         data: rows.map((_, index) => [max, index]),
-        label: { show: true, position: "right", distance: 8, ...text(11, 800, color.ink), formatter: ({ dataIndex }) => number(rows[dataIndex][1], spec) },
+        label: {
+          show: true,
+          position: "right",
+          distance: 10,
+          formatter: ({ dataIndex }) => {
+            const [, actual, target] = rows[dataIndex];
+            const gap = actual - target;
+            return `{v|${number(actual, spec)}}{${gap >= 0 ? "g" : "b"}|${signed(gap, { ...spec, suffix: spec.suffix === "%" ? " p.p." : spec.suffix })}}`;
+          },
+          rich: { v: { ...text(11, 800, color.ink), padding: [0, 6, 0, 0] }, g: pill("good"), b: pill("bad") },
+        },
       },
       {
         type: "scatter",
         z: 4,
         symbol: "rect",
-        symbolSize: [3, 24],
+        symbolSize: [3, 28],
         itemStyle: { color: color.ink },
         data: rows.map(([, , target], index) => [target, index]),
-        label: { show: true, position: "top", distance: 2, ...text(9.5, 600, color.muted), formatter: ({ value }) => `meta ${number(value[0], spec)}` },
+        label: { show: true, position: "top", distance: 2, ...text(9.5, 700, color.muted), formatter: ({ value }) => `meta ${number(value[0], spec)}` },
       },
     ],
   };
