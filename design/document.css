@@ -1,10 +1,66 @@
-/* Folha única dos documentos Solaria. Os componentes são classes; o HTML de cada documento só os combina.
-   Base (direção A): capa, sumário, aberturas, tipografia e contracapa.
-   Gerencial (B): .runhead, .kpis, .hero, .fig, .variance.  Produto (C): .steps, .shot, .note, .faq. */
+/* Folha única dos documentos Solaria. O documento é escrito corrido; o Paged.js distribui em páginas A4,
+   preenche o sumário e numera. Base (direção A): capa, sumário, aberturas, tipografia e contracapa.
+   Gerencial (B): .runhead, .scqa, .ask, .kpis, .hero, .fig.  Produto (C): .facts, .steps, .shot, .note, .faq. */
 
 @page {
   size: A4 portrait;
+  margin: 24mm 20mm 22mm;
+
+  @top-left {
+    content: "";
+    color: #62676f;
+    font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    vertical-align: bottom;
+    padding-bottom: 5mm;
+  }
+  @top-right {
+    content: "";
+    color: #8b9098;
+    font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    vertical-align: bottom;
+    padding-bottom: 5mm;
+  }
+  @bottom-left {
+    content: "";
+    color: #242628;
+    font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 700;
+    vertical-align: top;
+    padding-top: 4mm;
+    width: 80%;
+  }
+  @bottom-right {
+    content: "";
+    color: #8b9098;
+    font-family: "Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif;
+    font-size: 7.5pt;
+    font-weight: 600;
+    vertical-align: top;
+    padding-top: 4mm;
+  }
+}
+
+/* Capa e contracapa ocupam a folha inteira, sem cabeçalho nem rodapé. */
+@page full {
   margin: 0;
+
+  @top-left {
+    content: none;
+  }
+  @top-right {
+    content: none;
+  }
+  @bottom-left {
+    content: none;
+  }
+  @bottom-right {
+    content: none;
+  }
 }
 
 :root {
@@ -22,11 +78,6 @@
   --info: #306eee;
   --warn: #925c12;
   --font: "Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif;
-  --page-w: 210mm;
-  --page-h: 297mm;
-  --pad-x: 20mm;
-  --pad-top: 18mm;
-  --pad-bottom: 22mm;
 }
 
 * {
@@ -63,55 +114,43 @@ svg {
   max-width: 100%;
 }
 
-/* ---------- Página ---------- */
+/* ---------- Fluxo ---------- */
 
-.page {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  width: var(--page-w);
-  height: var(--page-h);
-  padding: var(--pad-top) var(--pad-x) var(--pad-bottom);
-  overflow: hidden;
-  background: var(--paper);
-  break-after: page;
+/* Filete do rodapé em toda a largura útil, fora da capa e da contracapa. */
+.pagedjs_page:not(.pagedjs_full_page) .pagedjs_margin-bottom {
+  border-top: 0.5pt solid var(--line);
 }
-.page > .body {
+
+/* Cada capítulo começa numa página nova. Depois da paginação, o build preenche o sumário com as páginas reais
+   e escreve nas margens o capítulo, o progresso, o título do documento e o número da página. */
+.chapter {
   display: flex;
-  flex: 1;
   flex-direction: column;
   gap: 7mm;
-  min-height: 0;
+  break-before: page;
 }
-.foot {
-  position: absolute;
-  right: var(--pad-x);
-  bottom: 10mm;
-  left: var(--pad-x);
-  display: flex;
-  justify-content: space-between;
-  padding-top: 3mm;
-  border-top: 0.5pt solid var(--line);
-  color: var(--faint);
-  font-size: 7.5pt;
+.chapter > * {
+  flex: none;
 }
-.foot b {
-  color: var(--ink);
-  font-weight: 700;
+h2,
+h3,
+.runhead,
+.opener,
+.fig .head {
+  break-after: avoid;
 }
-
-/* Na tela, o documento se comporta como um leitor de PDF: folhas soltas sobre fundo cinza. */
-@media screen {
-  body {
-    padding: 32px 0;
-    background: #e8e9ec;
-  }
-  .page {
-    margin: 0 auto 32px;
-    box-shadow:
-      0 1px 2px rgb(16 18 20 / 0.08),
-      0 8px 24px rgb(16 18 20 / 0.08);
-  }
+.kpis,
+.hero,
+.ask,
+.fig,
+.note,
+.facts,
+.step,
+.shot,
+.scqa > dd,
+table.data tr,
+.faq dl > div {
+  break-inside: avoid;
 }
 
 /* ---------- Tipografia ---------- */
@@ -175,10 +214,20 @@ h3 {
 
 /* ---------- Capa (A) ---------- */
 
+.cover,
+.back {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 210mm;
+  height: calc(297mm - 2px);
+  page: full;
+  break-after: page;
+  text-align: center;
+}
 .cover {
   justify-content: space-between;
-  padding: 22mm var(--pad-x) 20mm;
-  text-align: center;
+  padding: 22mm 20mm 20mm;
 }
 .cover::before {
   position: absolute;
@@ -206,6 +255,9 @@ h3 {
   line-height: 1.08;
   letter-spacing: -0.02em;
 }
+.cover .sample {
+  align-self: center;
+}
 .cover .lead {
   max-width: 125mm;
 }
@@ -228,6 +280,7 @@ h3 {
 }
 .sample {
   display: inline-block;
+  align-self: flex-start;
   padding: 1mm 3mm;
   border-radius: 99px;
   background: var(--surface);
@@ -238,6 +291,7 @@ h3 {
 
 /* ---------- Sumário (A) ---------- */
 
+/* O build preenche o .toc a partir dos capítulos e acrescenta a página de cada um depois da paginação. */
 .toc {
   display: flex;
   flex-direction: column;
@@ -254,6 +308,9 @@ h3 {
   color: inherit;
   text-decoration: none;
 }
+.toc .p {
+  color: var(--muted);
+}
 .toc .n {
   color: var(--accent-text);
   font-weight: 700;
@@ -267,9 +324,6 @@ h3 {
   color: var(--muted);
   font-size: 8.5pt;
   font-weight: 500;
-}
-.toc .p {
-  color: var(--muted);
 }
 
 /* ---------- Abertura de seção (A) ---------- */
@@ -296,50 +350,20 @@ h3 {
   font-size: 10pt;
 }
 
-/* ---------- Cabeçalho corrido do relatório (B) ---------- */
+/* ---------- Abertura de página do relatório (B) ---------- */
 
+/* Migalha e progresso ficam no cabeçalho da página; aqui ficam o título-ação e a pergunta. */
 .runhead {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2mm 6mm;
-  margin: 0 0 7mm;
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
   padding-bottom: 4mm;
   border-bottom: 0.5pt solid var(--line);
 }
-.runhead .crumb {
-  color: var(--muted);
-  font-size: 7.5pt;
-  font-weight: 600;
-}
-.runhead .crumb b {
-  color: var(--accent-text);
-}
-.runhead .progress {
-  display: flex;
-  align-items: center;
-  gap: 2mm;
-  color: var(--muted);
-  font-size: 7.5pt;
-  font-weight: 600;
-}
-.runhead .bar {
-  width: 22mm;
-  height: 1.2mm;
-  overflow: hidden;
-  border-radius: 99px;
-  background: var(--line);
-}
-.runhead .bar i {
-  display: block;
-  height: 100%;
-  background: var(--accent);
-}
 .runhead .title {
-  grid-column: 1 / -1;
   font-size: 16pt;
 }
 .runhead .question {
-  grid-column: 1 / -1;
   color: var(--muted);
   font-size: 9.5pt;
 }
@@ -574,7 +598,6 @@ table.data tr.total td {
   flex-direction: column;
   padding: 0;
   list-style: none;
-  counter-reset: step;
 }
 .step {
   position: relative;
@@ -582,7 +605,6 @@ table.data tr.total td {
   grid-template-columns: 10mm 1fr;
   gap: 4mm;
   padding-bottom: 6mm;
-  counter-increment: step;
 }
 .step::before {
   display: grid;
@@ -594,7 +616,7 @@ table.data tr.total td {
   color: var(--paper);
   font-size: 9pt;
   font-weight: 800;
-  content: counter(step);
+  content: attr(data-step);
 }
 .step::after {
   position: absolute;
@@ -739,7 +761,8 @@ kbd,
   align-items: center;
   justify-content: center;
   gap: 6mm;
-  text-align: center;
+  break-before: page;
+  break-after: auto;
 }
 .back .logo {
   width: 14mm;
@@ -781,4 +804,51 @@ kbd,
   font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
   font-size: 7.5pt;
   font-weight: 600;
+}
+
+/* ---------- Cabeçalho do documento curto (A) ---------- */
+
+/* Documento curto não tem capa: a primeira folha abre com logo, tipo, título e metadados. */
+.dochead {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 5mm 8mm;
+  align-items: start;
+  padding-bottom: 6mm;
+  border-bottom: 0.75pt solid var(--ink);
+}
+.dochead .logo {
+  width: 11mm;
+  grid-row: 1;
+  grid-column: 2;
+}
+.dochead .heading {
+  display: flex;
+  flex-direction: column;
+  gap: 2mm;
+}
+.dochead .title {
+  font-size: 22pt;
+}
+.dochead .meta {
+  display: flex;
+  grid-column: 1 / -1;
+  gap: 10mm;
+  color: var(--muted);
+  font-size: 8pt;
+}
+.dochead .meta div {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5mm;
+}
+.dochead .meta b {
+  color: var(--ink);
+  font-size: 9pt;
+  font-weight: 700;
+}
+.flow {
+  display: flex;
+  flex-direction: column;
+  gap: 7mm;
 }

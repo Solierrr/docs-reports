@@ -14,6 +14,7 @@ import {
   IconBook,
   IconComponents,
   IconFileAnalytics,
+  IconFileText,
   IconHelpCircle,
   type TablerIcon,
 } from "@tabler/icons-react";
@@ -31,7 +32,7 @@ interface Sample {
   names: Record<Locale, string>;
 }
 
-// Amostras com conteúdo realista, montadas de samples/ por scripts/build-samples.mjs.
+// Modelos de templates/ e o catálogo de componentes, paginados por scripts/build-samples.mjs.
 const samples: Sample[] = [
   {
     id: "report",
@@ -47,6 +48,11 @@ const samples: Sample[] = [
     id: "faq",
     icon: IconHelpCircle,
     names: { "pt-BR": "Perguntas frequentes", "en-US": "FAQ", "es-ES": "Preguntas frecuentes" },
+  },
+  {
+    id: "document",
+    icon: IconFileText,
+    names: { "pt-BR": "Documento curto", "en-US": "Short document", "es-ES": "Documento breve" },
   },
   {
     id: "components",
@@ -243,17 +249,17 @@ function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) 
   }, []);
 
   const sheets = useCallback(
-    () => Array.from(frame.current?.contentDocument?.querySelectorAll<HTMLElement>(".page") ?? []),
+    () => Array.from(frame.current?.contentDocument?.querySelectorAll<HTMLElement>(".pagedjs_page") ?? []),
     [],
   );
 
+  // As medidas de getBoundingClientRect já vêm com o zoom aplicado, na mesma escala da rolagem.
   const track = useCallback(() => {
     const view = frame.current?.contentWindow;
     if (!view) return;
-    const line = view.scrollY + view.innerHeight / 3;
-    const index = sheets().findLastIndex((sheet) => sheet.offsetTop * scale <= line);
+    const index = sheets().findLastIndex((sheet) => sheet.getBoundingClientRect().top <= view.innerHeight / 3);
     setCurrent(Math.max(1, index + 1));
-  }, [scale, sheets]);
+  }, [sheets]);
 
   useEffect(() => {
     const root = frame.current?.contentDocument?.documentElement;
@@ -277,7 +283,7 @@ function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) 
     const target = sheets()[page - 1];
     const view = frame.current?.contentWindow;
     if (!target || !view) return;
-    view.scrollTo({ top: (target.offsetTop - 24) * scale });
+    view.scrollTo({ top: view.scrollY + target.getBoundingClientRect().top - 24 * scale });
     setCurrent(page);
   }
 

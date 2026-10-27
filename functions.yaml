@@ -24,12 +24,12 @@ agents:
     context: novo ou principal, nunca o do reviewer
   builder:
     file: agents/builder.md
-    role: Implementador. Aplica o conteúdo no modelo e gera o PDF depois da aprovação.
+    role: Implementador. Escreve o conteúdo no source.html do modelo, gera o documento paginado e o PDF.
     when: depois do writer, quando a reflexão devolve uma falha de montagem, e no PDF final
-    reads: [.work/NNN/spec.md, .work/NNN/content.md, documents/NNN/index.html, templates/AGENTS.md, design/AGENTS.md, editorial.md]
-    writes: [documents/NNN/index.html, documents/NNN/NNN.pdf]
+    reads: [.work/NNN/spec.md, .work/NNN/content.md, documents/NNN/source.html, templates/AGENTS.md, design/components.html, editorial.md]
+    writes: [documents/NNN/source.html, documents/NNN/index.html, documents/NNN/NNN.pdf]
     checklist: checklists/structure.md
-    scripts: [check, chart, pdf]
+    scripts: [build, check, pdf]
     skills: [fix]
     context: novo ou principal, nunca o do reviewer
   reviewer:
@@ -55,21 +55,22 @@ agents:
 scripts:
   new:
     usage: sh scripts/new.sh <type> <slug> "<título>"
-    args: {type: report | manual | document, slug: uma palavra em inglês, título: título do documento}
-    does: Cria documents/NNN/ com o modelo e o checklist do documento, e .work/NNN/ com spec, content, review e log vazios. NNN é o maior número existente mais um.
+    args: {type: report | manual | faq | document, slug: uma palavra em inglês, título: título do documento}
+    does: Cria documents/NNN/source.html (cópia do modelo com conteúdo de exemplo) e checklist.md, e .work/NNN/ com spec, content, review e log. NNN é o maior número existente mais um.
     output: o número criado, os caminhos e o documento anterior (número e título)
   check:
     usage: sh scripts/check.sh <NNN>
-    does: Verificações estruturais de checklists/structure.md no HTML, no PDF (se existir) e no checklist.md.
+    does: Verificações estruturais de checklists/structure.md no source.html, no index.html, no PDF (se existir) e no checklist.md.
     output: só as falhas, uma por linha; "ok NNN" se nada falhar
     exit: 0 sem falhas, 1 com falhas
-  chart:
-    usage: sh scripts/chart.sh <NNN>
-    does: Desenha cada bloco data-chart de documents/NNN/index.html como SVG estático (ECharts com o tema Solaria). Rodar de novo regenera.
-    output: o arquivo e o número de gráficos
+  build:
+    usage: sh scripts/build.sh <NNN>
+    does: Gera documents/NNN/index.html do source.html. Desenha os gráficos data-chart (ECharts), monta o sumário, pagina em A4 com o Paged.js num Chrome ou Edge headless, preenche cabeçalho, rodapé e números, embute CSS e logo e tira os scripts.
+    output: o arquivo e o número de páginas
+    exit: 0 gerado, 1 falha (sem navegador, gráfico inválido ou paginação que não terminou)
   pdf:
     usage: sh scripts/pdf.sh <NNN>
-    does: Converte documents/NNN/index.html em documents/NNN/NNN.pdf com Chrome ou Edge headless (BROWSER sobrescreve).
+    does: Imprime documents/NNN/index.html (já paginado) em documents/NNN/NNN.pdf com Chrome ou Edge headless (BROWSER sobrescreve).
     output: caminho do PDF e número de páginas
     exit: 0 gerado, 1 sem navegador ou falha
   index:
@@ -78,7 +79,7 @@ scripts:
     output: uma linha por arquivo ou documento
   commit:
     usage: sh scripts/commit.sh <NNN>
-    does: Roda check.sh, cria a branch docs/NNN a partir da main, commita só documents/NNN, faz push e abre a PR.
+    does: Roda check.sh, exige o PDF, cria a branch docs/NNN a partir da main, commita só documents/NNN (source, index, PDF e checklist), faz push e abre a PR.
     env: {AI_TRAILER: linha de coautoria opcional acrescentada ao commit}
     output: a URL da PR
     exit: 0 PR aberta, 1 falha de verificação ou de git

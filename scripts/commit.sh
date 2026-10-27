@@ -47,7 +47,7 @@ Publicar o documento $number: $title.
 
 ## Alterações
 
-- \`$doc/index.html\`
+- \`$doc/source.html\` e \`$doc/index.html\`
 - \`$doc/$number.pdf\`
 - \`$doc/checklist.md\`, com os itens deste documento e os ciclos de revisão
 

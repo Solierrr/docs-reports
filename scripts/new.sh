@@ -1,17 +1,17 @@
 #!/bin/sh
-# Cria o próximo documento numerado: documents/NNN/ com o modelo e o checklist, e .work/NNN/ com o trabalho.
+# Cria o próximo documento numerado: documents/NNN/ com o source.html do modelo e o checklist, e .work/NNN/.
 set -eu
 cd "$(dirname "$0")/.."
 
 usage() {
-  echo 'uso: sh scripts/new.sh <report|manual|document> <slug> "<título>"' >&2
+  echo 'uso: sh scripts/new.sh <report|manual|faq|document> <slug> "<título>"' >&2
   exit 1
 }
 [ $# -eq 3 ] || usage
 type=$1
 slug=$2
 title=$3
-case $type in report | manual | document) ;; *) usage ;; esac
+case $type in report | manual | faq | document) ;; *) usage ;; esac
 case $slug in '' | *[!a-z0-9]*)
   echo "slug: uma palavra em inglês, minúsculas e sem hífen" >&2
   exit 1
@@ -45,7 +45,8 @@ fill() {
 }
 
 mkdir -p "$doc" "$work/captures"
-cp "templates/$type.html" "$doc/index.html"
+# O modelo vem com conteúdo de exemplo; os caminhos para design/ ganham um nível.
+sed 's#"\.\./design/#"../../design/#g' "templates/$type.html" >"$doc/source.html"
 fill checklists/document.md "$doc/checklist.md"
 fill templates/spec.md "$work/spec.md"
 for file in content review log; do
@@ -53,7 +54,7 @@ for file in content review log; do
 done
 
 echo "$number criado ($type: $slug)"
-echo "  $doc/index.html"
+echo "  $doc/source.html"
 echo "  $doc/checklist.md"
 echo "  $work/spec.md content.md review.md log.md captures/"
 if [ -n "${last:-}" ]; then

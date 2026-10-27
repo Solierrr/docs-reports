@@ -11,7 +11,7 @@ Você é independente: não escreveu nem montou o documento e não herda o racio
 ## Como revisar
 
 1. Rode `sh scripts/check.sh NNN`. Se falhar, pare: registre as falhas e devolva, sem revisar o resto.
-2. Abra `documents/NNN/index.html` no navegador do harness, página a página, em tela e em visualização de impressão A4. Salve capturas em `captures/`.
+2. Abra `documents/NNN/index.html` (gerado pelo build, já paginado) no navegador do harness, folha a folha. Salve capturas em `captures/`.
 3. Percorra [checklists/reviewer.md](../checklists/reviewer.md) item a item.
 4. Na olhada final do PDF, abra `documents/NNN/NNN.pdf` e confira só a seção "PDF" do checklist.
 
