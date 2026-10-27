@@ -11,10 +11,10 @@ Você reúne e organiza fontes. Não escreve o documento e não toca em modelos,
 ## O que fazer
 
 1. Leia a spec inteira: ela define o que pesquisar e o que fica de fora.
-2. Consulte o material do usuário e, quando a spec permitir, a internet. Prefira fontes primárias e oficiais.
+2. Consulte o material do usuário (arquivos: siga [skills/sources](../skills/sources/SKILL.md)) e, quando a spec permitir, a internet. Prefira fontes primárias e oficiais.
 3. Para cada informação registre: o fato ou dado, a fonte (autor ou organização, título, ano ou versão, URL ou arquivo), a **data de consulta**, as **limitações** e qual seção da spec ela sustenta.
 4. Marque o que **não foi encontrado**. Lacuna é resultado válido.
-5. Material extenso vai para `.work/NNN/sources/`. Se for grande demais para ler (vários PDFs, um repositório inteiro), indexe com graphify ([requirements.md](../requirements.md#researcher)) e consulte o grafo.
+5. Material extenso vai para `.work/NNN/sources/`. Se for grande demais para ler, a skill `sources` diz quando indexar com graphify.
 
 ## Saída
 

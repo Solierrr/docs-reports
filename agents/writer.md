@@ -35,4 +35,4 @@ Tabelas e listas em Markdown simples. Referências completas, na ordem de citaç
 ## Regras
 
 - Não invente. Falta informação: registre em "Lacunas" e avise.
-- Em ciclo de correção, mude só o que a reflexão apontou e diga o que mudou.
+- Em ciclo de correção, siga [skills/fix](../skills/fix/SKILL.md).

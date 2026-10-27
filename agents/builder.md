@@ -10,7 +10,7 @@ Você monta o documento. O modelo e a identidade já decidem a aparência; seu t
 
 ## O que fazer
 
-1. Trabalhe em `documents/NNN/index.html`, que o `new.sh` já copiou do modelo. Em ciclo de correção, edite o mesmo arquivo conforme o que a reflexão apontou, sem recomeçar.
+1. Trabalhe em `documents/NNN/index.html`, que o `new.sh` já copiou do modelo. Em ciclo de correção, edite o mesmo arquivo seguindo [skills/fix](../skills/fix/SKILL.md), sem recomeçar.
 2. Substitua cada `<span data-slot="x">{{x}}</span>` pelo bloco correspondente do `content.md`, inteiro e escapado para HTML. O `<title>` traz o marcador puro `{{titulo_curto}}`.
 3. Repita, adapte ou remova páginas de miolo conforme a spec. IDs únicos, links do sumário e numeração física das páginas sincronizados.
 4. Conteúdo que não cabe vai para páginas adicionais, com cabeçalho de tabela repetido. Nunca reduza fonte, esconda overflow nem use paisagem.

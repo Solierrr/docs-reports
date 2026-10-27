@@ -10,6 +10,7 @@ agents:
     writes: [.work/NNN/spec.md, .work/NNN/log.md, documents/NNN/checklist.md]
     checklist: checklists/orchestrator.md
     scripts: [new, check, index, commit]
+    skills: [grilling]
     context: principal
   writer:
     file: agents/writer.md
@@ -19,6 +20,7 @@ agents:
     writes: [.work/NNN/content.md]
     checklist: lentes em agents/writer.md
     scripts: []
+    skills: [fix]
     context: novo ou principal, nunca o do reviewer
   builder:
     file: agents/builder.md
@@ -28,6 +30,7 @@ agents:
     writes: [documents/NNN/index.html, documents/NNN/NNN.pdf]
     checklist: checklists/structure.md
     scripts: [check, pdf]
+    skills: [fix]
     context: novo ou principal, nunca o do reviewer
   reviewer:
     file: agents/reviewer.md
@@ -46,6 +49,7 @@ agents:
     writes: [.work/NNN/sources.md, .work/NNN/sources/]
     checklist: regras em agents/researcher.md
     scripts: []
+    skills: [sources]
     context: novo
 
 scripts:
