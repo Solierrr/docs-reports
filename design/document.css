@@ -640,6 +640,8 @@ table.data th {
 table.data td {
   padding: 2mm 2mm 2mm 0;
   border-bottom: 0.5pt solid var(--line);
+  /* Endereços e códigos longos quebram dentro da célula em vez de invadir a coluna seguinte. */
+  overflow-wrap: anywhere;
 }
 table.data .num {
   text-align: right;

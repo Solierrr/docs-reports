@@ -66,20 +66,19 @@ function contents(html) {
   return withFaq.replace(/<nav class="toc">\s*<\/nav>/, () => `<nav class="toc">\n      ${items}\n    </nav>`);
 }
 
-// Só na prévia da galeria: a Plus Jakarta Sans embutida, para paginar e mostrar com a fonte da marca.
+// A Plus Jakarta Sans versionada em design/fonts/, embutida em todo documento: o HTML e o PDF saem com a fonte
+// da marca em qualquer máquina, sem depender de ela estar instalada.
 async function embeddedFont() {
   const faces = await Promise.all(
     [500, 600, 700, 800].map(async (weight) => {
-      const file = await readFile(
-        new URL(`@fontsource/plus-jakarta-sans/files/plus-jakarta-sans-latin-${weight}-normal.woff2`, modules),
-      );
+      const file = await readFile(new URL(`design/fonts/plus-jakarta-sans-latin-${weight}-normal.woff2`, root));
       return `@font-face{font-family:"Plus Jakarta Sans";font-weight:${weight};font-style:normal;src:url(data:font/woff2;base64,${file.toString("base64")}) format("woff2")}`;
     }),
   );
   return `<style>${faces.join("")}</style>`;
 }
 
-export async function inline(source, { previewFont = false } = {}) {
+export async function inline(source) {
   const css = await readFile(new URL("design/document.css", root), "utf8");
   const logo = await readFile(new URL("design/logos/elos.svg", root), "utf8");
   const logoUri = `data:image/svg+xml;base64,${Buffer.from(logo).toString("base64")}`;
@@ -87,10 +86,9 @@ export async function inline(source, { previewFont = false } = {}) {
     .replace(/<link rel="stylesheet" href="(?:(?:\.\.\/)+design\/)?document\.css">/, () => `<style>\n${css}</style>`)
     .replace(/src="(?:(?:\.\.\/)+design\/)?logos\/elos\.svg"/g, `src="${logoUri}"`);
   if (/(?:href|src)="(?:\.\.\/)+design\//.test(html)) throw new Error("caminho para design/ não embutido");
-  if (previewFont) {
-    const font = await embeddedFont();
-    html = html.replace("</head>", () => `${font}\n</head>`);
-  }
+  const font = await embeddedFont();
+  html = html.replace("</head>", () => `${font}
+</head>`);
   return renderCharts(contents(html)).html;
 }
 
@@ -133,10 +131,10 @@ const watch = [
   'window.addEventListener("unhandledrejection", (event) => document.documentElement.setAttribute("data-error", String(event.reason)));',
 ].join("\n");
 
-export async function paginate(source, options = {}) {
+export async function paginate(source) {
   const polyfill = await readFile(new URL("pagedjs/dist/paged.polyfill.min.js", modules), "utf8");
   const config = `window.PagedConfig = { auto: true, after: ${finish.toString()} };`;
-  const ready = (await inline(source, options)).replace(
+  const ready = (await inline(source)).replace(
     "</head>",
     () => `<script>\n${watch}\n${config}\n</script>\n<script>${polyfill}</script>\n</head>`,
   );
