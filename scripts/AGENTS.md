@@ -10,6 +10,7 @@ read: só functions.yaml (chave scripts); abra um script apenas se ele falhar se
 | --- | --- | --- |
 | [new.sh](new.sh) | `sh scripts/new.sh <type> <slug> "<título>"` | orchestrator, depois do grilling |
 | [check.sh](check.sh) | `sh scripts/check.sh <NNN>` | builder, reviewer e orchestrator |
+| [chart.sh](chart.sh) | `sh scripts/chart.sh <NNN>` | builder, depois de escrever os blocos `data-chart` |
 | [pdf.sh](pdf.sh) | `sh scripts/pdf.sh <NNN>` | builder, depois da aprovação do HTML |
 | [index.sh](index.sh) | `sh scripts/index.sh [docs]` | qualquer agente que precise de um mapa |
 | [commit.sh](commit.sh) | `sh scripts/commit.sh <NNN>` | orchestrator, com o aval do usuário |

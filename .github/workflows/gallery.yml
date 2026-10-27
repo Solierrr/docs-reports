@@ -7,6 +7,8 @@ on:
     paths:
       - "gallery/**"
       - "templates/**"
+      - "samples/**"
+      - "design/**"
       - ".github/workflows/gallery.yml"
   workflow_dispatch:
 

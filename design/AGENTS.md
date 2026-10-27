@@ -10,8 +10,9 @@ Identidade única da Solaria para todos os modelos, derivada do design system do
 
 | Caminho | Conteúdo |
 | --- | --- |
+| [document.css](document.css) | Folha única dos documentos: página A4, tipografia e todos os componentes (capa, sumário, aberturas, KPIs, figuras, passos, avisos, FAQ, contracapa) |
 | [tokens/solaria.md](tokens/solaria.md) | Cores, tipografia, forma, espaço e regras do logo |
-| [logos/](logos/) | `elos.svg` (marca completa), `hexagon.svg` e `hands.svg` (partes) |
+| [logos/](logos/) | `elos.svg`, o quadro estático do `OrganicLogo` da web-lib (hexágono laranja com as mãos) |
 | [guides/cover.md](guides/cover.md) | Capa, uso da marca e restrições |
 
 ## Como a identidade chega aos documentos

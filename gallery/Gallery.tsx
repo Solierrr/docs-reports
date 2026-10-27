@@ -1,10 +1,4 @@
-import {
-  useEffect,
-  useLayoutEffect,
-  useRef,
-  useState,
-  type CSSProperties,
-} from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import {
   GitHubIcon,
@@ -18,8 +12,9 @@ import {
 } from "@solaria.network/web-lib";
 import {
   IconBook,
+  IconComponents,
   IconFileAnalytics,
-  IconFileText,
+  IconHelpCircle,
   type TablerIcon,
 } from "@tabler/icons-react";
 
@@ -30,68 +25,103 @@ const languages = [
 ] as const;
 type Locale = (typeof languages)[number]["code"];
 
-interface Template {
+interface Sample {
   id: string;
   icon: TablerIcon;
   names: Record<Locale, string>;
 }
 
-const templates: Template[] = [
+// Amostras com conteúdo realista, montadas de samples/ por scripts/build-samples.mjs.
+const samples: Sample[] = [
   {
     id: "report",
     icon: IconFileAnalytics,
-    names: { "pt-BR": "Relatório", "en-US": "Report", "es-ES": "Informe" },
+    names: { "pt-BR": "Relatório gerencial", "en-US": "Management report", "es-ES": "Informe de gestión" },
   },
   {
     id: "manual",
     icon: IconBook,
-    names: {
-      "pt-BR": "Manual de instrução",
-      "en-US": "Instruction manual",
-      "es-ES": "Manual de instrucciones",
-    },
+    names: { "pt-BR": "Manual de uso", "en-US": "User manual", "es-ES": "Manual de uso" },
   },
   {
-    id: "document",
-    icon: IconFileText,
-    names: { "pt-BR": "Documento", "en-US": "Document", "es-ES": "Documento" },
+    id: "faq",
+    icon: IconHelpCircle,
+    names: { "pt-BR": "Perguntas frequentes", "en-US": "FAQ", "es-ES": "Preguntas frecuentes" },
+  },
+  {
+    id: "components",
+    icon: IconComponents,
+    names: { "pt-BR": "Componentes", "en-US": "Components", "es-ES": "Componentes" },
   },
 ];
 
-const labels: Record<
-  Locale,
-  { language: string; github: string; templates: string; preview: string; open: string; note: string }
-> = {
+interface Labels {
+  language: string;
+  github: string;
+  samples: string;
+  preview: string;
+  open: string;
+  previous: string;
+  next: string;
+  zoomIn: string;
+  zoomOut: string;
+  fit: string;
+  page: string;
+  note: string;
+}
+
+const labels: Record<Locale, Labels> = {
   "pt-BR": {
     language: "Idioma",
     github: "Repositório no GitHub",
-    templates: "Modelos de documentos",
-    preview: "Prévia do modelo",
-    open: "Abrir o modelo em uma nova aba",
-    note: "Os modelos são escritos em português.",
+    samples: "Documentos de exemplo",
+    preview: "Visualizador do documento",
+    open: "Abrir em uma nova aba",
+    previous: "Página anterior",
+    next: "Próxima página",
+    zoomIn: "Aproximar",
+    zoomOut: "Afastar",
+    fit: "Ajustar à largura",
+    page: "Página",
+    note: "Os documentos são escritos em português.",
   },
   "en-US": {
     language: "Language",
     github: "GitHub repository",
-    templates: "Document templates",
-    preview: "Template preview",
-    open: "Open the template in a new tab",
-    note: "The templates are written in Portuguese.",
+    samples: "Sample documents",
+    preview: "Document viewer",
+    open: "Open in a new tab",
+    previous: "Previous page",
+    next: "Next page",
+    zoomIn: "Zoom in",
+    zoomOut: "Zoom out",
+    fit: "Fit to width",
+    page: "Page",
+    note: "The documents are written in Portuguese.",
   },
   "es-ES": {
     language: "Idioma",
     github: "Repositorio en GitHub",
-    templates: "Modelos de documentos",
-    preview: "Vista previa del modelo",
-    open: "Abrir el modelo en una pestaña nueva",
-    note: "Los modelos están escritos en portugués.",
+    samples: "Documentos de ejemplo",
+    preview: "Visor del documento",
+    open: "Abrir en una pestaña nueva",
+    previous: "Página anterior",
+    next: "Página siguiente",
+    zoomIn: "Acercar",
+    zoomOut: "Alejar",
+    fit: "Ajustar al ancho",
+    page: "Página",
+    note: "Los documentos están escritos en portugués.",
   },
 };
 
 const actionClass =
   "inline-flex size-9 shrink-0 items-center justify-center rounded-small text-operational-ink transition-colors hover:bg-operational-hover focus-visible:outline-2 focus-visible:outline-operational-ink motion-reduce:transition-none";
 const repository = "https://github.com/Solierrr/docs-reports";
+// Largura de uma folha A4 a 96 dpi e o respiro lateral do leitor.
 const pageWidth = 794;
+const gutter = 64;
+const zoomSteps = [0.5, 0.67, 0.75, 0.9, 1, 1.1, 1.25, 1.5, 2];
 
 function LanguageSwitcher({
   value,
@@ -188,64 +218,114 @@ function LanguageSwitcher({
   );
 }
 
-function DocumentPreview({
-  selected,
-  locale,
-}: {
-  selected: Template;
-  locale: Locale;
-}) {
-  const container = useRef<HTMLElement>(null);
-  const [size, setSize] = useState({ width: 0, height: 0 });
+// Leitor no estilo de um visualizador de PDF: o próprio documento desenha as folhas sobre fundo cinza;
+// a galeria só controla zoom e página pelo DOM do iframe, que é da mesma origem.
+function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) {
+  const text = labels[locale];
+  const frame = useRef<HTMLIFrameElement>(null);
+  const area = useRef<HTMLDivElement>(null);
+  const [zoom, setZoom] = useState<number | null>(null);
+  const [fitZoom, setFitZoom] = useState(1);
+  const [pages, setPages] = useState(0);
+  const [current, setCurrent] = useState(1);
+  const url = `./samples/${encodeURIComponent(sample.id)}.html`;
+  const scale = zoom ?? fitZoom;
+
   useLayoutEffect(() => {
-    const element = container.current;
+    const element = area.current;
     if (!element) return;
     const measure = () =>
-      setSize({ width: element.clientWidth, height: element.clientHeight });
+      setFitZoom(Math.min(1, Math.max(0.3, (element.clientWidth - gutter) / pageWidth)));
     measure();
     const observer = new ResizeObserver(measure);
     observer.observe(element);
     return () => observer.disconnect();
   }, []);
-  const scale = Math.min(1, size.width / pageWidth) || 1;
-  const url = `./templates/${encodeURIComponent(selected.id)}.html`;
+
+  const sheets = useCallback(
+    () => Array.from(frame.current?.contentDocument?.querySelectorAll<HTMLElement>(".page") ?? []),
+    [],
+  );
+
+  const track = useCallback(() => {
+    const view = frame.current?.contentWindow;
+    if (!view) return;
+    const line = view.scrollY + view.innerHeight / 3;
+    const index = sheets().findLastIndex((sheet) => sheet.offsetTop * scale <= line);
+    setCurrent(Math.max(1, index + 1));
+  }, [scale, sheets]);
+
+  useEffect(() => {
+    const root = frame.current?.contentDocument?.documentElement;
+    if (root) root.style.zoom = String(scale);
+    track();
+  }, [scale, track, pages]);
+
+  useEffect(() => {
+    const view = frame.current?.contentWindow;
+    view?.addEventListener("scroll", track, { passive: true });
+    return () => view?.removeEventListener("scroll", track);
+  }, [track, pages]);
+
+  useEffect(() => {
+    setZoom(null);
+    setPages(0);
+    setCurrent(1);
+  }, [sample.id]);
+
+  function go(page: number) {
+    const target = sheets()[page - 1];
+    const view = frame.current?.contentWindow;
+    if (!target || !view) return;
+    view.scrollTo({ top: (target.offsetTop - 24) * scale });
+    setCurrent(page);
+  }
+
+  function step(direction: 1 | -1) {
+    const next =
+      direction > 0
+        ? zoomSteps.find((value) => value > scale + 0.001)
+        : zoomSteps.findLast((value) => value < scale - 0.001);
+    if (next) setZoom(next);
+  }
+
   return (
-    <div className="gallery-preview-layout" style={{ maxWidth: pageWidth + 18 }}>
-      <Surface
-        className="gallery-preview min-h-0"
-        contentClassName="gallery-preview-content"
-      >
-        <div className="preview-toolbar">
-          <ToolbarAction
-            icon="externalLink"
-            label={labels[locale].open}
-            onClick={() => window.open(url, "_blank", "noopener")}
-          />
+    <Surface className="viewer min-h-0" contentClassName="viewer-content">
+      <div className="viewer-toolbar">
+        <span className="viewer-title">{sample.names[locale]}</span>
+        <div className="viewer-group" aria-label={text.page}>
+          <ToolbarAction icon="chevronLeft" label={text.previous} disabled={current <= 1} onClick={() => go(current - 1)} />
+          <span className="viewer-count" aria-live="polite">
+            {pages ? `${current} / ${pages}` : "–"}
+          </span>
+          <ToolbarAction icon="chevronRight" label={text.next} disabled={current >= pages} onClick={() => go(current + 1)} />
         </div>
-        <section
-          ref={container}
-          aria-label={labels[locale].preview}
-          className="frame-area"
-        >
-          <div
-            className="preview-device"
-            style={{ width: pageWidth * scale, height: size.height }}
-          >
-            <iframe
-              src={url}
-              title={`${selected.names[locale]}`}
-              sandbox="allow-same-origin"
-              referrerPolicy="no-referrer"
-              style={{
-                width: pageWidth,
-                height: Math.ceil(size.height / scale),
-                transform: `scale(${scale})`,
-              }}
-            />
-          </div>
-        </section>
-      </Surface>
-    </div>
+        <div className="viewer-group">
+          <ToolbarAction icon="zoomOut" label={text.zoomOut} disabled={scale <= zoomSteps[0]} onClick={() => step(-1)} />
+          <button type="button" className="viewer-zoom" title={text.fit} aria-label={text.fit} onClick={() => setZoom(null)}>
+            {Math.round(scale * 100)}%
+          </button>
+          <ToolbarAction
+            icon="zoomIn"
+            label={text.zoomIn}
+            disabled={scale >= zoomSteps[zoomSteps.length - 1]}
+            onClick={() => step(1)}
+          />
+          <ToolbarAction icon="externalLink" label={text.open} onClick={() => window.open(url, "_blank", "noopener")} />
+        </div>
+      </div>
+      <div ref={area} className="viewer-area" aria-label={text.preview}>
+        <iframe
+          key={sample.id}
+          ref={frame}
+          src={url}
+          title={sample.names[locale]}
+          sandbox="allow-same-origin"
+          referrerPolicy="no-referrer"
+          onLoad={() => setPages(sheets().length)}
+        />
+      </div>
+    </Surface>
   );
 }
 
@@ -257,8 +337,7 @@ export default function Gallery() {
     languages.find((language) => language.code === params.get("locale"))
       ?.code ?? "pt-BR";
   const selected =
-    templates.find((template) => template.id === params.get("template")) ??
-    templates[0];
+    samples.find((sample) => sample.id === params.get("sample")) ?? samples[0];
 
   useEffect(() => {
     const changed = () => setHash(location.hash);
@@ -271,9 +350,9 @@ export default function Gallery() {
     document.documentElement.lang = locale;
   }, [i18n, locale]);
 
-  function navigate(template: string, language: Locale) {
+  function navigate(sample: string, language: Locale) {
     location.hash = new URLSearchParams({
-      template,
+      sample,
       locale: language,
     }).toString();
   }
@@ -298,43 +377,26 @@ export default function Gallery() {
           />
         </div>
       </header>
-      <main
-        className="gallery-workspace"
-        style={
-          {
-            "--gallery-preview-width": `${pageWidth + 18}px`,
-          } as CSSProperties
-        }
-      >
-        <nav
-          aria-label={labels[locale].templates}
-          className="flex min-h-0 min-w-0 items-start"
-        >
-          <SurfaceGroup
-            className="gallery-templates"
-            contentClassName="gallery-template-list scrollbar-none"
-          >
-            {templates.map((template) => {
-              const Glyph = template.icon;
+      <main className="gallery-workspace">
+        <nav aria-label={labels[locale].samples} className="flex min-h-0 min-w-0 items-start">
+          <SurfaceGroup className="gallery-templates" contentClassName="gallery-template-list scrollbar-none">
+            {samples.map((sample) => {
+              const Glyph = sample.icon;
               return (
                 <GroupAction
-                  key={template.id}
-                  label={template.names[locale]}
-                  content={template.names[locale]}
-                  glyph={
-                    <Glyph size={20} className="shrink-0" aria-hidden="true" />
-                  }
-                  active={selected.id === template.id}
-                  onClick={() => navigate(template.id, locale)}
+                  key={sample.id}
+                  label={sample.names[locale]}
+                  content={sample.names[locale]}
+                  glyph={<Glyph size={20} className="shrink-0" aria-hidden="true" />}
+                  active={selected.id === sample.id}
+                  onClick={() => navigate(sample.id, locale)}
                 />
               );
             })}
-            <p className="p-4 text-sm text-operational-muted">
-              {labels[locale].note}
-            </p>
+            {locale === "pt-BR" ? null : <p className="p-4 text-operational-muted">{labels[locale].note}</p>}
           </SurfaceGroup>
         </nav>
-        <DocumentPreview selected={selected} locale={locale} />
+        <DocumentViewer sample={selected} locale={locale} />
       </main>
     </div>
   );

@@ -43,10 +43,11 @@ O que cada um lê, escreve e precisa está em [functions.yaml](functions.yaml). 
 | [requirements.md](requirements.md) | O que cada agente precisa do ambiente e o que fazer se faltar |
 | [agents/](agents/AGENTS.md) | Instruções de cada papel |
 | [checklists/](checklists/AGENTS.md) | Checklists genéricos de revisão e o esqueleto do checklist de cada documento |
-| [scripts/](scripts/AGENTS.md) | `new`, `check`, `pdf`, `index` e `commit`, para economizar tokens |
+| [scripts/](scripts/AGENTS.md) | `new`, `check`, `chart`, `pdf`, `index` e `commit`, para economizar tokens |
 | [skills/](skills/) | `grilling` (entrevista obrigatória), `sources` (fontes em arquivo) e `fix` (aplicar uma revisão) |
 | [templates/](templates/AGENTS.md) | Modelos `report`, `manual` e `document`, e o esqueleto da spec |
-| [design/](design/AGENTS.md) | Identidade visual: tokens, logos e capa |
+| [design/](design/AGENTS.md) | Identidade visual: `document.css` com os componentes, tokens, logo e capa |
+| [samples/](samples/AGENTS.md) | Documentos de exemplo de cada tipo e o catálogo de componentes |
 | [editorial.md](editorial.md) | Convenções de estrutura, tabelas, figuras, fontes e impressão |
 | [documents/](documents/AGENTS.md) | Entregáveis versionados: `NNN/index.html`, `NNN/NNN.pdf` e `NNN/checklist.md` |
 | [gallery/](gallery/) | Prévia dos modelos no GitHub Pages; não participa da geração |

@@ -29,7 +29,7 @@ agents:
     reads: [.work/NNN/spec.md, .work/NNN/content.md, documents/NNN/index.html, templates/AGENTS.md, design/AGENTS.md, editorial.md]
     writes: [documents/NNN/index.html, documents/NNN/NNN.pdf]
     checklist: checklists/structure.md
-    scripts: [check, pdf]
+    scripts: [check, chart, pdf]
     skills: [fix]
     context: novo ou principal, nunca o do reviewer
   reviewer:
@@ -63,6 +63,10 @@ scripts:
     does: Verificações estruturais de checklists/structure.md no HTML, no PDF (se existir) e no checklist.md.
     output: só as falhas, uma por linha; "ok NNN" se nada falhar
     exit: 0 sem falhas, 1 com falhas
+  chart:
+    usage: sh scripts/chart.sh <NNN>
+    does: Desenha cada bloco data-chart de documents/NNN/index.html como SVG estático (ECharts com o tema Solaria). Rodar de novo regenera.
+    output: o arquivo e o número de gráficos
   pdf:
     usage: sh scripts/pdf.sh <NNN>
     does: Converte documents/NNN/index.html em documents/NNN/NNN.pdf com Chrome ou Edge headless (BROWSER sobrescreve).
