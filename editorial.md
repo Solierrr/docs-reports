@@ -14,11 +14,12 @@ Não esconda overflow para disfarçar conteúdo que não cabe. Adicione páginas
 
 ## Estrutura por tipo
 
-Capa com organização, tipo, título, subtítulo quando necessário, data ou período, versão e responsável. Sumário navegável coerente com títulos e páginas. Seções numeradas em hierarquia consistente, cabeçalhos e rodapés discretos, paginação. Divisórias só quando a extensão justificar; sem página decorativa sem função.
+Capa com tipo, título, linha de apoio, período, responsável, versão e classificação; contracapa com a marca. Sumário, numeração, cabeçalho (capítulo e progresso) e rodapé (título e página) são gerados pelo build. A conclusão vem antes do detalhe, no documento e em cada seção. Centralizado só em capa, contracapa e destaque de número; o corpo é alinhado à esquerda, sem moldura, separado por espaço e filetes.
 
-- **Relatório** (`report.html`): síntese → contexto, método e fontes → evidências e análise → conclusões e recomendações → referências e anexos.
-- **Manual** (`manual.html`): objetivo e aplicação → pré-requisitos → procedimentos ordenados com resultado esperado → verificação → solução de problemas → referências e histórico de versões.
-- **Documento** (`document.html`): modelo mais enxuto, sem capa nem sumário, para propostas, atas, comunicados e one-pagers. Cabeçalho com identificação, corpo em seções numeradas, referências quando houver.
+- **Relatório gerencial** (`report.html`): sumário executivo (KPIs com fórmula, SCQA, decisão pedida) → um capítulo por achado, com título-ação e a pergunta da página → recomendação com responsáveis e prazos → proveniência dos dados. Gráficos no padrão IBCS: real cheio, plano em contorno, variação em verde e vermelho.
+- **Manual de uso** (`manual.html`), no formato how-to: antes de começar (o que é preciso, tempo, resultado) → procedimento em passos no imperativo, cada um com o resultado esperado → problemas comuns com causa e solução. Explicação longa vai para outra seção, não para dentro dos passos.
+- **Perguntas frequentes** (`faq.html`): só perguntas reais, agrupadas por tema; a primeira frase da resposta já responde e o resto aponta onde saber mais.
+- **Documento curto** (`document.html`): proposta, ata, comunicado ou one-pager, sem capa nem sumário. Cabeçalho com tipo, título e metadados, decisão pedida quando houver e seções curtas.
 
 As seções variam conforme a especificação aprovada. Não adicione KPIs, recomendações ou solução de problemas só para preencher o modelo.
 

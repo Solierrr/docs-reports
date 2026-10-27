@@ -8,17 +8,18 @@ read: quando o check.sh apontar uma falha e o motivo não for óbvio
 
 | Código | Falha quando |
 | --- | --- |
-| `html` | `documents/NNN/index.html` não existe. |
-| `slot` | Sobra `{{`, `}}` ou `data-slot` no HTML. |
+| `source` | `documents/NNN/source.html` não existe. |
+| `example` | Sobrou o selo `<span class="sample">` do modelo. |
 | `lang` | O `<html>` não declara `lang`. |
-| `title` | O `<title>` está vazio. |
+| `title` | O `<title>` está vazio ou ainda é o de um modelo. |
 | `id` | Algum `id` aparece mais de uma vez. |
 | `anchor` | Um link `href="#x"` não tem `id="x"` correspondente. |
-| `image` | Uma imagem aponta para a rede ou para um arquivo local que não existe; imagens devem estar embutidas. |
-| `remote` | Há `<script>`, folha de estilo ou fonte carregada da rede. |
+| `image` | Uma imagem aponta para a rede ou para um arquivo que não existe; imagens devem estar embutidas. |
+| `remote` | Há `<script>`, folha de estilo ou fonte carregada da rede no `source.html`. |
 | `alt` | Uma `<img>` não tem `alt`. |
+| `build` | O `index.html` não existe, é mais antigo que o `source.html`, tem script ou não está paginado. |
 | `meta` | O `checklist.md` não tem o cabeçalho YAML com `title`, `type` e `slug`. |
 | `item` | O `checklist.md` não tem nenhum item deste documento. |
-| `pdf` | O `NNN.pdf` existe, mas está vazio ou é mais antigo que o HTML. |
+| `pdf` | O `NNN.pdf` existe, mas está vazio ou é mais antigo que o `index.html`. |
 
 O que exige olhos (texto cortado, contraste, organização) fica com o [reviewer](reviewer.md).

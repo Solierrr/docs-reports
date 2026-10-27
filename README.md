@@ -25,12 +25,12 @@ SDD de suporte para produzir **relatórios, manuais e documentos da Solaria em H
 | [requirements.md](requirements.md) | O que cada agente precisa do ambiente |
 | [agents/](agents/AGENTS.md) | orchestrator, writer, builder, reviewer e researcher |
 | [checklists/](checklists/AGENTS.md) | Revisão de design bruto, reflexão do ciclo e verificações estruturais |
-| [scripts/](scripts/AGENTS.md) | `new`, `check`, `pdf`, `index` e `commit` |
+| [scripts/](scripts/AGENTS.md) | `new`, `build`, `check`, `pdf`, `index` e `commit` |
 | [skills/](skills/) | Entrevista obrigatória, fontes em arquivo e aplicação de revisões |
-| [templates/](templates/AGENTS.md) | Modelos `report`, `manual` e `document` |
+| [templates/](templates/AGENTS.md) | Modelos `report`, `manual`, `faq` e `document`, com conteúdo de exemplo |
 | [design/](design/AGENTS.md) | Identidade Solaria: tokens, logos e capa |
 | [editorial.md](editorial.md) | Convenções editoriais |
-| [documents/](documents/AGENTS.md) | Entregáveis: `NNN/index.html`, `NNN/NNN.pdf` e `NNN/checklist.md` |
+| [documents/](documents/AGENTS.md) | Entregáveis: `NNN/source.html`, `NNN/index.html` (paginado), `NNN/NNN.pdf` e `NNN/checklist.md` |
 | [gallery/](gallery/) | Prévia dos modelos no GitHub Pages (Vite e React) |
 
 Os scripts rodam em `sh` (Git Bash no Windows) sem instalar nada; o PDF usa o Chrome ou o Edge já instalados. A galeria é um app separado, com CI, release-please e Dependabot.
