@@ -30,10 +30,12 @@ const patterns = {
   dots: { symbol: "circle", symbolSize: 0.9, color: "rgba(255,255,255,0.75)", dashArrayX: [3, 2], dashArrayY: [3, 2] },
   cross: { symbol: "rect", symbolSize: 1, color: "rgba(255,255,255,0.55)", dashArrayX: [1, 0], dashArrayY: [2, 3], rotation: -Math.PI / 4 },
   hatch: { symbol: "rect", symbolSize: 1, color: "rgba(36,38,40,0.35)", dashArrayX: [1, 0], dashArrayY: [1.5, 3], rotation: Math.PI / 4 },
+  // Hachura leve para as barras de comparação em cinza: dá textura sem competir com o destaque.
+  muted: { symbol: "rect", symbolSize: 1, color: "rgba(36,38,40,0.16)", dashArrayX: [1, 0], dashArrayY: [1.5, 3.5], rotation: Math.PI / 4 },
 };
 const order = ["solid", "stripes", "dots", "cross"];
 const font = '"Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif';
-const sizes = { full: [640, 300], half: [312, 240], tall: [640, 380], spark: [120, 36] };
+const sizes = { full: [640, 300], half: [312, 240], tall: [640, 380], spark: [150, 40] };
 
 // ---------- Números ----------
 
@@ -134,7 +136,8 @@ const radius = (horizontal) => (horizontal ? [0, 4, 4, 0] : [4, 4, 0, 0]);
 
 // ---------- Tipos ----------
 
-// Colunas ou barras de uma série: destaque em laranja, o resto em cinza; valor na ponta; meta e média opcionais.
+// Colunas ou barras de uma série: o primeiro destaque em laranja liso, os outros destaques em laranja com listras,
+// o resto em cinza hachurado; valor na ponta; meta e média opcionais. "patterns": false deixa tudo liso.
 // data: [["Nome", valor, {"pattern":"hatch"}?], ...]
 function bar(spec, horizontal = false) {
   const rows = horizontal && spec.sort !== false ? [...spec.data].sort((a, b) => b[1] - a[1]) : spec.data;
@@ -145,10 +148,12 @@ function bar(spec, horizontal = false) {
     barCategoryGap: "38%",
     data: rows.map(([name, value, options = {}]) => {
       const on = marked.size ? marked.has(name) : true;
+      const lead = !marked.size || [...marked][0] === name;
       const fill = on ? color.accent : color.neutral;
+      const pattern = options.pattern ?? (spec.patterns === false || lead ? undefined : on ? "stripes" : "muted");
       return {
         value,
-        itemStyle: { color: fill, borderRadius: radius(horizontal), decal: options.pattern ? patterns[options.pattern === "hatch" && on ? "stripes" : options.pattern] : undefined },
+        itemStyle: { color: fill, borderRadius: radius(horizontal), decal: pattern ? patterns[pattern === "hatch" && on ? "stripes" : pattern] : undefined },
         label: { color: on ? color.ink : color.muted },
       };
     }),
@@ -747,24 +752,51 @@ function dumbbell(spec) {
   };
 }
 
-// Sparkline para cartão de KPI: sem eixos, último ponto marcado. "on": true para fundo laranja.
+// Minigráfico para cartão de KPI: linha com lavagem, uma referência pontilhada no valor inicial (subiu ou caiu desde
+// o começo do período), ponto vazado no início e cheio no fim. "on": true para fundo laranja.
 function spark(spec) {
   const values = spec.values;
-  const stroke = spec.on ? color.paper : color.ink;
+  const stroke = spec.on ? color.paper : color.accent;
+  const last = values.length - 1;
   return {
     animation: false,
-    grid: { left: 2, right: 6, top: 6, bottom: 6 },
-    xAxis: { type: "category", show: false, data: values.map((_, index) => index) },
+    grid: { left: 5, right: 7, top: 7, bottom: 7 },
+    xAxis: { type: "category", show: false, boundaryGap: false, data: values.map((_, index) => index) },
     yAxis: { type: "value", show: false, scale: true },
     series: [
       {
         type: "line",
-        data: values,
-        symbol: (_, params) => (params.dataIndex === values.length - 1 ? "circle" : "none"),
-        symbolSize: 6,
-        lineStyle: { width: 1.6, color: stroke },
-        itemStyle: { color: spec.on ? color.paper : color.accent, borderColor: spec.on ? color.accent : color.paper, borderWidth: 1.5 },
-        areaStyle: { color: stroke, opacity: 0.08 },
+        data: values.map((value, index) => ({
+          value,
+          symbol: index === 0 || index === last ? "circle" : "none",
+          symbolSize: index === last ? 8 : 6,
+          itemStyle:
+            index === last
+              ? { color: stroke, borderColor: spec.on ? color.accent : color.paper, borderWidth: 2 }
+              : { color: spec.on ? color.accent : color.paper, borderColor: stroke, borderWidth: 1.5 },
+        })),
+        smooth: 0.25,
+        lineStyle: { width: 2, color: stroke, cap: "round", join: "round" },
+        areaStyle: {
+          color: {
+            type: "linear",
+            x: 0,
+            y: 0,
+            x2: 0,
+            y2: 1,
+            colorStops: [
+              { offset: 0, color: spec.on ? "rgba(255,255,255,0.28)" : "rgba(255,101,0,0.18)" },
+              { offset: 1, color: spec.on ? "rgba(255,255,255,0)" : "rgba(255,101,0,0)" },
+            ],
+          },
+        },
+        markLine: {
+          silent: true,
+          symbol: "none",
+          label: { show: false },
+          lineStyle: { color: spec.on ? "rgba(255,255,255,0.55)" : color.neutral, type: [2, 2], width: 1 },
+          data: [{ yAxis: values[0] }],
+        },
       },
     ],
   };
