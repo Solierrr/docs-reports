@@ -1,3 +1,9 @@
+---
+name: editorial
+purpose: Convenções de estrutura, tabelas, figuras, fontes, HTML e impressão.
+read: o writer e o builder antes do primeiro ciclo
+---
+
 # Convenções editoriais
 
 ## Formato
@@ -28,4 +34,4 @@ CSS dentro de `<style>`, logo embutido, sem dependências externas para renderiz
 
 ## Impressão e PDF
 
-O PDF não é entregável padrão. Sob pedido, imprima pelo navegador em A4, escala 100%, margens zero, fundos ativados e cabeçalhos e rodapés do navegador desligados. HTML e PDF devem conter o mesmo texto.
+Todo documento entregue tem HTML e PDF. O PDF é gerado pelo `scripts/pdf.sh` depois que o HTML é aprovado: A4, escala 100%, margens zero, fundos ativados, sem cabeçalho e rodapé do navegador. HTML e PDF contêm o mesmo texto.

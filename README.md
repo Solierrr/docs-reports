@@ -1,33 +1,42 @@
+---
+name: readme
+purpose: Apresentação do repositório para pessoas. Agentes começam pelo AGENTS.md.
+read: humanos; agentes não precisam
+---
+
 # docs-reports
 
-Repositório para produzir **relatórios, documentos e manuais de instrução da Solaria em HTML**, com agentes de IA. Os modelos já trazem a identidade visual; o agente escreve o conteúdo por cima.
+SDD de suporte para produzir **relatórios, manuais e documentos da Solaria em HTML e PDF** com agentes de IA. Os modelos já trazem a identidade visual; os agentes escrevem o conteúdo, montam, revisam e publicam, com checklists e scripts prontos.
 
 ## Como usar
 
-1. Abra uma sessão de um assistente de IA (Claude Code, Gemini, Codex...) na raiz do repositório. Ele lê o [AGENTS.md](AGENTS.md) e assume o papel de orquestrador.
-2. Diga o que precisa: um relatório, um manual ou um documento. O orquestrador conduz uma entrevista (grilling) e grava uma especificação.
-3. **Aprove a especificação.** Nada é gerado antes disso.
-4. O orquestrador despacha os agentes (pesquisa, redação, diagramação) e uma revisão independente, e repete até aprovar ou atingir 3 ciclos.
-5. O resultado fica em `documents/<nome>/<nome>.html`.
+1. Abra um assistente de IA (Claude Code, Codex, Gemini, Cursor...) na raiz do repositório. Ele lê o [AGENTS.md](AGENTS.md) e assume o papel de orchestrator.
+2. Diga o que precisa. O orchestrator conduz uma entrevista (grilling) até vocês fecharem o entendimento.
+3. Ele cria o próximo número em `documents/`, escreve a spec e os itens de verificação daquele documento. **Aprove a spec**: nada é escrito antes disso.
+4. Writer, builder e reviewer trabalham em ciclos com reflexão do orchestrator, no máximo três antes de voltar para você.
+5. Com o HTML aprovado, sai o PDF e o orchestrator abre a PR com `documents/NNN/`.
 
 ## Estrutura
 
 | Caminho | Conteúdo |
 | --- | --- |
-| [AGENTS.md](AGENTS.md) | Fonte única de instruções. `CLAUDE.md` e `GEMINI.md` apontam para ele |
-| [.claude/agents/](.claude/agents/) | Agentes: orquestrador, pesquisador, redator, diagramador e revisor, com suas personas (lentes) |
-| [.claude/skills/grilling/](.claude/skills/grilling/SKILL.md) | Skill obrigatória de entrevista antes de gerar |
-| [templates/](templates/README.md) | `report.html`, `manual.html` e `document.html` com identidade e espaços `data-slot` |
-| [design-system/](design-system/README.md) | Identidade Solaria: tokens, logos, fontes, diretrizes |
+| [AGENTS.md](AGENTS.md) | Entrada única para qualquer harness. `CLAUDE.md`, `GEMINI.md` e `.claude/` apontam para ele |
+| [functions.yaml](functions.yaml) | Papéis e scripts em formato de consulta |
+| [requirements.md](requirements.md) | O que cada agente precisa do ambiente |
+| [agents/](agents/AGENTS.md) | orchestrator, writer, builder, reviewer e researcher |
+| [checklists/](checklists/AGENTS.md) | Revisão de design bruto, reflexão do ciclo e verificações estruturais |
+| [scripts/](scripts/AGENTS.md) | `new`, `check`, `pdf`, `index` e `commit` |
+| [skills/grilling/](skills/grilling/SKILL.md) | Entrevista obrigatória |
+| [templates/](templates/AGENTS.md) | Modelos `report`, `manual` e `document` |
+| [design/](design/AGENTS.md) | Identidade Solaria: tokens, logos e capa |
 | [editorial.md](editorial.md) | Convenções editoriais |
-| [documents/](documents/README.md) | Entregáveis |
-| [gallery/](gallery/) | Prévia dos modelos no GitHub Pages (app Vite com React) |
-| `.runs/<nome>/` | Trabalho local ignorado pelo Git |
+| [documents/](documents/AGENTS.md) | Entregáveis: `NNN/index.html`, `NNN/NNN.pdf` e `NNN/checklist.md` |
+| [gallery/](gallery/) | Prévia dos modelos no GitHub Pages (Vite e React) |
 
-A geração de documentos não usa aplicação, build nem dependências. A galeria de prévia dos modelos (`gallery/`, publicada no GitHub Pages) é um app Vite separado, com CI, release-please e Dependabot. HTML e PDF (sob pedido, pela impressão do navegador) em A4 retrato; o PDF não é o entregável padrão.
+Os scripts rodam em `sh` (Git Bash no Windows) sem instalar nada; o PDF usa o Chrome ou o Edge já instalados. A galeria é um app separado, com CI, release-please e Dependabot.
 
 ## Contribuição e licença
 
-Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses. Publicar a branch; abrir PR e mergear somente quando solicitado. Não versionar `.runs/`, credenciais ou registros intermediários. Neste repositório os arquivos de configuração de IA (`AGENTS.md`, `.claude/agents/`, skills) são versionados de propósito.
+Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses. Não versionar `.work/`, credenciais nem rascunhos. Os arquivos de configuração de agentes (`AGENTS.md`, `agents/`, `.claude/`, `skills/`) são versionados de propósito.
 
 Licença: [CC0 1.0 Universal](LICENSE).

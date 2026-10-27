@@ -1,72 +1,63 @@
+---
+name: root
+purpose: Entrada e handout do SDD de documentos. Diz quem você é, as regras fixas e o papel de cada arquivo.
+read: sempre, antes de qualquer ação
+---
+
 # docs-reports
 
-Repositório para produzir **relatórios, documentos e manuais de instrução da Solaria em HTML**. Os modelos já trazem a identidade visual; o agente só escreve o conteúdo nos espaços marcados.
+SDD de suporte para produzir **relatórios, manuais e documentos da Solaria em HTML**, a partir de modelos com a identidade já aplicada. Não é uma pipeline: é um conjunto de papéis, checklists e scripts que você usa na ordem que o pedido exigir, desde que respeite as regras fixas abaixo.
 
-Este arquivo é a fonte única de instruções para qualquer assistente de IA (Claude, Gemini, Codex, Cursor...). `CLAUDE.md` e `GEMINI.md` só apontam para ele.
+Este arquivo é a fonte única de instruções para qualquer harness (Claude Code, Codex, Gemini, Cursor...). `CLAUDE.md`, `GEMINI.md` e `.claude/` só apontam para cá.
 
 ## Você é o orquestrador
 
-A sessão principal assume o papel de **orquestrador**. Leia integralmente [orquestrador.md](.claude/agents/orquestrador.md) antes de qualquer ação e siga-o. Os demais agentes são especialistas que o orquestrador despacha.
+A sessão principal é o **orchestrator**. Leia [agents/orchestrator.md](agents/orchestrator.md) e siga-o. Os outros papéis são despachados por ele:
 
-| Agente | Papel | Arquivo |
+| Agente | Papel | Obrigatório |
 | --- | --- | --- |
-| orquestrador | Fala com o usuário, conduz o grilling, despacha e decide quando encerrar | [orquestrador.md](.claude/agents/orquestrador.md) |
-| pesquisador | Reúne fontes e registra origem, data e limitações | [pesquisador.md](.claude/agents/pesquisador.md) |
-| redator | Escreve o conteúdo nos espaços do modelo | [redator.md](.claude/agents/redator.md) |
-| diagramador | Copia o modelo e aplica o conteúdo mantendo a identidade | [diagramador.md](.claude/agents/diagramador.md) |
-| revisor | Revisa de forma independente e só aponta falhas | [revisor.md](.claude/agents/revisor.md) |
+| [orchestrator](agents/orchestrator.md) | Conduz o grilling, despacha, faz a reflexão de cada ciclo e decide | sim |
+| [writer](agents/writer.md) | Refinador e idealizador: escreve o conteúdo em Markdown | sim |
+| [builder](agents/builder.md) | Implementador: monta o HTML a partir do modelo e gera o PDF | sim |
+| [reviewer](agents/reviewer.md) | Revisor de design bruto, sempre em contexto separado | sim |
+| [researcher](agents/researcher.md) | Reúne fontes quando faltam | não |
 
-No Claude Code, os arquivos de `.claude/agents/` funcionam como subagentes nativos. Em outras ferramentas, o agente é assumido lendo o arquivo indicado, mas o **revisor nunca pode ser o mesmo contexto que redigiu ou diagramou**: use uma sessão separada e entregue só o HTML e a especificação. Sem subagentes nem sessão separada, interrompa e peça ao usuário para abrir outra sessão para a revisão.
+O que cada um lê, escreve e precisa está em [functions.yaml](functions.yaml). Consulte a chave do agente em vez de reler os arquivos inteiros.
 
-## Regra obrigatória: grilling antes de gerar
+## Regras fixas
 
-Nenhum documento começa sem uma rodada de **grilling** (skill em [.claude/skills/grilling/SKILL.md](.claude/skills/grilling/SKILL.md); leia o arquivo se a ferramenta não carregar skills) e sem uma **especificação aprovada pelo usuário**. O grilling vale para documento novo e para mudança de escopo. Não vale para corrigir erro de digitação em documento já aprovado. Silêncio não é aprovação.
+1. **Grilling primeiro.** Nenhum documento começa sem uma rodada de [grilling](skills/grilling/SKILL.md) conduzida por você e sem o entendimento confirmado pelo usuário. Vale para documento novo e para mudança de escopo; não vale para corrigir um erro pontual de um documento aprovado. Silêncio não é aprovação.
+2. **Spec aprovada antes de escrever.** Depois do grilling, rode `scripts/new.sh`, grave a spec em `.work/NNN/spec.md` e espere a aprovação explícita do usuário.
+3. **Revisão independente.** O reviewer nunca roda no contexto de quem escreveu ou montou. Sem subagentes, peça ao usuário uma sessão separada para ele.
+4. **Ciclo reflexivo** de no máximo três voltas: builder → `scripts/check.sh` → reviewer → reflexão do orchestrator → aprovar, corrigir ou escalar. Na quarta, pare e mostre ao usuário o que não convergiu.
+5. **Não inventar.** Dado, número, citação e instrução operacional têm fonte registrada. Lacuna é resultado válido.
+6. **Identidade só de [design/](design/AGENTS.md)** e dos modelos. Nenhum agente escolhe cor, fonte ou layout. Se o modelo não cobre a necessidade, pare e pergunte.
+7. **Sem sobrescrever** documento existente sem autorização. Correção é um novo ciclo do mesmo número; documento novo é um novo número.
+8. **Idioma:** instruções e documentos em português do Brasil. Nomes de arquivo e diretório, e chaves YAML, em inglês, curtos e sem nomes compostos quando der.
 
-## Mapa do repositório
+## Mapa
 
-| Caminho | Conteúdo |
+| Caminho | Papel |
 | --- | --- |
-| [templates/](templates/README.md) | `report.html`, `manual.html` e `document.html`, com a identidade aplicada e espaços marcados `data-slot` |
-| [design-system/](design-system/README.md) | Identidade única: tokens, logos, fontes e diretrizes. É a fonte de verdade visual |
-| [documents/](documents/README.md) | Entregáveis: `documents/<nome>/<nome>.html` |
+| [functions.yaml](functions.yaml) | Papéis e scripts em formato de consulta: entradas, saídas, quando entra, requisitos |
+| [requirements.md](requirements.md) | O que cada agente precisa do ambiente e o que fazer se faltar |
+| [agents/](agents/AGENTS.md) | Instruções de cada papel |
+| [checklists/](checklists/AGENTS.md) | Checklists genéricos de revisão e o esqueleto do checklist de cada documento |
+| [scripts/](scripts/AGENTS.md) | `new`, `check`, `pdf`, `index` e `commit`, para economizar tokens |
+| [skills/grilling/](skills/grilling/SKILL.md) | Entrevista obrigatória |
+| [templates/](templates/AGENTS.md) | Modelos `report`, `manual` e `document`, e o esqueleto da spec |
+| [design/](design/AGENTS.md) | Identidade visual: tokens, logos e capa |
 | [editorial.md](editorial.md) | Convenções de estrutura, tabelas, figuras, fontes e impressão |
-| [Makefile](Makefile) | `make vault` extrai do Infisical o acesso ao databricks-sync (`.env` ignorado pelo Git) |
-| `.runs/<nome>/` | Trabalho local ignorado pelo Git: `especificacao.md`, `fontes.md`, `conteudo.md`, `log.md`, `revisao.md`, `fontes/` e `capturas/` |
+| [documents/](documents/AGENTS.md) | Entregáveis versionados: `NNN/index.html`, `NNN/NNN.pdf` e `NNN/checklist.md` |
+| [gallery/](gallery/) | Prévia dos modelos no GitHub Pages; não participa da geração |
+| `.work/NNN/` | Trabalho do documento, ignorado pelo Git: spec, conteúdo, fontes, revisão, log e capturas |
 
-## Regras gerais
+Para um mapa rápido de tudo, rode `sh scripts/index.sh`: ele imprime só os cabeçalhos YAML, sem abrir os arquivos.
 
-- **Entregável:** HTML autocontido (CSS interno, imagens embutidas, sem dependência de rede para renderizar). A fonte Plus Jakarta Sans não é incorporada: deve estar instalada na máquina. PDF só sob pedido, pela impressão do navegador, com A4 retrato, margem zero e fundos ativados. Não existe agente nem etapa de PDF.
-- **Identidade:** use somente `design-system/`. O agente nunca escolhe cor, fonte, espaçamento ou layout, não troca a paleta por inspiração externa e não cria modelo novo por documento. Se a identidade não cobrir uma necessidade, pare e pergunte.
-- **Modelos:** copie o modelo adequado para `documents/<nome>/<nome>.html` e preencha os `data-slot`. Substitua cada `<span data-slot="x">{{x}}</span>` pelo seu conteúdo, sem deixar marcador, atributo `data-slot` ou instrução para trás. Páginas de miolo podem ser repetidas, adaptadas ou removidas conforme a especificação, mantendo sumário, IDs e numeração sincronizados.
-- **Fatos:** não invente dados, números, citações, metadados bibliográficos nem instruções operacionais. Toda afirmação factual tem fonte registrada. Pesquisa na internet é permitida, com origem, data e limitações.
-- **Sobrescrita:** não sobrescreva um documento existente sem autorização do usuário; o histórico fica no Git. Se o nome já existir, pergunte se é revisão ou documento novo.
-- **Idioma:** instruções e documentos em português do Brasil, salvo pedido diferente na especificação.
+## Relatórios por período
 
-## Relatórios por período (métricas do databricks-sync)
-
-Relatórios de período (hoje, ontem, últimos 7 ou 30 dias, mês atual, mês anterior ou um intervalo) são gerados a partir de **métricas agregadas** servidas pelo serviço `databricks-sync`. O agente nunca lê linhas de usuário, só os agregados devolvidos. O grilling e a especificação aprovada continuam obrigatórios; o prompt do período entra como a primeira resposta do grilling.
-
-### Credencial
-
-1. Rode `make vault` (usa o Infisical CLI; peça ao usuário para executar `infisical login` se não houver sessão). O comando grava `.env`, ignorado pelo Git, com as variáveis da pasta `/reports` do Infisical.
-2. Leia as variáveis `DATABRICKS_SYNC_URL` e `DATABRICKS_SYNC_API_TOKEN` do ambiente (`set -a; . ./.env; set +a`), sem imprimir o valor.
-3. **Nunca** escreva o token neste arquivo, em prompt, em log, em `.runs/`, em commit ou em documento. Mostre apenas o nome da variável.
-
-### Consulta
-
-- `GET $DATABRICKS_SYNC_URL/health` acorda o serviço (Render gratuito dorme cerca de 30 s). Tente de novo com espera até responder 200.
-- `GET $DATABRICKS_SYNC_URL/reports/metrics?period=<today|yesterday|last_7_days|last_30_days|current_month|previous_month>` ou `?from=AAAA-MM-DD&to=AAAA-MM-DD`, com `Authorization: Bearer $DATABRICKS_SYNC_API_TOKEN`. Fuso de São Paulo.
-- O endpoint `/reports/metrics` ainda não existe: depende do contrato do `analyticsdb`. Enquanto isso, pare e avise o usuário em vez de inventar números.
-- Registre em `.runs/<nome>/fontes.md` o período, a data e a hora da consulta e o JSON agregado recebido.
-
-### Entrega
-
-Gere o HTML com `templates/report.html` em `documents/relatorio-<periodo>/relatorio-<periodo>.html`, siga as regras gerais e a seção Git abaixo, publique em branch `docs/report-<data>` (sem referência a IA no nome) e abra a PR em português com o template do repositório. Sem merge automático.
-
-## Verificação
-
-Sem scripts nem dependências para gerar documentos; só a galeria de prévia (`gallery/`) usa Node. O revisor abre o HTML no navegador disponível no ambiente e confere overflow horizontal, imagens quebradas, links internos, marcadores esquecidos e a visualização de impressão A4. As capturas ficam em `.runs/<nome>/capturas/`. Sem navegador disponível, relate a limitação: não declare o documento verificado.
+Relatórios de métricas do `databricks-sync` (hoje, ontem, 7 ou 30 dias, mês atual ou anterior, intervalo) seguem o mesmo processo. A fonte é coletada pelo researcher conforme [agents/researcher.md](agents/researcher.md#métricas-por-período). O agente nunca lê linhas de usuário, só agregados.
 
 ## Git
 
-Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses e sem atribuição de assistente. Publicar apenas a branch; abrir PR ou mergear somente quando solicitado. Não versionar `.runs/`, credenciais ou registros intermediários.
+Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses. Documentos são publicados por `scripts/commit.sh`, que abre a PR e não mergeia. Não versionar `.work/`, credenciais nem rascunhos.
