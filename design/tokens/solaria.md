@@ -34,4 +34,4 @@ Raios `small 0.25rem`, `soft 0.35rem`, `medium 0.5rem`, `hard 0.8rem`. Bordas fi
 
 ## Logo
 
-`logos/elos.svg` é a marca completa (hexágono com as mãos); `hexagon.svg` e `hands.svg` são partes dela. Use a marca completa na capa e no cabeçalho do documento, sem recolorir, distorcer ou girar. Nos modelos o logo está embutido como imagem, com texto alternativo. Respeitar área livre mínima de 1/4 da largura do logo.
+`logos/elos.svg` é a marca: o quadro estático do `OrganicLogo` da web-lib (hexágono com as mãos). Para atualizar, renderize o componente com `paused` e copie o SVG. Use a marca completa na capa e no cabeçalho do documento, sem recolorir, distorcer ou girar. Nos modelos o logo está embutido como imagem, com texto alternativo. Respeitar área livre mínima de 1/4 da largura do logo.

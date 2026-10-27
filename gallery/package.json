@@ -7,14 +7,15 @@
     "node": ">=24"
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build && node scripts/copy-templates.mjs",
+    "dev": "node scripts/build-samples.mjs && vite",
+    "build": "node scripts/build-samples.mjs && vite build && node scripts/copy-templates.mjs",
     "preview": "vite preview --host 127.0.0.1",
     "typecheck": "tsc --project tsconfig.json"
   },
   "dependencies": {
     "@solaria.network/web-lib": "^0.5.0",
     "@tabler/icons-react": "3.49.0",
+    "echarts": "6.1.0",
     "i18next": "26.5.2",
     "lucide-react": "^1.59.0",
     "react": "19.3.1",
