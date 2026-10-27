@@ -53,21 +53,24 @@
   <div class="kpis" style="--count:3">
     <div class="kpi">
       <span class="label">Receita intermediada</span>
-      <div class="row"><span class="value">R$ 1,9 mi</span><div data-chart='{"type":"spark","values":[540,580,610,650,640,610]}'></div></div>
+      <div class="row"><span class="value">R$ 1,9 mi</span><div data-chart='{"type":"spark","pattern":"stripes","values":[540,580,610,650,640,610]}'></div></div>
       <span class="delta up">+3,4% vs. 2º tri</span>
-      <span class="formula">Soma do valor dos pedidos concluídos</span>
+      <span class="formula">Valor dos pedidos concluídos</span>
+      <span class="source">Fonte: painel de operação <a href="#ref-1">[1]</a></span>
     </div>
     <div class="kpi">
       <span class="label">Primeira resposta do fornecedor</span>
-      <div class="row"><span class="value">9,4 h</span><div data-chart='{"type":"spark","values":[6.1,6.4,6.0,7.2,8.8,11.9]}'></div></div>
+      <div class="row"><span class="value">9,4 h</span><div data-chart='{"type":"spark","pattern":"dots","values":[6.1,6.4,6.0,7.2,8.8,11.9]}'></div></div>
       <span class="delta down">+3,1 h vs. 2º tri</span>
-      <span class="formula">Mediana entre o pedido e a primeira mensagem</span>
+      <span class="formula">Mediana até a 1ª mensagem</span>
+      <span class="source">Fonte: chat do marketplace <a href="#ref-2">[2]</a></span>
     </div>
     <div class="kpi">
       <span class="label">Cancelamento</span>
-      <div class="row"><span class="value">8,7%</span><div data-chart='{"type":"spark","values":[4.0,4.3,4.6,6.1,7.9,10.8]}'></div></div>
+      <div class="row"><span class="value">8,7%</span><div data-chart='{"type":"spark","pattern":"cross","values":[4.0,4.3,4.6,6.1,7.9,10.8]}'></div></div>
       <span class="delta down">+3,2 p.p. vs. 2º tri</span>
-      <span class="formula">Pedidos cancelados sobre pedidos abertos</span>
+      <span class="formula">Cancelados sobre abertos</span>
+      <span class="source">Fonte: painel de operação <a href="#ref-1">[1]</a></span>
     </div>
   </div>
   <dl class="scqa">
@@ -90,18 +93,18 @@
     <p class="question">A perda do trimestre está espalhada ou concentrada?</p>
   </header>
   <figure class="fig">
-    <div class="head"><b>Pedidos concluídos, real × plano</b><span>Por mês, em pedidos · barra cheia: real · contorno: plano · acima: variação</span></div>
+    <div class="head"><b>Pedidos concluídos, real × plano</b><span>Por mês, em pedidos · laranja: real · cinza hachurado: plano · acima: variação sobre o plano</span></div>
     <div data-chart='{"type":"variance","alt":"Real contra plano por mês: julho +12, agosto −105, setembro −220","table":true,"data":[["Jul",1612,1600],["Ago",1620,1725],["Set",1580,1800]]}'></div>
-    <figcaption>painel de operação, extraído em 03/10/2026; plano aprovado em 18/06/2026.</figcaption>
+    <figcaption>painel de operação <a href="#ref-1">[1]</a>; plano 2026 <a href="#ref-3">[3]</a>.</figcaption>
   </figure>
   <div class="prose">
     <h3>O que os números mostram</h3>
     <p>Julho fechou acima do plano. A diferença começa em agosto e dobra em setembro, quando a demanda continuou subindo: os pedidos abertos cresceram 4% no mês. O cancelamento antes da primeira resposta respondeu por 81% dos pedidos perdidos.</p>
   </div>
   <figure class="fig">
-    <div class="head"><b>Do plano ao realizado</b><span>Pedidos concluídos no trimestre · verde soma, vermelho tira</span></div>
-    <div data-chart='{"type":"waterfall","alt":"Ponte do plano de 5.125 ao real de 4.812: demanda acima do plano +96, cancelados sem resposta −330, outros cancelamentos −79","start":["Plano",5125],"data":[["Demanda acima do plano",96],["Cancelados sem resposta",-330],["Outros cancelamentos",-79]],"end":"Realizado","zero":false,"height":260}'></div>
-    <figcaption>painel de operação; plano aprovado em 18/06/2026.</figcaption>
+    <div class="head"><b>Do plano ao realizado</b><span>Pedidos concluídos no trimestre · listras somam, listras cruzadas tiram</span></div>
+    <div data-chart='{"type":"waterfall","alt":"Ponte do plano de 5.125 ao real de 4.812: demanda acima do plano +96, cancelados sem resposta −330, outros cancelamentos −79","start":["Plano",5125],"data":[["Demanda acima do plano",96],["Cancelados sem resposta",-330],["Outros cancelamentos",-79]],"end":"Realizado","height":260}'></div>
+    <figcaption>painel de operação <a href="#ref-1">[1]</a>; plano 2026 <a href="#ref-3">[3]</a>.</figcaption>
   </figure>
 </section>
 
@@ -119,12 +122,12 @@
     <figure class="fig">
       <div class="head"><b>Receita por categoria</b><span>3º tri 2026, em R$ mil</span></div>
       <div data-chart='{"type":"rank","size":"half","alt":"Receita por categoria: Reformas 520, Elétrica 398, Hidráulica 298, Pintura 240, Limpeza 198, Outras 146","highlight":["Reformas","Elétrica","Hidráulica"],"data":[["Reformas",520],["Elétrica",398],["Hidráulica",298],["Pintura",240],["Limpeza",198],["Outras",146]]}'></div>
-      <figcaption>painel de operação.</figcaption>
+      <figcaption>painel de operação <a href="#ref-1">[1]</a>.</figcaption>
     </figure>
     <figure class="fig">
       <div class="head"><b>Primeira resposta, agosto → setembro</b><span>Mediana por categoria, em horas</span></div>
       <div data-chart='{"type":"dumbbell","size":"half","alt":"Primeira resposta subiu em todas as categorias de agosto para setembro, mais em Reformas: de 11,2 h para 16,2 h","suffix":" h","names":["Agosto","Setembro"],"data":[["Reformas",11.2,16.2],["Elétrica",9.8,13.8],["Hidráulica",9.1,12.5],["Pintura",6.4,7.1],["Limpeza",4.9,5.4]]}'></div>
-      <figcaption>mensagens do chat do marketplace.</figcaption>
+      <figcaption>mensagens do chat do marketplace <a href="#ref-2">[2]</a>.</figcaption>
     </figure>
   </div>
   <ol class="keys">
@@ -136,12 +139,12 @@
     <figure class="fig">
       <div class="head"><b>Primeira resposta</b><span>Mediana semanal, em horas · meta de 8 h</span></div>
       <div data-chart='{"type":"line","size":"half","alt":"Tempo de primeira resposta sobe de 6 h para 12 h ao longo do trimestre e passa da meta de 8 h na semana 7","suffix":" h","target":{"value":8,"label":"Meta"},"labels":["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"series":[{"name":"Resposta","values":[6,6.2,6.1,6.4,6.8,7.5,8.2,8.9,9.6,10.8,11.9,12.4,12.1]}]}'></div>
-      <figcaption>chat do marketplace.</figcaption>
+      <figcaption>chat do marketplace <a href="#ref-2">[2]</a>.</figcaption>
     </figure>
     <figure class="fig">
       <div class="head"><b>Cancelamento</b><span>Semanal, em % dos pedidos abertos</span></div>
       <div data-chart='{"type":"area","size":"half","alt":"Cancelamento sobe de 4% para 11% no mesmo período","suffix":"%","labels":["S1","S2","S3","S4","S5","S6","S7","S8","S9","S10","S11","S12","S13"],"series":[{"name":"Cancelamento","values":[4,4.1,3.9,4.3,4.6,5.2,6.1,6.8,7.9,9.2,10.4,11.1,10.8]}]}'></div>
-      <figcaption>painel de operação.</figcaption>
+      <figcaption>painel de operação <a href="#ref-1">[1]</a>.</figcaption>
     </figure>
   </div>
 </section>
@@ -166,23 +169,26 @@
   <div class="note warn">
     <div><b>Limite da estimativa</b>O efeito supõe que a taxa de cancelamento dos pedidos alertados caia ao nível dos respondidos em até 4 horas. Medir em dezembro antes de ampliar para outras categorias.</div>
   </div>
-  <div>
-    <h3>Proveniência dos dados</h3>
-    <table class="data small">
-      <thead><tr><th>Fonte</th><th>Conteúdo</th><th>Extração</th></tr></thead>
-      <tbody>
-        <tr><td>Painel de operação</td><td>Pedidos, receita e cancelamentos</td><td>03/10/2026</td></tr>
-        <tr><td>Chat do marketplace</td><td>Horário da primeira mensagem do fornecedor</td><td>03/10/2026</td></tr>
-        <tr><td>Plano 2026</td><td>Metas mensais de pedidos concluídos</td><td>18/06/2026</td></tr>
-      </tbody>
-    </table>
-  </div>
+</section>
+
+<section class="chapter" id="referencias" data-title="Referências" data-summary="Fontes dos dados e documentos citados">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Referências</h2>
+    <p class="question">De onde vem cada número deste relatório?</p>
+  </header>
+  <ol class="refs">
+    <li id="ref-1"><div><b>Painel de operação do marketplace</b>Pedidos, receita, cancelamentos e situação de cada pedido, de julho a setembro de 2026.<p class="muted">Solaria, Operações. Extraído em 03/10/2026.</p></div></li>
+    <li id="ref-2"><div><b>Chat do marketplace</b>Horário do pedido e da primeira mensagem do fornecedor, por categoria.<p class="muted">Solaria, Produto. Extraído em 03/10/2026.</p></div></li>
+    <li id="ref-3"><div><b>Plano 2026</b>Metas mensais de pedidos concluídos e receita.<p class="muted">Solaria, Diretoria. Aprovado em 18/06/2026.</p></div></li>
+  </ol>
+  <div class="note"><div><b>Cálculos próprios</b>Variações, medianas e taxas foram calculadas a partir das fontes acima, com as fórmulas indicadas em cada indicador.</div></div>
 </section>
 
 <section class="back brand page" id="contracapa">
   <img class="logo" src="../design/logos/elos.svg" alt="Elos">
   <span class="rule"></span>
-  <span class="legal">Uso interno. Exemplo com dados fictícios.</span>
+  <span class="legal">Exclusivo de uso interno.</span>
 </section>
 
 </body>

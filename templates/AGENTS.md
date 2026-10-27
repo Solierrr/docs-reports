@@ -40,6 +40,7 @@ Cada modelo é um documento completo com conteúdo de exemplo realista: mostra a
   - **Cor:** `highlight` põe em laranja o que a página discute; o resto fica cinza.
   - **Séries:** até quatro, cada uma com cor e padrão (liso, listras, pontos, listras cruzadas), como nos comparativos de benchmark. Mais que isso vira "Outros".
   - **Eixo:** um só por gráfico. Duas medidas de escala diferente viram dois gráficos lado a lado em `.cols`.
+- **Referências:** fontes externas e dados vão numa página própria, `section.chapter#referencias` com `ol.refs > li#ref-N` (o build numera). A fonte de cada KPI vai em `.source` e a de cada figura no `figcaption`, sempre com o link `<a href="#ref-N">[N]</a>`.
 - **Exemplo:** remova o selo `<span class="sample">` e troque todo o conteúdo de exemplo, inclusive o `<title>`. O `check.sh` acusa selo e título que sobrarem.
 - Não acrescente CSS nem estilo inline além de `--count` (KPIs, progresso, trilha e temas) e da largura de capturas. Se faltar um componente, pare e pergunte.
 

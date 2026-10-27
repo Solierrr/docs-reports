@@ -41,8 +41,8 @@ function contents(html) {
       return label ? part.replace('<span class="num"></span>', `<span class="num">${label}</span>`) : part;
     })
     .join("");
-  // Passos e pontos-chave numerados aqui: contadores de CSS não sobrevivem à fragmentação do Paged.js.
-  const withSteps = withNumbers.replace(/<ol class="(?:steps|keys)\b[^"]*">[\s\S]*?<\/ol>/g, (list) => {
+  // Passos, pontos-chave e referências numerados aqui: contadores de CSS não sobrevivem à fragmentação do Paged.js.
+  const withSteps = withNumbers.replace(/<ol class="(?:steps|keys|refs)\b[^"]*">[\s\S]*?<\/ol>/g, (list) => {
     let step = 0;
     return list.replace(/<li\b(?![^>]*data-step)/g, () => `<li data-step="${++step}"`);
   });

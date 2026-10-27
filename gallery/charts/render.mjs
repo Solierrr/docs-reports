@@ -34,8 +34,19 @@ const patterns = {
   muted: { symbol: "rect", symbolSize: 1, color: "rgba(36,38,40,0.16)", dashArrayX: [1, 0], dashArrayY: [1.5, 3.5], rotation: Math.PI / 4 },
 };
 const order = ["solid", "stripes", "dots", "cross"];
+// Textura para áreas: uma lavagem da cor com listras, pontos ou listras cruzadas por cima, desenhada como ladrilho SVG.
+function texture(kind = "stripes", hex = color.accent, wash = 0.08, ink = 0.38) {
+  const marks = {
+    stripes: `<path d='M-1 1L1 -1M0 7L7 0M6 8L8 6' stroke='${hex}' stroke-opacity='${ink}' stroke-width='1'/>`,
+    cross: `<path d='M-1 6L1 8M0 0L7 7M6 -1L8 1' stroke='${hex}' stroke-opacity='${ink}' stroke-width='1'/>`,
+    dots: `<circle cx='3.5' cy='3.5' r='1' fill='${hex}' fill-opacity='${ink}'/>`,
+  };
+  const svg = `<svg xmlns='http://www.w3.org/2000/svg' width='7' height='7'><rect width='7' height='7' fill='${hex}' fill-opacity='${wash}'/>${marks[kind] ?? marks.stripes}</svg>`;
+  return { image: `data:image/svg+xml;utf8,${svg.replaceAll("#", "%23")}`, repeat: "repeat", imageWidth: 7, imageHeight: 7 };
+}
+const textures = ["stripes", "dots", "cross"];
 const font = '"Plus Jakarta Sans", "Segoe UI", system-ui, Arial, sans-serif';
-const sizes = { full: [640, 300], half: [312, 240], tall: [640, 380], spark: [150, 40] };
+const sizes = { full: [640, 300], half: [312, 240], tall: [640, 380], spark: [220, 40] };
 
 // ---------- Números ----------
 
@@ -286,7 +297,7 @@ function line(spec, area = false) {
         showSymbol: true,
         lineStyle: { width: 2, color: fill, type: serie.dashed ? [5, 4] : "solid", cap: "round", join: "round" },
         itemStyle: { color: fill },
-        areaStyle: (area && index === 0) || serie.area ? { color: fill, opacity: 0.1 } : undefined,
+        areaStyle: (area && index === 0) || serie.area ? { color: texture(serie.pattern ?? textures[index % textures.length], fill) } : undefined,
         endLabel: {
           show: true,
           formatter: ({ value }) => (names.length > 1 ? `{v|${number(value, spec)}}{n|${serie.name}}` : `{v|${number(value, spec)}}`),
@@ -309,103 +320,125 @@ function line(spec, area = false) {
   };
 }
 
-// Real × plano no padrão IBCS: plano em contorno, real cheio com o valor, e a variação colorida acima.
+// Real × plano: plano em cinza hachurado e real em laranja, lado a lado, com o valor de cada um; acima do par, a
+// variação numa pílula verde ou vermelha, com a diferença e a porcentagem do plano.
 function variance(spec) {
   const labels = spec.data.map(([name]) => name);
-  const deltas = spec.data.map(([, actual, plan]) => actual - plan);
+  const top = Math.max(...spec.data.flatMap(([, actual, plan]) => [actual, plan]));
+  const chip = (good) => ({
+    backgroundColor: good ? "#e7f4ee" : "#fdecea",
+    color: good ? color.good : color.bad,
+    padding: [3, 7],
+    borderRadius: 9,
+    ...text(10, 800, good ? color.good : color.bad),
+  });
   return {
-    ...base(spec),
-    legend: { ...legend(["Real", "Plano"], spec), top: 0, right: 0, left: "auto" },
-    grid: [
-      { left: 4, right: 4, top: 30, height: 44, containLabel: false },
-      { left: 4, right: 4, top: 128, bottom: 4, containLabel: true },
-    ],
-    xAxis: [
-      { ...categoryAxis(labels), gridIndex: 0, show: false },
-      { ...xCategory(labels, spec), gridIndex: 1 },
-    ],
-    yAxis: [
-      { type: "value", gridIndex: 0, show: false },
-      { type: "value", gridIndex: 1, show: false },
-    ],
+    ...base(spec, { grid: { left: 4, right: 4, top: 40, bottom: 4, containLabel: true } }),
+    legend: { ...legend(["Real", "Plano"], spec), top: 0, left: 0 },
+    xAxis: xCategory(labels, spec),
+    yAxis: { type: "value", show: false, max: top * 1.22 },
     series: [
       {
         type: "bar",
-        xAxisIndex: 0,
-        yAxisIndex: 0,
-        barMaxWidth: 12,
-        data: deltas.map((value) => ({
-          value,
-          itemStyle: { color: value >= 0 ? color.good : color.bad, borderRadius: value >= 0 ? [3, 3, 0, 0] : [0, 0, 3, 3] },
-          label: { position: value >= 0 ? "top" : "bottom" },
-        })),
-        label: { show: true, ...text(10.5, 700, color.ink), formatter: ({ value }) => signed(value, spec) },
-        markLine: { silent: true, symbol: "none", data: [{ yAxis: 0 }], lineStyle: { color: color.axis, type: "solid" }, label: { show: false } },
-      },
-      {
-        type: "bar",
         name: "Plano",
-        xAxisIndex: 1,
-        yAxisIndex: 1,
-        barMaxWidth: 52,
-        barGap: "-82%",
+        barMaxWidth: 34,
+        barGap: "18%",
         data: spec.data.map(([, , plan]) => plan),
-        itemStyle: { color: color.paper, borderColor: color.ink, borderWidth: 1.2 },
-        label: { show: true, position: "top", ...text(10, 600, color.muted), formatter: ({ value }) => `plano ${number(value, spec)}` },
+        itemStyle: { color: color.neutral, decal: patterns.muted, borderRadius: [4, 4, 0, 0] },
+        label: { ...valueLabel(spec, "top"), ...text(10, 600, color.muted) },
       },
       {
         type: "bar",
         name: "Real",
-        xAxisIndex: 1,
-        yAxisIndex: 1,
-        barMaxWidth: 40,
+        barMaxWidth: 34,
         data: spec.data.map(([, actual]) => actual),
-        itemStyle: { color: color.neutralDark },
-        label: { ...valueLabel(spec, "insideTop"), color: color.paper, distance: 6 },
+        itemStyle: { color: color.accent, borderRadius: [4, 4, 0, 0] },
+        label: valueLabel(spec, "top"),
+      },
+      {
+        type: "scatter",
+        silent: true,
+        symbolSize: 1,
+        itemStyle: { color: "transparent" },
+        data: spec.data.map(([, actual, plan], index) => {
+          const delta = actual - plan;
+          return {
+            value: [index, Math.max(actual, plan)],
+            label: {
+              show: true,
+              position: "top",
+              distance: 24,
+              ...chip(delta >= 0),
+              formatter: `${signed(delta, spec)} · ${signed(Math.round((delta / plan) * 1000) / 10, { decimals: 1 })}%`,
+            },
+          };
+        }),
       },
     ],
   };
 }
 
-// Cascata (ponte): do valor inicial ao final pelas contribuições; aumento em verde, queda em vermelho, totais em tinta.
+// Cascata (ponte): do valor inicial ao final pelas contribuições. Total inicial em cinza hachurado, total final em
+// laranja liso, aumentos em laranja com listras e quedas em laranja escuro com listras cruzadas; o sinal está no
+// rótulo. Conectores tracejados ligam os degraus. O eixo aproxima as variações e marca valores redondos; "zero": true
+// começa no zero.
 // start: ["Nome", valor]; data: [["Contribuição", delta], ...]; end: "Nome do total"
 function waterfall(spec) {
   const [startName, startValue] = spec.start;
   const labels = [startName, ...spec.data.map(([name]) => name), spec.end ?? "Total"];
   const base = [0];
-  const visible = [{ value: startValue, itemStyle: { color: color.neutralDark, borderRadius: [4, 4, 0, 0] } }];
+  const visible = [{ value: startValue, itemStyle: { color: color.neutral, decal: patterns.muted, borderRadius: [4, 4, 0, 0] } }];
+  const levels = [startValue];
   let level = startValue;
   for (const [, delta] of spec.data) {
     const next = level + delta;
     base.push(Math.min(level, next));
-    visible.push({ value: Math.abs(delta), delta, itemStyle: { color: delta >= 0 ? color.good : color.bad, borderRadius: 2 } });
+    visible.push({
+      value: Math.abs(delta),
+      delta,
+      itemStyle: delta >= 0 ? { color: color.accent, decal: patterns.stripes, borderRadius: 3 } : { color: color.accentDark, decal: patterns.cross, borderRadius: 3 },
+    });
     level = next;
+    levels.push(level);
   }
   base.push(0);
   visible.push({ value: level, itemStyle: { color: color.accent, borderRadius: [4, 4, 0, 0] } });
-  // "zero": false aproxima o eixo das variações; as barras de total ficam cortadas no mínimo do eixo.
-  const tops = [startValue, ...visible.slice(1, -1).map((bar, index) => base[index + 1] + bar.value), level];
-  const lows = [...base.slice(1, -1), startValue, level];
-  const low = Math.min(...lows);
-  const floor = spec.zero === false ? Math.max(0, Math.floor((low - (Math.max(...tops) - low) * 0.6) / 100) * 100) : undefined;
+  // Eixo com passo redondo (1, 2 ou 5 × 10^n) a partir de um pouco abaixo do menor nível.
+  const low = Math.min(...levels);
+  const high = Math.max(...levels.map((value, index) => (index < visible.length - 1 ? Math.max(value, base[index + 1] + visible[index + 1].value) : value)));
+  const raw = ((high - low) * 1.8) / 4;
+  const power = 10 ** Math.floor(Math.log10(raw || 1));
+  const step = [1, 2, 5, 10].map((m) => m * power).find((m) => m >= raw) ?? power * 10;
+  const axis = spec.zero === true ? {} : { min: Math.max(0, Math.floor((low - (high - low) * 0.5) / step) * step), max: Math.ceil((high + (high - low) * 0.2) / step) * step, interval: step };
+  const connectors = levels.map((value, index) => [
+    { coord: [index, value] },
+    { coord: [index + 1, value] },
+  ]);
   return {
     animation: false,
     textStyle: { fontFamily: font, color: color.ink },
     grid: { left: 4, right: 12, top: 26, bottom: 4, containLabel: true },
     xAxis: xCategory(labels, spec),
-    yAxis: valueAxis(spec, floor === undefined ? {} : { min: floor }),
+    yAxis: valueAxis(spec, axis),
     series: [
-      { type: "bar", stack: "w", silent: true, itemStyle: { color: "transparent" }, data: base, barMaxWidth: 40 },
+      { type: "bar", stack: "w", silent: true, itemStyle: { color: "transparent" }, data: base, barMaxWidth: 44 },
       {
         type: "bar",
         stack: "w",
-        barMaxWidth: 40,
+        barMaxWidth: 44,
         data: visible,
         label: {
           show: true,
           position: "top",
-          ...text(11, 700, color.ink),
+          ...text(11, 800, color.ink),
           formatter: ({ dataIndex, value }) => (dataIndex === 0 || dataIndex === labels.length - 1 ? number(value, spec) : signed(visible[dataIndex].delta, spec)),
+        },
+        markLine: {
+          silent: true,
+          symbol: "none",
+          label: { show: false },
+          lineStyle: { color: color.neutralDark, type: [3, 3], width: 1 },
+          data: connectors,
         },
       },
     ],
@@ -753,7 +786,8 @@ function dumbbell(spec) {
 }
 
 // Minigráfico para cartão de KPI: linha com lavagem, uma referência pontilhada no valor inicial (subiu ou caiu desde
-// o começo do período), ponto vazado no início e cheio no fim. "on": true para fundo laranja.
+// o começo do período), ponto vazado no início e cheio no fim, e a área com textura ("pattern": stripes, dots ou cross,
+// para diferenciar cartões vizinhos). "on": true para fundo laranja.
 function spark(spec) {
   const values = spec.values;
   const stroke = spec.on ? color.paper : color.accent;
@@ -777,19 +811,7 @@ function spark(spec) {
         })),
         smooth: 0.25,
         lineStyle: { width: 2, color: stroke, cap: "round", join: "round" },
-        areaStyle: {
-          color: {
-            type: "linear",
-            x: 0,
-            y: 0,
-            x2: 0,
-            y2: 1,
-            colorStops: [
-              { offset: 0, color: spec.on ? "rgba(255,255,255,0.28)" : "rgba(255,101,0,0.18)" },
-              { offset: 1, color: spec.on ? "rgba(255,255,255,0)" : "rgba(255,101,0,0)" },
-            ],
-          },
-        },
+        areaStyle: { color: spec.on ? texture(spec.pattern, "#ffffff", 0.12, 0.45) : texture(spec.pattern) },
         markLine: {
           silent: true,
           symbol: "none",
