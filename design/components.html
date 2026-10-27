@@ -98,7 +98,7 @@
   <div class="specimen">
     <code>.kpis &gt; .kpi</code>
     <div class="kpis" style="--count:3">
-      <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">4.812</span><div data-chart='{"type":"spark","values":[3,4,4,5,6,5]}'></div></div><span class="delta up">+3,4% vs. período anterior</span><span class="formula">Como o número é calculado</span></div>
+      <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">4.812</span><div data-chart='{"type":"spark","values":[3,4,4,5,6,5]}'></div></div><span class="delta up">+3,4% vs. período anterior</span><span class="formula">Como o número é calculado</span><span class="source">Fonte: nome da fonte <a href="#ref-1">[1]</a></span></div>
       <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">R$ 1,9 mi</span></div><span class="delta down">−6,1% vs. plano</span><span class="formula">Como o número é calculado</span></div>
       <div class="kpi"><span class="label">Indicador</span><div class="row"><span class="value">9,4 h</span></div><span class="delta">sem variação</span><span class="formula">Como o número é calculado</span></div>
     </div>
@@ -131,6 +131,12 @@
     <code>.ask · .ask.brand &gt; .when</code>
     <div class="ask"><span class="eyebrow">Decisão pedida</span><p>O que o leitor precisa aprovar, com prazo.</p></div>
     <div class="ask brand"><span class="eyebrow">Decisão pedida</span><p>O que o leitor precisa aprovar, com prazo.</p><div class="when"><div>Decidir até<b>20/10/2026</b></div><div>Quem decide<b>Comitê</b></div></div></div>
+  </div>
+  <div class="specimen">
+    <code>ol.refs &gt; li#ref-N · .kpi .source · figcaption a[href="#ref-N"]</code>
+    <ol class="refs">
+      <li id="ref-1"><div><b>Nome da fonte</b>O que ela contém e o período.<p class="muted">Autor ou área. Data de extração ou versão.</p></div></li>
+    </ol>
   </div>
   <div class="specimen">
     <code>table.data</code>
@@ -263,8 +269,8 @@
     </div>
   </div>
   <div class="specimen">
-    <code>.themes.brand &gt; div.on · section.faq</code>
-    <div class="themes brand" style="--count:4"><div class="on"><b>Tema atual</b><span>3 perguntas</span></div><div><b>Outro tema</b><span>2 perguntas</span></div><div><b>Outro tema</b><span>4 perguntas</span></div><div><b>Outro tema</b><span>1 pergunta</span></div></div>
+    <code>.themes.brand.quiet &gt; div.on · section.faq</code>
+    <div class="themes brand quiet" style="--count:4"><div class="on"><b>Tema atual</b><span>3 perguntas</span></div><div><b>Outro tema</b><span>2 perguntas</span></div><div><b>Outro tema</b><span>4 perguntas</span></div><div><b>Outro tema</b><span>1 pergunta</span></div></div>
     <section class="faq">
       <h2>Tema<small>Subtítulo do tema</small></h2>
       <dl>

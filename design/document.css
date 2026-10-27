@@ -448,7 +448,7 @@ h3 {
 .scqa dt,
 .scqa dd {
   margin: 0;
-  padding: 2.4mm 0;
+  padding: 2mm 0;
   border-bottom: 0.5pt solid var(--line);
 }
 .scqa dt {
@@ -516,8 +516,8 @@ h3 {
 .kpi {
   display: flex;
   flex-direction: column;
-  gap: 1.5mm;
-  padding: 4mm 5mm 4mm 0;
+  gap: 1.2mm;
+  padding: 3mm 5mm 3mm 0;
 }
 .kpi + .kpi {
   padding-left: 5mm;
@@ -537,8 +537,8 @@ h3 {
 }
 .kpi .row {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: stretch;
   gap: 2mm;
 }
 /* Variação numa pílula, como o selo de exemplo da capa: verde quando melhora, vermelho quando piora. */
@@ -649,18 +649,20 @@ table.data tr.total td {
 
 /* ---------- Avisos (C) ---------- */
 
+/* Aviso: barra laranja de 3 mm na altura toda do bloco; o tipo muda pelo padrão da barra, não pela cor. */
 .note {
   display: grid;
-  grid-template-columns: 1.2mm 1fr;
+  grid-template-columns: 3mm 1fr;
   gap: 4mm;
+  overflow: hidden;
   padding: 3.5mm 4mm 3.5mm 0;
   border-radius: 1.5mm;
   background: var(--surface);
   font-size: 9pt;
 }
 .note::before {
-  border-radius: 99px;
-  background: var(--info);
+  margin: -3.5mm 0;
+  background: var(--accent);
   content: "";
 }
 .note b:first-child {
@@ -668,13 +670,13 @@ table.data tr.total td {
   margin-bottom: 0.5mm;
 }
 .note.tip::before {
-  background: var(--good);
+  background: repeating-linear-gradient(45deg, var(--accent) 0 0.8mm, #ffb784 0.8mm 1.6mm);
 }
 .note.warn::before {
-  background: var(--warn);
+  background: radial-gradient(circle, var(--accent) 0.38mm, #ffc9a3 0.45mm) 0 0 / 1.3mm 1.3mm;
 }
 .note.stop::before {
-  background: var(--bad);
+  background: repeating-linear-gradient(-45deg, var(--accent-text) 0 0.8mm, var(--accent) 0.8mm 1.6mm);
 }
 
 /* ---------- Passos (C) ---------- */
@@ -932,7 +934,23 @@ kbd,
 
 .kpi .row > div {
   flex: none;
-  width: 28mm;
+  width: 100%;
+}
+/* Fonte do indicador, ligada à página de referências. */
+.kpi .source {
+  color: var(--faint);
+  font-size: 7pt;
+}
+.kpi .source a,
+.fig figcaption a,
+.prose a.ref {
+  color: var(--accent-text);
+  font-weight: 700;
+  text-decoration: none;
+}
+.kpi.brand .source,
+.kpi.brand .source a {
+  color: rgb(255 255 255 / 0.9);
 }
 
 /* ---------- Catálogo de componentes (só na galeria) ---------- */
@@ -1009,7 +1027,7 @@ kbd,
   flex-direction: column;
   justify-content: flex-end;
   gap: 2mm;
-  min-height: 58mm;
+  min-height: 54mm;
   margin: -24mm -20mm 0;
   padding: 16mm 20mm 9mm;
 }
@@ -1127,26 +1145,16 @@ kbd,
   background: rgb(255 255 255 / 0.22);
   color: var(--paper);
 }
-/* Nos cartões o minigráfico vai abaixo do número, na largura do cartão. */
-.kpis.cards .kpi .row {
-  flex-direction: column;
-  align-items: stretch;
-}
-.kpis.cards .kpi .row > div {
-  width: 100%;
-}
-.kpis.tiles .kpi .row > div {
-  width: 30mm;
-}
+
 
 /* Contador: o número da página, grande, com a frase que o explica. */
 .counter {
   display: grid;
   grid-template-columns: auto 1fr;
-  align-items: end;
+  align-items: center;
   gap: 8mm;
-  min-height: 34mm;
-  padding: 7mm 9mm;
+  min-height: 30mm;
+  padding: 6mm 9mm;
   border-radius: 3mm;
 }
 .counter .big {
@@ -1405,27 +1413,38 @@ kbd,
   padding: 7mm;
   border-radius: 2.5mm;
 }
+/* Todos os quadros brancos; o tema desta folha leva o quadrado laranja e o texto cheio, os outros ficam em cinza. */
 .themes div {
   display: flex;
   flex-direction: column;
   gap: 1mm;
   padding: 3.5mm;
   border-radius: 1.8mm;
-  background: rgb(255 255 255 / 0.16);
-}
-.themes div.on {
   background: var(--paper);
-  color: var(--ink);
+  color: var(--muted);
+}
+.themes div::before {
+  width: 2.4mm;
+  height: 2.4mm;
+  margin-bottom: 1mm;
+  border-radius: 0.5mm;
+  background: var(--line);
+  content: "";
+}
+.themes div.on::before {
+  background: var(--accent);
+}
+.themes b,
+.brand .themes b,
+.themes.brand b {
+  color: var(--muted);
+  font-size: 9.5pt;
 }
 .themes div.on b {
   color: var(--ink);
 }
-.themes b {
-  font-size: 9.5pt;
-}
 .themes span {
   font-size: 7.5pt;
-  opacity: 0.88;
 }
 
 /* ---------- Superfície da marca ---------- */
@@ -1500,4 +1519,34 @@ kbd,
 }
 .chapter.strip .opener .num {
   display: none;
+}
+
+/* ---------- Referências ---------- */
+
+/* Lista numerada pelo build; cada item tem id="ref-N" para as fontes dos KPIs e figuras apontarem para ele. */
+.refs {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  border-top: 0.75pt solid var(--ink);
+  list-style: none;
+}
+.refs li {
+  display: grid;
+  grid-template-columns: 10mm 1fr;
+  gap: 3mm;
+  padding: 3mm 0;
+  border-bottom: 0.5pt solid var(--line);
+  font-size: 9pt;
+}
+.refs li::before {
+  color: var(--accent-text);
+  font-weight: 800;
+  content: "[" attr(data-step) "]";
+}
+.refs b {
+  display: block;
+}
+.refs .muted {
+  font-size: 8pt;
 }
