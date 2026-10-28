@@ -18,7 +18,7 @@ Capa com título, linha de apoio, período, responsável, versão e classificaç
 
 - **Relatório gerencial** (`report.html`): sumário executivo (contador com o número da história, KPIs com fórmula, SCQA, decisão pedida) → um capítulo por achado, aberto pela faixa laranja com título-ação e a pergunta da página → recomendação com responsáveis e prazos → proveniência dos dados. Real contra plano lado a lado (real em laranja, plano em cinza hachurado) com a variação numa pílula verde ou vermelha. No fim, uma página de referências numeradas; KPIs e figuras apontam para ela.
 - **Manual de uso** (`manual.html`), no formato how-to: antes de começar (o que é preciso, tempo, resultado) → procedimento em passos no imperativo, cada um com o resultado esperado → problemas comuns com causa e solução. Explicação longa vai para outra seção, não para dentro dos passos.
-- **Perguntas frequentes** (`faq.html`): só perguntas reais, agrupadas por tema; a primeira frase da resposta já responde e o resto aponta onde saber mais.
+- **Perguntas frequentes** (`faq.html`): só perguntas reais, agrupadas por tema, cada uma em uma frase só com um único `?` (nada de "Fato. Pergunta?"); a primeira frase da resposta já responde e o resto aponta onde saber mais.
 - **Documento curto** (`document.html`): proposta, ata, comunicado ou one-pager, sem capa nem sumário. Cabeçalho com tipo, título e metadados, decisão pedida quando houver e seções curtas.
 
 As seções variam conforme a especificação aprovada. Não adicione KPIs, recomendações ou solução de problemas só para preencher o modelo.

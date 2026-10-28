@@ -879,9 +879,10 @@ kbd,
   gap: 4.5mm;
   margin: 0;
 }
+/* A pergunta é o maior nível da FAQ: maior que a frase-resposta em negrito (11pt) logo abaixo. */
 .faq dt {
-  font-size: 10pt;
-  font-weight: 700;
+  font-size: 12.5pt;
+  font-weight: 800;
 }
 .faq dd {
   margin: 1mm 0 0;
