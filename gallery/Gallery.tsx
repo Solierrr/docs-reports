@@ -32,6 +32,31 @@ interface Sample {
   names: Record<Locale, string>;
 }
 
+// Item do menu e do leitor: um modelo ou um documento versionado.
+interface Entry {
+  id: string;
+  icon: TablerIcon;
+  name: string;
+  detail?: string;
+  url: string;
+  pdf?: string;
+}
+
+// Documentos de documents/NNN/, listados por scripts/build-samples.mjs em public/documents.json.
+interface Published {
+  number: string;
+  title: string;
+  type: string;
+  pdf: boolean;
+}
+
+const typeIcons: Record<string, TablerIcon> = {
+  report: IconFileAnalytics,
+  manual: IconBook,
+  faq: IconHelpCircle,
+  document: IconFileText,
+};
+
 // Modelos de templates/ e o catálogo de componentes, paginados por scripts/build-samples.mjs.
 const samples: Sample[] = [
   {
@@ -62,6 +87,10 @@ const samples: Sample[] = [
 ];
 
 interface Labels {
+  templates: string;
+  documents: string;
+  download: string;
+  types: Record<string, string>;
   language: string;
   github: string;
   samples: string;
@@ -78,6 +107,10 @@ interface Labels {
 
 const labels: Record<Locale, Labels> = {
   "pt-BR": {
+    templates: "Modelos",
+    documents: "Documentos",
+    download: "Baixar o PDF",
+    types: { report: "Relatório", manual: "Manual", faq: "Perguntas frequentes", document: "Documento" },
     language: "Idioma",
     github: "Repositório no GitHub",
     samples: "Documentos de exemplo",
@@ -92,6 +125,10 @@ const labels: Record<Locale, Labels> = {
     note: "Os documentos são escritos em português.",
   },
   "en-US": {
+    templates: "Templates",
+    documents: "Documents",
+    download: "Download the PDF",
+    types: { report: "Report", manual: "Manual", faq: "FAQ", document: "Document" },
     language: "Language",
     github: "GitHub repository",
     samples: "Sample documents",
@@ -106,6 +143,10 @@ const labels: Record<Locale, Labels> = {
     note: "The documents are written in Portuguese.",
   },
   "es-ES": {
+    templates: "Plantillas",
+    documents: "Documentos",
+    download: "Descargar el PDF",
+    types: { report: "Informe", manual: "Manual", faq: "Preguntas frecuentes", document: "Documento" },
     language: "Idioma",
     github: "Repositorio en GitHub",
     samples: "Documentos de ejemplo",
@@ -226,7 +267,7 @@ function LanguageSwitcher({
 
 // Leitor no estilo de um visualizador de PDF: o próprio documento desenha as folhas sobre fundo cinza;
 // a galeria só controla zoom e página pelo DOM do iframe, que é da mesma origem.
-function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) {
+function DocumentViewer({ sample, locale }: { sample: Entry; locale: Locale }) {
   const text = labels[locale];
   const frame = useRef<HTMLIFrameElement>(null);
   const area = useRef<HTMLDivElement>(null);
@@ -234,7 +275,7 @@ function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) 
   const [fitZoom, setFitZoom] = useState(1);
   const [pages, setPages] = useState(0);
   const [current, setCurrent] = useState(1);
-  const url = `./samples/${encodeURIComponent(sample.id)}.html`;
+  const url = sample.url;
   const scale = zoom ?? fitZoom;
 
   useLayoutEffect(() => {
@@ -298,7 +339,7 @@ function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) 
   return (
     <Surface className="viewer min-h-0" contentClassName="viewer-content">
       <div className="viewer-toolbar">
-        <span className="viewer-title">{sample.names[locale]}</span>
+        <span className="viewer-title">{sample.name}</span>
         <div className="viewer-group" aria-label={text.page}>
           <ToolbarAction icon="chevronLeft" label={text.previous} disabled={current <= 1} onClick={() => go(current - 1)} />
           <span className="viewer-count" aria-live="polite">
@@ -317,6 +358,18 @@ function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) 
             disabled={scale >= zoomSteps[zoomSteps.length - 1]}
             onClick={() => step(1)}
           />
+          {sample.pdf ? (
+            <ToolbarAction
+              icon="download"
+              label={text.download}
+              onClick={() => {
+                const link = document.createElement("a");
+                link.href = sample.pdf!;
+                link.download = sample.pdf!.split("/").pop()!;
+                link.click();
+              }}
+            />
+          ) : null}
           <ToolbarAction icon="externalLink" label={text.open} onClick={() => window.open(url, "_blank", "noopener")} />
         </div>
       </div>
@@ -325,7 +378,7 @@ function DocumentViewer({ sample, locale }: { sample: Sample; locale: Locale }) 
           key={sample.id}
           ref={frame}
           src={url}
-          title={sample.names[locale]}
+          title={sample.name}
           sandbox="allow-same-origin"
           referrerPolicy="no-referrer"
           onLoad={() => setPages(sheets().length)}
@@ -342,8 +395,31 @@ export default function Gallery() {
   const locale =
     languages.find((language) => language.code === params.get("locale"))
       ?.code ?? "pt-BR";
+  const [published, setPublished] = useState<Published[]>([]);
+  const text = labels[locale];
+  const templates: Entry[] = samples.map((sample) => ({
+    id: sample.id,
+    icon: sample.icon,
+    name: sample.names[locale],
+    url: `./samples/${encodeURIComponent(sample.id)}.html`,
+  }));
+  const documents: Entry[] = published.map((doc) => ({
+    id: doc.number,
+    icon: typeIcons[doc.type] ?? IconFileText,
+    name: doc.title,
+    detail: `${doc.number} · ${text.types[doc.type] ?? doc.type}`,
+    url: `./documents/${doc.number}.html`,
+    pdf: doc.pdf ? `./documents/${doc.number}.pdf` : undefined,
+  }));
   const selected =
-    samples.find((sample) => sample.id === params.get("sample")) ?? samples[0];
+    [...templates, ...documents].find((entry) => entry.id === params.get("sample")) ?? templates[0];
+
+  useEffect(() => {
+    fetch("./documents.json")
+      .then((response) => (response.ok ? response.json() : []))
+      .then((list: Published[]) => setPublished(list))
+      .catch(() => setPublished([]));
+  }, []);
 
   useEffect(() => {
     const changed = () => setHash(location.hash);
@@ -384,23 +460,34 @@ export default function Gallery() {
         </div>
       </header>
       <main className="gallery-workspace">
-        <nav aria-label={labels[locale].samples} className="flex min-h-0 min-w-0 items-start">
-          <SurfaceGroup className="gallery-templates" contentClassName="gallery-template-list scrollbar-none">
-            {samples.map((sample) => {
-              const Glyph = sample.icon;
-              return (
-                <GroupAction
-                  key={sample.id}
-                  label={sample.names[locale]}
-                  content={sample.names[locale]}
-                  glyph={<Glyph size={20} className="shrink-0" aria-hidden="true" />}
-                  active={selected.id === sample.id}
-                  onClick={() => navigate(sample.id, locale)}
-                />
-              );
-            })}
-            {locale === "pt-BR" ? null : <p className="p-4 text-operational-muted">{labels[locale].note}</p>}
-          </SurfaceGroup>
+        <nav aria-label={text.samples} className="gallery-nav scrollbar-none">
+          {[
+            { title: text.templates, entries: templates },
+            { title: text.documents, entries: documents },
+          ].map(({ title, entries }) =>
+            entries.length ? (
+              <section key={title} className="gallery-section" aria-label={title}>
+                <h2 className="gallery-section-title">{title}</h2>
+                <SurfaceGroup className="gallery-templates" contentClassName="gallery-template-list scrollbar-none">
+                  {entries.map((entry) => {
+                    const Glyph = entry.icon;
+                    return (
+                      <GroupAction
+                        key={entry.id}
+                        label={entry.name}
+                        content={entry.name}
+                        detail={entry.detail}
+                        glyph={<Glyph size={20} className="shrink-0" aria-hidden="true" />}
+                        active={selected.id === entry.id}
+                        onClick={() => navigate(entry.id, locale)}
+                      />
+                    );
+                  })}
+                </SurfaceGroup>
+              </section>
+            ) : null,
+          )}
+          {locale === "pt-BR" ? null : <p className="px-1 text-operational-muted">{text.note}</p>}
         </nav>
         <DocumentViewer sample={selected} locale={locale} />
       </main>

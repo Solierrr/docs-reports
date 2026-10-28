@@ -8,6 +8,7 @@ on:
       - "gallery/**"
       - "templates/**"
       - "samples/**"
+      - "documents/**"
       - "design/**"
       - ".github/workflows/gallery.yml"
   workflow_dispatch:
