@@ -35,6 +35,7 @@ Anote cada item como ok ou falha no `review.md`, com a página e como conferiu. 
 | O3 | Sem página vazia, página decorativa sem função ou bloco solto no fim de uma página. |
 | O4 | Figuras e tabelas perto de onde são citadas, com legenda e fonte. |
 | O5 | Identidade do modelo intacta: cores, logo, capa e espaçamentos sem estilo local. |
+| O6 | Nenhum aviso, lista de passos, tabela ou figura colado no texto de cima: respiro mínimo de 4 mm, inclusive dentro de respostas de FAQ. |
 
 ## PDF
 

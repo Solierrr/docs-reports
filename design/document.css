@@ -890,6 +890,11 @@ kbd,
 .faq dd strong {
   color: var(--ink);
 }
+/* Aviso e passos dentro da resposta nunca colam no texto de cima. Seletor de filho, não de irmão: o Paged.js descarta o de irmão. */
+.faq dd > .note,
+.faq dd > .steps {
+  margin-top: 4mm;
+}
 .faq dd a {
   color: var(--accent-text);
   font-weight: 600;
