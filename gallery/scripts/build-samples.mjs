@@ -25,28 +25,33 @@ for (const [id, path] of Object.entries(sources)) {
 
 // O cabeçalho YAML do checklist.md tem uma chave por linha, sem aninhamento.
 function header(text) {
-  const block = text.match(/^---\r?\n([\s\S]*?)\r?\n---/)?.[1] ?? "";
+  const block = /^---\r?\n([\s\S]*?)\r?\n---/.exec(text)?.[1] ?? "";
   return Object.fromEntries(
     block.split(/\r?\n/).map((line) => {
       const [key, ...rest] = line.split(":");
-      return [key.trim(), rest.join(":").trim().replace(/^"(.*)"$/, "$1").replace(/\\"/g, '"')];
+      return [key.trim(), rest.join(":").trim().replace(/^"(.*)"$/, "$1").replaceAll('\\"', '"')];
     }),
   );
+}
+
+// Copia um documento como foi aprovado e devolve a entrada dele no menu; sem index.html, ainda não foi publicado.
+async function publish(folder, number) {
+  const doc = new URL(`${number}/`, folder);
+  const files = await readdir(doc);
+  if (!files.includes("index.html")) return null;
+  const meta = header(await readFile(new URL("checklist.md", doc), "utf8"));
+  const pdf = files.includes(`${number}.pdf`);
+  await Promise.all([
+    copyFile(new URL("index.html", doc), new URL(`${number}.html`, published)),
+    pdf ? copyFile(new URL(`${number}.pdf`, doc), new URL(`${number}.pdf`, published)) : null,
+  ]);
+  console.log(`documents/${number}.html (${meta.title})`);
+  return { number, title: meta.title, type: meta.type, created: meta.created, pdf };
 }
 
 await rm(published, { recursive: true, force: true });
 await mkdir(published, { recursive: true });
 const folder = new URL("documents/", root);
-const documents = [];
-for (const number of (await readdir(folder)).filter((name) => /^\d{3}$/.test(name)).sort()) {
-  const doc = new URL(`${number}/`, folder);
-  const files = await readdir(doc);
-  if (!files.includes("index.html")) continue;
-  const meta = header(await readFile(new URL("checklist.md", doc), "utf8"));
-  await copyFile(new URL("index.html", doc), new URL(`${number}.html`, published));
-  const pdf = files.includes(`${number}.pdf`);
-  if (pdf) await copyFile(new URL(`${number}.pdf`, doc), new URL(`${number}.pdf`, published));
-  documents.push({ number, title: meta.title, type: meta.type, created: meta.created, pdf });
-  console.log(`documents/${number}.html (${meta.title})`);
-}
+const numbers = (await readdir(folder)).filter((name) => /^\d{3}$/.test(name)).sort();
+const documents = (await Promise.all(numbers.map((number) => publish(folder, number)))).filter(Boolean);
 await writeFile(new URL("../public/documents.json", import.meta.url), `${JSON.stringify(documents, null, 2)}\n`);

@@ -50,11 +50,17 @@ interface Published {
   pdf: boolean;
 }
 
-const typeIcons: Record<string, TablerIcon> = {
-  report: IconFileAnalytics,
-  manual: IconBook,
-  faq: IconHelpCircle,
-  document: IconFileText,
+// Ícone e nome de cada tipo de documento, e os textos do menu e do leitor que só valem para eles.
+const types: Record<string, { icon: TablerIcon; names: Record<Locale, string> }> = {
+  report: { icon: IconFileAnalytics, names: { "pt-BR": "Relatório", "en-US": "Report", "es-ES": "Informe" } },
+  manual: { icon: IconBook, names: { "pt-BR": "Manual", "en-US": "Manual", "es-ES": "Manual" } },
+  faq: { icon: IconHelpCircle, names: { "pt-BR": "Perguntas frequentes", "en-US": "FAQ", "es-ES": "Preguntas frecuentes" } },
+  document: { icon: IconFileText, names: { "pt-BR": "Documento", "en-US": "Document", "es-ES": "Documento" } },
+};
+const sections: Record<"templates" | "documents" | "download", Record<Locale, string>> = {
+  templates: { "pt-BR": "Modelos", "en-US": "Templates", "es-ES": "Plantillas" },
+  documents: { "pt-BR": "Documentos", "en-US": "Documents", "es-ES": "Documentos" },
+  download: { "pt-BR": "Baixar o PDF", "en-US": "Download the PDF", "es-ES": "Descargar el PDF" },
 };
 
 // Modelos de templates/ e o catálogo de componentes, paginados por scripts/build-samples.mjs.
@@ -87,10 +93,6 @@ const samples: Sample[] = [
 ];
 
 interface Labels {
-  templates: string;
-  documents: string;
-  download: string;
-  types: Record<string, string>;
   language: string;
   github: string;
   samples: string;
@@ -107,10 +109,6 @@ interface Labels {
 
 const labels: Record<Locale, Labels> = {
   "pt-BR": {
-    templates: "Modelos",
-    documents: "Documentos",
-    download: "Baixar o PDF",
-    types: { report: "Relatório", manual: "Manual", faq: "Perguntas frequentes", document: "Documento" },
     language: "Idioma",
     github: "Repositório no GitHub",
     samples: "Documentos de exemplo",
@@ -125,10 +123,6 @@ const labels: Record<Locale, Labels> = {
     note: "Os documentos são escritos em português.",
   },
   "en-US": {
-    templates: "Templates",
-    documents: "Documents",
-    download: "Download the PDF",
-    types: { report: "Report", manual: "Manual", faq: "FAQ", document: "Document" },
     language: "Language",
     github: "GitHub repository",
     samples: "Sample documents",
@@ -143,10 +137,6 @@ const labels: Record<Locale, Labels> = {
     note: "The documents are written in Portuguese.",
   },
   "es-ES": {
-    templates: "Plantillas",
-    documents: "Documentos",
-    download: "Descargar el PDF",
-    types: { report: "Informe", manual: "Manual", faq: "Preguntas frecuentes", document: "Documento" },
     language: "Idioma",
     github: "Repositorio en GitHub",
     samples: "Documentos de ejemplo",
@@ -267,7 +257,7 @@ function LanguageSwitcher({
 
 // Leitor no estilo de um visualizador de PDF: o próprio documento desenha as folhas sobre fundo cinza;
 // a galeria só controla zoom e página pelo DOM do iframe, que é da mesma origem.
-function DocumentViewer({ sample, locale }: { sample: Entry; locale: Locale }) {
+function DocumentViewer({ sample, locale }: Readonly<{ sample: Entry; locale: Locale }>) {
   const text = labels[locale];
   const frame = useRef<HTMLIFrameElement>(null);
   const area = useRef<HTMLDivElement>(null);
@@ -361,7 +351,7 @@ function DocumentViewer({ sample, locale }: { sample: Entry; locale: Locale }) {
           {sample.pdf ? (
             <ToolbarAction
               icon="download"
-              label={text.download}
+              label={sections.download[locale]}
               onClick={() => {
                 const link = document.createElement("a");
                 link.href = sample.pdf!;
@@ -405,9 +395,9 @@ export default function Gallery() {
   }));
   const documents: Entry[] = published.map((doc) => ({
     id: doc.number,
-    icon: typeIcons[doc.type] ?? IconFileText,
+    icon: types[doc.type]?.icon ?? IconFileText,
     name: doc.title,
-    detail: `${doc.number} · ${text.types[doc.type] ?? doc.type}`,
+    detail: `${doc.number} · ${types[doc.type]?.names[locale] ?? doc.type}`,
     url: `./documents/${doc.number}.html`,
     pdf: doc.pdf ? `./documents/${doc.number}.pdf` : undefined,
   }));
@@ -462,8 +452,8 @@ export default function Gallery() {
       <main className="gallery-workspace">
         <nav aria-label={text.samples} className="gallery-nav scrollbar-none">
           {[
-            { title: text.templates, entries: templates },
-            { title: text.documents, entries: documents },
+            { title: sections.templates[locale], entries: templates },
+            { title: sections.documents[locale], entries: documents },
           ].map(({ title, entries }) =>
             entries.length ? (
               <section key={title} className="gallery-section" aria-label={title}>
