@@ -32,6 +32,10 @@ Plus Jakarta Sans (`font-ui` da interface). Pesos aprovados: medium 500, semi-bo
 
 Raios `small 0.25rem`, `soft 0.35rem`, `medium 0.5rem`, `hard 0.8rem`. Bordas finas neutras e sombras discretas só em superfícies; em papel, preferir filete a sombra. Margens internas de 22 mm, rodapé a 13 mm, A4 retrato.
 
+**Hierarquia na FAQ.** A pergunta (`dt`, 12,5 pt a 800) é sempre maior que a frase-resposta em negrito (11 pt) que vem abaixo; os dois nunca podem parecer do mesmo nível. A pergunta é uma frase só, com um único ponto de encerramento (`?`): "O que fazer se não recebi o e-mail?", não "Não recebi o e-mail. O que fazer?".
+
+**Componente nunca cola no texto.** Todo bloco (`.note`, `ol.steps`, tabela, figura) que vem depois de um parágrafo ou de uma resposta tem respiro de pelo menos 4 mm acima. O espaçamento mora em `document.css`, não em estilo local; na FAQ, `.faq dd > .note` e `.faq dd > .steps` já trazem o respiro. Se um componente novo entrar dentro de outro, confira esse respiro antes de entregar.
+
 ## Logo
 
 `logos/elos.svg` é a marca: o quadro estático do `OrganicLogo` da web-lib (hexágono com as mãos). Para atualizar, renderize o componente com `paused` e copie o SVG. Use a marca completa na capa e no cabeçalho do documento, sem recolorir, distorcer ou girar. Nos modelos o logo está embutido como imagem, com texto alternativo. Respeitar área livre mínima de 1/4 da largura do logo.

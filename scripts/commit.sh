@@ -56,8 +56,9 @@ Publicar o documento $number: $title.
 Abrir o HTML e o PDF e conferir o \`checklist.md\`."
 
 if command -v gh >/dev/null 2>&1; then
-  url=$(gh pr view "$branch" --json url -q .url 2>/dev/null ||
-    gh pr create --base main --head "$branch" --title "$message" --body "$body")
+  # Só reaproveita uma PR aberta: a de um ciclo anterior, já mergeada, não recebe a atualização.
+  url=$(gh pr list --head "$branch" --state open --json url -q '.[0].url' 2>/dev/null)
+  [ -n "$url" ] || url=$(gh pr create --base main --head "$branch" --title "$message" --body "$body")
   echo "$url"
 else
   echo "gh não encontrado; abra a PR da branch $branch à mão"

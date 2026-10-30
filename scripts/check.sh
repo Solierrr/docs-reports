@@ -26,8 +26,11 @@ sample() { head -n 3 | tr '\n' ' ' | sed 's/ $//'; }
 if [ ! -f "$source" ]; then
   fail source "$source não existe"
 else
-  lines=$(grep -n 'class="sample"' "$source" | cut -d: -f1 | sample)
-  [ -z "$lines" ] || fail example "selo de exemplo do modelo na linha $lines"
+  # Documento fictício por decisão do dono declara sample: true no checklist e mantém o selo.
+  if ! head -n 10 "$checklist" 2>/dev/null | grep -qE '^sample: *true'; then
+    lines=$(grep -n 'class="sample"' "$source" | cut -d: -f1 | sample)
+    [ -z "$lines" ] || fail example "selo de exemplo do modelo na linha $lines"
+  fi
 
   grep -qiE '<html[^>]* lang="[^"]+"' "$source" || fail lang "<html> sem lang"
 

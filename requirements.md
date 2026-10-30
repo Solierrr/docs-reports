@@ -21,7 +21,6 @@ Todos os scripts rodam em `sh` (Git Bash no Windows) com `grep`, `sed`, `awk` e 
 
 - **Node 24** com `npm --prefix gallery ci`, para o `build.sh` (o script instala se faltar).
 - **Chrome ou Edge** instalado, para o `build.sh` paginar e para o `pdf.sh`. O script procura nos caminhos padrão e aceita `BROWSER=/caminho/do/navegador`. Sem nenhum dos dois, entregue só o HTML e registre a falta no `log.md`; o documento não está concluído.
-- **Plus Jakarta Sans** instalada, para o PDF sair com a fonte da identidade. Sem ela, o PDF usa a fonte de reserva: registre no `log.md`.
 
 ## reviewer
 

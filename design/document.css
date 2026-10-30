@@ -640,6 +640,8 @@ table.data th {
 table.data td {
   padding: 2mm 2mm 2mm 0;
   border-bottom: 0.5pt solid var(--line);
+  /* Endereços e códigos longos quebram dentro da célula em vez de invadir a coluna seguinte. */
+  overflow-wrap: anywhere;
 }
 table.data .num {
   text-align: right;
@@ -842,26 +844,29 @@ kbd,
 
 /* ---------- Perguntas e respostas (C) ---------- */
 
+/* Coluna do tema com float, não grid: o Paged.js não repete as colunas de um grid partido entre folhas,
+   e a continuação cairia na coluna estreita. O recuo à esquerda vale também para a parte que continua.
+   O build põe o título dentro da primeira pergunta (div.first), que leva o filete e não quebra. */
 .faq {
-  display: grid;
-  grid-template-columns: 34mm 1fr;
-  gap: 0 6mm;
-  padding: 5mm 0;
+  display: flow-root;
+  padding: 0 0 5mm 40mm;
+}
+.faq dl > .first {
+  display: flow-root;
+  margin-left: -40mm;
+  padding: 5mm 0 0 40mm;
   border-top: 0.75pt solid var(--ink);
 }
-.faq > h2 {
+.faq h2 {
+  float: left;
+  width: 34mm;
+  margin-left: -40mm;
+  padding-top: 4.6mm;
+  /* O quadradinho é fundo do próprio título, para não virar um ponto de quebra separado do texto. */
+  background: linear-gradient(var(--accent), var(--accent)) no-repeat 0 0 / 2.6mm 2.6mm;
   font-size: 11pt;
 }
-.faq > h2::before {
-  display: block;
-  width: 2.6mm;
-  height: 2.6mm;
-  margin-bottom: 2mm;
-  border-radius: 0.5mm;
-  background: var(--accent);
-  content: "";
-}
-.faq > h2 small {
+.faq h2 small {
   display: block;
   margin-top: 1mm;
   color: var(--muted);
@@ -874,9 +879,10 @@ kbd,
   gap: 4.5mm;
   margin: 0;
 }
+/* A pergunta é o maior nível da FAQ: maior que a frase-resposta em negrito (11pt) logo abaixo. */
 .faq dt {
-  font-size: 10pt;
-  font-weight: 700;
+  font-size: 12.5pt;
+  font-weight: 800;
 }
 .faq dd {
   margin: 1mm 0 0;
@@ -884,6 +890,11 @@ kbd,
 }
 .faq dd strong {
   color: var(--ink);
+}
+/* Aviso e passos dentro da resposta nunca colam no texto de cima. Seletor de filho, não de irmão: o Paged.js descarta o de irmão. */
+.faq dd > .note,
+.faq dd > .steps {
+  margin-top: 4mm;
 }
 .faq dd a {
   color: var(--accent-text);
