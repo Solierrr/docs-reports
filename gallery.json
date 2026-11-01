@@ -1,0 +1,14 @@
+{
+  "name": "docs-reports",
+  "kind": "gallery",
+  "title": {
+    "pt-BR": "Previews de documentos",
+    "en-US": "Document previews",
+    "es-ES": "Vistas previas de documentos"
+  },
+  "description": {
+    "pt-BR": "Modelos de relatório, manual, perguntas frequentes e documento curto, e os documentos publicados.",
+    "en-US": "Report, manual, FAQ and short document templates, and the published documents.",
+    "es-ES": "Plantillas de informe, manual, preguntas frecuentes y documento breve, y los documentos publicados."
+  }
+}
