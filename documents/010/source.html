@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrega de Engenharia de Software</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Entrega de Engenharia de Software</h1>
+    <p class="lead">Apresenta os requisitos da disciplina, como o projeto os atende e o arquivo, a página ou o diagrama que comprova cada um.</p>
+  </div>
+  <div class="meta">
+    <div><span>Período</span><b>2026</b></div>
+    <div><span>Responsável</span><b>Equipe do projeto</b></div>
+    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
+    <div><span>Classificação</span><b>Entrega acadêmica</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">Os requisitos da disciplina e as evidências</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter" id="visao-geral" data-title="Visão geral" data-summary="O que a disciplina pede e o que foi entregue">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O projeto reúne planejamento, requisitos, diagramas, padrões de projeto e testes</h2>
+    <p class="question">O que a disciplina pede e o que a equipe entregou?</p>
+  </header>
+  <div class="prose">
+    <h3>O que a disciplina pede</h3>
+    <p>Engenharia de Software pede a organização do trabalho como um projeto de software. O mínimo para a nota 7,0 tem cinco requisitos, o acompanhamento do planejamento em uma ferramenta como o Jira, o documento de requisitos funcionais, o diagrama de casos de uso, dois diagramas de atividades e a divisão de responsabilidades da equipe. Os extras pedem o uso de padrões de projeto e de um padrão de testes.</p>
+    <h3>O que foi entregue</h3>
+    <p>O planejamento é conduzido no Jira e documentado no Confluence, que também guarda o documento de engenharia de requisitos. Os diagramas de casos de uso e de atividades ficam no board Miro do projeto. A distribuição das demandas e os responsáveis por repositório estão registrados, e o código usa padrões de projeto como Strategy, Transactional Outbox, Repository, Factory e Adapter, com testes automatizados executados pela integração contínua.</p>
+    <h3>Como ler este documento</h3>
+    <p>Cada requisito traz o identificador, o enunciado, a descrição do que foi entregue e um link direto para a evidência, que pode ser um arquivo na branch main do GitHub, uma página do Confluence ou o board do Miro. A tabela resume os requisitos.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>Item</th><th>Tipo</th><th>Requisito</th><th>Evidência de exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>M1</td><td>Mínimo</td><td>Acompanhamento do planejamento no Jira</td><td>Página Nosso Jira no Confluence</td></tr>
+      <tr><td>M2</td><td>Mínimo</td><td>Documento de requisitos funcionais</td><td>Página Engenharia de Requisitos no Confluence</td></tr>
+      <tr><td>M3</td><td>Mínimo</td><td>Diagrama de casos de uso</td><td>Board Miro do projeto</td></tr>
+      <tr><td>M4</td><td>Mínimo</td><td>Dois diagramas de atividades</td><td>Board Miro e CHAT_TURN.md em ai-assistant</td></tr>
+      <tr><td>M5</td><td>Mínimo</td><td>Responsáveis pelos repositórios</td><td>Página Demandas (2º Ano) e CODEOWNERS em web-app</td></tr>
+      <tr><td>E1</td><td>Extra</td><td>Padrões de projeto</td><td>strategies.py em api-recommendation</td></tr>
+      <tr><td>E2</td><td>Extra</td><td>Testes automatizados</td><td>Pasta de testes em api-core</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="minimos" data-title="Requisitos mínimos" data-summary="Planejamento, requisitos, diagramas e responsáveis">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Os cinco requisitos do mínimo têm evidência no Confluence, no Miro ou no GitHub</h2>
+    <p class="question">Como o projeto cumpre cada requisito do mínimo para 7,0?</p>
+  </header>
+  <div class="prose">
+    <h3>M1. Criar um mecanismo de acompanhamento (planejamento) do projeto via Jira, Trello ou semelhante</h3>
+    <p>A equipe planeja o projeto no Jira, nos projetos DEM, DEV, IA e DB. O Confluence descreve o uso da ferramenta nas páginas Nosso Jira, Criação de Issues e Story Points.</p>
+    <p>Link de exemplo, <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/70975489/Nosso+Jira">Nosso Jira no Confluence</a>.</p>
+  </div>
+  <div class="prose">
+    <h3>M2. Elaborar documento com os requisitos funcionais do sistema</h3>
+    <p>A página Engenharia de Requisitos reúne os tipos de usuário e os requisitos funcionais e não funcionais.</p>
+    <p>Link de exemplo, <a href="https://interdesctruction.atlassian.net/wiki/spaces/Arquitetur/pages/26083329/Engenharia+de+Requisitos">Engenharia de Requisitos no Confluence</a>.</p>
+  </div>
+  <div class="prose">
+    <h3>M3. Elaborar o diagrama de casos de uso com todos os casos, relacionados aos requisitos funcionais</h3>
+    <p>O diagrama de casos de uso está no board Miro do projeto.</p>
+    <p>Link de exemplo, <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a>.</p>
+  </div>
+  <div class="prose">
+    <h3>M4. Escolher 2 processos do sistema e elaborar um diagrama de atividades para cada um</h3>
+    <p>Os diagramas de atividades, um para cada processo escolhido, estão no mesmo board Miro. Os repositórios ai-assistant, databricks-stocker e database-console trazem ainda fluxos em Mermaid.</p>
+    <p>Links de exemplo, o <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a> e o fluxo <a href="https://github.com/Solierrr/ai-assistant/blob/main/flows/CHAT_TURN.md">CHAT_TURN.md em ai-assistant</a>.</p>
+  </div>
+  <div class="prose">
+    <h3>M5. Documento com a dinâmica de trabalho da equipe e o responsável por back, front, banco de dados etc.</h3>
+    <p>A página Demandas (2º Ano) distribui os requisitos do ano por matéria. O arquivo CODEOWNERS registra o responsável pelo código em cada repositório, como api-core, web-app e infra-platform.</p>
+    <p>Links de exemplo, a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/27492353/Demandas+2+Ano">Demandas (2º Ano) no Confluence</a> e o arquivo <a href="https://github.com/Solierrr/web-app/blob/main/.github/CODEOWNERS">CODEOWNERS em web-app</a>.</p>
+  </div>
+</section>
+
+<section class="chapter" id="extras" data-title="Requisitos extras" data-summary="Padrões de projeto e testes automatizados">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O código usa cinco padrões de projeto e roda testes a cada PR</h2>
+    <p class="question">Como o projeto cumpre os requisitos extras de Engenharia de Software?</p>
+  </header>
+  <div class="prose">
+    <h3>E1. Usar algum padrão de projeto, indicar em que parte do código e com que finalidade</h3>
+    <p>A tabela indica cada padrão, o arquivo em que ele aparece e a finalidade. O padrão Strategy se repete nos três feeds de recomendação, para ofertas, profissionais e fornecedores.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>Padrão</th><th>Onde</th><th>Finalidade</th></tr></thead>
+    <tbody>
+      <tr><td>Strategy</td><td>strategies.py dos feeds de ofertas, profissionais e fornecedores em api-recommendation</td><td>Regras de ranking intercambiáveis, como a estratégia best_match de profissionais</td></tr>
+      <tr><td>Transactional Outbox</td><td>OutboxPollingScheduler.kt em api-auth</td><td>Publicar os eventos de usuário na Redis Stream sem perder mensagem</td></tr>
+      <tr><td>Repository</td><td>Pasta repository em api-core, com Spring Data JPA</td><td>Isolar o acesso a dados do domínio</td></tr>
+      <tr><td>Factory</td><td>ProblemDetailFactory.java em api-core</td><td>Criar respostas de erro padronizadas (RFC 7807)</td></tr>
+      <tr><td>Adapter</td><td>RecommendationClient.java em api-core</td><td>Encapsular a chamada ao api-recommendation</td></tr>
+    </tbody>
+  </table>
+  <div class="prose">
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/api-recommendation/blob/main/app/feeds/offers/strategies.py">strategies.py de ofertas em api-recommendation</a>.</p>
+  </div>
+  <div class="prose">
+    <h3>E2. Utilizar um padrão de testes e indicar onde será utilizado e como</h3>
+    <p>Os serviços mantêm testes automatizados. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/api-core/tree/main/src/test">pasta src/test em api-core</a>.</p>
+  </div>
+</section>
+
+<section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Oito repositórios sustentam os requisitos da disciplina</h2>
+    <p class="question">Onde está o código e o documento de cada requisito?</p>
+  </header>
+  <table class="data">
+    <thead><tr><th>Repositório</th><th>Papel na disciplina</th><th>Requisitos</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/Solierrr/ai-assistant">ai-assistant</a></td><td>Fluxo em Mermaid de um turno de conversa e testes do agente</td><td>M4, E2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/databricks-stocker">databricks-stocker</a></td><td>Fluxo em Mermaid do pipeline de dados</td><td>M4</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/database-console">database-console</a></td><td>Fluxo em Mermaid da carga de dados</td><td>M4</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-core">api-core</a></td><td>Padrões Repository, Factory e Adapter, testes e integração contínua</td><td>M5, E1, E2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>Padrão Transactional Outbox</td><td>E1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Padrão Strategy nos feeds de recomendação</td><td>E1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/web-app">web-app</a></td><td>Responsável pelo repositório e testes de serviços</td><td>M5, E2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/infra-platform">infra-platform</a></td><td>Responsável pelo repositório</td><td>M5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Entrega acadêmica.</span>
+</section>
+
+</body>
+</html>
