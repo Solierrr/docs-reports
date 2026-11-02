@@ -6,8 +6,8 @@ agents:
     file: agents/orchestrator.md
     role: Sessão principal. Conduz o grilling, despacha, faz a reflexão do ciclo e decide.
     when: sempre; é quem recebe o pedido
-    reads: [AGENTS.md, skills/grilling/SKILL.md, checklists/orchestrator.md, .work/NNN/review.md]
-    writes: [.work/NNN/spec.md, .work/NNN/log.md, documents/NNN/checklist.md]
+    reads: [AGENTS.md, skills/grilling/SKILL.md, checklists/orchestrator.md, documents/NNN/review.md]
+    writes: [.work/NNN/spec.md, documents/NNN/log.md, documents/NNN/checklist.md]
     checklist: checklists/orchestrator.md
     scripts: [new, check, index, commit]
     skills: [grilling]
@@ -37,7 +37,7 @@ agents:
     role: Revisor de design bruto. Ortografia, texto cortado, legibilidade, contraste e organização. Só aponta.
     when: depois de cada montagem com check.sh limpo, e uma olhada final no PDF
     reads: [documents/NNN/index.html, documents/NNN/checklist.md, checklists/reviewer.md]
-    writes: [.work/NNN/review.md, .work/NNN/captures/]
+    writes: [documents/NNN/review.md, .work/NNN/captures/]
     checklist: checklists/reviewer.md
     scripts: [check]
     context: sempre separado de quem escreveu ou montou
@@ -56,7 +56,7 @@ scripts:
   new:
     usage: sh scripts/new.sh <type> <slug> "<título>"
     args: {type: report | manual | faq | document, slug: uma palavra em inglês, título: título do documento}
-    does: Cria documents/NNN/source.html (cópia do modelo com conteúdo de exemplo) e checklist.md, e .work/NNN/ com spec, content, review e log. NNN é o maior número existente mais um.
+    does: Cria documents/NNN/source.html (cópia do modelo com conteúdo de exemplo) e checklist.md, log.md e review.md, e .work/NNN/ com spec e content. NNN é o maior número existente mais um.
     output: o número criado, os caminhos e o documento anterior (número e título)
   check:
     usage: sh scripts/check.sh <NNN>

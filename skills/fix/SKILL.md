@@ -9,7 +9,7 @@ Um ciclo de correção existe para resolver pendências, não para refazer o doc
 
 ## Antes de mudar
 
-1. Leia as pendências do ciclo (`.work/NNN/review.md` e a decisão no `log.md`) e liste só as que são suas: conteúdo e fonte para o writer; montagem, texto cortado, contraste e organização para o builder.
+1. Leia as pendências do ciclo (`documents/NNN/review.md` e a decisão no `documents/NNN/log.md`) e liste só as que são suas: conteúdo e fonte para o writer; montagem, texto cortado, contraste e organização para o builder.
 2. Para cada uma, confira no documento se ela procede. Pendência que não procede não é ignorada em silêncio: responda no seu relato com o motivo e a evidência (página, trecho).
 3. Pendência ambígua: pergunte ao orchestrator antes de adivinhar.
 

@@ -1,5 +1,5 @@
 #!/bin/sh
-# Cria o próximo documento numerado: documents/NNN/ com o source.html do modelo e o checklist, e .work/NNN/.
+# Cria o próximo documento numerado: documents/NNN/ com o source.html do modelo, o checklist, o log e a revisão, e .work/NNN/.
 set -eu
 cd "$(dirname "$0")/.."
 
@@ -49,14 +49,17 @@ mkdir -p "$doc" "$work/captures"
 sed 's#"\.\./design/#"../../design/#g' "templates/$type.html" >"$doc/source.html"
 fill checklists/document.md "$doc/checklist.md"
 fill templates/spec.md "$work/spec.md"
-for file in content review log; do
-  printf '# %s %s\n\n' "$file" "$number" >"$work/$file.md"
-done
+printf '# content %s\n\n' "$number" >"$work/content.md"
+# Log do orchestrator e revisão do reviewer sobem para o Git junto com o documento.
+printf '# log %s\n\n' "$number" >"$doc/log.md"
+printf '# review %s\n\n' "$number" >"$doc/review.md"
 
 echo "$number criado ($type: $slug)"
 echo "  $doc/source.html"
 echo "  $doc/checklist.md"
-echo "  $work/spec.md content.md review.md log.md captures/"
+echo "  $doc/log.md"
+echo "  $doc/review.md"
+echo "  $work/spec.md content.md captures/"
 if [ -n "${last:-}" ]; then
   previous=$(sed -n 's/^title: *"\(.*\)"$/\1/p' "documents/$last/checklist.md" 2>/dev/null | head -n 1 | sed 's/\\"/"/g')
   echo "anterior: $last ${previous:-(sem título)}"

@@ -50,6 +50,7 @@ Publicar o documento $number: $title.
 - \`$doc/source.html\` e \`$doc/index.html\`
 - \`$doc/$number.pdf\`
 - \`$doc/checklist.md\`, com os itens deste documento e os ciclos de revisão
+- \`$doc/log.md\` e \`$doc/review.md\`, com o andamento e as revisões de cada ciclo
 
 ## Como validar
 
