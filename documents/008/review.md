@@ -21,3 +21,7 @@ Revisão independente em contexto separado, com as afirmações novas e os links
 ## Ciclo 6
 
 Mudança pequena. As afirmações novas foram conferidas na main pelo gh api, nos arquivos do api-core, do web-app e do database-console.
+
+## Ciclo 7
+
+Mudança pequena e pedida pelo dono, sem afirmações novas além das indicadas por ele.

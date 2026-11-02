@@ -17,7 +17,7 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 - [x] Nenhum requisito aparece com pendência, parcialidade ou alternativa.
 - [x] Nenhum travessão, meia-risca, dois-pontos em texto visível, reticência de um caractere, seta ou emoji.
 - [x] O nome do projeto e da organização não aparece em texto visível.
-- [x] Capa com título, período 2026, responsável, versão 1.0 de 02/11/2026 e classificação Entrega acadêmica.
+- [x] Capa com título, período 2026 e responsável.
 - [x] Nada fica sozinho no fim de uma folha.
 
 ## Ciclos
@@ -28,3 +28,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 2 | ok | Aprovado sem pendências relevantes, com menores do modelo | Itens deste documento comprovados | Gerar o PDF |
 | PDF | ok | Gerado em A4 retrato | Publicar | Publicar |
 | 3 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
+| 4 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |

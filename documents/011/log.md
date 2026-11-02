@@ -24,3 +24,10 @@
 - **Reviewer (ciclo 3):** pendências a resolver, todas aplicadas neste ciclo.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 4
+
+- **Pedido do dono:** ajustes de capa e de escopo.
+- **O que mudou:** capa sem versão e classificação; o ai-geographic entra no escopo no lugar do ai-operational.
+- **check.sh:** ok.
+- **PDF:** regerado.
