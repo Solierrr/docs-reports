@@ -97,7 +97,7 @@
     <p class="question">O que o projeto reúne nesta disciplina?</p>
   </header>
   <div class="prose">
-    <p>O projeto reúne um banco PostgreSQL de indicadores com segurança por linha, em que cada empresa lê somente os próprios dados. O database-console cria e mantém esse banco, e o databricks-sync o alimenta. Fazem parte ainda a camada analítica em Delta no Databricks, mantida em databricks-stocker, o seed determinístico que povoa os bancos de negócio e de autenticação, a migração dos dados do banco legado por RPA em database-rpa, que roda sob demanda ou em agendamento diário, e a projeção do modelo relacional para o grafo em database-bootstrap.</p>
+    <p>O projeto reúne um banco PostgreSQL de indicadores com segurança por linha, em que cada empresa lê somente os próprios dados. O database-console cria e mantém esse banco, o databricks-sync o alimenta e o api-core o consulta para entregar os dashboards ao web-app. Fazem parte ainda a camada analítica em Delta no Databricks, mantida em databricks-stocker, o seed determinístico que povoa os bancos de negócio e de autenticação, a migração dos dados do banco legado por RPA em database-rpa, que roda sob demanda ou em agendamento diário, e a projeção do modelo relacional para o grafo em database-bootstrap.</p>
     <p>Link de exemplo, <a href="https://github.com/Solierrr/database-console/blob/main/db/analytics/schema.sql">schema.sql em database-console</a>.</p>
   </div>
 </section>
