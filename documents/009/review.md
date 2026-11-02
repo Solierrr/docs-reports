@@ -1,0 +1,11 @@
+# review 009
+
+## Ciclo 1
+
+Revisão independente do index.html. Pendências a resolver. Uma frase sem verbo, uma afirmação que os arquivos linkados não comprovavam e um título que podia ser lido de outra forma.
+
+## Ciclo 2
+
+Revisão independente em contexto separado, com os links conferidos na main pelo gh api e as afirmações lidas nos arquivos linkados. Todas as pendências do ciclo 1 foram resolvidas. O contraste do subtítulo sobre a faixa laranja vem do modelo.
+
+Aprovado sem pendências relevantes.
