@@ -11,36 +11,57 @@ body,
 body {
   margin: 0;
   font-family: var(--font-ui);
+  color: var(--color-operational-ink);
+  background: var(--color-operational-shell);
   overflow: hidden;
 }
 button,
 select {
   font: inherit;
 }
-/* A casca ocupa a janela; o leitor usa o resto da altura */
-.gx-shell {
-  height: 100dvh;
-}
-.gx-body {
+.gallery-workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 17.5rem) minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  align-items: stretch;
+  gap: 1rem;
+  flex: 1;
+  width: 100%;
   min-height: 0;
+  padding: 0 2rem 2rem;
 }
-.gx-main {
+.gallery-nav {
   display: flex;
   flex-direction: column;
-  padding: 1rem;
-  overflow: hidden;
+  gap: 1rem;
+  min-height: 0;
+  min-width: 0;
+  overflow-y: auto;
 }
-.gallery-workspace {
+.gallery-section {
   display: flex;
-  flex: 1;
   flex-direction: column;
   gap: 0.5rem;
   min-height: 0;
 }
-.gallery-note {
+.gallery-section-title {
   margin: 0;
+  padding: 0 0.25rem;
   color: var(--color-operational-muted);
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.gallery-templates {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-height: 100%;
+  min-height: 0;
+}
+.gallery-template-list {
+  min-height: 0;
+  max-height: 100%;
+  overflow-y: auto;
 }
 .viewer {
   display: flex;
@@ -107,6 +128,17 @@ select {
   border: 0;
 }
 @media (max-width: 760px) {
+  .gallery-workspace {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: auto minmax(0, 1fr);
+    align-content: stretch;
+    gap: 16px;
+    padding: 0 12px 1rem;
+  }
+  /* No celular, os dois grupos dividem uma faixa rolável acima do leitor. */
+  .gallery-nav {
+    max-height: 240px;
+  }
   .viewer-title {
     display: none;
   }
