@@ -9,3 +9,7 @@ Revisão independente do index.html. Pendências a resolver. Links para um repos
 Revisão independente em contexto separado, com os links conferidos na main pelo gh api e as afirmações lidas nos arquivos linkados. Todas as pendências do ciclo 1 foram resolvidas. A cor dos links e o contraste da contracapa vêm do modelo.
 
 Aprovado sem pendências relevantes.
+
+## Ciclo 3
+
+Revisão independente em contexto separado, com as afirmações novas e os links conferidos na main pelo gh api. Pendências a resolver, aplicadas em seguida.

@@ -29,3 +29,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 2 | ok | Aprovado sem pendências relevantes, com menores do modelo | Itens deste documento comprovados | Gerar o PDF |
 | PDF | ok | Gerado em A4 retrato | Publicar | Publicar |
 | 3 | ok | Pendências a resolver, aplicadas | Mudança pedida pelo dono incorporada | Publicar |
+| 4 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |

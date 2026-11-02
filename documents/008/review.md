@@ -13,3 +13,7 @@ Aprovado sem pendências relevantes.
 ## Ciclo 4
 
 Revisão independente das mudanças deste ciclo, com as afirmações novas conferidas no código do web-sandbox na main. A afirmação sobre erro por dia foi corrigida em seguida.
+
+## Ciclo 5
+
+Revisão independente em contexto separado, com as afirmações novas e os links conferidos na main pelo gh api. Pendências a resolver, aplicadas em seguida.
