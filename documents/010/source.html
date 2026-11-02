@@ -42,7 +42,7 @@
     <h3>O que a disciplina pede</h3>
     <p>Engenharia de Software pede a organização do trabalho como um projeto de software. O mínimo para a nota 7,0 tem cinco requisitos, o acompanhamento do planejamento em uma ferramenta como o Jira, o documento de requisitos funcionais, o diagrama de casos de uso, dois diagramas de atividades e a divisão de responsabilidades da equipe. Os extras pedem o uso de padrões de projeto e de um padrão de testes.</p>
     <h3>O que foi entregue</h3>
-    <p>O planejamento é conduzido no Jira e documentado no Confluence, que também guarda o documento de engenharia de requisitos. Os diagramas de casos de uso e de atividades ficam no board Miro do projeto. A distribuição das demandas e os responsáveis por repositório estão registrados, e o código usa padrões de projeto como Strategy, Transactional Outbox, Repository, Factory e Adapter, com testes automatizados executados pela integração contínua.</p>
+    <p>O planejamento é conduzido no Jira e documentado no Confluence, que também guarda o documento de engenharia de requisitos. Os diagramas de casos de uso e de atividades ficam no board Miro do projeto. As áreas de atuação, os papéis do Scrum e a rotina de reuniões estão registrados, e o código usa padrões de projeto como Strategy, Transactional Outbox, Repository, Factory e Adapter, com testes automatizados executados pela integração contínua.</p>
     <h3>Como ler este documento</h3>
     <p>Cada requisito traz o identificador, o enunciado, a descrição do que foi entregue e um link direto para a evidência, que pode ser um arquivo na branch main do GitHub, uma página do Confluence ou o board do Miro. A tabela resume os requisitos.</p>
   </div>
@@ -53,7 +53,7 @@
       <tr><td>M2</td><td>Mínimo</td><td>Documento de requisitos funcionais</td><td>Página Engenharia de Requisitos no Confluence</td></tr>
       <tr><td>M3</td><td>Mínimo</td><td>Diagrama de casos de uso</td><td>Board Miro do projeto</td></tr>
       <tr><td>M4</td><td>Mínimo</td><td>Dois diagramas de atividades</td><td>Board Miro e CHAT_TURN.md em ai-assistant</td></tr>
-      <tr><td>M5</td><td>Mínimo</td><td>Responsáveis pelos repositórios</td><td>Página Demandas (2º Ano) e CODEOWNERS em web-app</td></tr>
+      <tr><td>M5</td><td>Mínimo</td><td>Dinâmica de trabalho e responsáveis por área</td><td>Páginas Áreas de Atuação (2º Ano) e Agenda Fixa no Confluence</td></tr>
       <tr><td>E1</td><td>Extra</td><td>Padrões de projeto</td><td>strategies.py em api-recommendation</td></tr>
       <tr><td>E2</td><td>Extra</td><td>Testes automatizados</td><td>Pasta de testes em api-core</td></tr>
     </tbody>
@@ -68,8 +68,8 @@
   </header>
   <div class="prose">
     <h3>M1. Criar um mecanismo de acompanhamento (planejamento) do projeto via Jira, Trello ou semelhante</h3>
-    <p>A equipe planeja o projeto no Jira, nos projetos DEM, DEV, IA e DB. O Confluence descreve o uso da ferramenta nas páginas Nosso Jira, Criação de Issues e Story Points.</p>
-    <p>Link de exemplo, <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/70975489/Nosso+Jira">Nosso Jira no Confluence</a>.</p>
+    <p>A equipe planeja o projeto no Jira do ambiente interdesctruction.atlassian.net, nos projetos DEM, DEV, IA e DB, e a professora da disciplina foi adicionada a esse ambiente. O Confluence do mesmo ambiente descreve o uso da ferramenta nas páginas Nosso Jira, Criação de Issues e Story Points.</p>
+    <p>Links de exemplo, a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/70975489/Nosso+Jira">Nosso Jira no Confluence</a> e o projeto <a href="https://interdesctruction.atlassian.net/jira/software/projects/DEV/summary">DEV no Jira</a>.</p>
   </div>
   <div class="prose">
     <h3>M2. Elaborar documento com os requisitos funcionais do sistema</h3>
@@ -88,8 +88,10 @@
   </div>
   <div class="prose">
     <h3>M5. Documento com a dinâmica de trabalho da equipe e o responsável por back, front, banco de dados etc.</h3>
-    <p>A página Demandas (2º Ano) distribui os requisitos do ano por matéria. O arquivo CODEOWNERS registra o responsável pelo código em cada repositório, como api-core, web-app e infra-platform.</p>
-    <p>Links de exemplo, a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/27492353/Demandas+2+Ano">Demandas (2º Ano) no Confluence</a> e o arquivo <a href="https://github.com/Solierrr/web-app/blob/main/.github/CODEOWNERS">CODEOWNERS em web-app</a>.</p>
+    <p>A página Áreas de Atuação (2º Ano) divide o trabalho em back-end, front-end, banco de dados, BI, IA, infraestrutura, design e Scrum. Ela define o product owner, o scrum master e os revisores oficiais, e cada membro aparece com as suas áreas e com o revisor de outra área. Os repositórios api-core, api-auth, api-recommendation, web-app e infra-platform têm ainda um arquivo CODEOWNERS com o responsável pelo código.</p>
+    <p>O trabalho é acompanhado em quatro espaços do Jira. O DEM guarda as tarefas gerais, o DEV cobre back-end, front-end e a infraestrutura do GitHub, o IA cobre a inteligência artificial e o DB cobre BI e banco de dados. Uma tarefa passa pelos estados tarefas pendentes, em espera, em desenvolvimento, em análise, em testes e concluída, com o estado bloqueado quando há impedimento. A pull request fica em análise até ser aprovada.</p>
+    <p>A rotina tem uma weekly às quartas-feiras, no intervalo, em que cada área do primeiro ano conversa com a área correspondente do segundo ano. Um membro do segundo ano acompanha uma área diferente a cada weekly. Nos últimos 30 dias antes da entrega, o segundo ano faz reuniões diárias. O semestre prevê seis sprints de cerca de quatro semanas, com etapas finais e preparação para a feira de eventos nas últimas.</p>
+    <p>Links de exemplo, a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/1310721/reas+de+Atua+o+2+Ano">Áreas de Atuação (2º Ano) no Confluence</a> e a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/13795346/Agenda+Fixa">Agenda Fixa no Confluence</a>.</p>
   </div>
 </section>
 
@@ -136,10 +138,10 @@
       <tr><td><a href="https://github.com/Solierrr/databricks-stocker">databricks-stocker</a></td><td>Fluxo em Mermaid do pipeline de dados</td><td>M4</td></tr>
       <tr><td><a href="https://github.com/Solierrr/database-console">database-console</a></td><td>Fluxo em Mermaid da carga de dados</td><td>M4</td></tr>
       <tr><td><a href="https://github.com/Solierrr/api-core">api-core</a></td><td>Padrões Repository, Factory e Adapter, testes e integração contínua</td><td>M5, E1, E2</td></tr>
-      <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>Padrão Transactional Outbox</td><td>E1</td></tr>
-      <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Padrão Strategy nos feeds de recomendação</td><td>E1</td></tr>
-      <tr><td><a href="https://github.com/Solierrr/web-app">web-app</a></td><td>Responsável pelo repositório e testes de serviços</td><td>M5, E2</td></tr>
-      <tr><td><a href="https://github.com/Solierrr/infra-platform">infra-platform</a></td><td>Responsável pelo repositório</td><td>M5</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>Padrão Transactional Outbox e responsável pelo código</td><td>M5, E1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Padrão Strategy nos feeds de recomendação e responsável pelo código</td><td>M5, E1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/web-app">web-app</a></td><td>Responsável pelo código e testes de serviços</td><td>M5, E2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/infra-platform">infra-platform</a></td><td>Responsável pelo código</td><td>M5</td></tr>
     </tbody>
   </table>
 </section>
