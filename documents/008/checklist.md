@@ -26,3 +26,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | PDF | ok | Gerado em A4 retrato | Publicar | Publicar |
 | 4 | ok | Pendência de afirmação corrigida | Mudança pedida pelo dono incorporada | Publicar |
 | 5 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
+| 6 | ok | Sem pendências novas | Afirmações conferidas na main | Publicar |

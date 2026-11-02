@@ -24,3 +24,10 @@
 - **Reviewer (ciclo 3):** pendências a resolver, todas aplicadas neste ciclo.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 4
+
+- **Pedido do dono:** citar os dashboards e os endpoints depois que chegaram à main.
+- **O que mudou:** o texto cita o api-core como quem entrega os dashboards ao web-app.
+- **check.sh:** ok.
+- **PDF:** regerado.

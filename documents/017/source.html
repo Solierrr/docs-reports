@@ -166,7 +166,7 @@
     <p class="question">O que o projeto reúne nesta disciplina?</p>
   </header>
   <div class="prose">
-    <p>O banco de indicadores usa segurança por linha, de modo que cada empresa lê apenas os próprios dados e o administrador lê todos, com o contrato de acesso mantido em database-console. A camada gold do databricks-stocker acompanha ofertas, estoque, propostas, pedidos e assinaturas, o pipeline roda no Databricks e também localmente, e um script gera as planilhas de entrada direto do banco de negócio.</p>
+    <p>O banco de indicadores usa segurança por linha, de modo que cada empresa lê apenas os próprios dados e o administrador lê todos, com o contrato de acesso mantido em database-console. A camada gold do databricks-stocker acompanha ofertas, estoque, propostas, pedidos e assinaturas, o pipeline roda no Databricks e também localmente, e um script gera as planilhas de entrada direto do banco de negócio. O api-core entrega esses indicadores por endpoint, um para a plataforma e outro para cada empresa, e o web-app os mostra em dashboards por perfil, com cartões, gráficos, rankings e tabelas. O administrador da plataforma escolhe qualquer empresa, e o administrador de uma empresa vê só a própria.</p>
     <p>Link de exemplo, <a href="https://github.com/Solierrr/databricks-stocker/blob/main/export_inputs.py">export_inputs.py em databricks-stocker</a>.</p>
   </div>
 </section>
@@ -174,7 +174,7 @@
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Cinco repositórios sustentam a entrega</h2>
+    <h2 class="title">Seis repositórios sustentam a entrega</h2>
     <p class="question">Que repositório cumpre qual papel na disciplina?</p>
   </header>
   <table class="data">
@@ -183,7 +183,8 @@
       <tr><td>databricks-stocker</td><td>Pipeline em bronze, silver e gold, painéis, job e testes dos painéis.</td><td><a href="https://github.com/Solierrr/databricks-stocker">databricks-stocker</a></td></tr>
       <tr><td>databricks-sync</td><td>Cópia dos dados de negócio para o Databricks e devolução dos indicadores ao banco de consulta analítica.</td><td><a href="https://github.com/Solierrr/databricks-sync">databricks-sync</a></td></tr>
       <tr><td>database-console</td><td>Esquema do banco de consulta analítica, com o schema gold.</td><td><a href="https://github.com/Solierrr/database-console">database-console</a></td></tr>
-      <tr><td>web-app</td><td>Cartões de KPI na página de analytics do front.</td><td><a href="https://github.com/Solierrr/web-app">web-app</a></td></tr>
+      <tr><td>web-app</td><td>Dashboards de indicadores por perfil, com cartões, gráficos, rankings e tabelas.</td><td><a href="https://github.com/Solierrr/web-app">web-app</a></td></tr>
+      <tr><td>api-core</td><td>Endpoints de indicadores da plataforma e de cada empresa, lidos do banco de indicadores.</td><td><a href="https://github.com/Solierrr/api-core">api-core</a></td></tr>
       <tr><td>docs-reports</td><td>Relatórios gerenciais publicados.</td><td><a href="https://github.com/Solierrr/docs-reports">docs-reports</a></td></tr>
     </tbody>
   </table>
