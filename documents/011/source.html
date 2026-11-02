@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrega de Desenvolvimento de Aplicativos Móveis</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Entrega de Desenvolvimento de Aplicativos Móveis</h1>
+    <p class="lead">Este documento mostra como o aplicativo móvel do projeto atende cada requisito da disciplina, com link para o arquivo que comprova.</p>
+  </div>
+  <div class="meta">
+    <div><span>Período</span><b>2026</b></div>
+    <div><span>Responsável</span><b>Equipe do projeto</b></div>
+    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
+    <div><span>Classificação</span><b>Entrega acadêmica</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">Requisitos e evidências da disciplina</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter" id="visao" data-title="Visão geral" data-summary="O que a disciplina pede e como ler este documento">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O aplicativo móvel atende o requisito mínimo e vários extras</h2>
+    <p class="question">O que a disciplina pede e o que o projeto entrega?</p>
+  </header>
+  <div class="prose">
+    <h3>O que a disciplina pede</h3>
+    <p>A disciplina pede um aplicativo móvel com controle de acesso como requisito mínimo para a nota 7,0. Entre os extras estão o uso de recursos do aparelho, como câmera e GPS, o consumo de APIs, a persistência local de dados, um chatbot operacional, a configuração de perfil com avatar e o uso de notificações.</p>
+    <h3>O que foi entregue</h3>
+    <p>A equipe desenvolveu o aplicativo Android no repositório mobile-app, em Kotlin. O login usa PKCE, a sessão é renovada sozinha e os tokens ficam cifrados no aparelho. O aplicativo consome APIs do projeto, guarda dados em um banco local para leitura sem rede, conversa com um assistente de IA, permite trocar a foto de perfil, recebe notificações push e usa a câmera e a localização do aparelho.</p>
+    <h3>Como ler este documento</h3>
+    <p>Cada requisito tem um identificador, o enunciado oficial, a descrição do que o projeto entrega e links para os arquivos ou pastas que o comprovam, todos na branch main do GitHub. Os identificadores que começam com M são os requisitos mínimos para a nota 7,0, e os que começam com E são os extras. Os identificadores seguem o enunciado oficial da disciplina. Quando o mesmo padrão aparece em mais de um repositório, o documento mostra um exemplo e cita os demais pelo nome.</p>
+  </div>
+</section>
+
+<section class="chapter" id="requisitos" data-title="Requisitos" data-summary="Mínimos, extras e repositórios, com a evidência de cada um">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O aplicativo atende o mínimo de controle de acesso e os extras de câmera, API, banco local, chatbot, perfil, notificações e GPS</h2>
+    <p class="question">Como cada requisito é atendido e onde está a evidência?</p>
+  </header>
+  <div class="prose">
+    <h3>Requisitos mínimos</h3>
+  </div>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>O que o projeto entrega</th><th>Onde ver</th></tr></thead>
+    <tbody>
+      <tr><td><b>M1</b></td><td>Controle de Acesso.</td><td>O aplicativo faz o login com PKCE e renova a sessão automaticamente quando o token expira. Os tokens ficam cifrados com o Android Keystore e a sessão é guardada em DataStore. O servidor api-auth protege as rotas e emite o JWT.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/core/auth/Pkce.kt">Pkce.kt em mobile-app</a><br><a href="https://github.com/Solierrr/api-auth/blob/main/src/main/kotlin/com/solaria/auth/security/config/SecurityConfig.kt">SecurityConfig.kt em api-auth</a></td></tr>
+    </tbody>
+  </table>
+  <div class="prose">
+    <h3>Requisitos extras</h3>
+  </div>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>O que o projeto entrega</th><th>Onde ver</th></tr></thead>
+    <tbody>
+      <tr><td><b>E1</b></td><td>Usar um recurso de hardware do dispositivo (câmera, telefone ou SMS).</td><td>O aplicativo usa a câmera do aparelho para capturar fotos, que podem ser enviadas como anexo no chat.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/core/images/CameraCapture.kt">CameraCapture.kt em mobile-app</a><br><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/communication/ChatAttachments.kt">ChatAttachments.kt em mobile-app</a></td></tr>
+      <tr><td><b>E2</b></td><td>Integrar a utilização de API (consumir).</td><td>O aplicativo consome as APIs de autenticação, projetos, perfil, mensagens e geocodificação de endereço. O documento API.md lista os contratos consumidos.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/docs/API.md">API.md em mobile-app</a><br><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/communication/data/MessengerApi.kt">MessengerApi.kt em mobile-app</a></td></tr>
+      <tr><td><b>E3</b></td><td>Persistência de dados com Firebase ou SQLite.</td><td>O aplicativo usa o Room (SQLite) como cache de leitura offline, com a data da última sincronização, e como fila das mensagens pendentes de envio. A sessão fica no DataStore e os locais salvos do mapa também são guardados no aparelho.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/core/offline/CacheStore.kt">CacheStore.kt em mobile-app</a><br><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/communication/data/MessageOutbox.kt">MessageOutbox.kt em mobile-app</a></td></tr>
+      <tr><td><b>E4</b></td><td>Chatbot operacional.</td><td>O aplicativo envia a pergunta do usuário ao endpoint POST /chat do ai-assistant, com a sessão do usuário, e mostra a resposta, inclusive recusas e falhas. O ai-assistant atende o chat e chama o ai-operational pelo protocolo A2A.</td><td><a href="https://github.com/Solierrr/ai-assistant/blob/main/docs/API.md">API.md em ai-assistant</a><br><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/communication/data/AssistantApi.kt">AssistantApi.kt em mobile-app</a></td></tr>
+      <tr><td><b>E5</b></td><td>Configurar perfil (Avatar).</td><td>O usuário escolhe a foto do perfil e a do banner pelo seletor de fotos. O aplicativo envia a imagem pela API, lê o avatar de volta e o exibe por um componente próprio.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/profile/ProfileScreen.kt">ProfileScreen.kt em mobile-app</a><br><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/profile/data/RemoteProfileRepository.kt">RemoteProfileRepository.kt em mobile-app</a></td></tr>
+      <tr><td><b>E6</b></td><td>Uso de notificação para o App.</td><td>Um serviço do aplicativo recebe o push do Firebase e o aparelho é registrado no api-notify, que cadastra o aparelho da pessoa e envia a notificação. O aplicativo tem uma tela de notificações e declara a permissão POST_NOTIFICATIONS.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/communication/data/PushRegistration.kt">PushRegistration.kt em mobile-app</a><br><a href="https://github.com/Solierrr/api-notify/blob/main/docs/API.md">API.md em api-notify</a></td></tr>
+      <tr><td><b>E8</b></td><td>Utilizar o GPS do dispositivo no projeto.</td><td>O aplicativo obtém a posição do aparelho pelo provedor de localização, pede a permissão e centraliza o mapa nela. A localização também pode ser compartilhada no chat. O manifesto declara as permissões de localização.</td><td><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/discovery/MapLocation.kt">MapLocation.kt em mobile-app</a><br><a href="https://github.com/Solierrr/mobile-app/blob/main/app/src/main/kotlin/com/project/solaria_mobile/feature/discovery/MapScreen.kt">MapScreen.kt em mobile-app</a></td></tr>
+    </tbody>
+  </table>
+  <div class="prose">
+    <h3>Repositórios da disciplina</h3>
+  </div>
+  <table class="data">
+    <thead><tr><th>Repositório</th><th>Papel na disciplina</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/Solierrr/mobile-app">mobile-app</a></td><td>Aplicativo Android com login, chat, mapa, perfil, cache offline e notificações.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>Servidor de autenticação que protege as rotas e emite o JWT usado pelo aplicativo.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-notify">api-notify</a></td><td>Backend que registra o aparelho e envia as notificações push.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/ai-assistant">ai-assistant</a></td><td>Agente que atende o chat do aplicativo.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/ai-operational">ai-operational</a></td><td>Assistente operacional chamado pelo ai-assistant pelo protocolo A2A.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Entrega acadêmica.</span>
+</section>
+
+</body>
+</html>
