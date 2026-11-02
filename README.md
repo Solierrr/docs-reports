@@ -1,42 +1,36 @@
----
-name: readme
-purpose: Apresentação do repositório para pessoas. Agentes começam pelo AGENTS.md.
-read: humanos; agentes não precisam
----
+<p align="center">
+  <img src="./assets/readme/banners/html.png" alt="HTML" width="100%">
+</p>
 
-# docs-reports
+<p align="center">
+  <img src="./assets/readme/stacks/react.png" width="100" hspace="8" alt="React" title="React">
+  <img src="./assets/readme/stacks/typescript.png" width="100" hspace="8" alt="TypeScript" title="TypeScript">
+  <img src="./assets/readme/stacks/vite.png" width="100" hspace="8" alt="Vite" title="Vite">
+</p>
 
-SDD de suporte para produzir **relatórios, manuais e documentos da Solaria em HTML e PDF** com agentes de IA. Os modelos já trazem a identidade visual; os agentes escrevem o conteúdo, montam, revisam e publicam, com checklists e scripts prontos.
+# Publicação de relatórios
 
-## Como usar
+[![License](https://img.shields.io/github/license/Solierrr/docs-reports)](https://github.com/Solierrr/docs-reports/blob/main/LICENSE)
+[![GitHub Last Commit](https://img.shields.io/github/last-commit/Solierrr/docs-reports)](https://github.com/Solierrr/docs-reports/commits)
+[![GitHub Pull Requests](https://img.shields.io/github/issues-pr/Solierrr/docs-reports)](https://github.com/Solierrr/docs-reports/pulls)
+[![Release](https://img.shields.io/github/v/release/Solierrr/docs-reports)](https://github.com/Solierrr/docs-reports/releases)
 
-1. Abra um assistente de IA (Claude Code, Codex, Gemini, Cursor...) na raiz do repositório. Ele lê o [AGENTS.md](AGENTS.md) e assume o papel de orchestrator.
-2. Diga o que precisa. O orchestrator conduz uma entrevista (grilling) até vocês fecharem o entendimento.
-3. Ele cria o próximo número em `documents/`, escreve a spec e os itens de verificação daquele documento. **Aprove a spec**: nada é escrito antes disso.
-4. Writer, builder e reviewer trabalham em ciclos com reflexão do orchestrator, no máximo três antes de voltar para você.
-5. Com o HTML aprovado, sai o PDF e o orchestrator abre a PR com `documents/NNN/`.
+Este repositório organiza a produção de relatórios, manuais, perguntas frequentes e documentos da plataforma. Ele oferece modelos visuais, regras editoriais e etapas de revisão para transformar conteúdo aprovado em páginas prontas para leitura e impressão. A especificação do documento e a revisão visual fazem parte do processo antes da publicação.
 
-## Estrutura
+O conteúdo é montado em HTML, paginado e convertido em PDF por um navegador. Os modelos e os documentos publicados aparecem numa galeria React. O GitHub Actions valida e publica essa galeria pelo GitHub Pages, preservando os arquivos finais de cada documento no histórico do repositório.
 
-| Caminho | Conteúdo |
-| --- | --- |
-| [AGENTS.md](AGENTS.md) | Entrada única para qualquer harness. `CLAUDE.md`, `GEMINI.md` e `.claude/` apontam para ele |
-| [functions.yaml](functions.yaml) | Papéis e scripts em formato de consulta |
-| [requirements.md](requirements.md) | O que cada agente precisa do ambiente |
-| [agents/](agents/AGENTS.md) | orchestrator, writer, builder, reviewer e researcher |
-| [checklists/](checklists/AGENTS.md) | Revisão de design bruto, reflexão do ciclo e verificações estruturais |
-| [scripts/](scripts/AGENTS.md) | `new`, `build`, `check`, `pdf`, `index` e `commit` |
-| [skills/](skills/) | Entrevista obrigatória, fontes em arquivo e aplicação de revisões |
-| [templates/](templates/AGENTS.md) | Modelos `report`, `manual`, `faq` e `document`, com conteúdo de exemplo |
-| [design/](design/AGENTS.md) | Identidade Solaria: tokens, logos e capa |
-| [editorial.md](editorial.md) | Convenções editoriais |
-| [documents/](documents/AGENTS.md) | Entregáveis: `NNN/source.html`, `NNN/index.html` (paginado), `NNN/NNN.pdf` e `NNN/checklist.md` |
-| [gallery/](gallery/) | Prévia dos modelos no GitHub Pages (Vite e React) |
+## Aprofunde-se no Projeto!
 
-Os scripts rodam em `sh` (Git Bash no Windows) sem instalar nada; o PDF usa o Chrome ou o Edge já instalados. A galeria é um app separado, com CI, release-please e Dependabot.
+- [OVERVIEW.md](./docs/OVERVIEW.md), finalidade e regras de produto.
+- [ARCHITECTURE.md](./docs/ARCHITECTURE.md), componentes, dados e integrações.
+- [RUNNING.md](./docs/RUNNING.md), preparação e execução local.
+- [DEPLOY.md](./docs/DEPLOY.md), ambientes e publicação.
+- [STATUS.md](./docs/STATUS.md), limites observados.
+- [Fluxos](./flows/), etapas e casos de erro do repositório.
+- [PENDENCIAS.md](./PENDENCIAS.md), questões para revisão.
 
-## Contribuição e licença
+## Contribuindo
 
-Commits em inglês, minúsculos, no formato `tipo: descrição`, sem escopo entre parênteses. Não versionar `.work/`, credenciais nem rascunhos. Os arquivos de configuração de agentes (`AGENTS.md`, `agents/`, `.claude/`, `skills/`) são versionados de propósito.
-
-Licença: [CC0 1.0 Universal](LICENSE).
+- [CONTRIBUTING.md](https://github.com/Solierrr/.github/blob/main/.github/CONTRIBUTING.md), convenções de contribuição.
+- [CODE_OF_CONDUCT.md](https://github.com/Solierrr/.github/blob/main/CODE_OF_CONDUCT.md), código de conduta.
+- [SECURITY.md](https://github.com/Solierrr/.github/blob/main/SECURITY.md), relato de vulnerabilidades.
