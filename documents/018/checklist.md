@@ -19,7 +19,7 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 - [x] Nenhum dois-pontos, travessão, meia-risca ou reticência em caractere único em texto visível.
 - [x] O nome do projeto e da organização não aparece em texto visível, só em URLs.
 - [x] O documento não diz que algo falta, está pendente ou parcial.
-- [x] Capa com título, período 2026, responsável, versão 1.0 de 02/11/2026 e classificação Entrega acadêmica.
+- [x] Capa com título, período 2026 e responsável.
 - [x] build.sh e check.sh terminam com ok 018 e nada fica sozinho no fim de uma folha.
 
 ## Ciclos
@@ -31,3 +31,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | PDF | ok | Gerado em A4 retrato | Publicar | Publicar |
 | 4 | ok | Pendência de afirmação corrigida | Mudança pedida pelo dono incorporada | Publicar |
 | 5 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
+| 6 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |

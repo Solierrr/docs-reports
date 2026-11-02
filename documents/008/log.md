@@ -39,3 +39,10 @@
 - **O que mudou:** api-core volta à lista do documento 017.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 7
+
+- **Pedido do dono:** ajustes de capa e de escopo.
+- **O que mudou:** o documento 011 passa a listar o ai-geographic.
+- **check.sh:** ok.
+- **PDF:** regerado.

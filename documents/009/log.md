@@ -31,3 +31,10 @@
 - **O que mudou:** o texto cita o api-core como quem entrega os dashboards ao web-app.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 5
+
+- **Pedido do dono:** ajustes de capa e de escopo.
+- **O que mudou:** capa sem versão e classificação.
+- **check.sh:** ok.
+- **PDF:** regerado.

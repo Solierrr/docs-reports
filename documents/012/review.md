@@ -13,3 +13,7 @@ Aprovado sem pendências relevantes.
 ## Ciclo 3
 
 Revisão independente em contexto separado, com as afirmações novas e os links conferidos na main pelo gh api. Pendências a resolver, aplicadas em seguida.
+
+## Ciclo 4
+
+Mudança pequena e pedida pelo dono, sem afirmações novas além das indicadas por ele.

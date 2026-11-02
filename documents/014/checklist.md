@@ -18,7 +18,7 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 - [x] Nenhum requisito é descrito como pendente, parcial ou não feito, e a legenda de status não aparece.
 - [x] Nenhum dois-pontos, travessão, meia-risca ou seta em texto visível.
 - [x] O nome do projeto e o da organização não aparecem em texto visível, só nas URLs.
-- [x] A capa traz título, período 2026, responsável, versão 1.0 de 02/11/2026 e classificação de entrega acadêmica.
+- [x] A capa traz título, período 2026 e responsável.
 - [x] O build e o check.sh terminam em ok 014 e nenhuma folha termina com um elemento sozinho.
 
 ## Ciclos
@@ -29,3 +29,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 2 | ok | Aprovado sem pendências relevantes, com menores do modelo | Itens deste documento comprovados | Gerar o PDF |
 | PDF | ok | Gerado em A4 retrato | Publicar | Publicar |
 | 3 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
+| 4 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |

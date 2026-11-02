@@ -32,3 +32,10 @@
 - **Reviewer (ciclo 4):** pendências a resolver, todas aplicadas neste ciclo.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 5
+
+- **Pedido do dono:** ajustes de capa e de escopo.
+- **O que mudou:** capa sem versão e classificação.
+- **check.sh:** ok.
+- **PDF:** regerado.

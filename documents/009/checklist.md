@@ -17,7 +17,7 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 - [x] Só aparecem requisitos cumpridos, e nenhum texto diz que algo falta, está pendente ou parcial.
 - [x] Nenhum dois-pontos, travessão, meia-risca, seta ou aspas curvas em texto visível.
 - [x] O nome do projeto e o da organização não aparecem em texto visível, só dentro de URLs.
-- [x] A capa traz título, período 2026, responsável, versão 1.0 de 02/11/2026 e classificação Entrega acadêmica.
+- [x] A capa traz título, período 2026 e responsável.
 - [x] A tabela de repositórios lista cada repositório citado com o link da raiz.
 - [x] Nenhum título, tabela ou nota fica sozinho no fim de uma folha.
 
@@ -30,3 +30,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | PDF | ok | Gerado em A4 retrato | Publicar | Publicar |
 | 3 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
 | 4 | ok | Sem pendências novas | Afirmações conferidas na main | Publicar |
+| 5 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |

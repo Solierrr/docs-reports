@@ -17,8 +17,6 @@
   <div class="meta">
     <div><span>Período</span><b>2026</b></div>
     <div><span>Responsável</span><b>Equipe do projeto</b></div>
-    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
-    <div><span>Classificação</span><b>Entrega acadêmica</b></div>
   </div>
 </section>
 
@@ -78,13 +76,13 @@
   </div>
   <div class="prose">
     <h3>M3. Elaborar o diagrama de casos de uso com todos os casos, relacionados aos requisitos funcionais</h3>
-    <p>O diagrama de casos de uso está no board Miro do projeto.</p>
-    <p>Link de exemplo, <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a>.</p>
+    <p>O diagrama de casos de uso está no board Miro do projeto, e a galeria de diagramas do docs-warehouse também o reúne.</p>
+    <p>Links de exemplo, o <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a> e a <a href="https://solierrr.github.io/docs-warehouse/">galeria de diagramas do docs-warehouse</a>.</p>
   </div>
   <div class="prose">
     <h3>M4. Escolher 2 processos do sistema e elaborar um diagrama de atividades para cada um</h3>
-    <p>Os diagramas de atividades, um para cada processo escolhido, estão no mesmo board Miro. Os repositórios ai-assistant, databricks-stocker e database-console trazem ainda fluxos em Mermaid.</p>
-    <p>Links de exemplo, o <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a> e o fluxo <a href="https://github.com/Solierrr/ai-assistant/blob/main/flows/CHAT_TURN.md">CHAT_TURN.md em ai-assistant</a>.</p>
+    <p>Os diagramas de atividades, um para cada processo escolhido, estão no mesmo board Miro. Os repositórios ai-assistant, databricks-stocker e database-console trazem ainda fluxos em Mermaid, e a galeria de diagramas do docs-warehouse guarda os fluxos dos processos do sistema.</p>
+    <p>Links de exemplo, o <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a>, a <a href="https://solierrr.github.io/docs-warehouse/">galeria de diagramas do docs-warehouse</a> e o fluxo <a href="https://github.com/Solierrr/ai-assistant/blob/main/flows/CHAT_TURN.md">CHAT_TURN.md em ai-assistant</a>.</p>
   </div>
   <div class="prose">
     <h3>M5. Documento com a dinâmica de trabalho da equipe e o responsável por back, front, banco de dados etc.</h3>
@@ -103,7 +101,7 @@
   </header>
   <div class="prose">
     <h3>E1. Usar algum padrão de projeto, indicar em que parte do código e com que finalidade</h3>
-    <p>A tabela indica cada padrão, o arquivo em que ele aparece e a finalidade. O padrão Strategy se repete nos três feeds de recomendação, para ofertas, profissionais e fornecedores.</p>
+    <p>A tabela indica cada padrão, o arquivo em que ele aparece e a finalidade. O padrão Strategy se repete nos três feeds de recomendação, para ofertas, profissionais e fornecedores. Esses padrões isolam as regras em classes pequenas e sustentam o TDD adotado pela equipe, porque cada regra pode ser testada sem o restante do sistema.</p>
   </div>
   <table class="data">
     <thead><tr><th>Padrão</th><th>Onde</th><th>Finalidade</th></tr></thead>
@@ -120,7 +118,7 @@
   </div>
   <div class="prose">
     <h3>E2. Utilizar um padrão de testes e indicar onde será utilizado e como</h3>
-    <p>Os serviços mantêm testes automatizados. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
+    <p>O projeto adota o desenvolvimento guiado por testes (TDD) e mantém testes automatizados em todos os serviços, bibliotecas e aplicativos, entre eles api-core, api-auth, api-messenger, api-notify, api-email, api-recommendation, api-google, os assistentes de IA, lib-ai, lib-web, web-app e mobile-app. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
     <p>Link de exemplo, <a href="https://github.com/Solierrr/api-core/tree/main/src/test">pasta src/test em api-core</a>.</p>
   </div>
 </section>
