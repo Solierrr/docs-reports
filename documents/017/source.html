@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrega de Business Intelligence</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Entrega de Business Intelligence</h1>
+    <p class="lead">Este documento descreve como o projeto atende aos requisitos da disciplina de Business Intelligence do 2º ano e indica o arquivo que comprova cada um no GitHub.</p>
+  </div>
+  <div class="meta">
+    <div><span>Período</span><b>2026</b></div>
+    <div><span>Responsável</span><b>Equipe do projeto</b></div>
+    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
+    <div><span>Classificação</span><b>Entrega acadêmica</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">O que está nesta entrega</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter" id="visao" data-title="Visão geral" data-summary="O que a disciplina pede e o que foi entregue">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O projeto tem um fluxo completo de dados para Business Intelligence</h2>
+    <p class="question">O que a disciplina pede e como este documento comprova a entrega?</p>
+  </header>
+  <div class="prose">
+    <h3>O que a disciplina pede</h3>
+    <p>A disciplina pede que uma ferramenta de BI esteja ligada aos dados gerados pela aplicação e que ofereça gráficos de evolução e comparação, cartões de KPI, distribuições, mapa e filtros interativos. Pede também um relatório gerencial que apresente a base, o problema analisado e os indicadores. Entre os extras estão um pipeline no Databricks, um job que o execute, um dashboard sobre a base final, as evidências do job e um relatório que explique o fluxo.</p>
+    <h3>O que foi entregue</h3>
+    <p>Nossa equipe construiu o pipeline no repositório databricks-stocker, em três camadas (bronze, silver e gold). Dois painéis do Databricks, um para a administração e outro para o fornecedor, leem as tabelas da camada gold e reúnem gráficos de barra e de linha, contadores de KPI, histogramas, boxplot, mapa por estado e filtros. Um job com duas tarefas encadeadas executa o pipeline e em seguida dispara a exportação da camada gold. O repositório databricks-sync copia os dados de negócio do PostgreSQL para o Databricks e devolve os indicadores calculados ao banco de consulta analítica. O web-app exibe cartões de KPI na página de analytics, e o relatório gerencial está publicado no repositório docs-reports.</p>
+    <h3>Como ler este documento</h3>
+    <p>Cada requisito tem um identificador (M para os mínimos e E para os extras), o enunciado da disciplina, a descrição do que foi entregue e um link para o arquivo no GitHub, na branch main. Quando o mesmo padrão aparece em mais de um repositório, o documento mostra um exemplo e cita os demais pelo nome.</p>
+  </div>
+</section>
+
+<section class="chapter" id="minimos" data-title="Requisitos mínimos, dados e visualizações" data-summary="Conectividade, gráficos, KPIs e distribuições">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Conectividade, gráficos, KPIs e distribuições estão em código e painéis versionados</h2>
+    <p class="question">Onde está a prova dos primeiros requisitos mínimos?</p>
+  </header>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>Como o projeto atende</th><th>Evidência</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>M1</td>
+        <td>Conectividade com dados. A ferramenta deve estar conectada à fonte de dados que a aplicação gera.</td>
+        <td>O pipeline do Databricks lê as planilhas exportadas do sistema, com uma aba por entidade de origem. O databricks-sync copia os dados de negócio do PostgreSQL para o Databricks e devolve os indicadores calculados ao banco de consulta analítica.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/pipelines/medallion/transformations/bronze.py">bronze.py em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-sync/blob/main/README.md">README.md em databricks-sync</a></td>
+      </tr>
+      <tr>
+        <td>M2</td>
+        <td>Gráficos de barra e linha para evolução e comparação.</td>
+        <td>Os painéis da administração e do fornecedor têm gráficos de barra e de linha sobre as tabelas gold.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/admin-overview.lvdash.json">admin-overview.lvdash.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/supplier-overview.lvdash.json">supplier-overview.lvdash.json em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>M3</td>
+        <td>Cards com os KPIs e desvios quando necessário.</td>
+        <td>Os painéis têm contadores de KPI, e a camada gold calcula os indicadores, entre eles cadastros, propostas por situação, valor aceito e estoque. O mesmo padrão aparece também no web-app, com cartões de KPI na página de analytics.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/admin-overview.lvdash.json">admin-overview.lvdash.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/pipelines/medallion/transformations/gold.py">gold.py em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>M4</td>
+        <td>Histogramas e boxplots para visualizar distribuições.</td>
+        <td>A página Distribuições e filtros do painel da administração traz histogramas do preço e da disponibilidade das ofertas e um boxplot do preço por marca. O painel do fornecedor tem a mesma página, com as ofertas dele. Um teste exige dois histogramas e um boxplot em cada painel.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/admin-overview.lvdash.json">admin-overview.lvdash.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/tests/test_dashboards.py">test_dashboards.py em databricks-stocker</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="minimos2" data-title="Requisitos mínimos, mapa, filtros e relatório" data-summary="Mapa, filtros interativos e relatório gerencial">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Mapa, filtros e relatório gerencial também estão versionados</h2>
+    <p class="question">Onde está a prova dos demais requisitos mínimos?</p>
+  </header>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>Como o projeto atende</th><th>Evidência</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>M5</td>
+        <td>Mapas, se a pesquisa envolver dados geográficos.</td>
+        <td>A página Mapa da demanda do painel da administração mostra um mapa de pontos por estado e uma tabela. A camada gold calcula as unidades cadastradas e as propostas por estado, com uma coordenada aproximada para cada UF.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/admin-overview.lvdash.json">admin-overview.lvdash.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/pipelines/medallion/transformations/geography.py">geography.py em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>M6</td>
+        <td>Filtros interativos por período, grupo etc.</td>
+        <td>O painel da administração tem filtros de situação comercial, marca e validade, além de um filtro de estado no mapa. O painel do fornecedor tem filtros de situação, marca, validade e período das propostas. Um teste exige ao menos três filtros e um seletor de período por painel.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/supplier-overview.lvdash.json">supplier-overview.lvdash.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/tests/test_dashboards.py">test_dashboards.py em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>M7</td>
+        <td>Relatório gerencial com apresentação da base, problema analisado, estratégias de tratamento e KPIs.</td>
+        <td>O relatório 002 apresenta a pergunta analisada, a base de dados, os indicadores com fórmula, resultado e interpretação, as constatações com gráficos, a decisão pedida e a origem de cada número. Os valores vêm das planilhas do databricks-stocker no ambiente de QA. A documentação do databricks-stocker descreve os recortes, a qualidade e o acesso aos dados.</td>
+        <td><a href="https://github.com/Solierrr/docs-reports/blob/main/documents/002/index.html">index.html do documento 002 em docs-reports</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/docs/OVERVIEW.md">OVERVIEW.md em databricks-stocker</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="extras" data-title="Requisitos extras" data-summary="Pipeline, job, dashboard, configuração do job e relatório do fluxo">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Os extras mostram o pipeline, o job e os painéis sobre a base final</h2>
+    <p class="question">Onde está a prova de cada requisito extra?</p>
+  </header>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>Como o projeto atende</th><th>Evidência</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>E1</td>
+        <td>Pipeline no Databricks com leitura, tratamento, transformação, KPIs e salvamento da base final, a partir da fonte gerada pela aplicação.</td>
+        <td>O notebook medallion.py orquestra as camadas. A bronze lê as planilhas exportadas do sistema, a silver limpa e valida os dados, e a gold calcula os KPIs e grava as tabelas finais. Um teste verifica o contrato do pipeline.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/pipelines/medallion/transformations/medallion.py">medallion.py em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/flows/NOTEBOOK_PIPELINE.md">NOTEBOOK_PIPELINE.md em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>E2</td>
+        <td>Job no Databricks para executar o pipeline sem rodar célula por célula (manual ou agendado).</td>
+        <td>O job tem duas tarefas encadeadas. A primeira executa o pipeline de bronze, silver e gold, e a segunda dispara a exportação da camada gold depois do sucesso da primeira.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/exports/medallion_export_job.json">medallion_export_job.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/exports/trigger_gold_sync.py">trigger_gold_sync.py em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>E3</td>
+        <td>Dashboard construído a partir da base final gerada pelo pipeline.</td>
+        <td>Os dois painéis leem as tabelas da camada gold. O painel do fornecedor mostra só os dados de cada fornecedor, por um filtro de linhas ligado à identidade de quem acessa.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/dashboards/admin-overview.lvdash.json">admin-overview.lvdash.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/security/supplier_access.sql">supplier_access.sql em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>E4</td>
+        <td>Evidências do job, com configuração, histórico de execução, status e resultado.</td>
+        <td>A configuração do job está versionada, com as tarefas, os parâmetros e a dependência entre elas. A execução local de verificação dos KPIs está descrita em um fluxo próprio.</td>
+        <td><a href="https://github.com/Solierrr/databricks-stocker/blob/main/exports/medallion_export_job.json">medallion_export_job.json em databricks-stocker</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/flows/LOCAL_KPI_RUN.md">LOCAL_KPI_RUN.md em databricks-stocker</a></td>
+      </tr>
+      <tr>
+        <td>E5</td>
+        <td>Relatório gerencial que explique o fluxo do pipeline, as etapas automatizadas e a relação com os KPIs e o dashboard.</td>
+        <td>O relatório Visão do negócio tem a seção Preparo das informações, que descreve como os dados são recebidos, organizados e consolidados. A documentação do pipeline detalha as etapas automatizadas, e a visão de produto relaciona os KPIs aos recortes.</td>
+        <td><a href="https://github.com/Solierrr/docs-reports/blob/main/documents/relatorio-gerencial-solaria-2026.html">relatório Visão do negócio em docs-reports</a><br><a href="https://github.com/Solierrr/databricks-stocker/blob/main/flows/NOTEBOOK_PIPELINE.md">NOTEBOOK_PIPELINE.md em databricks-stocker</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Cinco repositórios sustentam a entrega</h2>
+    <p class="question">Que repositório cumpre qual papel na disciplina?</p>
+  </header>
+  <table class="data">
+    <thead><tr><th>Repositório</th><th>Papel na disciplina</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr><td>databricks-stocker</td><td>Pipeline em bronze, silver e gold, painéis, job e testes dos painéis.</td><td><a href="https://github.com/Solierrr/databricks-stocker">databricks-stocker</a></td></tr>
+      <tr><td>databricks-sync</td><td>Cópia dos dados de negócio para o Databricks e devolução dos indicadores ao banco de consulta analítica.</td><td><a href="https://github.com/Solierrr/databricks-sync">databricks-sync</a></td></tr>
+      <tr><td>database-console</td><td>Esquema do banco de consulta analítica, com o schema gold.</td><td><a href="https://github.com/Solierrr/database-console">database-console</a></td></tr>
+      <tr><td>web-app</td><td>Cartões de KPI na página de analytics do front.</td><td><a href="https://github.com/Solierrr/web-app">web-app</a></td></tr>
+      <tr><td>docs-reports</td><td>Relatórios gerenciais publicados.</td><td><a href="https://github.com/Solierrr/docs-reports">docs-reports</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Entrega acadêmica.</span>
+</section>
+
+</body>
+</html>
