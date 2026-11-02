@@ -42,7 +42,7 @@
     <h3>O que a disciplina pede</h3>
     <p>A disciplina de Desenvolvimento de Aplicações Dinâmicas pede uma aplicação web em React com TypeScript, organizada em componentes, serviços, rotas e recursos de acessibilidade. Há requisitos mínimos, que valem a nota 7,0, e requisitos extras.</p>
     <h3>O que o projeto entregou</h3>
-    <p>A interface web do projeto é o repositório web-app, construído com Vite, React e TypeScript. O código é organizado por funcionalidade, com serviços de API por domínio, tipos por domínio, estados de carregamento e erro, e um histórico de commits no padrão Conventional Commits. Este documento descreve os requisitos tratados e mostra, para cada um, onde o web-app o atende.</p>
+    <p>A interface web do projeto é o repositório web-app, construído com Vite, React e TypeScript. A entrega web reúne também a biblioteca de componentes lib-web, a entrada de borda worker-failover, o portal público de documentos worker-docs e a interface de administração do QA web-sandbox. O código é organizado por funcionalidade, com serviços de API por domínio, tipos por domínio, estados de carregamento e erro, e um histórico de commits no padrão Conventional Commits. Este documento descreve os requisitos tratados e mostra, para cada um, onde o web-app o atende.</p>
     <h3>Como ler este documento</h3>
     <p>Cada requisito tem um identificador (M para mínimo e E para extra), o enunciado da disciplina, a descrição do que o projeto entrega e um ou dois links diretos. Todos os links apontam para a branch main e abrem o arquivo ou a pasta que comprova o requisito. Os requisitos aparecem em grupos por tema, na ordem em que o código é lido.</p>
   </div>
@@ -231,16 +231,32 @@
   </div>
 </section>
 
+<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Entregas adicionais</h2>
+    <p class="question">O que o projeto reúne nesta disciplina?</p>
+  </header>
+  <div class="prose">
+    <p>A entrega web inclui uma biblioteca de componentes publicada como pacote, com tokens de design e Storybook, um Worker na borda que roteia o idioma, reconhece a procura por caminhos de painéis e mostra uma página temporária quando a origem está indisponível, um portal público de documentos em três idiomas e uma interface de administração do QA com proxy autenticado do Swagger. No web-app, o Storybook tem mais de oitenta arquivos de story, a internacionalização cobre português, inglês e espanhol e as rotas são protegidas por guardas de acesso.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/lib-web">lib-web na branch main</a>.</p>
+  </div>
+</section>
+
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="O repositório que reúne a evidência">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Toda a evidência da disciplina está em um repositório</h2>
+    <h2 class="title">A entrega web reúne cinco repositórios, e a evidência dos requisitos está no web-app</h2>
     <p class="question">Onde fica o código descrito neste documento?</p>
   </header>
   <table class="data">
     <thead><tr><th>Repositório</th><th>Papel na disciplina</th><th>Raiz</th></tr></thead>
     <tbody>
       <tr><td>web-app</td><td>Interface web do projeto, em Vite, React e TypeScript. Reúne o código, a documentação de arquitetura e os workflows citados neste documento.</td><td><a href="https://github.com/Solierrr/web-app">web-app na branch main</a></td></tr>
+      <tr><td>lib-web</td><td>Biblioteca de componentes React com tokens de design, internacionalização e Storybook, publicada como pacote.</td><td><a href="https://github.com/Solierrr/lib-web">lib-web na branch main</a></td></tr>
+      <tr><td>worker-failover</td><td>Cloudflare Worker em TypeScript que escolhe o idioma, encaminha a navegação ao web-app e mostra uma página temporária quando a origem está indisponível.</td><td><a href="https://github.com/Solierrr/worker-failover">worker-failover na branch main</a></td></tr>
+      <tr><td>worker-docs</td><td>Portal público de documentos em React, em português, inglês e espanhol, hospedado em Cloudflare Workers.</td><td><a href="https://github.com/Solierrr/worker-docs">worker-docs na branch main</a></td></tr>
+      <tr><td>web-sandbox</td><td>Interface React de administração do QA, com servidor Fastify e proxy autenticado do Swagger.</td><td><a href="https://github.com/Solierrr/web-sandbox">web-sandbox na branch main</a></td></tr>
     </tbody>
   </table>
 </section>

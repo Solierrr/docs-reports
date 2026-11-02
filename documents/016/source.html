@@ -95,10 +95,22 @@
   </table>
 </section>
 
+<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Entregas adicionais</h2>
+    <p class="question">O que o projeto reúne nesta disciplina?</p>
+  </header>
+  <div class="prose">
+    <p>O projeto mantém um seed determinístico que povoa os bancos de negócio e de autenticação, o acervo mocks-warehouse, que fornece as imagens referenciadas pelas entidades dessa carga, views de exportação no schema export do banco de negócio, papéis de leitura por consumidor com privilégios declarados em contrato e um schema de indicadores com segurança por linha. Esses recursos ficam em database-console, api-core e mocks-warehouse.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/database-console/blob/main/db/roles/contracts.json">contracts.json em database-console</a>.</p>
+  </div>
+</section>
+
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Onde está cada arquivo citado">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Quatro repositórios guardam o banco, a carga, a migração e o Data Mart</h2>
+    <h2 class="title">Cinco repositórios guardam o banco, a carga, a migração e o Data Mart</h2>
     <p class="question">Em qual repositório está cada arquivo citado?</p>
   </header>
   <table class="data">
@@ -108,6 +120,7 @@
       <tr><td><b>api-auth</b></td><td>Banco de autenticação, com as próprias migrations Flyway e o diagrama.</td><td><a href="https://github.com/Solierrr/api-auth">Abrir o repositório</a></td></tr>
       <tr><td><b>database-console</b></td><td>Normalização, carga inicial, Data Mart, SQL avançado, otimização, governança, monitoramento e backup.</td><td><a href="https://github.com/Solierrr/database-console">Abrir o repositório</a></td></tr>
       <tr><td><b>database-rpa</b></td><td>Integração RPA que move os dados do banco legado para o banco normalizado.</td><td><a href="https://github.com/Solierrr/database-rpa">Abrir o repositório</a></td></tr>
+      <tr><td><b>mocks-warehouse</b></td><td>Acervo de imagens referenciadas pelas entidades da carga de dados.</td><td><a href="https://github.com/Solierrr/mocks-warehouse">Abrir o repositório</a></td></tr>
     </tbody>
   </table>
 </section>

@@ -13,3 +13,7 @@ Aprovado sem pendências relevantes.
 ## Ciclo 3
 
 Revisão independente das mudanças deste ciclo. Pendências a resolver, aplicadas em seguida. A folha 5 deixou de ter uma única linha da tabela e os textos que falavam em arquivos versionados foram atualizados.
+
+## Ciclo 4
+
+Revisão independente em contexto separado, com as afirmações novas e os links conferidos na main pelo gh api. Pendências a resolver, aplicadas em seguida.

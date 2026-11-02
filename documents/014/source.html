@@ -143,10 +143,22 @@
   </div>
 </section>
 
+<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Entregas adicionais</h2>
+    <p class="question">O que o projeto reúne nesta disciplina?</p>
+  </header>
+  <div class="prose">
+    <p>A infraestrutura do projeto é descrita como código com Terraform em infra-platform, que cria a rede, o cluster GKE, o Argo CD, o Kong, o cert-manager, o DNS e o acesso na Cloudflare e as leituras do cofre de segredos Infisical, enquanto infra-gitops mantém o estado desejado do cluster em Applications do Argo CD. O cluster é efêmero, ligado e desligado por scripts, e o QA roda em um serviço gratuito mantido ativo por infra-keepalive. A observabilidade usa o coletor OpenTelemetry de infra-otel-collector, os painéis e as quinze regras de alerta de infra-observability e o worker-alerts, que transforma cada alerta em um incidente no Jira, e infra-stress traz testes de carga em k6. O infra-gateway configura o Kong, o worker-failover cuida da entrada de borda, o generic-template padroniza novos repositórios e o repositório .github disponibiliza workflows reutilizáveis de integração contínua e de release.</p>
+    <p>Links de exemplo, <a href="https://github.com/Solierrr/infra-observability">infra-observability na branch main</a> e <a href="https://github.com/Solierrr/infra-keepalive">infra-keepalive na branch main</a>.</p>
+  </div>
+</section>
+
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Onde fica cada evidência">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">A evidência da disciplina está distribuída em seis repositórios</h2>
+    <h2 class="title">A evidência da disciplina está distribuída em quinze repositórios</h2>
     <p class="question">Qual repositório guarda cada parte da entrega?</p>
   </header>
   <table class="data">
@@ -158,6 +170,15 @@
       <tr><td>infra-platform</td><td>Infraestrutura em Terraform no Google Cloud, com rede, cluster GKE e Argo CD. Traz README e template de pull request.</td><td><a href="https://github.com/Solierrr/infra-platform">infra-platform na branch main</a></td></tr>
       <tr><td>infra-gitops</td><td>Estado desejado do cluster. Traz os manifests Kubernetes de cada serviço e as aplicações do Argo CD.</td><td><a href="https://github.com/Solierrr/infra-gitops">infra-gitops na branch main</a></td></tr>
       <tr><td>docs-warehouse</td><td>Documentação de apoio e rulesets de proteção de branch do GitHub.</td><td><a href="https://github.com/Solierrr/docs-warehouse">docs-warehouse na branch main</a></td></tr>
+      <tr><td>infra-otel-collector</td><td>Coletor OpenTelemetry que reúne registros, métricas e rastros dos serviços.</td><td><a href="https://github.com/Solierrr/infra-otel-collector">infra-otel-collector na branch main</a></td></tr>
+      <tr><td>infra-observability</td><td>Painéis do Grafana e regras de alerta da plataforma.</td><td><a href="https://github.com/Solierrr/infra-observability">infra-observability na branch main</a></td></tr>
+      <tr><td>worker-alerts</td><td>Worker que transforma os alertas do monitoramento em incidentes no Jira.</td><td><a href="https://github.com/Solierrr/worker-alerts">worker-alerts na branch main</a></td></tr>
+      <tr><td>infra-stress</td><td>Testes de carga em k6 da aplicação web e da entrada de borda.</td><td><a href="https://github.com/Solierrr/infra-stress">infra-stress na branch main</a></td></tr>
+      <tr><td>infra-keepalive</td><td>Rotina agendada que mantém ativos os serviços do QA.</td><td><a href="https://github.com/Solierrr/infra-keepalive">infra-keepalive na branch main</a></td></tr>
+      <tr><td>infra-gateway</td><td>Configuração do gateway Kong para o QA e para o cluster.</td><td><a href="https://github.com/Solierrr/infra-gateway">infra-gateway na branch main</a></td></tr>
+      <tr><td>worker-failover</td><td>Cloudflare Worker de entrada de borda, com página temporária e telemetria.</td><td><a href="https://github.com/Solierrr/worker-failover">worker-failover na branch main</a></td></tr>
+      <tr><td>generic-template</td><td>Modelo para novos repositórios, com README, coleção Bruno, integração contínua e pull request.</td><td><a href="https://github.com/Solierrr/generic-template">generic-template na branch main</a></td></tr>
+      <tr><td>.github</td><td>Workflows reutilizáveis de integração contínua e de release, disponíveis aos repositórios.</td><td><a href="https://github.com/Solierrr/.github">.github na branch main</a></td></tr>
     </tbody>
   </table>
 </section>

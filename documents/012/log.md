@@ -16,3 +16,11 @@
 ## PDF
 
 - Gerado em A4 retrato pelo pdf.sh depois da aprovação do ciclo 2.
+
+## Ciclo 3
+
+- **Pedido do dono:** mostrar o que o projeto reúne em cada disciplina e apontar os repositórios que fazem parte dela.
+- **O que mudou:** acrescentado o capítulo Entregas adicionais, com um parágrafo e os repositórios citados pelo nome.
+- **Reviewer (ciclo 3):** pendências a resolver, todas aplicadas neste ciclo.
+- **check.sh:** ok.
+- **PDF:** regerado.

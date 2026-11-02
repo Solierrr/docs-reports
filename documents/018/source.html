@@ -163,17 +163,29 @@
       <tr>
         <td>E1</td>
         <td>Complexidade do projeto.</td>
-        <td>O projeto reúne um assistente principal com oito agentes em um grafo LangGraph, RAG sobre o FAQ, ferramentas por MCP, delegação A2A e agente juiz. Reúne também os serviços de IA ai-operational, ai-geographic, ai-validation e ai-accessibility, a biblioteca compartilhada ai-lib e o servidor mcp-database.</td>
+        <td>O projeto reúne um assistente principal com oito agentes em um grafo LangGraph, RAG sobre o FAQ, ferramentas por MCP, delegação A2A e agente juiz. Reúne também os serviços de IA ai-operational, ai-geographic, ai-validation e ai-accessibility, a biblioteca compartilhada lib-ai e o servidor mcp-database.</td>
         <td><a href="https://github.com/Solierrr/ai-assistant/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md em ai-assistant</a></td>
       </tr>
     </tbody>
   </table>
 </section>
 
+<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Entregas adicionais</h2>
+    <p class="question">O que o projeto reúne nesta disciplina?</p>
+  </header>
+  <div class="prose">
+    <p>O projeto reúne guardrails e o protocolo A2A em lib-ai, um servidor MCP próprio em mcp-database, validação por IA de certificados NR-10 e NR-35 e de dados de empresas em ai-validation, moderação de imagem com texto alternativo em ai-accessibility, consulta ao Google Maps por MCP em ai-geographic, consulta de endereço e de dados solares de telhados em api-google e observabilidade de LLM com custo, tokens e latência por etapa, que o api-messenger registra e o web-sandbox exibe.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/lib-ai">lib-ai na branch main</a>.</p>
+  </div>
+</section>
+
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Nove repositórios sustentam a entrega</h2>
+    <h2 class="title">Dez repositórios sustentam a entrega</h2>
     <p class="question">Que repositório cumpre qual papel na disciplina?</p>
   </header>
   <table class="data">
@@ -184,10 +196,11 @@
       <tr><td>ai-geographic</td><td>Copiloto de campo para profissionais, que consulta o assistente principal por A2A.</td><td><a href="https://github.com/Solierrr/ai-geographic">ai-geographic</a></td></tr>
       <tr><td>ai-validation</td><td>Validação de documentos e de dados de empresas, com FastAPI e LangGraph.</td><td><a href="https://github.com/Solierrr/ai-validation">ai-validation</a></td></tr>
       <tr><td>ai-accessibility</td><td>Análise de imagens e sugestão de texto alternativo.</td><td><a href="https://github.com/Solierrr/ai-accessibility">ai-accessibility</a></td></tr>
-      <tr><td>ai-lib</td><td>Biblioteca compartilhada com seleção de provedores, leitura de JWT e comunicação entre agentes.</td><td><a href="https://github.com/Solierrr/ai-lib">ai-lib</a></td></tr>
+      <tr><td>lib-ai</td><td>Biblioteca compartilhada com seleção de provedores, leitura de JWT e comunicação entre agentes.</td><td><a href="https://github.com/Solierrr/lib-ai">lib-ai</a></td></tr>
       <tr><td>mcp-database</td><td>Servidor MCP com ferramentas de consulta de ofertas, fornecedores, profissões e técnicos.</td><td><a href="https://github.com/Solierrr/mcp-database">mcp-database</a></td></tr>
       <tr><td>api-messenger</td><td>Recebe o histórico das conversas e os registros de execução de cada etapa.</td><td><a href="https://github.com/Solierrr/api-messenger">api-messenger</a></td></tr>
       <tr><td>web-sandbox</td><td>Interface de administração do QA com simulação de custo, latência, erros e linha do tempo de cada resposta.</td><td><a href="https://github.com/Solierrr/web-sandbox">web-sandbox</a></td></tr>
+      <tr><td>api-google</td><td>Endereço, fuso horário, tradução e dados solares de telhados, usados pela plataforma e pelo copiloto de campo.</td><td><a href="https://github.com/Solierrr/api-google">api-google</a></td></tr>
     </tbody>
   </table>
 </section>

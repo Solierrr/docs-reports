@@ -24,3 +24,11 @@
 - **Reviewer:** pendências a resolver, a afirmação de erro por dia foi retirada do M14 e o número 1000 foi uniformizado.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 5
+
+- **Pedido do dono:** mostrar o que o projeto reúne em cada disciplina e apontar os repositórios que fazem parte dela.
+- **O que mudou:** tabela de repositórios por disciplina atualizada com os repositórios de cada documento e com o nome atual da biblioteca de IA.
+- **Reviewer (ciclo 5):** pendências a resolver, todas aplicadas neste ciclo.
+- **check.sh:** ok.
+- **PDF:** regerado.

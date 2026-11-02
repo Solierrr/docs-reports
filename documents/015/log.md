@@ -24,3 +24,11 @@
 - **Reviewer (ciclo 3):** pendências a resolver, todas aplicadas neste ciclo.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 4
+
+- **Pedido do dono:** mostrar o que o projeto reúne em cada disciplina e apontar os repositórios que fazem parte dela.
+- **O que mudou:** acrescentado o capítulo Entregas adicionais, com um parágrafo, e atualizada a tabela de repositórios da disciplina.
+- **Reviewer (ciclo 4):** pendências a resolver, todas aplicadas neste ciclo.
+- **check.sh:** ok.
+- **PDF:** regerado.

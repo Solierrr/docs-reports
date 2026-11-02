@@ -90,10 +90,22 @@
   </div>
 </section>
 
+<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Entregas adicionais</h2>
+    <p class="question">O que o projeto reúne nesta disciplina?</p>
+  </header>
+  <div class="prose">
+    <p>O projeto reúne um banco PostgreSQL de indicadores com segurança por linha, em que cada empresa lê somente os próprios dados. O database-console cria e mantém esse banco, e o databricks-sync o alimenta. Fazem parte ainda a camada analítica em Delta no Databricks, mantida em databricks-stocker, o seed determinístico que povoa os bancos de negócio e de autenticação, a migração dos dados do banco legado por RPA em database-rpa, que roda sob demanda ou em agendamento diário, e a projeção do modelo relacional para o grafo em database-bootstrap.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/database-console/blob/main/db/analytics/schema.sql">schema.sql em database-console</a>.</p>
+  </div>
+</section>
+
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Oito repositórios sustentam os requisitos da disciplina</h2>
+    <h2 class="title">Doze repositórios fazem parte da disciplina</h2>
     <p class="question">Onde está o código de cada requisito?</p>
   </header>
   <table class="data">
@@ -107,6 +119,10 @@
       <tr><td><a href="https://github.com/Solierrr/api-core">api-core</a></td><td>Cache do catálogo de fornecedores no Redis</td><td>M2</td></tr>
       <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Consultas Cypher de recomendação por traversal e documentação do grafo</td><td>E1</td></tr>
       <tr><td><a href="https://github.com/Solierrr/database-bootstrap">database-bootstrap</a></td><td>Nós, relações, constraints e índices do grafo</td><td>E1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/database-console">database-console</a></td><td>Banco de indicadores com segurança por linha e seed determinístico dos bancos de negócio e de autenticação</td><td>Entregas adicionais</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/databricks-sync">databricks-sync</a></td><td>Carga dos dados de negócio no Databricks e dos indicadores no banco de indicadores</td><td>Entregas adicionais</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/databricks-stocker">databricks-stocker</a></td><td>Camadas bronze, silver e gold em Delta no Databricks</td><td>Entregas adicionais</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/database-rpa">database-rpa</a></td><td>Migração dos dados do banco legado por RPA, sob demanda ou em agendamento diário</td><td>Entregas adicionais</td></tr>
     </tbody>
   </table>
 </section>
