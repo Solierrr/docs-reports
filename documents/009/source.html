@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrega de Banco de Dados 2</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Entrega de Banco de Dados 2</h1>
+    <p class="lead">Apresenta os requisitos da disciplina, como o projeto os atende e o arquivo que comprova cada um.</p>
+  </div>
+  <div class="meta">
+    <div><span>Período</span><b>2026</b></div>
+    <div><span>Responsável</span><b>Equipe do projeto</b></div>
+    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
+    <div><span>Classificação</span><b>Entrega acadêmica</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">Os requisitos da disciplina e as evidências</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter" id="visao-geral" data-title="Visão geral" data-summary="O que a disciplina pede e o que foi entregue">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O projeto usa MongoDB, Redis e Neo4j em seus serviços</h2>
+    <p class="question">O que a disciplina pede e o que a equipe entregou?</p>
+  </header>
+  <div class="prose">
+    <h3>O que a disciplina pede</h3>
+    <p>Banco de Dados 2 pede o uso de bancos não relacionais em uma aplicação. O mínimo para a nota 7,0 tem dois requisitos, usar o MongoDB em uma interação conversacional e usar o Redis para fila de processamento ou ranking em tempo real. O extra pede o uso do Neo4j com as entidades principais modeladas como grafo.</p>
+    <h3>O que foi entregue</h3>
+    <p>O MongoDB guarda o estado de cada conversa dos agentes de inteligência artificial e também as conversas e mensagens do serviço de mensagens. O Redis sustenta a fila de eventos do serviço de autenticação, com publicação, grupo de consumidores, confirmação de cada evento e reprocessamento das mensagens pendentes. O Neo4j modela fornecedores, ofertas, modelos de equipamento, profissionais, profissões e turnos, e responde às consultas de recomendação por traversal do grafo.</p>
+    <h3>Como ler este documento</h3>
+    <p>Cada requisito aparece com o identificador, o enunciado, a descrição do que foi entregue e um link que abre direto o arquivo de exemplo na branch main do GitHub. Quando o mesmo padrão existe em outros repositórios, o texto cita apenas o nome deles. A tabela a seguir resume os requisitos.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>Item</th><th>Tipo</th><th>Requisito</th><th>Arquivo de exemplo</th></tr></thead>
+    <tbody>
+      <tr><td>M1</td><td>Mínimo</td><td>MongoDB em interação conversacional</td><td>mongo_checkpointer.py em ai-assistant</td></tr>
+      <tr><td>M2</td><td>Mínimo</td><td>Redis para fila de processamento</td><td>OutboxStreamPublisher.kt em api-auth</td></tr>
+      <tr><td>E1</td><td>Extra</td><td>Neo4j com traversal</td><td>candidates.cypher em api-recommendation</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="minimos" data-title="Requisitos mínimos" data-summary="MongoDB em conversas e Redis como fila">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">As conversas ficam no MongoDB e a fila de eventos fica no Redis</h2>
+    <p class="question">Como o projeto cumpre os dois requisitos do mínimo para 7,0?</p>
+  </header>
+  <div class="prose">
+    <h3>M1. Usar o MongoDB em alguma interação conversacional</h3>
+    <p>O agente conversacional do projeto guarda o estado de cada conversa no MongoDB. O checkpointer do LangGraph grava o ponto de cada turno, de modo que uma conversa continua de onde parou. O repositório ai-assistant também mantém no MongoDB a memória de longo prazo de cada usuário.</p>
+    <p>O mesmo mecanismo de checkpointer existe no agente operacional, em ai-operational. No serviço de mensagens, em api-messenger, as conversas entre pessoas e com o chatbot e as mensagens são documentos de coleções do MongoDB. O api-notify também usa o MongoDB para o histórico de notificações.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/ai-assistant/blob/main/src/memory/session/mongo_checkpointer.py">mongo_checkpointer.py em ai-assistant</a>.</p>
+  </div>
+  <div class="prose">
+    <h3>M2. Usar o Redis para fila de processamento e/ou ranking em tempo real</h3>
+    <p>O serviço de autenticação usa uma Redis Stream como fila de processamento de eventos de usuário. A classe OutboxStreamPublisher publica cada evento na stream com XADD. O OutboxPollingScheduler segue o padrão outbox e só marca o evento como publicado depois que o XADD é confirmado. Um grupo de consumidores, configurado em OutboxStreamConsumerConfig, lê a stream, e o UserRegisteredEventListener processa e confirma cada evento com ACK. O OutboxDeadLetterReclaimer reprocessa as mensagens que ficaram pendentes.</p>
+    <p>O Redis também aparece em api-messenger, que guarda a presença dos usuários em tempo real para o chat, e em api-core, que mantém o cache do catálogo de fornecedores.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/api-auth/blob/main/src/main/kotlin/com/solaria/auth/outbox/OutboxStreamPublisher.kt">OutboxStreamPublisher.kt em api-auth</a>.</p>
+  </div>
+</section>
+
+<section class="chapter" id="extras" data-title="Requisitos extras" data-summary="Neo4j com grafo e traversal">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O grafo no Neo4j responde às consultas de recomendação</h2>
+    <p class="question">Como o projeto cumpre o requisito extra de Banco de Dados 2?</p>
+  </header>
+  <div class="prose">
+    <h3>E1. Usar o Neo4j, modelando as entidades principais como grafo e respondendo a ao menos uma pergunta de negócio que exija traversal</h3>
+    <p>As entidades principais do marketplace foram modeladas como grafo. Os nós incluem Supplier, SolarOffer, SolarModel, Technician, Profession, Shift e LocalUnit, ligados por relações entre ofertas, fornecedores, modelos, técnicos, profissões, turnos e experiências. As constraints e os índices do grafo ficam no schema.cypher do repositório database-bootstrap.</p>
+    <p>O grafo responde por traversal a três perguntas de negócio, sobre quais fornecedores têm ofertas válidas de um modelo, quais ofertas valem para uma unidade e quais profissionais atendem a uma necessidade. A consulta de fornecedores percorre Supplier, SolarOffer e SolarModel para ranquear os candidatos. As consultas de ofertas e de profissionais seguem o mesmo padrão.</p>
+    <p>Links de exemplo, a documentação <a href="https://github.com/Solierrr/api-recommendation/blob/main/database/NEO4J.md">NEO4J.md em api-recommendation</a> e a consulta <a href="https://github.com/Solierrr/api-recommendation/blob/main/app/feeds/suppliers/candidates.cypher">candidates.cypher em api-recommendation</a>.</p>
+  </div>
+</section>
+
+<section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Oito repositórios sustentam os requisitos da disciplina</h2>
+    <p class="question">Onde está o código de cada requisito?</p>
+  </header>
+  <table class="data">
+    <thead><tr><th>Repositório</th><th>Papel na disciplina</th><th>Requisitos</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/Solierrr/ai-assistant">ai-assistant</a></td><td>Estado das conversas e memória de longo prazo do agente no MongoDB</td><td>M1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/ai-operational">ai-operational</a></td><td>Estado das conversas do agente operacional no MongoDB</td><td>M1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-messenger">api-messenger</a></td><td>Conversas e mensagens em coleções do MongoDB e presença em tempo real no Redis</td><td>M1, M2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-notify">api-notify</a></td><td>Histórico de notificações no MongoDB</td><td>M1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>Fila de eventos em Redis Stream com padrão outbox</td><td>M2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-core">api-core</a></td><td>Cache do catálogo de fornecedores no Redis</td><td>M2</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Consultas Cypher de recomendação por traversal e documentação do grafo</td><td>E1</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/database-bootstrap">database-bootstrap</a></td><td>Nós, relações, constraints e índices do grafo</td><td>E1</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Entrega acadêmica.</span>
+</section>
+
+</body>
+</html>
