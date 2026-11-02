@@ -1,0 +1,11 @@
+# review 013
+
+## Ciclo 1
+
+Revisão independente do index.html. Pendências a resolver. Algumas afirmações sobre serviços, listas, rotas e autenticação iam além do que o código na main comprova.
+
+## Ciclo 2
+
+Revisão independente em contexto separado, com os links conferidos na main pelo gh api e as afirmações lidas nos arquivos linkados. Todas as pendências do ciclo 1 foram resolvidas. Folhas com pouco conteúdo vêm da divisão em capítulos do modelo.
+
+Aprovado sem pendências relevantes.
