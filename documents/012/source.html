@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrega de Desenvolvimento 2</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Entrega de Desenvolvimento 2</h1>
+    <p class="lead">Este documento mostra como as APIs REST em Java e Kotlin com Spring do projeto atendem cada requisito da disciplina, com link para o arquivo que comprova.</p>
+  </div>
+  <div class="meta">
+    <div><span>Período</span><b>2026</b></div>
+    <div><span>Responsável</span><b>Equipe do projeto</b></div>
+    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
+    <div><span>Classificação</span><b>Entrega acadêmica</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">Requisitos e evidências da disciplina</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter" id="visao" data-title="Visão geral" data-summary="O que a disciplina pede e como ler este documento">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">As APIs REST com Spring atendem todos os requisitos mínimos e vários extras</h2>
+    <p class="question">O que a disciplina pede e o que o projeto entrega?</p>
+  </header>
+  <div class="prose">
+    <h3>O que a disciplina pede</h3>
+    <p>A disciplina pede uma API REST em Java com Spring MVC integrada a um banco SQL Postgres, com Spring Data JPA, CRUD, divisão em pacotes do padrão MVC, validação de entradas e tratamento centralizado de exceções. Os extras incluem documentação com Swagger, uso de procedures e functions do banco, autenticação e autorização com Spring Security e uma segunda API para um banco NoSQL.</p>
+    <h3>O que foi entregue</h3>
+    <p>O repositório api-core reúne a API REST principal, com Spring Boot, JPA e Postgres. Ela separa controller, service, repository, domain e dto, valida os corpos das requisições com Bean Validation e responde erros no formato Problem Details por um tratador central. O contrato OpenAPI é gerado e exportado, a segurança usa JWT e permissões por papel, e a procedure generate_subscription_charge é acionada pelo código Java. O repositório api-messenger traz uma segunda API Java, com MongoDB.</p>
+    <h3>Como ler este documento</h3>
+    <p>Cada requisito tem um identificador, o enunciado oficial, a descrição do que o projeto entrega e links para os arquivos ou pastas que o comprovam, todos na branch main do GitHub. Os identificadores que começam com M são os requisitos mínimos para a nota 7,0, e os que começam com E são os extras. Os identificadores seguem o enunciado oficial da disciplina. Quando o mesmo padrão aparece em mais de um repositório, o documento mostra um exemplo e cita os demais pelo nome.</p>
+  </div>
+</section>
+
+<section class="chapter" id="requisitos" data-title="Requisitos" data-summary="Mínimos, extras e repositórios, com a evidência de cada um">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O api-core cumpre os seis requisitos mínimos e as APIs vão além com OpenAPI, procedure, Spring Security e MongoDB</h2>
+    <p class="question">Como cada requisito é atendido e onde está a evidência?</p>
+  </header>
+  <div class="prose">
+    <h3>Requisitos mínimos</h3>
+  </div>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>O que o projeto entrega</th><th>Onde ver</th></tr></thead>
+    <tbody>
+      <tr><td><b>M1</b></td><td>Criar uma API REST em Java com Spring MVC para um banco SQL Postgres.</td><td>O api-core usa Spring Boot WebMVC e o driver do PostgreSQL. Os controladores REST são organizados por área, como catálogo, empresa, unidade, pedido, proposta e profissional. O contrato da API está em um arquivo OpenAPI e uma coleção Bruno traz as requisições de cada endpoint.</td><td><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/controller">pasta controller em api-core</a><br><a href="https://github.com/Solierrr/api-core/blob/main/openapi.yaml">openapi.yaml em api-core</a></td></tr>
+      <tr><td><b>M2</b></td><td>Utilizar o Spring Data JPA para integrar a aplicação com o Postgres.</td><td>O api-core declara a dependência spring-boot-starter-data-jpa, tem repositórios JPA para o acesso aos dados e entidades mapeadas para as tabelas.</td><td><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/repository">pasta repository em api-core</a><br><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/domain/entity">pasta entity em api-core</a></td></tr>
+      <tr><td><b>M3</b></td><td>Implementar os métodos do CRUD no banco por meio da API.</td><td>A API cria, lista, edita e exclui unidades, contas de energia e fotos da unidade, entre outros recursos. Os serviços guardam as regras de cada operação.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/controller/unit/LocalUnitController.java">LocalUnitController.java em api-core</a><br><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/service">pasta service em api-core</a></td></tr>
+      <tr><td><b>M4</b></td><td>Aplicar a divisão de responsabilidades com os pacotes do padrão MVC.</td><td>O código separa os pacotes controller, service, repository, domain (entidades e enums) e dto (objetos de entrada e de saída). O documento ARCHITECTURE.md descreve as camadas.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/docs/ARCHITECTURE.md">ARCHITECTURE.md em api-core</a><br><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/service">pasta service em api-core</a></td></tr>
+      <tr><td><b>M5</b></td><td>Validar as entradas recebidas pela API.</td><td>Os DTOs de entrada usam Bean Validation e os controladores aplicam @Valid nos corpos das requisições. O mesmo padrão aparece também em api-auth, nas rotas de autenticação.</td><td><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/dto/request">pasta request em api-core</a><br><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/controller/unit/LocalUnitController.java">LocalUnitController.java em api-core</a></td></tr>
+      <tr><td><b>M6</b></td><td>Tratamento centralizado de exceções, com respostas HTTP úteis para o cliente.</td><td>Uma classe @RestControllerAdvice trata as exceções em um só lugar e monta as respostas no formato Problem Details. Há uma exceção própria para regras de negócio, e o acesso negado devolve 403 no mesmo formato.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/exception/handler/GlobalExceptionHandler.java">GlobalExceptionHandler.java em api-core</a><br><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/exception/handler/ProblemDetailFactory.java">ProblemDetailFactory.java em api-core</a></td></tr>
+    </tbody>
+  </table>
+  <div class="prose">
+    <h3>Requisitos extras</h3>
+  </div>
+  <table class="data">
+    <thead><tr><th>Id</th><th>Requisito</th><th>O que o projeto entrega</th><th>Onde ver</th></tr></thead>
+    <tbody>
+      <tr><td><b>E1</b></td><td>Utilizar o Swagger para gerar documentação automática da API.</td><td>O api-core usa o springdoc-openapi, com anotações OpenAPI por área, e exporta o contrato em um arquivo openapi.yaml. O mesmo padrão aparece também em api-messenger.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/openapi.yaml">openapi.yaml em api-core</a><br><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/openapi">pasta openapi em api-core</a></td></tr>
+      <tr><td><b>E2</b></td><td>Acionar as Procedures e Functions criadas na disciplina Modelagem de Dados.</td><td>O api-core aciona a procedure generate_subscription_charge com CALL no SubscriptionRepository, e o endpoint de cobrança está documentado. A migração V1__baseline.sql define a procedure e as functions de trigger.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/repository/company/SubscriptionRepository.java">SubscriptionRepository.java em api-core</a><br><a href="https://github.com/Solierrr/api-core/blob/main/src/main/resources/db/migration/V1__baseline.sql">V1__baseline.sql em api-core</a></td></tr>
+      <tr><td><b>E3</b></td><td>Implementar autenticação e autorização com Spring Security.</td><td>O api-core tem a cadeia de filtros e as regras de acesso do Spring Security, autorização por permissões (RBAC), chave de serviço nas rotas internas e validação do JWT emitido pelo api-auth. O mesmo padrão aparece também em api-auth.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/security/SecurityConfig.java">SecurityConfig.java em api-core</a><br><a href="https://github.com/Solierrr/api-core/tree/main/src/main/java/com/solaria/persistence/security/rbac">pasta rbac em api-core</a></td></tr>
+      <tr><td><b>E4</b></td><td>Criar mais uma API REST em Java com Spring MVC para um banco NoSQL.</td><td>O api-messenger é uma API REST em Java com Spring MVC e Spring Data MongoDB. Os controladores tratam conversas e mensagens e os documentos MongoDB ficam no pacote de modelo. O api-notify é uma terceira API Java com MongoDB, para notificações.</td><td><a href="https://github.com/Solierrr/api-messenger/tree/main/src/main/java/com/solaria/messenger/rest/controller">pasta controller em api-messenger</a><br><a href="https://github.com/Solierrr/api-messenger/tree/main/src/main/java/com/solaria/messenger/core/model">pasta model em api-messenger</a></td></tr>
+    </tbody>
+  </table>
+  <div class="prose">
+    <h3>Repositórios da disciplina</h3>
+  </div>
+  <table class="data">
+    <thead><tr><th>Repositório</th><th>Papel na disciplina</th></tr></thead>
+    <tbody>
+      <tr><td><a href="https://github.com/Solierrr/api-core">api-core</a></td><td>API REST principal, com Spring MVC, Spring Data JPA e Postgres, e os requisitos mínimos.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>API de autenticação em Kotlin com Spring Security, que emite o JWT.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-messenger">api-messenger</a></td><td>Segunda API REST em Java, com MongoDB, para conversas e mensagens.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-notify">api-notify</a></td><td>Terceira API Java com MongoDB, para notificações.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Entrega acadêmica.</span>
+</section>
+
+</body>
+</html>
