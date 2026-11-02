@@ -42,7 +42,7 @@
     <h3>O que a disciplina pede</h3>
     <p>A disciplina pede uma API em FastAPI para um sistema de IA baseado em modelos de linguagem, com escopo definido pelo grupo. O sistema deve ser multiagente, com ao menos cinco agentes criados com LangChain e orquestrados com LangGraph. Pede ainda controle de sessões por usuário, memória de longo prazo, integrações por MCP e A2A, RAG com fonte externa, um agente juiz, guardrails, observabilidade das chamadas e um desenho de arquitetura.</p>
     <h3>O que foi entregue</h3>
-    <p>Nossa equipe construiu o ai-assistant, uma aplicação FastAPI que executa um grafo LangGraph com oito agentes especializados. Os modelos Gemini e Groq são acessados pelo LangChain. A sessão de cada conversa e a memória de longo prazo ficam no MongoDB, e o FAQ da plataforma é consultado por RAG em um banco vetorial Qdrant. O assistente carrega ferramentas do servidor MCP mcp-database, delega pedidos de operação ao ai-operational por A2A e também atende a delegações de outros agentes. Um agente juiz avalia as respostas, e guardrails de entrada e de saída revisam as mensagens. A telemetria de cada etapa segue para o api-messenger.</p>
+    <p>Nossa equipe construiu o ai-assistant, uma aplicação FastAPI que executa um grafo LangGraph com oito agentes especializados. Os modelos Gemini e Groq são acessados pelo LangChain. A sessão de cada conversa e a memória de longo prazo ficam no MongoDB, e o FAQ da plataforma é consultado por RAG em um banco vetorial Qdrant. O assistente carrega ferramentas do servidor MCP mcp-database, delega pedidos de operação ao ai-operational por A2A e também atende a delegações de outros agentes. Um agente juiz avalia as respostas, e guardrails de entrada e de saída revisam as mensagens. A telemetria de cada etapa segue para o api-messenger, e o Sandbox, interface de administração do ambiente de QA, mostra custo, latência e erros em painéis.</p>
     <h3>Como ler este documento</h3>
     <p>Cada requisito tem um identificador (M para os mínimos e E para os extras), o enunciado da disciplina, a descrição do que foi entregue e um link para o arquivo no GitHub, na branch main. Quando o mesmo padrão aparece em mais de um repositório, o documento mostra um exemplo e cita os demais pelo nome. Os identificadores seguem o enunciado oficial da disciplina.</p>
   </div>
@@ -124,16 +124,22 @@
         <td><a href="https://github.com/Solierrr/ai-assistant/blob/main/src/workflow/nodes/input_guardrail_node.py">input_guardrail_node.py em ai-assistant</a><br><a href="https://github.com/Solierrr/ai-assistant/blob/main/flows/GUARDRAILS.md">GUARDRAILS.md em ai-assistant</a></td>
       </tr>
       <tr>
+        <td>M12</td>
+        <td>Observabilidade e SRE, com o custo estimado para cenários de 100 e 1000 usuários semanais.</td>
+        <td>O Sandbox traz uma simulação de custo por usuários semanais. Os cenários padrão são de 100 e de 1000 usuários, e outros valores podem ser acrescentados. A projeção semanal e mensal usa o custo médio por conversa e o número de conversas por usuário por semana observados no período escolhido.</td>
+        <td><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/ai/cost.ts#L1">cost.ts em web-sandbox</a><br><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/ai/CostSimulation.tsx">CostSimulation.tsx em web-sandbox</a></td>
+      </tr>
+      <tr>
         <td>M13</td>
         <td>Observabilidade e SRE, com a latência entre agentes e o tempo total de resposta.</td>
-        <td>O StepTracker mede a latência de cada chamada ao modelo e de cada ferramenta, por etapa, e envia o registro ao api-messenger. Lá, cada etapa guarda o nó, a ordem, o modelo, a conversa e o campo latencyMs.</td>
-        <td><a href="https://github.com/Solierrr/ai-assistant/blob/main/src/workflow/observability/step_tracker.py">step_tracker.py em ai-assistant</a><br><a href="https://github.com/Solierrr/api-messenger/blob/main/src/main/java/com/solaria/messenger/core/model/LlmObservability.java">LlmObservability.java em api-messenger</a></td>
+        <td>O StepTracker mede a latência de cada chamada ao modelo e de cada ferramenta, por etapa, e envia o registro ao api-messenger. Lá, cada etapa guarda o nó, a ordem, o modelo, a conversa e o campo latencyMs. No Sandbox, os painéis mostram a latência p50 e p95 das conversas, e a linha do tempo de cada resposta traz a duração e o modelo de cada nó e o tempo total do turno.</td>
+        <td><a href="https://github.com/Solierrr/ai-assistant/blob/main/src/workflow/observability/step_tracker.py">step_tracker.py em ai-assistant</a><br><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/ai/timeline.tsx">timeline.tsx em web-sandbox</a></td>
       </tr>
       <tr>
         <td>M14</td>
         <td>Observabilidade e SRE, com o índice de erros.</td>
-        <td>Cada chamada ao modelo e cada ferramenta registram o status (ok, limite de uso, tempo esgotado, erro de conexão ou erro) e a mensagem de erro, no mesmo registro de etapa enviado ao api-messenger.</td>
-        <td><a href="https://github.com/Solierrr/ai-assistant/blob/main/src/workflow/observability/step_tracker.py">step_tracker.py em ai-assistant</a><br><a href="https://github.com/Solierrr/api-messenger/blob/main/src/main/java/com/solaria/messenger/core/model/LlmObservability.java">LlmObservability.java em api-messenger</a></td>
+        <td>Cada chamada ao modelo e cada ferramenta registram o status (ok, limite de uso, tempo esgotado, erro de conexão ou erro) e a mensagem de erro, no mesmo registro de etapa enviado ao api-messenger. No Sandbox, os painéis mostram a taxa de erro do período e por assistente, e o bloco do LangSmith traz a taxa de erro das execuções.</td>
+        <td><a href="https://github.com/Solierrr/ai-assistant/blob/main/src/workflow/observability/step_tracker.py">step_tracker.py em ai-assistant</a><br><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/ai/data/stats.ts#L45">stats.ts em web-sandbox</a></td>
       </tr>
       <tr>
         <td>M17</td>
@@ -167,7 +173,7 @@
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Papel de cada repositório na entrega">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Oito repositórios sustentam a entrega</h2>
+    <h2 class="title">Nove repositórios sustentam a entrega</h2>
     <p class="question">Que repositório cumpre qual papel na disciplina?</p>
   </header>
   <table class="data">
@@ -181,6 +187,7 @@
       <tr><td>ai-lib</td><td>Biblioteca compartilhada com seleção de provedores, leitura de JWT e comunicação entre agentes.</td><td><a href="https://github.com/Solierrr/ai-lib">ai-lib</a></td></tr>
       <tr><td>mcp-database</td><td>Servidor MCP com ferramentas de consulta de ofertas, fornecedores, profissões e técnicos.</td><td><a href="https://github.com/Solierrr/mcp-database">mcp-database</a></td></tr>
       <tr><td>api-messenger</td><td>Recebe o histórico das conversas e os registros de execução de cada etapa.</td><td><a href="https://github.com/Solierrr/api-messenger">api-messenger</a></td></tr>
+      <tr><td>web-sandbox</td><td>Interface de administração do QA com simulação de custo, latência, erros e linha do tempo de cada resposta.</td><td><a href="https://github.com/Solierrr/web-sandbox">web-sandbox</a></td></tr>
     </tbody>
   </table>
 </section>
