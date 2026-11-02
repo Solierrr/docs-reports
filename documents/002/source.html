@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onde a negociação da Solaria perde força</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Onde a negociação entre varejista e fornecedor perde força e o que a Diretoria deve decidir?</h1>
+    <p class="lead">Das 30 propostas, 18 foram aceitas, mas nenhuma delas aparece nos pedidos pagos. Este relatório mostra onde a negociação trava e propõe a decisão para a Diretoria.</p>
+    <span class="sample">Dados fictícios de ambiente de testes (QA)</span>
+  </div>
+  <div class="meta">
+    <div><span>Período</span><b>27/05 a 06/10/2026</b></div>
+    <div><span>Para</span><b>Diretoria da Solaria</b></div>
+    <div><span>Versão</span><b>1.0 · 02/11/2026</b></div>
+    <div><span>Classificação</span><b>Uso interno</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">A pergunta de cada seção</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter" id="executivo" data-title="Resposta e decisão pedida" data-summary="O que decidir">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">A negociação funciona até o aceite, mas nada prova que o aceite vira pedido</h2>
+    <p class="question">Onde a negociação perde força?</p>
+  </header>
+  <div class="counter brand">
+    <span class="big">0 de 18</span>
+    <p>propostas aceitas têm um pedido de compra vinculado. As 18 aceitas somam R$ 1.370.560; os 4 pedidos existentes (R$ 14.367 pagos) usam ofertas que não estão em nenhuma delas.</p>
+  </div>
+  <div class="kpis" style="--count:3">
+    <div class="kpi">
+      <span class="label">Taxa de aceite</span>
+      <div class="row"><span class="value">60%</span></div>
+      <span class="formula">Aceitas sobre criadas: 18 ÷ 30</span>
+      <span class="source">Fonte: planilha de fornecedores <a href="#ref-2">[2]</a></span>
+    </div>
+    <div class="kpi">
+      <span class="label">Valor aceito</span>
+      <div class="row"><span class="value">R$ 1,37 mi</span></div>
+      <span class="formula">Soma do total das propostas aceitas</span>
+      <span class="source">Fonte: planilha de fornecedores <a href="#ref-2">[2]</a></span>
+    </div>
+    <div class="kpi">
+      <span class="label">Aguardam o fornecedor</span>
+      <div class="row"><span class="value">6 propostas</span></div>
+      <span class="formula">R$ 496.441, 78,7% do valor em aberto</span>
+      <span class="source">Fonte: planilha de fornecedores <a href="#ref-2">[2]</a></span>
+    </div>
+  </div>
+  <dl class="scqa">
+    <dt>Situação</dt><dd>15 varejistas, 11 fornecedores e 122 ofertas formam o marketplace. O varejista pode pedir uma proposta ou comprar direto de uma oferta.</dd>
+    <dt>Complicação</dt><dd>18 propostas foram aceitas, mas os 4 pedidos existentes (3 pagos, 1 cancelado) usam ofertas que não estão nelas. Seis propostas esperam o fornecedor.</dd>
+    <dt>Questão</dt><dd>Onde a negociação perde força e o que a Diretoria deve decidir?</dd>
+    <dt>Resposta</dt><dd class="answer">Depois do aceite, onde falta o elo entre proposta e pedido; antes dele, na espera do fornecedor e num desconto anunciado que não se sustenta na negociação.</dd>
+  </dl>
+  <div class="ask brand">
+    <span class="eyebrow">Decisão pedida</span>
+    <p>Aprovar que toda proposta aceita gere automaticamente um pedido de compra com pagamento pela Solaria, e adotar a parcela de propostas aceitas com pedido pago como indicador principal da negociação (hoje, 0 de 18).</p>
+    <div class="when"><div>Decidir<b>na próxima reunião da Diretoria</b></div><div>Avaliação<b>30 dias após a liberação</b></div><div>Quem decide<b>Diretoria da Solaria</b></div></div>
+  </div>
+</section>
+
+<section class="chapter" id="base" data-title="A base de dados" data-summary="Origem e limites">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Os números vêm de duas planilhas exportadas do ambiente de testes</h2>
+    <p class="question">De onde vêm os dados e o que eles permitem afirmar?</p>
+  </header>
+  <div class="prose">
+    <p>A Solaria é um projeto estudantil e ainda não tem operação real. Por isso este relatório usa as duas planilhas de entrada da camada de dados (<code>admins.xlsx</code> e <code>fornecedores.xlsx</code>), exportadas do ambiente de testes (QA). Os números ilustram o método e as decisões, mas não medem o mercado.</p>
+  </div>
+  <table class="data">
+    <caption>Tabela 1. Abas usadas e o que cada uma contribui</caption>
+    <thead><tr><th>Planilha · aba (linhas)</th><th>Usada para</th></tr></thead>
+    <tbody>
+      <tr><td>fornecedores · <code>proposal</code> (30), <code>proposal_item</code> (57)</td><td>Situação, valor e desconto negociado das propostas</td></tr>
+      <tr><td>fornecedores · <code>offer</code> (122), <code>model</code> (51), <code>brand</code> (12)</td><td>Preço, desconto anunciado e potência dos painéis</td></tr>
+      <tr><td>fornecedores · <code>purchase_order</code> (4), <code>order_item</code> (8)</td><td>Pedidos de compra, pagamento e ofertas vendidas</td></tr>
+      <tr><td>admins · <code>requester</code> (15), <code>local_unit</code> (64), <code>address</code> (90)</td><td>Estado de cada varejista</td></tr>
+      <tr><td>admins · <code>technical_service</code> (150), <code>professional_review</code> (104)</td><td>Contexto da rede de profissionais</td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Fonte: planilhas de entrada <a href="#ref-1">[1]</a> <a href="#ref-2">[2]</a>. Propostas criadas de 27/05 a 06/10/2026.</p>
+  <div class="note warn">
+    <div><b>Limites</b>Os dados são fictícios e o período é curto (quatro meses e meio). As planilhas não ligam um pedido de compra a uma proposta; por isso a conclusão central é sobre ausência de rastro, não sobre comportamento do varejista. Os números devem ser conferidos na camada Gold do Databricks quando houver um workspace com créditos.</div>
+  </div>
+</section>
+
+<section class="chapter" id="indicadores" data-title="Do dado bruto aos indicadores" data-summary="Fórmulas e leitura">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Oito indicadores medem a negociação da proposta ao pagamento</h2>
+    <p class="question">Como as planilhas viraram indicadores?</p>
+  </header>
+  <table class="data">
+    <caption>Tabela 2. Indicadores, fórmulas e leitura</caption>
+    <thead><tr><th>Indicador</th><th>Fórmula</th><th class="num">Resultado</th><th>Leitura e importância</th></tr></thead>
+    <tbody>
+      <tr><td>Taxa de aceite</td><td>propostas ACCEPTED ÷ propostas</td><td class="num">60,0%</td><td>Seis em dez propostas fecham. Mostra que a negociação funciona.</td></tr>
+      <tr><td>Aceite entre as decididas</td><td>ACCEPTED ÷ (ACCEPTED + REJECTED + CANCELED)</td><td class="num">85,7%</td><td>Quase tudo que se decide é aceito; o que trava é o que fica parado.</td></tr>
+      <tr><td>Valor aceito</td><td>soma de <code>total_amount</code> das ACCEPTED</td><td class="num">R$ 1,37 mi</td><td>É o volume que a Solaria poderia intermediar.</td></tr>
+      <tr><td>Valor em pedidos pagos</td><td>soma de <code>total_amount</code> dos pedidos PAID</td><td class="num">R$ 14,4 mil</td><td>É o volume que de fato foi pago pela plataforma.</td></tr>
+      <tr><td>Aceites com pedido vinculado</td><td>propostas ACCEPTED com oferta em <code>order_item</code> ÷ propostas ACCEPTED</td><td class="num">0 de 18</td><td>Indicador principal: mede se o aceite chega ao pedido. Hoje não há vínculo nos dados.</td></tr>
+      <tr><td>Espera do fornecedor</td><td>propostas AWAITING_SUPPLIER (e seu valor)</td><td class="num">6 · R$ 496 mil</td><td>Dinheiro parado por falta de resposta de quem vende.</td></tr>
+      <tr><td>Preço mediano por Wp</td><td>mediana de <code>unit_price</code> ÷ <code>power_wp</code> (painéis)</td><td class="num">R$ 2,96</td><td>Permite comparar painéis de potências diferentes.</td></tr>
+      <tr><td>Desconto negociado × anunciado</td><td>média de <code>discount</code> × média de <code>discount_percentage</code> (24 itens)</td><td class="num">2,5% × 8,6%</td><td>Mede se o desconto da vitrine sobrevive à negociação.</td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Cálculos próprios sobre as planilhas <a href="#ref-1">[1]</a> <a href="#ref-2">[2]</a>; cada número tem aba e coluna na seção de proveniência.</p>
+  <div class="prose"><p>A cadeia segue do dado bruto (abas <code>proposal</code>, <code>offer</code> e <code>purchase_order</code>) ao indicador, à constatação (uma por página), à decisão e à recomendação, ligadas pela Tabela 3.</p></div>
+</section>
+
+<section class="chapter" id="escala" data-title="A escala da operação" data-summary="Quem e quanto">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Quinze varejistas e onze fornecedores negociam R$ 2,15 milhões em propostas</h2>
+    <p class="question">Qual é o tamanho da operação que estamos analisando?</p>
+  </header>
+  <div class="kpis" style="--count:4">
+    <div class="kpi"><span class="label">Varejistas</span><div class="row"><span class="value">15</span></div><span class="formula">14 pediram proposta</span></div>
+    <div class="kpi"><span class="label">Fornecedores</span><div class="row"><span class="value">11</span></div><span class="formula">6 receberam propostas</span></div>
+    <div class="kpi"><span class="label">Ofertas ativas</span><div class="row"><span class="value">116</span></div><span class="formula">de 122 ofertas</span></div>
+    <div class="kpi"><span class="label">Propostas</span><div class="row"><span class="value">30</span></div><span class="formula">R$ 2.145.289</span></div>
+  </div>
+  <figure class="fig">
+    <div class="head"><b>Da proposta ao aceite</b><span>Propostas criadas de 27/05 a 06/10/2026, em unidades</span></div>
+    <div data-chart='{"type":"funnel","alt":"Funil das 30 propostas: 24 com resposta do fornecedor e 18 aceitas","height":200,"data":[["Propostas criadas",30],["Com resposta do fornecedor",24],["Aceitas",18]]}'></div>
+    <figcaption>Figura 1. Planilha de fornecedores <a href="#ref-2">[2]</a>, aba <code>proposal</code>. Das 30 propostas, 6 aguardam o fornecedor, 3 aguardam o varejista, 2 foram rejeitadas e 1 cancelada.</figcaption>
+  </figure>
+  <div class="prose">
+    <p>Do lado de quem compra, a plataforma tem 55 projetos técnicos e 150 serviços; 93 serviços foram concluídos (62%) e 14% cancelados. A nota média dos profissionais é 4,14 em 5 e praticamente igual entre afiliados (4,18), parceiros (4,15) e independentes (4,00).</p>
+  </div>
+</section>
+
+<section class="chapter" id="ligacao" data-title="Constatação 1: aceite sem pedido" data-summary="Aceite sem pedido">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Nenhum dos 4 pedidos vem de uma proposta aceita</h2>
+    <p class="question">O que acontece com a proposta depois que o varejista aceita?</p>
+  </header>
+  <div class="pull">
+    <span class="big">0 de 4</span>
+    <p>pedidos de compra usam uma oferta de proposta aceita. Os pedidos pagos somam R$ 14.367, contra R$ 1.370.560 aceitos em propostas.</p>
+  </div>
+  <figure class="fig">
+    <div class="head"><b>Valor aceito e valor pago</b><span>Em R$, de 27/05 a 06/10/2026</span></div>
+    <div data-chart='{"type":"bar","height":170,"alt":"Valor das propostas aceitas, R$ 1.370.560, contra pedidos pagos, R$ 14.367","prefix":"R$ ","highlight":["Pedidos pagos"],"table":true,"data":[["Propostas aceitas",1370560],["Pedidos pagos",14367]]}'></div>
+    <figcaption>Figura 2. Planilha de fornecedores <a href="#ref-2">[2]</a>, abas <code>proposal</code>, <code>purchase_order</code> e <code>order_item</code>.</figcaption>
+  </figure>
+  <ol class="keys">
+    <li>Das 18 propostas aceitas, nenhuma tem pedido de compra identificável: as ofertas dos 8 itens vendidos não estão em nenhuma delas.</li>
+    <li>Dos 4 pedidos, 3 foram pagos e 1 cancelado; a taxa da Solaria é de cerca de 0,5% sobre o pedido.</li>
+    <li>Sem esse elo, a Solaria não consegue provar que o aceite virou compra nem cobrar a taxa sobre ele.</li>
+  </ol>
+  <div class="note warn"><div><b>Leitura prudente</b>A planilha não traz uma chave entre proposta e pedido. O resultado indica falta de rastreio, e pode também indicar que o negócio foi fechado fora da plataforma. Em qualquer caso, a Solaria não enxerga o resultado do aceite.</div></div>
+</section>
+
+<section class="chapter" id="preco" data-title="Constatação 2: preço por Wp" data-summary="Variação entre ofertas">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O preço por Wp varia mais de duas vezes entre ofertas de painéis</h2>
+    <p class="question">O varejista consegue comparar preço entre marcas e ofertas?</p>
+  </header>
+  <figure class="fig">
+    <div class="head"><b>Preço por Wp, por marca</b><span>Cada ponto é uma oferta de painel · R$ por Wp · destaque: marca de maior mediana</span></div>
+    <div data-chart='{"type":"boxplot","alt":"Preço por Wp das ofertas de painéis, por marca: a mediana vai de R$ 2,50 (Kaelo) a R$ 3,41 (Terrasol) e há ofertas de R$ 1,98 a R$ 4,24","prefix":"R$ ","highlight":"Terrasol","raw":true,"decimals":2,"data":[["Kaelo",[3.07,2.55,2.44,2.31,3.27,2.28,3.39,2.07,2.41,2.57]],["Ecowatt",[2.43,2.7,2.4,3.83,2.7,3.02]],["SunForge",[2.57,3.73,4.1,3.65,2.66,2.83,2.2,2.51,2.63,3.43,2.41,2.98,3.59,1.98]],["Fotonix",[2.01,3.6,3.8,2.19,2.52,3.1,3.61,3.29,2.63,2.66,2.46,2.86,2.63,3.04]],["Solarix",[2.7,2.3,2.76,3.44,3.21,3.57,2.38,3.58]],["HelioTek",[2.89,2.03,3.3,2.66,3.47,3.53,2.79,3.63,4.24,2.22,3.14,4.06,2.88,2.21]],["Lumina Energia",[3.36,2.91,3.13,3.45,2.44,2.78,3.05]],["Voltara",[3.47,2.9,2.58,3.07,3.67,2.72,2.86,3.57,2.28,3.09,3.77,2.92,3.38,3.41,3.24,2.48]],["Aurelia Solar",[3.5,3.11,3.05,3.07,4.05,2.66,2.4,2.25,3.39,3.48]],["Terrasol",[2.92,2.26,3.64,3.09,3.82,2.93,3.51,3.59,2.35,3.48,3.41]]]}'></div>
+    <figcaption>Figura 3. Planilha de fornecedores <a href="#ref-2">[2]</a>, abas <code>offer</code> e <code>model</code>; 110 ofertas de painéis. Preço por Wp = <code>unit_price</code> ÷ <code>power_wp</code>.</figcaption>
+  </figure>
+  <div class="cols">
+    <figure class="fig">
+      <div class="head"><b>Distribuição do preço por Wp</b><span>110 ofertas · R$ por Wp</span></div>
+      <div data-chart='{"type":"histogram","size":"half","alt":"Distribuição do preço por Wp de 110 ofertas de painéis: a maioria entre R$ 2,00 e R$ 3,50","prefix":"R$ ","decimals":2,"binDecimals":1,"values":[3.5,3.11,3.05,3.07,4.05,2.66,2.4,2.25,3.39,3.48,2.43,2.7,2.4,3.83,2.7,3.02,2.01,3.6,3.8,2.19,2.52,3.1,3.61,3.29,2.63,2.66,2.46,2.86,2.63,3.04,2.89,2.03,3.3,2.66,3.47,3.53,2.79,3.63,4.24,2.22,3.14,4.06,2.88,2.21,3.07,2.55,2.44,2.31,3.27,2.28,3.39,2.07,2.41,2.57,3.36,2.91,3.13,3.45,2.44,2.78,3.05,2.7,2.3,2.76,3.44,3.21,3.57,2.38,3.58,2.57,3.73,4.1,3.65,2.66,2.83,2.2,2.51,2.63,3.43,2.41,2.98,3.59,1.98,2.92,2.26,3.64,3.09,3.82,2.93,3.51,3.59,2.35,3.48,3.41,3.47,2.9,2.58,3.07,3.67,2.72,2.86,3.57,2.28,3.09,3.77,2.92,3.38,3.41,3.24,2.48],"bins":8}'></div>
+      <figcaption>Figura 4. Mesma fonte da Figura 3. Média R$ 2,99; mediana R$ 2,96.</figcaption>
+    </figure>
+    <div class="prose">
+      <h3>O que os números mostram</h3>
+      <p>A mediana geral é R$ 2,96 por Wp, mas as ofertas vão de R$ 1,98 a R$ 4,24. Dentro de uma mesma marca a variação é grande: SunForge vai de R$ 1,98 a R$ 4,10. A marca explica pouco do preço, então o varejista precisa de uma comparação direta por Wp para negociar bem.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="desconto" data-title="Constatação 3: desconto" data-summary="Vitrine e negociação">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">O desconto negociado é de 2,5%, contra 8,6% anunciados</h2>
+    <p class="question">O desconto da vitrine sobrevive à negociação?</p>
+  </header>
+  <div class="cols">
+    <figure class="fig">
+      <div class="head"><b>Desconto anunciado e negociado</b><span>Por faixa do desconto anunciado, em %</span></div>
+      <div data-chart='{"type":"dumbbell","size":"half","alt":"Desconto anunciado e desconto negociado por faixa: em ofertas acima de 10% o negociado médio é 1,25%","suffix":"%","names":["Anunciado","Negociado"],"data":[["Até 5%",3.0,4.0],["6 a 10%",8.8,2.27],["Mais de 10%",15.0,1.25]],"height":220}'></div>
+      <figcaption>Figura 5. Planilha de fornecedores <a href="#ref-2">[2]</a>, abas <code>offer</code> e <code>proposal_item</code>; 24 itens com os dois descontos (5, 15 e 4 por faixa).</figcaption>
+    </figure>
+    <div class="prose">
+      <h3>O que os números mostram</h3>
+      <p>Quanto maior o desconto anunciado, menor o negociado: nas ofertas acima de 10%, o negociado médio é de 1,25%. Só nas ofertas até 5% o negociado supera o anunciado. 16 dos 35 itens com desconto registrado na negociação ficam em 0%.</p>
+    </div>
+  </div>
+  <div class="note warn"><div><b>Tamanho da amostra</b>São 24 itens (5, 15 e 4 por faixa). A direção é clara, mas a precisão é baixa e precisa ser confirmada com mais propostas.</div></div>
+</section>
+
+<section class="chapter" id="concentracao" data-title="Constatação 4: concentração" data-summary="Poucos atores">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Três fornecedores e um estado concentram as propostas</h2>
+    <p class="question">A negociação depende de poucos atores?</p>
+  </header>
+  <div class="pull">
+    <span class="big">74,4%</span>
+    <p>do valor das propostas está em três fornecedores. São Paulo responde por 53% das propostas e 55% do valor.</p>
+  </div>
+  <figure class="fig">
+    <div class="head"><b>Propostas por estado e situação</b><span>Em número de propostas · estado do varejista</span></div>
+    <div data-chart='{"type":"heatmap","alt":"Propostas por estado do varejista e situação: São Paulo concentra 8 aceitas, 4 aguardando o fornecedor e 2 rejeitadas","height":230,"x":["SP","GO","PE","RS","BA"],"y":["Aceita","Ag. fornecedor","Ag. varejista","Rejeitada","Cancelada"],"data":[[0,0,8],[1,0,4],[2,0,2],[3,0,3],[4,0,1],[0,1,4],[1,1,1],[2,1,1],[3,1,0],[4,1,0],[0,2,1],[1,2,1],[2,2,1],[3,2,0],[4,2,0],[0,3,2],[1,3,0],[2,3,0],[3,3,0],[4,3,0],[0,4,1],[1,4,0],[2,4,0],[3,4,0],[4,4,0]]}'></div>
+    <figcaption>Figura 6. Planilhas de administração <a href="#ref-1">[1]</a>, abas <code>requester</code>, <code>local_unit</code> e <code>address</code>, e de fornecedores <a href="#ref-2">[2]</a>, aba <code>proposal</code>. O estado é o mais frequente entre as unidades do varejista.</figcaption>
+  </figure>
+  <div class="cols">
+    <figure class="fig">
+      <div class="head"><b>Valor das propostas por fornecedor</b><span>Em R$ mil · fornecedores sem nome</span></div>
+      <div data-chart='{"type":"rank","size":"half","alt":"Valor das propostas por fornecedor, em R$ mil: os três maiores somam 74,4%","highlight":["Fornecedor A","Fornecedor B","Fornecedor C"],"data":[["Fornecedor A",636],["Fornecedor B",582],["Fornecedor C",379],["Fornecedor D",301],["Fornecedor E",158],["Fornecedor F",89]]}'></div>
+      <figcaption>Figura 7. Planilha de fornecedores <a href="#ref-2">[2]</a>, aba <code>proposal</code>.</figcaption>
+    </figure>
+    <div class="prose">
+      <h3>O que os números mostram</h3>
+      <p>Cinco estados têm propostas, embora as unidades dos varejistas estejam em nove. Os fornecedores A, B e C somam R$ 1.596.652. O maior sozinho responde por 29,7% do valor.</p>
+    </div>
+  </div>
+</section>
+
+<section class="chapter" id="ritmo" data-title="Constatação 5: espera" data-summary="Propostas paradas">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Seis propostas, R$ 496 mil, esperam resposta do fornecedor</h2>
+    <p class="question">O ritmo de propostas se sustenta e quem está parado?</p>
+  </header>
+  <div class="cols">
+    <figure class="fig">
+      <div class="head"><b>Propostas por mês de criação</b><span>Criadas e aceitas · *outubro até o dia 06</span></div>
+      <div data-chart='{"type":"line","size":"half","alt":"Propostas criadas e aceitas por mês de criação: de 7 a 8 por mês entre julho e setembro, com aceite caindo para 2 em setembro","labels":["Mai","Jun","Jul","Ago","Set","Out*"],"series":[{"name":"Criadas","values":[1,5,7,8,7,2]},{"name":"Aceitas","values":[1,2,7,5,2,1],"tone":"accent"}]}'></div>
+      <figcaption>Figura 8. Planilha de fornecedores <a href="#ref-2">[2]</a>, aba <code>proposal</code>, coluna <code>created_at</code>.</figcaption>
+    </figure>
+    <div class="prose">
+      <h3>O que os números mostram</h3>
+      <p>O ritmo é estável: de 7 a 8 propostas por mês entre julho e setembro. Os aceites de setembro e outubro ainda estão baixos provavelmente porque as propostas mais novas ainda estão em aberto. Das 9 propostas em aberto, 6 esperam o fornecedor (78,7% do valor em aberto) e 3 esperam o varejista.</p>
+    </div>
+  </div>
+  <ol class="keys">
+    <li>O gargalo antes do aceite está no fornecedor: dois terços das propostas em aberto esperam por ele.</li>
+    <li>Quatro dos seis fornecedores com propostas têm ao menos uma parada.</li>
+    <li>A planilha não registra a data da resposta, só a última atualização; não dá para medir o prazo de resposta.</li>
+  </ol>
+</section>
+
+<section class="chapter" id="decisao" data-title="Decisão e recomendação" data-summary="Da evidência à ação">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Ligar o aceite ao pedido e ao pagamento é a decisão de maior retorno</h2>
+    <p class="question">O que fazer, em que ordem e com que retorno?</p>
+  </header>
+  <table class="data">
+    <caption>Tabela 3. Da evidência à recomendação</caption>
+    <thead><tr><th>Evidência</th><th>Constatação</th><th>Decisão</th><th>Recomendação</th></tr></thead>
+    <tbody>
+      <tr><td>0 de 18 aceites com pedido; 0 de 4 pedidos em proposta aceita</td><td>O aceite não vira pedido pago rastreável</td><td>Gerar o pedido a partir da proposta aceita</td><td>Vincular proposta, pedido e pagamento no produto e medir a parcela de aceites com pedido</td></tr>
+      <tr><td>6 propostas, R$ 496 mil, esperam o fornecedor</td><td>A espera do fornecedor trava o aceite</td><td>Cobrar resposta em prazo definido</td><td>Alerta ao fornecedor e painel de propostas paradas</td></tr>
+      <tr><td>Desconto de 2,5% contra 8,6% anunciado</td><td>A vitrine promete mais do que a negociação entrega</td><td>Tratar o desconto anunciado como referência, não como garantia</td><td>Mostrar o desconto praticado nas propostas</td></tr>
+      <tr><td>Preço por Wp de R$ 1,98 a R$ 4,24</td><td>O varejista não compara ofertas com facilidade</td><td>Priorizar a comparação por Wp</td><td>Exibir preço por Wp na lista e no comparador</td></tr>
+      <tr><td>74,4% do valor em 3 fornecedores</td><td>A operação depende de poucos atores</td><td>Reduzir o risco de concentração</td><td>Meta de novos fornecedores e de novos estados</td></tr>
+    </tbody>
+  </table>
+  <p class="muted">Cadeia de rastreio: dado → indicador → constatação → decisão → recomendação, conforme as seções anteriores.</p>
+  <div class="counter brand"><span class="big">0 de 18</span><p><b>Resposta à pergunta-guia:</b> a negociação perde força depois do aceite, quando falta o elo com o pedido, e antes dele, na espera do fornecedor. Pedimos à Diretoria gerar o pedido a partir da proposta aceita e medir a parcela de aceites com pedido.</p></div>
+  <div class="cols">
+    <div class="note"><div><b>Retorno</b>Cada 10% do valor aceito convertido em pedido são R$ 137.056 de volume, e a taxa de cerca de 0,5% rende R$ 685.</div></div>
+    <div class="note warn"><div><b>Risco</b>Obrigar o pagamento pela plataforma pode afastar fornecedores que preferem fechar por fora. Medir a parcela de aceites com pedido antes e depois da liberação.</div></div>
+    <div class="note"><div><b>Oportunidade</b>Com o elo, a parcela de aceites com pedido vira o indicador que une varejista, fornecedor e Diretoria.</div></div>
+  </div>
+</section>
+
+<section class="chapter" id="proveniencia" data-title="Proveniência dos dados" data-summary="Aba, coluna e fórmula">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Cada número vem de uma aba e de uma coluna das planilhas</h2>
+    <p class="question">Como conferir cada número deste relatório?</p>
+  </header>
+  <table class="data">
+    <caption>Tabela 4. Proveniência dos números principais</caption>
+    <thead><tr><th>Número</th><th>Aba · colunas</th><th>Cálculo</th></tr></thead>
+    <tbody>
+      <tr><td>30 propostas; 18 aceitas; 60%</td><td>fornecedores · <code>proposal</code>: <code>status</code></td><td>contagem por <code>status</code></td></tr>
+      <tr><td>R$ 1.370.560 aceitos</td><td>fornecedores · <code>proposal</code>: <code>status</code>, <code>total_amount</code></td><td>soma das ACCEPTED</td></tr>
+      <tr><td>R$ 14.367 pagos; 4 pedidos</td><td>fornecedores · <code>purchase_order</code>: <code>status</code>, <code>total_amount</code></td><td>soma dos PAID</td></tr>
+      <tr><td>0 de 4 pedidos em proposta aceita</td><td>fornecedores · <code>order_item</code>: <code>offer_id</code>; <code>proposal_item</code>: <code>offer_id</code>, <code>proposal_id</code></td><td>ofertas dos itens vendidos que estão em itens de propostas ACCEPTED</td></tr>
+      <tr><td>R$ 2,96 por Wp</td><td>fornecedores · <code>offer</code>: <code>unit_price</code>; <code>model</code>: <code>power_wp</code>, <code>product_type</code></td><td>mediana de <code>unit_price</code> ÷ <code>power_wp</code> dos painéis</td></tr>
+      <tr><td>2,5% × 8,6%</td><td>fornecedores · <code>proposal_item</code>: <code>discount</code>; <code>offer</code>: <code>discount_percentage</code></td><td>médias dos 24 itens com os dois valores</td></tr>
+      <tr><td>74,4% em 3 fornecedores</td><td>fornecedores · <code>proposal</code>: <code>supplier_id</code>, <code>total_amount</code></td><td>três maiores somas ÷ soma total</td></tr>
+      <tr><td>85,7% de aceite entre as decididas</td><td>fornecedores · <code>proposal</code>: <code>status</code></td><td>ACCEPTED ÷ (ACCEPTED + REJECTED + CANCELED) = 18 ÷ 21</td></tr>
+      <tr><td>R$ 630.879 em aberto; 78,7% no fornecedor</td><td>fornecedores · <code>proposal</code>: <code>status</code>, <code>total_amount</code></td><td>soma das AWAITING_*; AWAITING_SUPPLIER ÷ soma</td></tr>
+      <tr><td>116 ofertas ativas de 122; 12 marcas; 51 modelos</td><td>fornecedores · <code>offer</code>: <code>commercial_status</code>; <code>brand</code>; <code>model</code></td><td>contagem de linhas e de ACTIVE</td></tr>
+      <tr><td>R$ 1,98 a R$ 4,24 por Wp; 110 painéis</td><td>fornecedores · <code>offer</code>, <code>model</code></td><td>mínimo e máximo de <code>unit_price</code> ÷ <code>power_wp</code></td></tr>
+      <tr><td>1,25% negociado nas ofertas acima de 10%; 16 de 35 itens em 0%</td><td>fornecedores · <code>proposal_item</code>: <code>discount</code>; <code>offer</code>: <code>discount_percentage</code></td><td>média por faixa; contagem de <code>discount</code> = 0</td></tr>
+      <tr><td>SP: 53% das propostas e 55% do valor; 29,7% no maior fornecedor</td><td>fornecedores · <code>proposal</code>; admins · <code>address</code></td><td>propostas e soma de <code>total_amount</code> por estado e por fornecedor</td></tr>
+      <tr><td>14 varejistas com proposta; 80% e 75% no funil; R$ 2.145.289 em propostas</td><td>fornecedores · <code>proposal</code>: <code>requester_id</code>, <code>status</code>, <code>total_amount</code></td><td>varejistas distintos; 24 ÷ 30 e 18 ÷ 24; soma de <code>total_amount</code></td></tr>
+      <tr><td>Taxa de cerca de 0,5%</td><td>fornecedores · <code>purchase_order</code>: <code>fee_amount</code>, <code>subtotal_amount</code></td><td>média de <code>fee_amount</code> ÷ <code>subtotal_amount</code></td></tr>
+      <tr><td>55 projetos; 150 serviços; 62% concluídos; 14% cancelados; nota 4,14</td><td>admins · <code>technical_project</code>, <code>technical_service</code>: <code>status</code>; <code>professional_review</code>: <code>rating</code></td><td>contagens por <code>status</code>; média de <code>rating</code></td></tr>
+      <tr><td>Propostas por estado</td><td>admins · <code>requester</code>, <code>local_unit</code>, <code>address</code>: <code>state</code></td><td>estado mais frequente das unidades de cada varejista</td></tr>
+    </tbody>
+  </table>
+  <ol class="refs">
+    <li id="ref-1"><div><b>admins.xlsx</b>Planilha de entrada da camada de dados para a administração: varejistas, unidades, endereços, projetos, serviços e avaliações.<p class="muted">Solaria, repositório databricks-stocker, pasta <code>inputs</code>. Exportada do ambiente de testes (QA).</p></div></li>
+    <li id="ref-2"><div><b>fornecedores.xlsx</b>Planilha de entrada da camada de dados para fornecedores: marcas, modelos, ofertas, propostas e pedidos.<p class="muted">Solaria, repositório databricks-stocker, pasta <code>inputs</code>. Exportada do ambiente de testes (QA).</p></div></li>
+  </ol>
+  <div class="note"><div><b>Cálculos próprios</b>Taxas, medianas, médias e somas foram calculadas com pandas a partir das planilhas, com as fórmulas da Tabela 2.</div></div>
+  <div class="note"><div><b>A conferir no Databricks</b>Repetir os cálculos na camada Gold quando houver um workspace com créditos e comparar com esta tabela. Divergências devem ser registradas no <code>log.md</code> deste documento.</div></div>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Exclusivo de uso interno. Dados fictícios de ambiente de testes.</span>
+</section>
+
+</body>
+</html>
