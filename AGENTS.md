@@ -48,9 +48,9 @@ O que cada um lê, escreve e precisa está em [functions.yaml](functions.yaml). 
 | [templates/](templates/AGENTS.md) | Modelos `report`, `manual`, `faq` e `document` com conteúdo de exemplo, e o esqueleto da spec |
 | [design/](design/AGENTS.md) | Identidade visual: `document.css`, catálogo de componentes, tokens, logo e capa |
 | [editorial.md](editorial.md) | Convenções de estrutura, tabelas, figuras, fontes e impressão |
-| [documents/](documents/AGENTS.md) | Entregáveis versionados: `NNN/source.html`, `NNN/index.html`, `NNN/NNN.pdf` e `NNN/checklist.md` |
+| [documents/](documents/AGENTS.md) | Entregáveis versionados: `NNN/source.html`, `NNN/index.html`, `NNN/NNN.pdf`, `NNN/checklist.md`, `NNN/log.md` e `NNN/review.md` |
 | [gallery/](gallery/) | Prévia dos modelos e dos documentos publicados no GitHub Pages; não participa da geração |
-| `.work/NNN/` | Trabalho do documento, ignorado pelo Git: spec, conteúdo, fontes, revisão, log e capturas |
+| `.work/NNN/` | Trabalho do documento, ignorado pelo Git: spec, conteúdo, fontes e capturas |
 
 Para um mapa rápido de tudo, rode `sh scripts/index.sh`: ele imprime só os cabeçalhos YAML, sem abrir os arquivos.
 

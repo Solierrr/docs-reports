@@ -15,9 +15,11 @@ documents/
     index.html     gerado pelo build.sh: paginado, autocontido e sem script; é o entregável
     004.pdf        gerado pelo pdf.sh a partir do index.html, depois da aprovação
     checklist.md   itens deste documento e histórico dos ciclos
+    log.md         andamento: o que mudou em cada ciclo e a decisão do orchestrator
+    review.md      revisão do reviewer, um bloco por ciclo
 ```
 
-Título, tipo e slug ficam no cabeçalho YAML do `checklist.md`. Nada além desses quatro arquivos entra aqui: spec, conteúdo, fontes, revisão, log e capturas ficam em `.work/NNN/`, ignorado pelo Git.
+Título, tipo e slug ficam no cabeçalho YAML do `checklist.md`. Nada além desses seis arquivos entra aqui: spec, conteúdo, fontes e capturas ficam em `.work/NNN/`, ignorado pelo Git.
 
 Não sobrescreva outro documento. Uma correção de um documento aprovado é um novo ciclo no mesmo número; um documento novo, ainda que derivado, é um novo número.
 

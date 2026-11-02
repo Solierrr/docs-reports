@@ -20,6 +20,7 @@ read: quando o check.sh apontar uma falha e o motivo não for óbvio
 | `build` | O `index.html` não existe, é mais antigo que o `source.html`, tem script ou não está paginado. |
 | `meta` | O `checklist.md` não tem o cabeçalho YAML com `title`, `type` e `slug`. |
 | `item` | O `checklist.md` não tem nenhum item deste documento. |
+| `record` | O `log.md` ou o `review.md` do documento não existe. |
 | `pdf` | O `NNN.pdf` existe, mas está vazio ou é mais antigo que o `index.html`. |
 
 O que exige olhos (texto cortado, contraste, organização) fica com o [reviewer](reviewer.md).

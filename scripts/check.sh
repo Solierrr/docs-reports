@@ -12,6 +12,8 @@ doc=documents/$number
 source=$doc/source.html
 html=$doc/index.html
 checklist=$doc/checklist.md
+log=$doc/log.md
+review=$doc/review.md
 pdf=$doc/$number.pdf
 fails=0
 
@@ -82,6 +84,10 @@ else
   done
   grep -qE '^- \[[ xX]\] +[^[:space:]]' "$checklist" || fail item "checklist.md sem itens deste documento"
 fi
+
+for record in "$log" "$review"; do
+  [ -f "$record" ] || fail record "$record não existe"
+done
 
 if [ -e "$pdf" ]; then
   if [ ! -s "$pdf" ]; then

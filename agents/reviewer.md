@@ -19,7 +19,7 @@ Sem navegador, registre a limitação e encerre com `Pendências a resolver.`: n
 
 ## Saída
 
-`.work/NNN/review.md`, com um bloco por ciclo:
+`documents/NNN/review.md` (versionado), com um bloco por ciclo:
 
 - **Ciclo N:** resultado de cada item do checklist (ok ou falha, e como conferiu).
 - **Pendências** numeradas, cada uma com severidade (**bloqueante** ou **menor**), onde está (página, seção) e o problema em termos do leitor. Não prescreva valores de design.

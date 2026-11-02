@@ -39,7 +39,7 @@ Reporte arquivos produzidos, verificações feitas e lacunas.
 
 ## Reflexão de cada ciclo
 
-Depois de cada retorno, preencha [checklists/orchestrator.md](../checklists/orchestrator.md) e registre em `.work/NNN/log.md`, em poucas linhas: ciclo, o que mudou, o que o reviewer apontou, o que você concluiu e a decisão. Marque no `documents/NNN/checklist.md` os itens deste documento que o ciclo comprovou e a linha do ciclo.
+Depois de cada retorno, preencha [checklists/orchestrator.md](../checklists/orchestrator.md) e registre em `documents/NNN/log.md`, em poucas linhas: ciclo, o que mudou, o que o reviewer apontou, o que você concluiu e a decisão. Marque no `documents/NNN/checklist.md` os itens deste documento que o ciclo comprovou e a linha do ciclo.
 
 - **Destino da falha:** conteúdo, fato ou fonte → writer (ou researcher); montagem, texto cortado, organização, contraste → builder. Qualquer mudança no HTML invalida a revisão anterior.
 - **Parada:** o reviewer terminou com `Aprovado sem pendências relevantes.`, o `check.sh` está limpo e todos os itens deste documento estão marcados.

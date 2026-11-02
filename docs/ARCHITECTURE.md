@@ -23,8 +23,8 @@ flowchart LR
 |---|---|
 | `templates/` | Modelos HTML |
 | `design/` | CSS, fontes, logo e componentes |
-| `documents/NNN/` | Fonte, HTML paginado, PDF e checklist |
-| `.work/NNN/` | Especificação, conteúdo e revisões fora do Git |
+| `documents/NNN/` | Fonte, HTML paginado, PDF, checklist, log e revisão |
+| `.work/NNN/` | Especificação, conteúdo, fontes e capturas fora do Git |
 | `scripts/` | Criação, build, verificação, PDF e publicação |
 | `gallery/` | Galeria e ferramentas de paginação |
 
