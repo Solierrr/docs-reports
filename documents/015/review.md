@@ -29,3 +29,7 @@ Mudança pequena e pedida pelo dono, sem afirmações novas.
 ## Revisão de prontidão
 
 Revisão independente de HTML e PDF, com os links conferidos na main e as afirmações lidas nos arquivos linkados. As pendências foram aplicadas em seguida.
+
+## Ciclo seguinte
+
+Troca do endereço do Figma, sem outra mudança de conteúdo. O endereço novo foi conferido contra o informado pelo dono.

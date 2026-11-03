@@ -32,3 +32,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 5 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |
 | 6 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |
 | Prontidão | ok | Pendências aplicadas; HTML e PDF conferidos | Pronto para entrega | Publicar |
+| Figma | ok | Endereço trocado pelo informado pelo dono | Sem outras mudanças | Publicar |
