@@ -46,3 +46,11 @@
 - **O que mudou:** o endereço completo do arquivo aparece no texto de leitura e os links da tabela apontam para o mesmo endereço.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** Evidência única do Figma explicada no início dos capítulos, tabelas de duas colunas, tabela de repositórios limitada ao que o código mostra e capa alinhada aos demais.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
