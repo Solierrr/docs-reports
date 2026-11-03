@@ -21,3 +21,7 @@ Revisão independente em contexto separado, com as afirmações novas e os links
 ## Ciclo 6
 
 Mudança pequena e pedida pelo dono, sem afirmações novas além das indicadas por ele.
+
+## Revisão de prontidão
+
+Revisão independente de HTML e PDF, com os links conferidos na main e as afirmações lidas nos arquivos linkados. As pendências foram aplicadas em seguida.
