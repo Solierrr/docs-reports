@@ -30,3 +30,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 3 | ok | Pendências a resolver, aplicadas | Mudança pedida pelo dono incorporada | Publicar |
 | 4 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
 | 5 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |
+| 6 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |

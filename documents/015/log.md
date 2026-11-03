@@ -39,3 +39,10 @@
 - **O que mudou:** capa sem versão e classificação.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo 6
+
+- **Pedido do dono:** deixar o link do Figma por extenso no documento.
+- **O que mudou:** o endereço completo do arquivo aparece no texto de leitura e os links da tabela apontam para o mesmo endereço.
+- **check.sh:** ok.
+- **PDF:** regerado.
