@@ -128,7 +128,7 @@
   <div class="prose">
     <h3>E3 Pipeline de implantação</h3>
     <p class="muted">Elaborar pipeline para implantação (GitHub Actions ou Jenkins).</p>
-    <p>O api-core roda os testes com cobertura a cada pull request e a cada push na main pelo workflow ci.yml, e publica a imagem do serviço pelo release.yml. Ele ainda tem versionamento e changelog automáticos (release-please.yml) e análise de qualidade (sonarqube.yml). Na implantação, o Argo CD sincroniza o cluster a partir da main do infra-gitops. O web-app publica o Storybook no GitHub Pages pelo workflow preview.yml.</p>
+    <p>O api-core roda os testes com cobertura a cada pull request e a cada push na main pelo workflow ci.yml, e publica a imagem do serviço pelo release.yml. Ele também tem versionamento e changelog automáticos (release-please.yml) e análise de qualidade (sonarqube.yml). Na implantação, o Argo CD sincroniza o cluster a partir da main do infra-gitops. O web-app publica o Storybook no GitHub Pages pelo workflow preview.yml.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/api-core/blob/main/.github/workflows/ci.yml">ci.yml em api-core</a></li>
       <li><a href="https://github.com/Solierrr/infra-gitops/tree/main/apps">pasta apps em infra-gitops</a></li>
@@ -156,27 +156,27 @@
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Onde fica cada evidência">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">A evidência da disciplina está distribuída em quinze repositórios</h2>
+    <h2 class="title">A evidência está em quinze repositórios</h2>
     <p class="question">Qual repositório guarda cada parte da entrega?</p>
   </header>
   <table class="data">
     <thead><tr><th>Repositório</th><th>Papel na disciplina</th><th>Raiz</th></tr></thead>
     <tbody>
-      <tr><td>api-core</td><td>Serviço principal do projeto. Traz template de pull request, responsável pela revisão, workflows de build, testes e publicação de imagem, Dockerfile e README.</td><td><a href="https://github.com/Solierrr/api-core">api-core na branch main</a></td></tr>
-      <tr><td>web-app</td><td>Interface web. Traz Dockerfile, README e o workflow que publica o Storybook no GitHub Pages.</td><td><a href="https://github.com/Solierrr/web-app">web-app na branch main</a></td></tr>
+      <tr><td>api-core</td><td>Serviço principal, com pull request, workflows e Dockerfile.</td><td><a href="https://github.com/Solierrr/api-core">api-core na branch main</a></td></tr>
+      <tr><td>web-app</td><td>Interface web, com Dockerfile e Storybook no Pages.</td><td><a href="https://github.com/Solierrr/web-app">web-app na branch main</a></td></tr>
       <tr><td>ai-assistant</td><td>Agente de IA do projeto. Traz Dockerfile e README.</td><td><a href="https://github.com/Solierrr/ai-assistant">ai-assistant na branch main</a></td></tr>
-      <tr><td>infra-platform</td><td>Infraestrutura em Terraform no Google Cloud, com rede, cluster GKE e Argo CD. Traz README e template de pull request.</td><td><a href="https://github.com/Solierrr/infra-platform">infra-platform na branch main</a></td></tr>
-      <tr><td>infra-gitops</td><td>Estado desejado do cluster. Traz os manifests Kubernetes de cada serviço e as aplicações do Argo CD.</td><td><a href="https://github.com/Solierrr/infra-gitops">infra-gitops na branch main</a></td></tr>
-      <tr><td>docs-warehouse</td><td>Documentação de apoio e rulesets de proteção de branch do GitHub.</td><td><a href="https://github.com/Solierrr/docs-warehouse">docs-warehouse na branch main</a></td></tr>
-      <tr><td>infra-otel-collector</td><td>Coletor OpenTelemetry que reúne registros, métricas e rastros dos serviços.</td><td><a href="https://github.com/Solierrr/infra-otel-collector">infra-otel-collector na branch main</a></td></tr>
+      <tr><td>infra-platform</td><td>Terraform do Google Cloud, com rede, cluster GKE e Argo CD.</td><td><a href="https://github.com/Solierrr/infra-platform">infra-platform na branch main</a></td></tr>
+      <tr><td>infra-gitops</td><td>Manifests Kubernetes e aplicações do Argo CD.</td><td><a href="https://github.com/Solierrr/infra-gitops">infra-gitops na branch main</a></td></tr>
+      <tr><td>docs-warehouse</td><td>Rulesets de proteção de branch do GitHub.</td><td><a href="https://github.com/Solierrr/docs-warehouse">docs-warehouse na branch main</a></td></tr>
+      <tr><td>infra-otel-collector</td><td>Coletor OpenTelemetry.</td><td><a href="https://github.com/Solierrr/infra-otel-collector">infra-otel-collector na branch main</a></td></tr>
       <tr><td>infra-observability</td><td>Painéis do Grafana e regras de alerta da plataforma.</td><td><a href="https://github.com/Solierrr/infra-observability">infra-observability na branch main</a></td></tr>
-      <tr><td>worker-alerts</td><td>Worker que transforma os alertas do monitoramento em incidentes no Jira.</td><td><a href="https://github.com/Solierrr/worker-alerts">worker-alerts na branch main</a></td></tr>
-      <tr><td>infra-stress</td><td>Testes de carga em k6 da aplicação web e da entrada de borda.</td><td><a href="https://github.com/Solierrr/infra-stress">infra-stress na branch main</a></td></tr>
-      <tr><td>infra-keepalive</td><td>Rotina agendada que mantém ativos os serviços do QA.</td><td><a href="https://github.com/Solierrr/infra-keepalive">infra-keepalive na branch main</a></td></tr>
-      <tr><td>infra-gateway</td><td>Configuração do gateway Kong para o QA e para o cluster.</td><td><a href="https://github.com/Solierrr/infra-gateway">infra-gateway na branch main</a></td></tr>
-      <tr><td>worker-failover</td><td>Cloudflare Worker de entrada de borda, com página temporária e telemetria.</td><td><a href="https://github.com/Solierrr/worker-failover">worker-failover na branch main</a></td></tr>
-      <tr><td>generic-template</td><td>Modelo para novos repositórios, com README, coleção Bruno, integração contínua e pull request.</td><td><a href="https://github.com/Solierrr/generic-template">generic-template na branch main</a></td></tr>
-      <tr><td>.github</td><td>Workflows reutilizáveis de integração contínua e de release, disponíveis aos repositórios.</td><td><a href="https://github.com/Solierrr/.github">.github na branch main</a></td></tr>
+      <tr><td>worker-alerts</td><td>Worker que transforma alertas em incidentes no Jira.</td><td><a href="https://github.com/Solierrr/worker-alerts">worker-alerts na branch main</a></td></tr>
+      <tr><td>infra-stress</td><td>Testes de carga em k6.</td><td><a href="https://github.com/Solierrr/infra-stress">infra-stress na branch main</a></td></tr>
+      <tr><td>infra-keepalive</td><td>Rotina que mantém ativos os serviços do QA.</td><td><a href="https://github.com/Solierrr/infra-keepalive">infra-keepalive na branch main</a></td></tr>
+      <tr><td>infra-gateway</td><td>Configuração do gateway Kong.</td><td><a href="https://github.com/Solierrr/infra-gateway">infra-gateway na branch main</a></td></tr>
+      <tr><td>worker-failover</td><td>Cloudflare Worker de borda, com página temporária.</td><td><a href="https://github.com/Solierrr/worker-failover">worker-failover na branch main</a></td></tr>
+      <tr><td>generic-template</td><td>Modelo para novos repositórios.</td><td><a href="https://github.com/Solierrr/generic-template">generic-template na branch main</a></td></tr>
+      <tr><td>.github</td><td>Workflows reutilizáveis de integração e release.</td><td><a href="https://github.com/Solierrr/.github">.github na branch main</a></td></tr>
     </tbody>
   </table>
 </section>
