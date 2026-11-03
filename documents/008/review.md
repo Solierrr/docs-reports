@@ -25,3 +25,7 @@ Mudança pequena. As afirmações novas foram conferidas na main pelo gh api, no
 ## Ciclo 7
 
 Mudança pequena e pedida pelo dono, sem afirmações novas além das indicadas por ele.
+
+## Revisão de prontidão
+
+Revisão independente de HTML e PDF, com os links conferidos na main e as afirmações lidas nos arquivos linkados. As pendências foram aplicadas em seguida.
