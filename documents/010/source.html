@@ -38,19 +38,19 @@
   </header>
   <div class="prose">
     <h3>O que a disciplina pede</h3>
-    <p>Engenharia de Software pede a organização do trabalho como um projeto de software. O mínimo para a nota 7,0 tem cinco requisitos, o acompanhamento do planejamento em uma ferramenta como o Jira, o documento de requisitos funcionais, o diagrama de casos de uso, dois diagramas de atividades e a divisão de responsabilidades da equipe. Os extras pedem o uso de padrões de projeto e de um padrão de testes.</p>
+    <p>Engenharia de Software pede a organização do trabalho como projeto. O mínimo para a nota 7,0 tem cinco requisitos, o acompanhamento do planejamento em uma ferramenta como o Jira, o documento de requisitos funcionais, o diagrama de casos de uso, dois diagramas de atividades e a divisão de responsabilidades da equipe. Os extras pedem o uso de padrões de projeto e de um padrão de testes.</p>
     <h3>O que foi entregue</h3>
-    <p>O planejamento é conduzido no Jira e documentado no Confluence, que também guarda o documento de engenharia de requisitos. Os diagramas de casos de uso e de atividades ficam no board Miro do projeto. As áreas de atuação, os papéis do Scrum e a rotina de reuniões estão registrados, e o código usa padrões de projeto como Strategy, Transactional Outbox, Repository, Factory e Adapter, com testes automatizados executados pela integração contínua.</p>
+    <p>O planejamento é conduzido no Jira e documentado no Confluence, que também guarda o documento de engenharia de requisitos. O diagrama de casos de uso e os diagramas de atividades estão na galeria de diagramas do docs-warehouse, e as imagens em PNG ficam na pasta assets/diagrams, para quem não conseguir abrir a galeria. As áreas de atuação, os papéis do Scrum e a rotina de reuniões estão registrados, e o código usa padrões de projeto como Strategy, Transactional Outbox, Repository, Factory e Adapter, com testes automatizados executados pela integração contínua.</p>
     <h3>Como ler este documento</h3>
-    <p>Cada requisito traz o identificador, o enunciado, a descrição do que foi entregue e um link direto para a evidência, que pode ser um arquivo na branch main do GitHub, uma página do Confluence ou o board do Miro. A tabela resume os requisitos.</p>
+    <p>Cada requisito traz o identificador, o enunciado, a descrição do que foi entregue e um link direto para a evidência. A tabela resume os requisitos.</p>
   </div>
   <table class="data">
     <thead><tr><th>Item</th><th>Tipo</th><th>Requisito</th><th>Evidência de exemplo</th></tr></thead>
     <tbody>
       <tr><td>M1</td><td>Mínimo</td><td>Acompanhamento do planejamento no Jira</td><td>Página Nosso Jira no Confluence</td></tr>
       <tr><td>M2</td><td>Mínimo</td><td>Documento de requisitos funcionais</td><td>Página Engenharia de Requisitos no Confluence</td></tr>
-      <tr><td>M3</td><td>Mínimo</td><td>Diagrama de casos de uso</td><td>Board Miro do projeto</td></tr>
-      <tr><td>M4</td><td>Mínimo</td><td>Dois diagramas de atividades</td><td>Board Miro e CHAT_TURN.md em ai-assistant</td></tr>
+      <tr><td>M3</td><td>Mínimo</td><td>Diagrama de casos de uso</td><td>Galeria de diagramas e imagem em PNG no docs-warehouse</td></tr>
+      <tr><td>M4</td><td>Mínimo</td><td>Dois diagramas de atividades</td><td>Galeria de diagramas do docs-warehouse</td></tr>
       <tr><td>M5</td><td>Mínimo</td><td>Dinâmica de trabalho e responsáveis por área</td><td>Páginas Áreas de Atuação (2º Ano) e Agenda Fixa no Confluence</td></tr>
       <tr><td>E1</td><td>Extra</td><td>Padrões de projeto</td><td>strategies.py em api-recommendation</td></tr>
       <tr><td>E2</td><td>Extra</td><td>Testes automatizados</td><td>Pasta de testes em api-core</td></tr>
@@ -61,7 +61,7 @@
 <section class="chapter" id="minimos" data-title="Requisitos mínimos" data-summary="Planejamento, requisitos, diagramas e responsáveis">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Os cinco requisitos do mínimo têm evidência no Confluence, no Miro ou no GitHub</h2>
+    <h2 class="title">Os cinco requisitos do mínimo têm evidência no Confluence, nos diagramas e no GitHub</h2>
     <p class="question">Como o projeto cumpre cada requisito do mínimo para 7,0?</p>
   </header>
   <div class="prose">
@@ -76,19 +76,19 @@
   </div>
   <div class="prose">
     <h3>M3. Elaborar o diagrama de casos de uso com todos os casos, relacionados aos requisitos funcionais</h3>
-    <p>O diagrama de casos de uso está no board Miro do projeto, e a galeria de diagramas do docs-warehouse também o reúne.</p>
-    <p>Links de exemplo, o <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a> e a <a href="https://solierrr.github.io/docs-warehouse/">galeria de diagramas do docs-warehouse</a>.</p>
+    <p>O diagrama de casos de uso está na galeria de diagramas do docs-warehouse, com cinco atores (visitante, profissional, membro da empresa, administrador da empresa e administrador da plataforma) e 16 casos de uso ligados a eles. O board Miro do projeto também o reúne. A imagem em PNG do diagrama fica na pasta assets/diagrams do docs-warehouse.</p>
+    <p>Links de exemplo, o <a href="https://solierrr.github.io/docs-warehouse/#view=usecases&amp;locale=pt-BR">diagrama de casos de uso na galeria do docs-warehouse</a> e a <a href="https://github.com/Solierrr/docs-warehouse/blob/main/assets/diagrams/casos-de-uso.png">imagem casos-de-uso.png em docs-warehouse</a>.</p>
   </div>
   <div class="prose">
     <h3>M4. Escolher 2 processos do sistema e elaborar um diagrama de atividades para cada um</h3>
-    <p>Os diagramas de atividades, um para cada processo escolhido, estão no mesmo board Miro. Os repositórios ai-assistant, databricks-stocker e database-console trazem ainda fluxos em Mermaid, e a galeria de diagramas do docs-warehouse guarda os fluxos dos processos do sistema.</p>
-    <p>Links de exemplo, o <a href="https://miro.com/app/board/uXjVHR65mPE=/">board Miro do projeto</a>, a <a href="https://solierrr.github.io/docs-warehouse/">galeria de diagramas do docs-warehouse</a> e o fluxo <a href="https://github.com/Solierrr/ai-assistant/blob/main/flows/CHAT_TURN.md">CHAT_TURN.md em ai-assistant</a>.</p>
+    <p>Os dois processos escolhidos estão desenhados como diagramas de atividades na galeria de diagramas do docs-warehouse, com início, ações, decisões, fim e raias por responsável. O primeiro é o cadastro do profissional, que passa pela validação de IA e pela revisão do administrador da plataforma. O segundo é a proposta e a execução de um projeto, entre demandante, fornecedor, plataforma e profissional. As imagens em PNG dos dois diagramas ficam na pasta assets/diagrams do docs-warehouse, para quem não conseguir abrir a galeria. Os repositórios ai-assistant, databricks-stocker e database-console trazem ainda fluxos em Mermaid.</p>
+    <p>Links de exemplo, o diagrama <a href="https://solierrr.github.io/docs-warehouse/#view=flow-professional&amp;locale=pt-BR">Cadastro do profissional</a> na galeria e a <a href="https://github.com/Solierrr/docs-warehouse/tree/main/assets/diagrams">pasta assets/diagrams em docs-warehouse</a>.</p>
   </div>
   <div class="prose">
     <h3>M5. Documento com a dinâmica de trabalho da equipe e o responsável por back, front, banco de dados etc.</h3>
     <p>A página Áreas de Atuação (2º Ano) divide o trabalho em back-end, front-end, banco de dados, BI, IA, infraestrutura, design e Scrum. Ela define o product owner, o scrum master e os revisores oficiais, e cada membro aparece com as suas áreas e com o revisor de outra área. Os repositórios api-core, api-auth, api-recommendation, web-app e infra-platform têm ainda um arquivo CODEOWNERS com o responsável pelo código.</p>
     <p>O trabalho é acompanhado em quatro espaços do Jira. O DEM guarda as tarefas gerais, o DEV cobre back-end, front-end e a infraestrutura do GitHub, o IA cobre a inteligência artificial e o DB cobre BI e banco de dados. Uma tarefa passa pelos estados tarefas pendentes, em espera, em desenvolvimento, em análise, em testes e concluída, com o estado bloqueado quando há impedimento. A pull request fica em análise até ser aprovada.</p>
-    <p>A rotina tem uma weekly às quartas-feiras, no intervalo, em que cada área do primeiro ano conversa com a área correspondente do segundo ano. Um membro do segundo ano acompanha uma área diferente a cada weekly. Nos últimos 30 dias antes da entrega, o segundo ano faz reuniões diárias. O semestre prevê seis sprints de cerca de quatro semanas, com etapas finais e preparação para a feira de eventos nas últimas.</p>
+    <p>A rotina tem uma weekly às quartas-feiras, no intervalo, em que cada área do primeiro ano conversa com a área correspondente do segundo ano. Um membro do segundo ano acompanha uma área diferente a cada weekly. Nos últimos 30 dias antes da entrega, o segundo ano faz reuniões diárias.</p>
     <p>Links de exemplo, a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/1310721/reas+de+Atua+o+2+Ano">Áreas de Atuação (2º Ano) no Confluence</a> e a página <a href="https://interdesctruction.atlassian.net/wiki/spaces/Organizao/pages/13795346/Agenda+Fixa">Agenda Fixa no Confluence</a>.</p>
   </div>
 </section>
@@ -101,7 +101,7 @@
   </header>
   <div class="prose">
     <h3>E1. Usar algum padrão de projeto, indicar em que parte do código e com que finalidade</h3>
-    <p>A tabela indica cada padrão, o arquivo em que ele aparece e a finalidade. O padrão Strategy se repete nos três feeds de recomendação, para ofertas, profissionais e fornecedores. Esses padrões isolam as regras em classes pequenas e sustentam o TDD adotado pela equipe, porque cada regra pode ser testada sem o restante do sistema.</p>
+    <p>A tabela indica cada padrão, o arquivo em que ele aparece e a finalidade. O padrão Strategy se repete nos três feeds de recomendação, para ofertas, profissionais e fornecedores.</p>
   </div>
   <table class="data">
     <thead><tr><th>Padrão</th><th>Onde</th><th>Finalidade</th></tr></thead>
@@ -118,7 +118,7 @@
   </div>
   <div class="prose">
     <h3>E2. Utilizar um padrão de testes e indicar onde será utilizado e como</h3>
-    <p>O projeto adota o desenvolvimento guiado por testes (TDD) e mantém testes automatizados em todos os serviços, bibliotecas e aplicativos, entre eles api-core, api-auth, api-messenger, api-notify, api-email, api-recommendation, api-google, os assistentes de IA, lib-ai, lib-web, web-app e mobile-app. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
+    <p>O projeto mantém testes automatizados nos repositórios api-core, api-auth, api-messenger, api-notify, api-email, api-recommendation, api-google, os assistentes de IA, lib-ai, lib-web, web-app e mobile-app. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
     <p>Link de exemplo, <a href="https://github.com/Solierrr/api-core/tree/main/src/test">pasta src/test em api-core</a>.</p>
   </div>
 </section>
@@ -130,7 +130,7 @@
     <p class="question">O que o projeto reúne nesta disciplina?</p>
   </header>
   <div class="prose">
-    <p>O projeto registra decisões de arquitetura registradas como ADRs no ai-assistant, fluxos em Mermaid mantidos junto ao código e o repositório docs-warehouse, que concentra os padrões de documentação, de erros, de OpenAPI e de saúde dos serviços usados por todos os repositórios. O generic-template oferece a cada novo repositório um README, uma coleção Bruno, a integração contínua e o modelo de pull request, e o repositório .github disponibiliza workflows reutilizáveis de release-please, publicação de imagem, promoção para o GitOps e verificação do título das pull requests.</p>
+    <p>O projeto mantém decisões de arquitetura em ADRs no ai-assistant, fluxos em Mermaid mantidos junto ao código e o repositório docs-warehouse, que concentra os padrões de documentação, de erros, de OpenAPI e de saúde dos serviços usados por todos os repositórios. O generic-template oferece a cada novo repositório um README, uma coleção Bruno, a integração contínua e o modelo de pull request, e o repositório .github disponibiliza workflows reutilizáveis de release-please, publicação de imagem, promoção para o GitOps e verificação do título das pull requests.</p>
   </div>
 </section>
 
@@ -151,7 +151,7 @@
       <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Padrão Strategy nos feeds de recomendação e responsável pelo código</td><td>M5, E1</td></tr>
       <tr><td><a href="https://github.com/Solierrr/web-app">web-app</a></td><td>Responsável pelo código e testes de serviços</td><td>M5, E2</td></tr>
       <tr><td><a href="https://github.com/Solierrr/infra-platform">infra-platform</a></td><td>Responsável pelo código</td><td>M5</td></tr>
-      <tr><td><a href="https://github.com/Solierrr/docs-warehouse">docs-warehouse</a></td><td>Padrões de documentação, de erros, de OpenAPI e de saúde dos serviços</td><td>Entregas adicionais</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/docs-warehouse">docs-warehouse</a></td><td>Galeria de diagramas, imagens em PNG dos casos de uso e dos fluxos e padrões de documentação, de erros, de OpenAPI e de saúde dos serviços</td><td>M3, M4, Entregas adicionais</td></tr>
       <tr><td><a href="https://github.com/Solierrr/generic-template">generic-template</a></td><td>Estrutura inicial com README, coleção Bruno, integração contínua e modelo de pull request para novos repositórios</td><td>Entregas adicionais</td></tr>
       <tr><td><a href="https://github.com/Solierrr/.github">.github</a></td><td>Workflows reutilizáveis disponíveis aos repositórios, de release, publicação de imagem e verificação de pull requests</td><td>Entregas adicionais</td></tr>
     </tbody>

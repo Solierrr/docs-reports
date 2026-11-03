@@ -39,3 +39,11 @@
 - **O que mudou:** capa sem versão e classificação; o padrão de testes cita o TDD e os testes em todos os serviços, bibliotecas e aplicativos, e os diagramas apontam para a galeria do docs-warehouse.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** E1 e E2 reescritos sem a menção a TDD, M3 e M4 com os diagramas da galeria do docs-warehouse e as imagens PNG da pasta assets/diagrams para quem não abrir o Pages.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
