@@ -31,3 +31,11 @@
 - **O que mudou:** capa sem versão e classificação.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** Tabela de repositórios alinhada ao índice, com os oito repositórios e o papel de cada um confirmado nos READMEs.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
