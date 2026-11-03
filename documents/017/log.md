@@ -38,3 +38,11 @@
 - **O que mudou:** capa sem versão e classificação.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** Capturas do console do Databricks incluídas como Figuras 1 e 2, a pedido do dono, e identificadores das tabelas sem quebra.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
