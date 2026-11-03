@@ -31,3 +31,11 @@
 - **O que mudou:** capa sem versão e classificação; o ai-geographic entra no escopo no lugar do ai-operational.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** E4 com dois links e tabelas com o layout corrigido.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
