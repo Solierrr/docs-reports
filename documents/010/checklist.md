@@ -32,3 +32,4 @@ Escritos pelo orchestrator junto com a spec e aprovados pelo usuário: o que, s�
 | 4 | ok | Pendências a resolver, aplicadas | Conteúdo e repositórios conferidos na main | Publicar |
 | 5 | ok | Sem pendências novas | Ajuste pedido pelo dono | Publicar |
 | Prontidão | ok | Pendências aplicadas; HTML e PDF conferidos | Pronto para entrega | Publicar |
+| Atualização | ok | Mudanças pedidas pelo dono incorporadas | Publicar | Publicar |

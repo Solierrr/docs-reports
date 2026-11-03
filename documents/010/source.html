@@ -49,11 +49,11 @@
     <tbody>
       <tr><td>M1</td><td>Mínimo</td><td>Acompanhamento do planejamento no Jira</td><td>Página Nosso Jira no Confluence</td></tr>
       <tr><td>M2</td><td>Mínimo</td><td>Documento de requisitos funcionais</td><td>Página Engenharia de Requisitos no Confluence</td></tr>
-      <tr><td>M3</td><td>Mínimo</td><td>Diagrama de casos de uso</td><td>Galeria de diagramas e imagem em PNG no docs-warehouse</td></tr>
+      <tr><td>M3</td><td>Mínimo</td><td>Diagrama de casos de uso</td><td>Galeria e PNG no docs-warehouse</td></tr>
       <tr><td>M4</td><td>Mínimo</td><td>Dois diagramas de atividades</td><td>Galeria de diagramas do docs-warehouse</td></tr>
-      <tr><td>M5</td><td>Mínimo</td><td>Dinâmica de trabalho e responsáveis por área</td><td>Páginas Áreas de Atuação (2º Ano) e Agenda Fixa no Confluence</td></tr>
+      <tr><td>M5</td><td>Mínimo</td><td>Dinâmica de trabalho e responsáveis por área</td><td>Áreas de Atuação e Agenda Fixa no Confluence</td></tr>
       <tr><td>E1</td><td>Extra</td><td>Padrões de projeto</td><td>strategies.py em api-recommendation</td></tr>
-      <tr><td>E2</td><td>Extra</td><td>Testes automatizados</td><td>Pasta de testes em api-core</td></tr>
+      <tr><td>E2</td><td>Extra</td><td>TDD e testes unitários</td><td>src/test e TESTING.md</td></tr>
     </tbody>
   </table>
 </section>
@@ -118,8 +118,8 @@
   </div>
   <div class="prose">
     <h3>E2. Utilizar um padrão de testes e indicar onde será utilizado e como</h3>
-    <p>O projeto mantém testes automatizados nos repositórios api-core, api-auth, api-messenger, api-notify, api-email, api-recommendation, api-google, os assistentes de IA, lib-ai, lib-web, web-app e mobile-app. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
-    <p>Link de exemplo, <a href="https://github.com/Solierrr/api-core/tree/main/src/test">pasta src/test em api-core</a>.</p>
+    <p>A equipe utilizou TDD no desenvolvimento, e os repositórios têm testes unitários. O projeto mantém testes automatizados nos repositórios api-core, api-auth, api-messenger, api-notify, api-email, api-recommendation, api-google, os assistentes de IA, lib-ai, lib-web, web-app e mobile-app. O api-core tem testes unitários e de integração na pasta src/test, e o fluxo de integração contínua em ci.yml executa os testes com cobertura a cada pull request. O web-app tem arquivos de teste ao lado dos serviços, como analytics.service.test.ts, e o ai-assistant guarda os testes do agente na pasta tests.</p>
+    <p>Links de exemplo, a <a href="https://github.com/Solierrr/api-core/tree/main/src/test">pasta src/test em api-core</a> e o padrão de testes em <a href="https://github.com/Solierrr/docs-warehouse/blob/main/docs/standards/TESTING.md">TESTING.md em docs-warehouse</a>.</p>
   </div>
 </section>
 
