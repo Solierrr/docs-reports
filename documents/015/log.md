@@ -54,3 +54,10 @@
 - **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo seguinte
+
+- **Pedido do dono:** usar o endereço do Figma informado por ele, com o parâmetro de compartilhamento correto.
+- **O que mudou:** o endereço do Figma do texto e dos links foi trocado.
+- **check.sh:** ok.
+- **PDF:** regerado.
