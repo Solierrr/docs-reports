@@ -38,3 +38,11 @@
 - **O que mudou:** capa sem versão e classificação.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** Sem mudança de conteúdo; PDF gerado de novo com o layout corrigido das tabelas.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
