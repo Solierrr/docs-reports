@@ -46,15 +46,12 @@
   </div>
 </section>
 
-<section class="chapter" id="requisitos" data-title="Requisitos" data-summary="Mínimos, extras e repositórios, com a evidência de cada um">
+<section class="chapter" id="requisitos" data-title="Requisitos mínimos" data-summary="A evidência de cada requisito do mínimo">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">O api-core cumpre os seis requisitos mínimos e as APIs vão além com OpenAPI, procedure, Spring Security e MongoDB</h2>
-    <p class="question">Como cada requisito é atendido e onde está a evidência?</p>
+    <h2 class="title">Os seis requisitos mínimos estão atendidos no api-core</h2>
+    <p class="question">Como a API principal atende cada requisito do mínimo?</p>
   </header>
-  <div class="prose">
-    <h3>Requisitos mínimos</h3>
-  </div>
   <table class="data">
     <thead><tr><th>Id</th><th>Requisito</th><th>O que o projeto entrega</th><th>Onde ver</th></tr></thead>
     <tbody>
@@ -66,9 +63,14 @@
       <tr><td><b>M6</b></td><td>Tratamento centralizado de exceções, com respostas HTTP úteis para o cliente.</td><td>Uma classe @RestControllerAdvice trata as exceções em um só lugar e monta as respostas no formato Problem Details. Há uma exceção própria para regras de negócio, e o acesso negado devolve 403 no mesmo formato.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/exception/handler/GlobalExceptionHandler.java">GlobalExceptionHandler.java em api-core</a><br><a href="https://github.com/Solierrr/api-core/blob/main/src/main/java/com/solaria/persistence/exception/handler/ProblemDetailFactory.java">ProblemDetailFactory.java em api-core</a></td></tr>
     </tbody>
   </table>
-  <div class="prose">
-    <h3>Requisitos extras</h3>
-  </div>
+</section>
+
+<section class="chapter" id="extras" data-title="Requisitos extras" data-summary="A evidência de cada extra">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Os requisitos extras e a evidência de cada um</h2>
+    <p class="question">Quais extras o projeto entrega e onde estão?</p>
+  </header>
   <table class="data">
     <thead><tr><th>Id</th><th>Requisito</th><th>O que o projeto entrega</th><th>Onde ver</th></tr></thead>
     <tbody>
@@ -78,6 +80,18 @@
       <tr><td><b>E4</b></td><td>Criar mais uma API REST em Java com Spring MVC para um banco NoSQL.</td><td>O api-messenger é uma API REST em Java com Spring MVC e Spring Data MongoDB. Os controladores tratam conversas e mensagens e os documentos MongoDB ficam no pacote de modelo. O api-notify é uma terceira API Java com MongoDB, para notificações.</td><td><a href="https://github.com/Solierrr/api-messenger/tree/main/src/main/java/com/solaria/messenger/rest/controller">pasta controller em api-messenger</a><br><a href="https://github.com/Solierrr/api-messenger/tree/main/src/main/java/com/solaria/messenger/core/model">pasta model em api-messenger</a></td></tr>
     </tbody>
   </table>
+</section>
+
+<section class="chapter" id="adicionais" data-title="Entregas adicionais e repositórios" data-summary="O que o projeto reúne e os repositórios da disciplina">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Entregas adicionais</h2>
+    <p class="question">O que o projeto reúne nesta disciplina?</p>
+  </header>
+  <div class="prose">
+    <p>O projeto separa os microsserviços por responsabilidade, com autenticação em api-auth, mensageria em api-messenger, notificações em api-notify, recomendação em api-recommendation, e-mails transacionais em api-email e integração com os serviços Google em api-google. Um gateway Kong, configurado em infra-gateway, serve de entrada para as APIs, e os serviços seguem os padrões comuns de erro, de contrato OpenAPI e de autenticação entre serviços definidos em docs-warehouse.</p>
+    <p>Link de exemplo, <a href="https://github.com/Solierrr/infra-gateway">infra-gateway na branch main</a>.</p>
+  </div>
   <div class="prose">
     <h3>Repositórios da disciplina</h3>
   </div>
@@ -88,20 +102,12 @@
       <tr><td><a href="https://github.com/Solierrr/api-auth">api-auth</a></td><td>API de autenticação em Kotlin com Spring Security, que emite o JWT.</td></tr>
       <tr><td><a href="https://github.com/Solierrr/api-messenger">api-messenger</a></td><td>Segunda API REST em Java, com MongoDB, para conversas e mensagens.</td></tr>
       <tr><td><a href="https://github.com/Solierrr/api-notify">api-notify</a></td><td>Terceira API Java com MongoDB, para notificações.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-email">api-email</a></td><td>Serviço em TypeScript com Fastify que monta e envia e-mails transacionais, por SMTP ou pela API do Brevo.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-google">api-google</a></td><td>Serviço em Python com FastAPI que reúne as consultas aos serviços Google usadas pela plataforma, sem guardar os dados consultados.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/api-recommendation">api-recommendation</a></td><td>Serviço em Python com FastAPI que recomenda profissionais, ofertas de placas solares e fornecedores, a partir de um grafo Neo4j com consulta alternativa ao PostgreSQL.</td></tr>
+      <tr><td><a href="https://github.com/Solierrr/infra-gateway">infra-gateway</a></td><td>Configuração declarativa do gateway Kong e valores de instalação por Helm, que servem de entrada para as APIs.</td></tr>
     </tbody>
   </table>
-</section>
-
-<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
-  <header class="band brand">
-    <span class="num"></span>
-    <h2 class="title">Entregas adicionais</h2>
-    <p class="question">O que o projeto reúne nesta disciplina?</p>
-  </header>
-  <div class="prose">
-    <p>O projeto separa os microsserviços por responsabilidade, com autenticação em api-auth, mensageria em api-messenger, notificações em api-notify, recomendação em api-recommendation, e-mails transacionais em api-email e integração com os serviços Google em api-google. Um gateway Kong, configurado em infra-gateway, serve de entrada para as APIs, e os serviços seguem os padrões comuns de erro, de contrato OpenAPI e de autenticação entre serviços definidos em docs-warehouse.</p>
-    <p>Link de exemplo, <a href="https://github.com/Solierrr/infra-gateway">infra-gateway na branch main</a>.</p>
-  </div>
 </section>
 
 <section class="back brand page" id="contracapa">
