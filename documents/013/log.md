@@ -31,3 +31,11 @@
 - **O que mudou:** capa sem versão e classificação.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** Escopo da entrega web com quatro repositórios (web-app, lib-web, worker-failover e web-sandbox), requisitos comprovados em cada repositório e links de evidência adicionados.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
