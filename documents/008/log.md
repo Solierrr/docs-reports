@@ -46,3 +46,11 @@
 - **O que mudou:** o documento 011 passa a listar o ai-geographic.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão de prontidão
+
+- **Entrada:** revisão final de HTML e PDF antes da entrega.
+- **O que mudou:** Lista de repositórios de Aplicações Dinâmicas alinhada ao escopo de quatro repositórios.
+- **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
+- **check.sh:** ok.
+- **PDF:** regerado.
