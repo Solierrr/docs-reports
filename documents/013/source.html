@@ -33,16 +33,16 @@
 <section class="chapter" id="visao-geral" data-title="Visão geral" data-summary="O que a disciplina pede e como ler o documento">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">O web-app atende os requisitos descritos com evidência no GitHub</h2>
+    <h2 class="title">A entrega web atende os requisitos descritos com evidência no GitHub</h2>
     <p class="question">O que a disciplina pede e como este documento se organiza?</p>
   </header>
   <div class="prose">
     <h3>O que a disciplina pede</h3>
     <p>A disciplina de Desenvolvimento de Aplicações Dinâmicas pede uma aplicação web em React com TypeScript, organizada em componentes, serviços, rotas e recursos de acessibilidade. Há requisitos mínimos, que valem a nota 7,0, e requisitos extras.</p>
     <h3>O que o projeto entregou</h3>
-    <p>A interface web do projeto é o repositório web-app, construído com Vite, React e TypeScript. A entrega web reúne também a biblioteca de componentes lib-web, a entrada de borda worker-failover, o portal público de documentos worker-docs e a interface de administração do QA web-sandbox. O código é organizado por funcionalidade, com serviços de API por domínio, tipos por domínio, estados de carregamento e erro, e um histórico de commits no padrão Conventional Commits. Este documento descreve os requisitos tratados e mostra, para cada um, onde o web-app o atende.</p>
+    <p>A interface web do projeto é o repositório web-app, construído com Vite, React e TypeScript. A entrega web reúne quatro repositórios, o web-app, a biblioteca de componentes lib-web, o Cloudflare Worker worker-failover e a interface de administração do QA web-sandbox. O código do web-app é organizado por funcionalidade, com serviços de API por domínio, tipos por domínio, estados de carregamento e erro, e um histórico de commits no padrão Conventional Commits. Este documento descreve os requisitos tratados e mostra, para cada um, em qual repositório da entrega ele aparece.</p>
     <h3>Como ler este documento</h3>
-    <p>Cada requisito tem um identificador (M para mínimo e E para extra), o enunciado da disciplina, a descrição do que o projeto entrega e um ou dois links diretos. Todos os links apontam para a branch main e abrem o arquivo ou a pasta que comprova o requisito. Os requisitos aparecem em grupos por tema, na ordem em que o código é lido.</p>
+    <p>Cada requisito tem um identificador (M para mínimo e E para extra), o enunciado da disciplina, a descrição do que o projeto entrega e um ou dois links diretos. Todos os links apontam para a branch main e abrem o arquivo ou a pasta que comprova o requisito. Quando outro repositório da entrega comprova o requisito por conta própria, o texto cita esse repositório pelo nome. Os requisitos aparecem em grupos por tema, na ordem em que o código é lido.</p>
   </div>
   <h3 class="muted">Requisitos descritos neste documento</h3>
   <table class="data">
@@ -62,6 +62,7 @@
       <tr><td>M14</td><td>Commits em Conventional Commits</td><td>Mínimo</td></tr>
       <tr><td>E1</td><td>Context API</td><td>Extra</td></tr>
       <tr><td>E3</td><td>Hook customizado com AbortController</td><td>Extra</td></tr>
+      <tr><td>E4</td><td>React.lazy e Suspense</td><td>Extra</td></tr>
       <tr><td>E7</td><td>Proteção contra XSS</td><td>Extra</td></tr>
     </tbody>
   </table>
@@ -76,16 +77,17 @@
   <div class="prose">
     <h3>M1 Vite com React e TypeScript</h3>
     <p class="muted">Projeto criado com Vite e template React TypeScript; todos os arquivos de <code>src/</code> em <code>.ts</code> ou <code>.tsx</code>, proibido <code>.js</code> e <code>.jsx</code>.</p>
-    <p>O web-app foi criado com Vite, React e TypeScript, como mostram as dependências do package.json. A pasta <code>src/</code> não tem nenhum arquivo <code>.js</code> ou <code>.jsx</code>, e o ponto de entrada é o main.tsx.</p>
+    <p>O web-app foi criado com Vite, React e TypeScript, como mostra o package.json. A pasta <code>src/</code> não tem arquivo <code>.js</code> nem <code>.jsx</code>.</p>
+    <p>O lib-web e o web-sandbox também usam Vite, React e TypeScript, sem arquivos <code>.js</code> ou <code>.jsx</code> em <code>src</code>. O worker-failover tem o código-fonte em TypeScript, sem arquivos <code>.js</code> em <code>src</code>, e cinco arquivos de teste <code>*.test.ts</code>.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/package.json">package.json em web-app</a></li>
-      <li><a href="https://github.com/Solierrr/web-app/blob/main/src/main.tsx">main.tsx em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/worker-failover/blob/main/src/index.ts">index.ts em worker-failover</a></li>
     </ul>
   </div>
   <div class="prose">
     <h3>M2 Organização de componentes e páginas</h3>
     <p class="muted">Componentes em <code>src/components/</code> e páginas em <code>src/pages/</code>, cada um em pasta própria com <code>index.tsx</code>.</p>
-    <p>O projeto organiza o código por funcionalidade. Cada domínio do negócio tem uma pasta em <code>src/features/</code> com suas páginas (<code>pages/</code>) e seus componentes (<code>components/</code>), e os componentes reutilizáveis ficam em <code>src/lib/components/</code>.</p>
+    <p>O código é organizado por funcionalidade. Cada domínio tem uma pasta em <code>src/features/</code> com suas páginas (<code>pages/</code>) e seus componentes (<code>components/</code>), e os componentes reutilizáveis ficam em <code>src/lib/components/</code>.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/tree/main/src/features">pasta src/features em web-app</a></li>
       <li><a href="https://github.com/Solierrr/web-app/tree/main/src/lib/components">pasta src/lib/components em web-app</a></li>
@@ -94,19 +96,21 @@
   <div class="prose">
     <h3>M3 Componentes de responsabilidade única</h3>
     <p class="muted">Mínimo de 6 componentes com responsabilidade única.</p>
-    <p>O web-app tem dezenas de componentes reutilizáveis, cada um com uma função só. Entre eles estão a barra lateral (Sidebar), o gráfico (Chart), a seleção (Select), o menu de contexto (ContextMenu), os cartões de indicador e os componentes de feedback ao usuário.</p>
+    <p>O web-app tem dezenas de componentes reutilizáveis, cada um com uma função só, como a barra lateral (Sidebar), o gráfico (Chart), a seleção (Select) e o menu de contexto (ContextMenu).</p>
+    <p>O lib-web reúne os componentes compartilhados em pastas por categoria (<code>ui</code>, <code>feedback</code> e <code>layout</code>), como Skeleton, Combobox e OperationalTable.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/lib/components/dashboard/chart/Chart.tsx">Chart.tsx em web-app</a></li>
-      <li><a href="https://github.com/Solierrr/web-app/tree/main/src/lib/components/ui">pasta src/lib/components/ui em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/lib-web/tree/main/src/components">pasta src/components em lib-web</a></li>
     </ul>
   </div>
   <div class="prose">
     <h3>M4 Tipos TypeScript por domínio</h3>
     <p class="muted">Interfaces TypeScript para props e entidades do domínio em <code>src/types/</code>, por arquivo de domínio; proibido <code>any</code>.</p>
     <p>As interfaces e os tipos das entidades ficam separados por domínio. Os tipos compartilhados estão em <code>src/lib/shared/types</code>, e cada funcionalidade tem o seu arquivo <code>.d.ts</code>, como o analytics.d.ts. A busca por <code>any</code> fora dos testes não encontra nenhuma ocorrência.</p>
+    <p>No lib-web, os tipos das props ficam em arquivos <code>.types.ts</code> ao lado de cada componente, como o Skeleton.types.ts.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/analytics/analytics.d.ts">analytics.d.ts em web-app</a></li>
-      <li><a href="https://github.com/Solierrr/web-app/tree/main/src/lib/shared/types">pasta src/lib/shared/types em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/lib-web/blob/main/src/components/feedback/skeleton/Skeleton.types.ts">Skeleton.types.ts em lib-web</a></li>
     </ul>
   </div>
 </section>
@@ -121,9 +125,10 @@
     <h3>M5 Comunicação com a API em serviços</h3>
     <p class="muted">Toda comunicação com API isolada em <code>src/services/</code>, por recurso, com retorno <code>Promise&lt;Tipo&gt;</code> e <code>try/catch</code>; chaves e URLs em variáveis de ambiente.</p>
     <p>A comunicação com a API fica em serviços por domínio, no padrão <code>src/features/&lt;domínio&gt;/&lt;domínio&gt;.service.ts</code>, com retorno tipado. O analytics.service.ts é um exemplo, e o company.postal.service.ts tem teste próprio. As URLs vêm de variáveis <code>VITE_</code> listadas no .env.example, e o arquivo <code>.env</code> fica fora do versionamento pelo .gitignore.</p>
+    <p>No web-sandbox, o keepalive.service.ts tem a função <code>wake</code> com retorno <code>Promise&lt;WakeResult&gt;</code> e bloco <code>try/catch</code>.</p>
     <ul>
-      <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/analytics/analytics.service.ts">analytics.service.ts em web-app</a></li>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/.env.example">.env.example em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/keepalive/keepalive.service.ts">keepalive.service.ts em web-sandbox</a></li>
     </ul>
   </div>
   <div class="prose">
@@ -156,9 +161,10 @@
     <h3>M10 Rotas com React Router e página de erro</h3>
     <p class="muted">Mínimo de 3 rotas com React Router, navegação por <code>&lt;Link&gt;</code> ou <code>useNavigate</code>, e rota curinga com página de erro e botão de retorno.</p>
     <p>O AppRoutes.tsx define as rotas do aplicativo com React Router e inclui uma rota curinga (<code>path="*"</code>) que mostra a página NotFound. A página tem um botão de retorno que leva à página inicial com <code>useNavigate</code>.</p>
+    <p>No web-sandbox, o App.tsx declara nove rotas com React Router, entre elas uma rota com parâmetro de sessão e uma rota curinga que redireciona ao catálogo.</p>
     <ul>
-      <li><a href="https://github.com/Solierrr/web-app/blob/main/src/routes/AppRoutes.tsx">AppRoutes.tsx em web-app</a></li>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/error/pages/not-found/NotFound.tsx">NotFound.tsx em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/App.tsx">App.tsx em web-sandbox</a></li>
     </ul>
   </div>
 </section>
@@ -166,30 +172,33 @@
 <section class="chapter" id="minimos-interface" data-title="Requisitos mínimos, interface e histórico" data-summary="Acessibilidade, feedback ao usuário e commits">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">O web-app informa o usuário, cuida da acessibilidade e mantém um histórico padronizado</h2>
+    <h2 class="title">Acessibilidade, feedback ao usuário e commits padronizados</h2>
     <p class="question">Que cuidados de uso e de processo o projeto mostra?</p>
   </header>
   <div class="prose">
     <h3>M11 Acessibilidade</h3>
     <p class="muted">Acessibilidade mínima WCAG 2.1 AA, com botões, <code>label</code> e <code>htmlFor</code>, <code>alt</code>, contraste, <code>role="alert"</code>, teclado e foco visível.</p>
-    <p>O projeto reúne recursos de acessibilidade em vários pontos. A pasta <code>src/lib/shared/accessibility</code> traz a geração de texto alternativo por IA para imagens. Mensagens de erro usam <code>role="alert"</code> em 36 arquivos, e o foco visível (<code>focus-visible</code>) aparece em 28 arquivos. Os componentes de feedback ficam em <code>src/lib/components/feedback</code>.</p>
+    <p>No web-app, a pasta <code>src/lib/shared/accessibility</code> traz a geração de texto alternativo por IA para imagens, <code>role="alert"</code> aparece em 36 arquivos e o foco visível (<code>focus-visible</code>) em 28 arquivos.</p>
+    <p>No lib-web, o Access associa cada campo ao rótulo com <code>label</code> e <code>htmlFor</code>, o FieldFeedback usa <code>role="alert"</code> e o LogoLoader, <code>role="status"</code>.</p>
     <ul>
+      <li><a href="https://github.com/Solierrr/lib-web/blob/main/src/components/layout/access/Access.tsx">Access.tsx em lib-web</a></li>
       <li><a href="https://github.com/Solierrr/web-app/tree/main/src/lib/shared/accessibility">pasta src/lib/shared/accessibility em web-app</a></li>
-      <li><a href="https://github.com/Solierrr/web-app/tree/main/src/lib/components/feedback">pasta src/lib/components/feedback em web-app</a></li>
     </ul>
   </div>
   <div class="prose">
     <h3>M12 Feedback de operações assíncronas</h3>
     <p class="muted">Feedback visual para operações assíncronas com três estados (carregando, sucesso, erro); proibido <code>alert()</code> e <code>console.log</code> como único tratamento.</p>
-    <p>A página de indicadores, AnalyticsPage.tsx, mostra um estado de carregamento enquanto busca os dados, uma mensagem de erro com <code>role="alert"</code> quando a busca falha e os dados quando ela termina. Dezenas de componentes usam estados de carregamento, apoiados pelos componentes de feedback do projeto.</p>
+    <p>No web-app, a página AnalyticsPage.tsx mostra o carregamento, uma mensagem de erro com <code>role="alert"</code> se a busca falha e os dados quando ela termina.</p>
+    <p>No web-sandbox, o KeepalivePage.tsx usa <code>role="status"</code> e o AiFlowPage.tsx usa <code>role="alert"</code>.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/analytics/pages/AnalyticsPage.tsx">AnalyticsPage.tsx em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/keepalive/pages/KeepalivePage.tsx">KeepalivePage.tsx em web-sandbox</a></li>
     </ul>
   </div>
   <div class="prose">
     <h3>M14 Commits em Conventional Commits</h3>
     <p class="muted">Mínimo de 20 commits em Conventional Commits, cobrindo ao menos 4 semanas.</p>
-    <p>O histórico do web-app tem mais de 370 commits entre 02/06/2026 e 02/11/2026, e mais de 200 deles usam os prefixos feat, fix, refactor ou docs do Conventional Commits. O workflow pr-title-lint.yml recusa título de PR fora do padrão.</p>
+    <p>O histórico do web-app tem mais de 370 commits entre 02/06/2026 e 02/11/2026, mais de 200 com prefixo do Conventional Commits, e o workflow pr-title-lint.yml recusa título de PR fora do padrão.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/commits/main">histórico de commits do web-app</a></li>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/.github/workflows/pr-title-lint.yml">pr-title-lint.yml em web-app</a></li>
@@ -197,11 +206,11 @@
   </div>
 </section>
 
-<section class="chapter" id="extras-estado" data-title="Requisitos extras" data-summary="Context API, hook com cancelamento e proteção contra XSS">
+<section class="chapter" id="extras-estado" data-title="Requisitos extras" data-summary="Context API, hook com cancelamento, lazy e proteção contra XSS">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Os extras entregues cobrem contexto, hook com cancelamento e proteção contra XSS</h2>
-    <p class="question">Que recursos além do mínimo o web-app entrega?</p>
+    <h2 class="title">Os extras entregues cobrem contexto, hook com cancelamento, carregamento sob demanda e proteção contra XSS</h2>
+    <p class="question">Que recursos além do mínimo a entrega web traz?</p>
   </header>
   <div class="prose">
     <h3>E1 Context API</h3>
@@ -214,9 +223,20 @@
   <div class="prose">
     <h3>E3 Hook customizado com AbortController</h3>
     <p class="muted">Hook customizado com retorno tipado, loading, erro e cancelamento via <code>AbortController</code>.</p>
-    <p>O hook <code>useMarketplaceCatalog</code>, em marketplace.hooks.ts, é genérico e devolve os itens tipados, o estado de erro e uma função para tentar de novo. Enquanto a busca não termina, os itens ficam nulos e a interface mostra o esqueleto de carregamento. A busca é cancelada com <code>AbortController</code> quando o componente sai da tela.</p>
+    <p>O hook <code>useMarketplaceCatalog</code>, em marketplace.hooks.ts, é genérico e devolve os itens tipados, o estado de erro e uma função para tentar de novo. A busca é cancelada com <code>AbortController</code> quando o componente sai da tela.</p>
+    <p>No web-sandbox, o SimulatorPage.tsx cancela a execução em andamento com <code>AbortController</code>.</p>
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/marketplace/marketplace.hooks.ts">marketplace.hooks.ts em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/ai/pages/SimulatorPage.tsx">SimulatorPage.tsx em web-sandbox</a></li>
+    </ul>
+  </div>
+  <div class="prose">
+    <h3>E4 React.lazy e Suspense</h3>
+    <p class="muted"><code>React.lazy</code> e <code>Suspense</code> por página, demonstrado no Network.</p>
+    <p>No web-sandbox, o App.tsx carrega as páginas com <code>React.lazy</code> e as envolve em <code>Suspense</code>, com um indicador de carregamento. No web-app, o DocumentViewer.tsx usa os dois nos visualizadores de PDF e de DOCX.</p>
+    <ul>
+      <li><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/App.tsx">App.tsx em web-sandbox</a></li>
+      <li><a href="https://github.com/Solierrr/web-app/blob/main/src/lib/components/ui/document-viewer/DocumentViewer.tsx">DocumentViewer.tsx em web-app</a></li>
     </ul>
   </div>
   <div class="prose">
@@ -227,24 +247,17 @@
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/lib/utils/sanitization.utils.ts">sanitization.utils.ts em web-app</a></li>
     </ul>
   </div>
-</section>
-
-<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
-  <header class="band brand">
-    <span class="num"></span>
-    <h2 class="title">Entregas adicionais</h2>
-    <p class="question">O que o projeto reúne nesta disciplina?</p>
-  </header>
   <div class="prose">
-    <p>A entrega web inclui uma biblioteca de componentes publicada como pacote, com tokens de design e Storybook, um Worker na borda que roteia o idioma, reconhece a procura por caminhos de painéis e mostra uma página temporária quando a origem está indisponível, um portal público de documentos em três idiomas e uma interface de administração do QA com proxy autenticado do Swagger. No web-app, o Storybook tem mais de oitenta arquivos de story, a internacionalização cobre português, inglês e espanhol e as rotas são protegidas por guardas de acesso.</p>
+    <h3>Entregas adicionais</h3>
+    <p>A entrega web inclui uma biblioteca de componentes publicada como pacote, com tokens de design e Storybook, um Worker na borda que escolhe o idioma da visita e mostra uma página temporária quando a origem está indisponível e uma interface de administração do QA com proxy autenticado do Swagger. No web-app, o Storybook tem mais de oitenta arquivos de story e a internacionalização cobre português, inglês e espanhol.</p>
     <p>Link de exemplo, <a href="https://github.com/Solierrr/lib-web">lib-web na branch main</a>.</p>
   </div>
 </section>
 
-<section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="O repositório que reúne a evidência">
+<section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Os quatro repositórios da entrega web">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">A entrega web reúne cinco repositórios, e a evidência dos requisitos está no web-app</h2>
+    <h2 class="title">A entrega web reúne quatro repositórios, e cada um aparece nos requisitos que comprova</h2>
     <p class="question">Onde fica o código descrito neste documento?</p>
   </header>
   <table class="data">
@@ -252,8 +265,7 @@
     <tbody>
       <tr><td>web-app</td><td>Interface web do projeto, em Vite, React e TypeScript. Reúne o código, a documentação de arquitetura e os workflows citados neste documento.</td><td><a href="https://github.com/Solierrr/web-app">web-app na branch main</a></td></tr>
       <tr><td>lib-web</td><td>Biblioteca de componentes React com tokens de design, internacionalização e Storybook, publicada como pacote.</td><td><a href="https://github.com/Solierrr/lib-web">lib-web na branch main</a></td></tr>
-      <tr><td>worker-failover</td><td>Cloudflare Worker em TypeScript que escolhe o idioma, encaminha a navegação ao web-app e mostra uma página temporária quando a origem está indisponível.</td><td><a href="https://github.com/Solierrr/worker-failover">worker-failover na branch main</a></td></tr>
-      <tr><td>worker-docs</td><td>Portal público de documentos em React, em português, inglês e espanhol, hospedado em Cloudflare Workers.</td><td><a href="https://github.com/Solierrr/worker-docs">worker-docs na branch main</a></td></tr>
+      <tr><td>worker-failover</td><td>Cloudflare Worker em TypeScript que escolhe o idioma, encaminha a navegação para a origem e mostra uma página temporária quando a origem está indisponível.</td><td><a href="https://github.com/Solierrr/worker-failover">worker-failover na branch main</a></td></tr>
       <tr><td>web-sandbox</td><td>Interface React de administração do QA, com servidor Fastify e proxy autenticado do Swagger.</td><td><a href="https://github.com/Solierrr/web-sandbox">web-sandbox na branch main</a></td></tr>
     </tbody>
   </table>
