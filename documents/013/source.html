@@ -56,9 +56,11 @@
       <tr><td>M6</td><td>Estado local com useState</td><td>Mínimo</td></tr>
       <tr><td>M7</td><td>useEffect com dependências</td><td>Mínimo</td></tr>
       <tr><td>M8</td><td>Listas com chave estável</td><td>Mínimo</td></tr>
+      <tr><td>M9</td><td>Parâmetros de rota com verificação</td><td>Mínimo</td></tr>
       <tr><td>M10</td><td>Rotas com React Router e página de erro</td><td>Mínimo</td></tr>
       <tr><td>M11</td><td>Acessibilidade</td><td>Mínimo</td></tr>
       <tr><td>M12</td><td>Feedback de operações assíncronas</td><td>Mínimo</td></tr>
+      <tr><td>M13</td><td>Aplicação publicada</td><td>Mínimo</td></tr>
       <tr><td>M14</td><td>Commits em Conventional Commits</td><td>Mínimo</td></tr>
       <tr><td>E1</td><td>Context API</td><td>Extra</td></tr>
       <tr><td>E3</td><td>Hook customizado com AbortController</td><td>Extra</td></tr>
@@ -158,6 +160,15 @@
     </ul>
   </div>
   <div class="prose">
+    <h3>M9 Parâmetros de rota com verificação</h3>
+    <p class="muted">Parâmetros de rota recuperados com useParams, com verificação de presença antes do uso.</p>
+    <p>O web-app tem o hook useRequiredParam, que lê o parâmetro da rota com useParams e devolve o valor só quando ele existe e não é vazio. Quando o parâmetro não vem na rota, a página mostra a página de erro com o botão de retorno. Páginas como UnitPage, OfferPage, BrandDetailsPage e Chat usam o hook.</p>
+    <ul>
+      <li><a href="https://github.com/Solierrr/web-app/blob/main/src/lib/shared/routing/useRequiredParam.ts#L8">useRequiredParam.ts em web-app</a></li>
+      <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/units/pages/UnitPage.tsx#L15">UnitPage.tsx em web-app</a></li>
+    </ul>
+  </div>
+  <div class="prose">
     <h3>M10 Rotas com React Router e página de erro</h3>
     <p class="muted">Mínimo de 3 rotas com React Router, navegação por <code>&lt;Link&gt;</code> ou <code>useNavigate</code>, e rota curinga com página de erro e botão de retorno.</p>
     <p>O AppRoutes.tsx define as rotas do aplicativo com React Router e inclui uma rota curinga (<code>path="*"</code>) que mostra a página NotFound. A página tem um botão de retorno que leva à página inicial com <code>useNavigate</code>.</p>
@@ -193,6 +204,15 @@
     <ul>
       <li><a href="https://github.com/Solierrr/web-app/blob/main/src/features/analytics/pages/AnalyticsPage.tsx">AnalyticsPage.tsx em web-app</a></li>
       <li><a href="https://github.com/Solierrr/web-sandbox/blob/main/src/features/keepalive/pages/KeepalivePage.tsx">KeepalivePage.tsx em web-sandbox</a></li>
+    </ul>
+  </div>
+  <div class="prose">
+    <h3>M13 Aplicação publicada</h3>
+    <p class="muted">Aplicação publicada em Vercel ou GitHub Pages, com o link no README.md.</p>
+    <p>O projeto publicou a aplicação no cluster Kubernetes do GKE, em acordo com o professor, no lugar da Vercel e do GitHub Pages. O endereço consta no README do web-app. O cluster pode estar desligado fora dos períodos de uso, e nesse caso o acesso passa pelo worker-failover, que responde com uma página de indisponibilidade.</p>
+    <ul>
+      <li><a href="https://solarianetwork.site">https://solarianetwork.site</a></li>
+      <li><a href="https://github.com/Solierrr/worker-failover/blob/main/src/index.ts">index.ts em worker-failover</a></li>
     </ul>
   </div>
   <div class="prose">

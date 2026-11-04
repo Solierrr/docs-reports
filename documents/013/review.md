@@ -21,3 +21,7 @@ Mudança pequena e pedida pelo dono, sem afirmações novas além das indicadas 
 ## Revisão de prontidão
 
 Revisão independente de HTML e PDF, com os links conferidos na main e as afirmações lidas nos arquivos linkados. As pendências foram aplicadas em seguida.
+
+## Ciclo de atualização
+
+Mudanças pequenas conferidas pelo orquestrador: links, regras de escrita e distribuição das folhas.
