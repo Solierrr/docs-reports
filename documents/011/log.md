@@ -39,3 +39,11 @@
 - **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo de atualização
+
+- **Pedido do dono:** registrar o TDD, o tablet, a hospedagem no GKE e a verificação dos parâmetros de rota.
+- **O que mudou:** Acrescentado o E7, sobre o aplicativo responsivo no celular e no tablet.
+- **Verificações:** links conferidos na main, varredura das regras de escrita e distribuição das folhas.
+- **check.sh:** ok.
+- **PDF:** regerado.
