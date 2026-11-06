@@ -47,3 +47,11 @@
 - **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Ciclo de atualização
+
+- **Pedido do dono:** registrar o TDD, o tablet, a hospedagem no GKE e a verificação dos parâmetros de rota.
+- **O que mudou:** E2 passou a citar o TDD e os testes unitários, com o padrão de testes publicado no docs-warehouse, e a tabela-resumo foi ajustada.
+- **Verificações:** links conferidos na main, varredura das regras de escrita e distribuição das folhas.
+- **check.sh:** ok.
+- **PDF:** regerado.
