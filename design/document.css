@@ -194,6 +194,8 @@ h3 {
 .prose ul,
 .prose ol {
   padding-left: 5mm;
+  /* Com o espaço de 3mm do .prose, o rótulo e a lista ficam a 4mm. */
+  margin-top: 1mm;
 }
 /* O Paged.js descarta seletores de irmão (+, ~) e :nth-child; use :first-child ou classes. */
 .prose li {
@@ -624,8 +626,12 @@ h3 {
   font-weight: 700;
   content: "Fonte: ";
 }
+table.data thead {
+  display: table-header-group;
+}
 table.data {
   width: 100%;
+  margin-top: 4mm;
   border-collapse: collapse;
   font-size: 8.5pt;
 }
@@ -641,7 +647,7 @@ table.data td {
   padding: 2mm 2mm 2mm 0;
   border-bottom: 0.5pt solid var(--line);
   /* Endereços e códigos longos quebram dentro da célula em vez de invadir a coluna seguinte. */
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 table.data .num {
   text-align: right;

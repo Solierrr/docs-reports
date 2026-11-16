@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Políticas e prazos da Solaria</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Políticas e prazos da Solaria</h1>
+    <p class="lead">Regras, prazos, valores e limites da Solaria em tabelas, com a unidade de cada prazo sempre explícita.</p>
+    <span class="sample">Exemplo com dados fictícios</span>
+  </div>
+  <div class="meta">
+    <div><span>Para</span><b>IA de atendimento e leitores humanos</b></div>
+    <div><span>Fonte</span><b>Perguntas frequentes da Solaria, atualizado em 27/10/2026</b></div>
+    <div><span>Atualizado</span><b>28/10/2026</b></div>
+    <div><span>Classificação</span><b>Uso interno</b></div>
+  </div>
+</section>
+
+<section class="chapter" id="abertura" data-title="Como ler as tabelas" data-summary="Como ler as linhas e as unidades de tempo">
+  <h2 class="title">Como ler as tabelas</h2>
+  <div class="prose">
+    <ul>
+      <li>Cada linha traz a situação, quem age, o prazo e a consequência. O prazo já vem com a unidade.</li>
+      <li>Dia útil é segunda a sexta, exceto feriados nacionais, no horário de Brasília. Dia corrido conta todos os dias do calendário, inclusive fins de semana e feriados.</li>
+      <li>Hora útil vale só para o chat do pedido e vai de segunda a sexta, das 8h às 18h. Hora corrida conta todas as horas do relógio.</li>
+      <li>Quando a regra é um valor, uma condição ou um limite, o prazo é "sem prazo".</li>
+      <li>Quando um ponto não está definido, a linha diz "Para este ponto, consulte o suporte".</li>
+    </ul>
+    <p>Fonte: SOLARIA. Perguntas frequentes da Solaria. Atualizado em 27/10/2026. Conteúdo fictício. Consultado em 28/10/2026.</p>
+  </div>
+</section>
+
+<section class="chapter" id="conta-acesso" data-title="Conta e acesso" data-summary="Quem compra, cadastro, acesso, usuários e encerramento da conta">
+  <h2 class="title">Conta e acesso</h2>
+  <div class="prose">
+    <p>Esta tabela reúne as regras de quem pode comprar, cadastro, acesso, usuários, dados da empresa e encerramento da conta. Os prazos vêm em minutos, dias úteis, dias corridos e anos.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-buyer-eligibility"><td>Quem pode ser comprador: empresa com CNPJ ativo, incluindo MEI, sem faturamento mínimo e sem tempo mínimo de abertura.</td><td>comprador</td><td>sem prazo</td><td>Pessoa física sem CNPJ não compra, porque todo pedido tem nota fiscal emitida para uma empresa.</td></tr>
+      <tr id="pol-person-company-limit"><td>Uma mesma pessoa ligada a mais de uma conta da empresa.</td><td>comprador</td><td>sem prazo</td><td>A pessoa pode estar ligada a até 3 empresas e alternar entre elas sem criar outro acesso.</td></tr>
+      <tr id="pol-account-one-per-cnpj"><td>Cadastro da conta da empresa: cada CNPJ só pode ter uma conta.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>Filial com CNPJ próprio entra como unidade da conta da matriz, com endereços próprios e notas fiscais no próprio CNPJ. Se a filial já tinha conta própria, o suporte une as duas sem perder o histórico.</td></tr>
+      <tr id="pol-signup-code-validity"><td>Cadastro da conta da empresa: o código enviado por SMS e por e-mail para confirmar e-mail e celular.</td><td>comprador, fornecedor</td><td>10 minutos</td><td>Confirmado o código, a conta fica ativa. Depois, o endereço de entrega cadastrado mostra os fornecedores que atendem o comprador.</td></tr>
+      <tr id="pol-user-limit"><td>Usuários da conta da empresa: o administrador convida as pessoas e escolhe o papel de cada uma.</td><td>administrador</td><td>sem prazo</td><td>Até 10 usuários por empresa. Só o administrador altera os dados da empresa e gerencia usuários. Papéis do comprador: administrador, comprador e financeiro. Papéis do fornecedor: administrador, operador e financeiro.</td></tr>
+      <tr id="pol-delivery-address-limit"><td>Endereços de entrega da conta da empresa.</td><td>comprador</td><td>sem prazo</td><td>Até 10 endereços de entrega por conta.</td></tr>
+      <tr id="pol-password-reset-link"><td>Redefinição de senha pedida com o e-mail da conta: validade do link.</td><td>comprador, fornecedor</td><td>30 minutos</td><td>O link só pode ser usado uma vez. Sem acesso ao e-mail, a troca é pedida ao administrador ou ao suporte.</td></tr>
+      <tr id="pol-password-format"><td>Nova senha definida na redefinição de senha.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>A senha precisa ter pelo menos 8 caracteres, com letras e números.</td></tr>
+      <tr id="pol-login-lockout"><td>Bloqueio de entrada: 5 tentativas erradas seguidas de senha.</td><td>comprador, fornecedor</td><td>30 minutos</td><td>A entrada fica bloqueada por 30 minutos. Para voltar a entrar, a pessoa espera os 30 minutos ou redefine a senha. Se não foi ela quem tentou, deve trocar a senha assim que entrar.</td></tr>
+      <tr id="pol-preventive-block-unlock"><td>Bloqueio preventivo da conta por sinais de risco, por exemplo entradas de lugares muito diferentes em pouco tempo.</td><td>comprador, fornecedor, suporte</td><td>1 dia útil</td><td>Para desbloquear, a pessoa confirma a identidade com o suporte, e o desbloqueio sai em até 1 dia útil. No fornecedor, os repasses ficam retidos até o desbloqueio.</td></tr>
+      <tr id="pol-two-step-required"><td>Verificação em duas etapas.</td><td>fornecedor, comprador</td><td>sem prazo</td><td>Obrigatória para o fornecedor e opcional, mas recomendada, para o comprador. Com ela, cada entrada em dispositivo novo pede, além da senha, um código enviado ao celular.</td></tr>
+      <tr id="pol-session-known-device"><td>Sessão em dispositivo já conhecido com a verificação em duas etapas ativa.</td><td>comprador, fornecedor</td><td>30 dias corridos</td><td>A sessão dura até 30 dias corridos sem uso.</td></tr>
+      <tr id="pol-company-data-fiscal-change"><td>Alteração de razão social ou endereço fiscal da empresa, com envio de comprovante.</td><td>administrador, suporte</td><td>2 dias úteis</td><td>A análise sai em até 2 dias úteis. O CNPJ não pode ser alterado; se a empresa mudou de CNPJ, o administrador abre uma conta nova.</td></tr>
+      <tr id="pol-company-data-instant-change"><td>Alteração de telefone, e-mail de contato ou endereços de entrega da empresa.</td><td>administrador</td><td>sem prazo</td><td>A mudança vale na hora, sem análise.</td></tr>
+      <tr id="pol-account-closure-request"><td>Encerramento da conta da empresa: o administrador pede ao suporte.</td><td>administrador, suporte</td><td>sem prazo</td><td>Só é possível sem pedidos em andamento, devoluções abertas, boletos faturados em aberto nem repasses a receber.</td></tr>
+      <tr id="pol-account-closure-deletion"><td>Encerramento da conta da empresa já concluído.</td><td>Solaria, suporte</td><td>30 dias corridos</td><td>A conta é desativada na hora e os dados são excluídos em 30 dias corridos. Nesse prazo o suporte pode reativar a conta. Os relatórios deixam de existir depois de 30 dias corridos do encerramento, por isso o administrador baixa antes.</td></tr>
+      <tr id="pol-fiscal-records-retention"><td>Registros fiscais (notas fiscais e pagamentos) guardados pela Solaria.</td><td>Solaria</td><td>5 anos</td><td>Os registros ficam guardados por 5 anos, porque a lei exige.</td></tr>
+      <tr id="pol-personal-data-retention"><td>Dados pessoais e da empresa guardados pela Solaria.</td><td>Solaria</td><td>30 dias corridos</td><td>Os dados ficam guardados enquanto a conta estiver ativa e por 30 dias corridos depois do encerramento da conta.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="pagamento-cobranca" data-title="Pagamento e cobrança" data-summary="Preços, pedido mínimo, cotação, formas de pagamento, nota fiscal e estorno">
+  <h2 class="title">Pagamento e cobrança</h2>
+  <div class="prose">
+    <p>Esta tabela reúne preços, pedido mínimo, cotação, pedido programado, formas de pagamento, boleto faturado, nota fiscal, cobrança e estorno. Os prazos vêm em minutos, dias úteis, dias corridos, meses e faturas.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-buyer-no-service-fee"><td>Custos do comprador: cadastro, busca, cotações e chat do pedido são gratuitos, sem cobrança de serviço e sem mensalidade.</td><td>comprador</td><td>sem prazo</td><td>O comprador paga só produtos e frete de cada pedido e vê os dois valores antes de confirmar. Multa e juros só existem quando um boleto faturado é pago com atraso.</td></tr>
+      <tr id="pol-price-includes-taxes"><td>Preço do anúncio.</td><td>fornecedor, comprador</td><td>sem prazo</td><td>O preço inclui os impostos e não inclui o frete. O frete é calculado para o CEP e mostrado separado antes de confirmar o pedido.</td></tr>
+      <tr id="pol-volume-price-tiers"><td>Preço menor por volume no anúncio.</td><td>fornecedor</td><td>sem prazo</td><td>Até 4 faixas de quantidade por anúncio. A faixa e a condição de frete grátis aparecem no anúncio.</td></tr>
+      <tr id="pol-free-shipping-threshold"><td>Frete grátis a partir de um valor de compra.</td><td>fornecedor</td><td>sem prazo</td><td>Cada fornecedor define se oferece e a partir de que valor. Para o valor, consulte o suporte.</td></tr>
+      <tr id="pol-price-locked"><td>Preço do pedido depois que o comprador confirmou.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>Vale o preço do momento da confirmação. A mudança de preço do fornecedor atinge só pedidos novos. Se uma promoção terminar depois da confirmação, o comprador paga o preço promocional.</td></tr>
+      <tr id="pol-price-mismatch-dispute"><td>Cobrança diferente do valor confirmado no pedido.</td><td>comprador</td><td>sem prazo</td><td>O comprador contesta com o suporte.</td></tr>
+      <tr id="pol-minimum-order"><td>Pedido mínimo do fornecedor, sem contar o frete.</td><td>fornecedor, comprador</td><td>sem prazo</td><td>Cada fornecedor define o seu, de R$ 0 a R$ 500, e o valor aparece no anúncio. Com valor menor que o pedido mínimo, o pedido não pode ser concluído. Vale por fornecedor, não para o carrinho inteiro.</td></tr>
+      <tr id="pol-multi-supplier-split"><td>Compra de vários fornecedores de uma vez.</td><td>comprador, Solaria</td><td>sem prazo</td><td>O comprador paga tudo de uma vez e a Solaria divide em um pedido por fornecedor, cada um com prazo, frete, nota fiscal e rastreio próprios. Se um fornecedor cancelar a parte dele, só aquele pedido é reembolsado.</td></tr>
+      <tr id="pol-quote-recipients"><td>Cotação enviada pelo comprador.</td><td>comprador</td><td>sem prazo</td><td>A cotação pode ir para até 5 fornecedores ao mesmo tempo. Vale a pena quando o comprador precisa de quantidade maior que o estoque, preço especial por volume ou condições próprias de entrega.</td></tr>
+      <tr id="pol-quote-response"><td>Resposta do fornecedor a uma cotação.</td><td>fornecedor</td><td>2 dias úteis</td><td>Cada fornecedor tem até 2 dias úteis para responder com uma proposta.</td></tr>
+      <tr id="pol-quote-validity"><td>Validade da proposta do fornecedor.</td><td>comprador, fornecedor</td><td>7 dias corridos</td><td>A proposta vale por 7 dias corridos. A proposta aceita vira um pedido com o preço e o prazo combinados.</td></tr>
+      <tr id="pol-scheduled-order-notice"><td>Aviso do pedido programado (semanal, quinzenal ou mensal).</td><td>Solaria</td><td>2 dias corridos</td><td>A Solaria avisa o comprador com o valor previsto 2 dias corridos antes de cada pedido.</td></tr>
+      <tr id="pol-scheduled-order-change"><td>Alteração do pedido programado: pausar, alterar ou cancelar.</td><td>comprador</td><td>1 dia corrido</td><td>O comprador pode pausar, alterar ou cancelar até 1 dia corrido antes do pedido. Cada pedido usa o preço do dia em que é gerado. Item sem estoque fica de fora e o comprador recebe aviso.</td></tr>
+      <tr id="pol-payment-methods"><td>Formas de pagamento aceitas.</td><td>comprador</td><td>sem prazo</td><td>Pix, cartão de crédito, boleto à vista e boleto faturado. Todas valem para qualquer fornecedor e têm a Compra Garantida.</td></tr>
+      <tr id="pol-payment-to-solaria"><td>Pagamento do pedido.</td><td>comprador, Solaria</td><td>sem prazo</td><td>O pagamento é sempre para a Solaria, que repassa o valor ao fornecedor depois da entrega. Nenhum fornecedor deve pedir pagamento por fora.</td></tr>
+      <tr id="pol-payment-confirm-pix-card"><td>Confirmação de pagamento por Pix ou cartão de crédito.</td><td>Solaria</td><td>em minutos</td><td>A confirmação sai em minutos. O pedido só segue para o fornecedor depois da confirmação, e o prazo de entrega conta a partir dela.</td></tr>
+      <tr id="pol-pix-code-validity"><td>Código do Pix gerado para pagar o pedido.</td><td>comprador</td><td>30 minutos</td><td>O código do Pix vale por 30 minutos.</td></tr>
+      <tr id="pol-boleto-spot-confirm"><td>Confirmação de pagamento por boleto à vista.</td><td>Solaria</td><td>2 dias úteis</td><td>A confirmação sai em até 2 dias úteis. O prazo de entrega conta a partir dela, então boleto à vista pago no último dia empurra a entrega.</td></tr>
+      <tr id="pol-boleto-spot-due"><td>Vencimento do boleto à vista.</td><td>comprador</td><td>3 dias corridos</td><td>O boleto à vista vence em 3 dias corridos, com estoque reservado até lá. Se não for pago no vencimento, o pedido é cancelado sem custo.</td></tr>
+      <tr id="pol-card-installments"><td>Parcelamento no cartão de crédito.</td><td>comprador</td><td>sem prazo</td><td>Até 6 vezes sem juros, para pedidos a partir de R$ 300, com parcela mínima de R$ 50. Vale para o carrinho inteiro, mesmo com vários fornecedores.</td></tr>
+      <tr id="pol-card-installments-cancel"><td>Cancelamento de um dos pedidos de uma compra parcelada no cartão.</td><td>Solaria, comprador</td><td>sem prazo</td><td>O estorno é proporcional e a operadora ajusta as parcelas.</td></tr>
+      <tr id="pol-boleto-invoiced-due"><td>Vencimento do boleto faturado, compra a prazo.</td><td>comprador</td><td>28 dias corridos</td><td>O boleto faturado vence 28 dias corridos depois da emissão da nota fiscal.</td></tr>
+      <tr id="pol-boleto-invoiced-credit-analysis"><td>Análise de crédito para comprar em boleto faturado.</td><td>Solaria</td><td>3 dias úteis</td><td>A análise sai em até 3 dias úteis e define o limite de crédito do comprador. O limite de crédito volta a ficar disponível conforme os boletos faturados são pagos. Para o valor do limite de crédito e os critérios da análise, consulte o suporte.</td></tr>
+      <tr id="pol-boleto-invoiced-late-fee"><td>Boleto faturado pago com atraso.</td><td>comprador</td><td>sem prazo</td><td>Multa de 2% e juros de 1% ao mês. Para o valor da multa em R$, consulte o suporte.</td></tr>
+      <tr id="pol-boleto-invoiced-suspension"><td>Boleto faturado com mais de 5 dias corridos de atraso.</td><td>comprador, Solaria</td><td>5 dias corridos</td><td>As novas compras em boleto faturado ficam suspensas até a quitação.</td></tr>
+      <tr id="pol-invoice-issuer"><td>Emissão da nota fiscal do pedido.</td><td>fornecedor</td><td>sem prazo</td><td>O fornecedor emite a nota no despacho, no nome do CNPJ que comprou. A nota fica na conta e vai para o e-mail dos usuários com papel de financeiro. Em compra de vários fornecedores, vem uma nota de cada um. A Solaria não emite nota dos produtos, porque não é ela quem vende.</td></tr>
+      <tr id="pol-invoice-correction-request"><td>Nota fiscal que veio com erro (CNPJ, endereço, quantidade, valor): pedido de correção ao fornecedor pelo chat do pedido.</td><td>comprador</td><td>30 dias corridos</td><td>O comprador pede em até 30 dias corridos da emissão e diz o que está errado. O comprador não registra na contabilidade nota que não bate com o valor pago e pede antes a nota corrigida.</td></tr>
+      <tr id="pol-invoice-correction-supplier"><td>Correção da nota fiscal pelo fornecedor.</td><td>fornecedor</td><td>3 dias úteis</td><td>O fornecedor tem 3 dias úteis para corrigir ou emitir nova nota.</td></tr>
+      <tr id="pol-invoice-correction-escalation"><td>Fornecedor sem resposta ao pedido de correção da nota fiscal no prazo de 3 dias úteis.</td><td>comprador, Solaria</td><td>3 dias úteis</td><td>O comprador abre chamado com o número do pedido e a Solaria cobra a correção.</td></tr>
+      <tr id="pol-charge-dispute-window"><td>Contestação de cobrança que o comprador não reconhece.</td><td>comprador</td><td>90 dias corridos</td><td>O comprador contesta com o suporte em até 90 dias corridos. Antes, confere se algum usuário da empresa fez o pedido ou se é pedido programado. Se não reconhecer, abre chamado com data, valor e forma de pagamento.</td></tr>
+      <tr id="pol-charge-dispute-analysis"><td>Análise da contestação de cobrança pela Solaria.</td><td>Solaria</td><td>5 dias úteis</td><td>A Solaria analisa em até 5 dias úteis. Se a cobrança for indevida, o estorno começa no mesmo dia.</td></tr>
+      <tr id="pol-chargeback-pix"><td>Estorno de um pagamento feito por Pix.</td><td>Solaria</td><td>2 dias úteis</td><td>O estorno chega em até 2 dias úteis.</td></tr>
+      <tr id="pol-chargeback-card"><td>Estorno de um pagamento feito por cartão de crédito.</td><td>Solaria</td><td>2 dias úteis para o pedido à operadora; 2 faturas para o valor</td><td>A Solaria pede o estorno à operadora em até 2 dias úteis, e o valor aparece em até 2 faturas.</td></tr>
+      <tr id="pol-chargeback-boleto"><td>Estorno de um pagamento feito por boleto à vista ou boleto faturado.</td><td>Solaria</td><td>5 dias úteis</td><td>O estorno chega em até 5 dias úteis, para uma conta no mesmo CNPJ.</td></tr>
+      <tr id="pol-solaria-credit"><td>Alternativa ao estorno: crédito Solaria.</td><td>Solaria, comprador</td><td>12 meses</td><td>O crédito Solaria é liberado na hora e vale por 12 meses.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="entrega-recebimento" data-title="Entrega e recebimento" data-summary="Prazo de entrega, rastreio, atraso, tentativas e problemas no recebimento">
+  <h2 class="title">Entrega e recebimento</h2>
+  <div class="prose">
+    <p>Esta tabela reúne o prazo de entrega, a mudança de endereço, o rastreio, o atraso, as tentativas de entrega e o registro de problemas no recebimento. Os prazos vêm em dias úteis, dias corridos e horas corridas.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-delivery-time-calculation"><td>Prazo de entrega do pedido.</td><td>Solaria</td><td>sem prazo</td><td>O prazo é calculado pelo CEP de entrega e mostrado antes de o comprador confirmar o pedido. Soma o tempo do fornecedor para aceitar e despachar com o tempo de transporte. A contagem começa na confirmação do pagamento.</td></tr>
+      <tr id="pol-made-to-order-dispatch"><td>Despacho de item sob encomenda.</td><td>fornecedor</td><td>10 dias úteis</td><td>O despacho segue o prazo do anúncio, no máximo 10 dias úteis. Para o prazo do anúncio, consulte o suporte.</td></tr>
+      <tr id="pol-address-change"><td>Mudança do endereço de entrega depois de fazer o pedido, pedida ao fornecedor pelo chat do pedido.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>Só é possível se o pedido ainda não foi despachado. Frete maior: a diferença é cobrada. Frete menor: a diferença volta como estorno. Depois do despacho o endereço não muda.</td></tr>
+      <tr id="pol-tracking-notices"><td>Código de rastreio e avisos da entrega.</td><td>fornecedor, Solaria</td><td>1 dia útil</td><td>O código de rastreio chega em até 1 dia útil depois do despacho. Com transportadora, o código mostra cada etapa; com veículo próprio, o fornecedor atualiza o andamento. A Solaria avisa a cada mudança importante: despacho, saída para entrega e entrega concluída.</td></tr>
+      <tr id="pol-late-delivery-options"><td>Pedido com mais de 3 dias úteis de atraso em relação à data prometida. O comprador fala primeiro com o fornecedor pelo chat do pedido.</td><td>comprador</td><td>3 dias úteis</td><td>O comprador escolhe entre cancelar com reembolso integral ou abrir reclamação pela Compra Garantida para receber o pedido. Nos dois casos o atraso conta contra o fornecedor nos indicadores. Para o prazo do fornecedor responder à reclamação por atraso, consulte o suporte.</td></tr>
+      <tr id="pol-delivery-attempts"><td>Entrega que ninguém recebeu.</td><td>transportadora</td><td>sem prazo</td><td>A transportadora faz até 3 tentativas antes de devolver o pedido ao fornecedor. Se todas falharem, o comprador recebe reembolso dos produtos, mas não do frete de ida. Para receber mesmo assim, combina o reenvio com o fornecedor e paga o frete de reenvio. Para o valor do reenvio, consulte o suporte.</td></tr>
+      <tr id="pol-receipt-check"><td>Recebimento do pedido.</td><td>comprador</td><td>sem prazo</td><td>Antes de assinar o comprovante, o comprador confere a embalagem e a quantidade de volumes e compara com a nota fiscal. Embalagem amassada, molhada ou violada: abrir na frente do entregador. Avaria visível na entrega é anotada no comprovante.</td></tr>
+      <tr id="pol-damage-report-window"><td>Registro de avaria, com fotos, no pedido.</td><td>comprador</td><td>7 dias corridos; perecíveis: 24 horas corridas</td><td>O comprador registra em até 7 dias corridos do recebimento. Para perecíveis, o prazo é de 24 horas corridas.</td></tr>
+      <tr id="pol-damage-supplier-response"><td>Reclamação por avaria aberta no pedido, com fotos da embalagem, da etiqueta e dos produtos.</td><td>fornecedor</td><td>2 dias úteis</td><td>O fornecedor tem até 2 dias úteis para propor troca ou reembolso.</td></tr>
+      <tr id="pol-damage-guarantee-step"><td>Avaria sem solução do fornecedor em 5 dias úteis.</td><td>comprador, Solaria</td><td>5 dias úteis para o fornecedor; 10 dias úteis para a decisão</td><td>O comprador pode acionar a Compra Garantida. Sem solução do fornecedor em 5 dias úteis, a Solaria decide em até 10 dias úteis.</td></tr>
+      <tr id="pol-missing-item-report"><td>Pedido que chegou com produto faltando ou trocado, registrado no pedido com fotos do que chegou e da nota fiscal.</td><td>comprador</td><td>7 dias corridos</td><td>O comprador registra em até 7 dias corridos. Todo o frete fica por conta do fornecedor. O comprador não usa o produto trocado, para poder devolvê-lo sem desconto.</td></tr>
+      <tr id="pol-missing-item-supplier-response"><td>Reclamação por produto faltando ou trocado.</td><td>fornecedor</td><td>2 dias úteis</td><td>O fornecedor responde em até 2 dias úteis e pode enviar o que faltou, trocar o item ou reembolsar a diferença.</td></tr>
+      <tr id="pol-keep-packaging"><td>Embalagem, caixas, etiquetas e nota fiscal do pedido recebido.</td><td>comprador</td><td>7 dias corridos</td><td>O comprador guarda a embalagem por 7 dias corridos, se precisar registrar um problema.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="devolucao-reembolso" data-title="Devolução e reembolso" data-summary="Desistência, defeito, perecíveis, passo a passo da devolução e reembolso">
+  <h2 class="title">Devolução e reembolso</h2>
+  <div class="prose">
+    <p>Esta tabela reúne desistência, defeito, perecíveis, o passo a passo da devolução, o reembolso e a troca. Os prazos vêm em dias úteis, dias corridos, horas corridas e faturas.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-withdrawal-window"><td>Desistência de um produto que o comprador não quer mais, com o produto lacrado.</td><td>comprador</td><td>7 dias corridos</td><td>O comprador pede em até 7 dias corridos do recebimento, paga o frete de volta e recebe o valor integral dos produtos.</td></tr>
+      <tr id="pol-withdrawal-exclusions"><td>Desistência de perecíveis, itens sob encomenda ou itens personalizados.</td><td>comprador</td><td>sem prazo</td><td>A desistência não vale para esses três tipos de produto.</td></tr>
+      <tr id="pol-defect-window"><td>Produto com defeito de funcionamento.</td><td>comprador, fornecedor</td><td>30 dias corridos</td><td>O comprador registra em até 30 dias corridos. O fornecedor troca ou reembolsa e paga o frete de volta.</td></tr>
+      <tr id="pol-damage-wrong-item-window"><td>Avaria ou produto trocado, registrados para devolução.</td><td>comprador, fornecedor</td><td>7 dias corridos</td><td>O comprador registra em até 7 dias corridos do recebimento. O fornecedor troca ou reembolsa e paga o frete de volta.</td></tr>
+      <tr id="pol-return-perishables"><td>Devolução de perecíveis, só por avaria, validade vencida ou produto trocado, com fotos da embalagem e da validade.</td><td>comprador</td><td>24 horas corridas</td><td>O comprador pede em até 24 horas corridas. Em geral o fornecedor reembolsa sem pedir a volta do produto. O comprador não devolve perecível sem combinar: o fornecedor informa se o produto volta ou é descartado, e sem acordo a devolução pode ser recusada.</td></tr>
+      <tr id="pol-return-request-response"><td>Pedido de devolução feito no pedido, com motivo e itens.</td><td>fornecedor</td><td>2 dias úteis</td><td>O fornecedor tem até 2 dias úteis para responder. Sem resposta nesse prazo, a devolução é aprovada automaticamente.</td></tr>
+      <tr id="pol-return-post-deadline"><td>Devolução aprovada: o comprador posta o produto, embalado com a nota fiscal.</td><td>comprador</td><td>5 dias úteis</td><td>O comprador posta em até 5 dias úteis depois da aprovação, e a devolução passa a ter rastreio. Se não postar nesse prazo, o pedido de devolução expira.</td></tr>
+      <tr id="pol-return-supplier-check"><td>Produto devolvido recebido pelo fornecedor.</td><td>fornecedor</td><td>3 dias úteis</td><td>O fornecedor confere em até 3 dias úteis, e o reembolso ou a troca é liberado. Se não conferir no prazo, a Solaria libera o reembolso pelo rastreio.</td></tr>
+      <tr id="pol-return-refused-appeal"><td>Fornecedor recusa o pedido de devolução e o comprador discorda do motivo.</td><td>comprador, Solaria</td><td>10 dias úteis</td><td>O comprador aciona a Compra Garantida, e a Solaria decide em até 10 dias úteis.</td></tr>
+      <tr id="pol-refund-start"><td>Início do estorno de uma devolução.</td><td>fornecedor, Solaria</td><td>3 dias úteis</td><td>O estorno começa quando o fornecedor confirma o recebimento da devolução, em até 3 dias úteis. Depois, vale o prazo da forma de pagamento.</td></tr>
+      <tr id="pol-refund-pix"><td>Estorno de uma devolução paga por Pix, depois da confirmação da devolução.</td><td>Solaria</td><td>2 dias úteis</td><td>O estorno chega em até 2 dias úteis.</td></tr>
+      <tr id="pol-refund-card"><td>Estorno de uma devolução paga por cartão de crédito, depois da confirmação da devolução.</td><td>Solaria</td><td>2 faturas</td><td>O valor aparece em até 2 faturas.</td></tr>
+      <tr id="pol-refund-boleto"><td>Estorno de uma devolução paga por boleto à vista ou boleto faturado, depois da confirmação da devolução.</td><td>Solaria</td><td>5 dias úteis</td><td>O estorno chega em até 5 dias úteis.</td></tr>
+      <tr id="pol-exchange-or-refund"><td>Escolha do comprador entre troca e reembolso.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>A troca só é possível se o fornecedor tiver o produto em estoque; sem estoque, a devolução vira reembolso. Se o problema foi do fornecedor, o frete da troca também é dele.</td></tr>
+      <tr id="pol-partial-return"><td>Devolução de só parte do pedido: um item, parte da quantidade ou o pedido inteiro.</td><td>comprador</td><td>sem prazo</td><td>O reembolso é proporcional aos itens devolvidos. Na desistência parcial, o frete de volta continua por conta do comprador. O pedido mínimo não impede a devolução parcial.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="compra-garantida" data-title="Compra Garantida" data-summary="Quando a Compra Garantida vale, em quanto tempo decide e o que não cobre">
+  <h2 class="title">Compra Garantida</h2>
+  <div class="prose">
+    <p>Esta tabela reúne quando a Compra Garantida vale, em quanto tempo a Solaria decide e o que ela não cobre. Os prazos vêm em dias úteis.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-guarantee-scope"><td>Pedido pago dentro da plataforma.</td><td>comprador, Solaria</td><td>sem prazo</td><td>A Compra Garantida protege todo pedido pago dentro da plataforma, em qualquer forma de pagamento aceita.</td></tr>
+      <tr id="pol-guarantee-supplier-window"><td>Pedido que não chegou, chegou com avaria ou diferente do anúncio, e o fornecedor não resolveu.</td><td>fornecedor</td><td>5 dias úteis</td><td>O comprador pode acionar a Compra Garantida depois de 5 dias úteis sem solução do fornecedor.</td></tr>
+      <tr id="pol-guarantee-decision"><td>Acionamento da Compra Garantida pelo comprador.</td><td>Solaria</td><td>10 dias úteis</td><td>A Solaria analisa e decide em até 10 dias úteis. Para quem decide e com que critérios, consulte o suporte.</td></tr>
+      <tr id="pol-guarantee-refund"><td>Decisão da Compra Garantida a favor do comprador.</td><td>Solaria</td><td>sem prazo</td><td>O comprador recebe o reembolso mesmo que o fornecedor não devolva o valor. O valor é descontado dos próximos repasses do fornecedor.</td></tr>
+      <tr id="pol-guarantee-off-platform"><td>Pagamento por fora, feito fora da Solaria.</td><td>comprador</td><td>sem prazo</td><td>A Compra Garantida não cobre o pedido e o suporte não consegue recuperar o valor.</td></tr>
+      <tr id="pol-guarantee-supplier-silence"><td>Fornecedor sem resposta no chat do pedido.</td><td>comprador, suporte</td><td>1 dia útil</td><td>Depois de 1 dia útil sem resposta, o comprador abre chamado. O suporte fala com o fornecedor e acompanha o pedido. Se a falta de resposta atrasar a entrega ou impedir a devolução, os prazos da Compra Garantida passam a valer.</td></tr>
+      <tr id="pol-guarantee-late-delivery"><td>Atraso de entrega de mais de 3 dias úteis em relação à data prometida.</td><td>comprador</td><td>3 dias úteis</td><td>O comprador pode abrir reclamação pela Compra Garantida para receber o pedido. Para saber se esse prazo soma ou substitui o prazo da Compra Garantida, consulte o suporte.</td></tr>
+      <tr id="pol-guarantee-chat-promise"><td>Desconto ou condição combinados no chat do pedido.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>O combinado só vale se estiver registrado na cotação ou no pedido, com preço, prazo e condição de entrega. Se o fornecedor prometeu e não registrou, o comprador pede uma cotação com essas condições, e assim a Compra Garantida cobre o combinado.</td></tr>
+      <tr id="pol-guarantee-ticket-deadline"><td>Chamado de mediação da Compra Garantida.</td><td>suporte</td><td>10 dias úteis</td><td>O chamado é resolvido em até 10 dias úteis.</td></tr>
+      <tr id="pol-guarantee-limits-undefined"><td>Valor máximo coberto pela Compra Garantida e prazo máximo do comprador para acioná-la.</td><td>comprador</td><td>sem prazo</td><td>Para este ponto, consulte o suporte.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="fornecedor" data-title="Fornecedor: aceite, despacho, repasse e antecipação" data-summary="Credenciamento, anúncio, planos, aceite, despacho, repasse e antecipação">
+  <h2 class="title">Fornecedor: aceite, despacho, repasse e antecipação</h2>
+  <div class="prose">
+    <p>Esta tabela reúne credenciamento, anúncio, planos e comissão, aceite, despacho, cancelamento, repasse e antecipação de repasse. Os prazos vêm em dias úteis, dias corridos, horas corridas, horas e meses.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-supplier-eligibility"><td>Quem pode ser fornecedor: empresa com CNPJ ativo há pelo menos 6 meses que emite nota fiscal eletrônica, com conta bancária no mesmo CNPJ.</td><td>fornecedor</td><td>6 meses</td><td>Quando a atividade exigir, também inscrição estadual e alvará sanitário (por exemplo, alimentos e bebidas). Todo fornecedor passa por análise de documentos antes da primeira venda e escolhe as regiões do Brasil onde entrega. O cadastro não tem custo.</td></tr>
+      <tr id="pol-supplier-documents"><td>Documentos do credenciamento.</td><td>fornecedor</td><td>90 dias corridos</td><td>Quatro documentos básicos: contrato social atualizado ou certificado de MEI; documento oficial com foto do responsável legal; comprovante de endereço da empresa emitido nos últimos 90 dias corridos; comprovante da conta bancária no mesmo CNPJ. Alimentos e bebidas também exigem alvará sanitário.</td></tr>
+      <tr id="pol-supplier-approval"><td>Análise dos documentos do credenciamento.</td><td>Solaria</td><td>5 dias úteis</td><td>A análise sai em até 5 dias úteis, contados do envio de todos os documentos. Os produtos só aparecem depois da aprovação, mas o fornecedor pode montar o catálogo durante a análise.</td></tr>
+      <tr id="pol-supplier-approval-refused"><td>Credenciamento recusado.</td><td>fornecedor, Solaria</td><td>3 dias úteis</td><td>O motivo vem por e-mail. O fornecedor reenvia o documento corrigido quando quiser, e a nova análise sai em até 3 dias úteis.</td></tr>
+      <tr id="pol-listing-requirements"><td>Anúncio do fornecedor.</td><td>fornecedor</td><td>sem prazo</td><td>O anúncio precisa de título, descrição, de 1 a 8 fotos, NCM, peso e medidas da embalagem, e código de barras quando houver. Peso e medidas errados: a diferença de frete pode ser cobrada do fornecedor.</td></tr>
+      <tr id="pol-listing-review"><td>Revisão de todo anúncio pela Solaria.</td><td>Solaria</td><td>1 dia útil</td><td>A revisão sai em até 1 dia útil. Anúncio recusado vem com o motivo, e o fornecedor corrige e envia de novo.</td></tr>
+      <tr id="pol-prohibited-products"><td>Anúncio de produto proibido (sem nota fiscal, falsificado, controlado ou proibido pelos termos de uso).</td><td>fornecedor, Solaria</td><td>sem prazo</td><td>O anúncio é removido. Em caso de repetição, o fornecedor é descredenciado. A lista completa de produtos proibidos está nos termos de uso.</td></tr>
+      <tr id="pol-price-change"><td>Mudança de preço ou promoção do fornecedor.</td><td>fornecedor</td><td>promoção de 1 a 30 dias corridos</td><td>O fornecedor muda o preço quando quiser, e a mudança vale só para pedidos novos. Promoções duram de 1 a 30 dias corridos.</td></tr>
+      <tr id="pol-stock-update"><td>Estoque e área de entrega do fornecedor.</td><td>fornecedor</td><td>sem prazo</td><td>O fornecedor mantém o estoque atualizado diariamente e informa as regiões atendidas e o frete de cada uma. Venda sem estoque obriga a cancelar, e o cancelamento entra nos indicadores.</td></tr>
+      <tr id="pol-cancellation-alert-threshold"><td>Mais de 5% de cancelamento em 60 dias corridos.</td><td>fornecedor, Solaria</td><td>60 dias corridos</td><td>A conta do fornecedor recebe um alerta.</td></tr>
+      <tr id="pol-plan-essential"><td>Plano Essencial do fornecedor.</td><td>fornecedor</td><td>sem prazo</td><td>Sem mensalidade, comissão de 12% e até 500 produtos ativos.</td></tr>
+      <tr id="pol-plan-pro"><td>Plano Pro do fornecedor.</td><td>fornecedor</td><td>sem prazo</td><td>Mensalidade de R$ 149, comissão de 9% e com produtos ativos sem quantidade máxima. O plano Pro compensa a partir de cerca de R$ 5.000 por mês em vendas.</td></tr>
+      <tr id="pol-plan-change"><td>Troca de plano.</td><td>fornecedor</td><td>sem prazo</td><td>A troca vale a partir do dia 1 do mês seguinte.</td></tr>
+      <tr id="pol-commission-base"><td>Comissão sobre as vendas do fornecedor.</td><td>Solaria</td><td>sem prazo</td><td>A comissão incide só sobre o preço dos produtos: 12% no plano Essencial e 9% no plano Pro. O frete é repassado integralmente.</td></tr>
+      <tr id="pol-order-acceptance"><td>Aceite do pedido pelo fornecedor.</td><td>fornecedor</td><td>24 horas corridas</td><td>O fornecedor aceita em até 24 horas corridas depois da confirmação do pagamento. Sem aceite no prazo, o pedido é cancelado automaticamente, o comprador é reembolsado e o cancelamento conta contra o fornecedor. Recomendação: ativar avisos para todos os usuários com papel de operador, inclusive em fim de semana e feriado.</td></tr>
+      <tr id="pol-dispatch-deadline"><td>Despacho do pedido pelo fornecedor, com nota fiscal emitida.</td><td>fornecedor</td><td>2 dias úteis</td><td>O fornecedor despacha em até 2 dias úteis depois do aceite. Despachar é entregar à transportadora ou sair para a entrega própria.</td></tr>
+      <tr id="pol-tracking-supplier"><td>Código de rastreio do pedido despachado.</td><td>fornecedor</td><td>1 dia útil</td><td>O fornecedor informa o rastreio em até 1 dia útil depois do despacho.</td></tr>
+      <tr id="pol-cancel-before-accept"><td>Cancelamento do pedido pelo comprador antes do aceite.</td><td>comprador</td><td>sem prazo</td><td>O comprador cancela livremente. Para o prazo do comprador cancelar antes do aceite, consulte o suporte.</td></tr>
+      <tr id="pol-cancel-before-dispatch"><td>Cancelamento do pedido depois do aceite e antes do despacho, com o motivo informado.</td><td>fornecedor, comprador</td><td>sem prazo</td><td>Depende da concordância do fornecedor. O cancelamento conta no indicador de cancelamentos do fornecedor, exceto quando o comprador pediu. Contam contra o fornecedor: falta de estoque, erro de preço e endereço fora da área. Depois do despacho valem as regras de devolução.</td></tr>
+      <tr id="pol-payout-timing"><td>Repasse ao fornecedor.</td><td>Solaria</td><td>14 dias corridos</td><td>O repasse cai 14 dias corridos depois da entrega confirmada. Se o dia não for útil, passa para o próximo dia útil. O valor já vem sem a comissão. O prazo é o mesmo para todas as formas de pagamento, inclusive boleto faturado, e a Solaria repassa mesmo que o comprador ainda não tenha pago.</td></tr>
+      <tr id="pol-payout-advance"><td>Antecipação de repasse de pedidos com entrega confirmada.</td><td>fornecedor, Solaria</td><td>1 dia útil com antecipação; 14 dias corridos sem antecipação</td><td>A taxa de antecipação é de 1,9% sobre o valor antecipado, e o dinheiro cai em 1 dia útil. O fornecedor pode antecipar um pedido, vários ou todo o saldo disponível. O restante segue o prazo normal de 14 dias corridos.</td></tr>
+      <tr id="pol-payout-held-complaint"><td>Pedido com reclamação ou devolução em andamento.</td><td>Solaria</td><td>sem prazo</td><td>O repasse fica retido até a solução.</td></tr>
+      <tr id="pol-payout-held-bank-change"><td>Troca da conta bancária do fornecedor.</td><td>administrador, Solaria</td><td>48 horas</td><td>Todos os repasses ficam retidos por 48 horas, com aviso por e-mail. Só o administrador troca a conta, com a verificação em duas etapas. Se a troca não foi feita pelo fornecedor, ele procura na hora o atendimento de segurança.</td></tr>
+      <tr id="pol-payout-held-preventive-block"><td>Conta do fornecedor com bloqueio preventivo.</td><td>Solaria</td><td>sem prazo</td><td>Os repasses ficam retidos até o desbloqueio.</td></tr>
+      <tr id="pol-commission-invoice"><td>Nota de serviço da Solaria com as comissões do mês.</td><td>Solaria</td><td>5 dias úteis</td><td>A Solaria emite a nota até o 5º dia útil do mês seguinte e envia para o e-mail dos usuários com papel de financeiro, junto com o relatório mensal de repasses. A mensalidade do plano Pro também entra nessa nota.</td></tr>
+      <tr id="pol-return-after-payout"><td>Devolução ao comprador depois que o fornecedor já recebeu o repasse.</td><td>Solaria</td><td>sem prazo</td><td>O valor devolvido é descontado dos próximos repasses do fornecedor, e o desconto aparece no extrato com o número do pedido. Exemplos: defeito registrado em até 30 dias corridos e decisão da Compra Garantida contra o fornecedor.</td></tr>
+      <tr id="pol-card-chargeback-cover"><td>Contestação de cartão feita pelo comprador junto à operadora.</td><td>Solaria, fornecedor</td><td>sem prazo</td><td>A Solaria cobre o valor se o fornecedor comprovar a entrega.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="indicadores-penalidades" data-title="Indicadores e penalidades" data-summary="Indicadores, selo Destaque, escada de penalidades, avaliações e relatórios">
+  <h2 class="title">Indicadores e penalidades</h2>
+  <div class="prose">
+    <p>Esta tabela reúne os indicadores de atendimento do fornecedor, o selo Destaque, a escada de penalidades, as avaliações, as denúncias e os relatórios. Os prazos vêm em dias úteis, dias corridos, horas úteis e meses.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-indicators-window"><td>Indicadores de atendimento do fornecedor, em janela móvel sobre os pedidos.</td><td>Solaria</td><td>60 dias corridos</td><td>São 5 indicadores, atualizados diariamente. Cada um tem meta e limite do indicador; fora do limite do indicador, a conta recebe alerta.</td></tr>
+      <tr id="pol-indicators-minimum-orders"><td>Alertas e penalidades dos indicadores de atendimento.</td><td>Solaria</td><td>60 dias corridos</td><td>Só valem com pelo menos 10 pedidos no período de 60 dias corridos.</td></tr>
+      <tr id="pol-indicator-cancellations"><td>Indicador de cancelamentos: meta menos de 2% dos pedidos, limite do indicador 5%.</td><td>fornecedor</td><td>60 dias corridos</td><td>Cancelamentos de mais de 5% dos pedidos em 60 dias corridos geram alerta.</td></tr>
+      <tr id="pol-indicator-dispatch-on-time"><td>Indicador de despacho no prazo: meta 95% dos pedidos, limite do indicador 85%.</td><td>fornecedor</td><td>60 dias corridos</td><td>Despacho no prazo em menos de 85% dos pedidos em 60 dias corridos gera alerta.</td></tr>
+      <tr id="pol-indicator-chat-response"><td>Indicador de resposta no chat do pedido em 4 horas úteis: meta 90% dos pedidos, limite do indicador 70%.</td><td>fornecedor</td><td>4 horas úteis de resposta; 60 dias corridos de apuração</td><td>Resposta em 4 horas úteis em menos de 70% dos pedidos em 60 dias corridos gera alerta.</td></tr>
+      <tr id="pol-indicator-complaints"><td>Indicador de reclamações: meta menos de 3% dos pedidos, limite do indicador 6%.</td><td>fornecedor</td><td>60 dias corridos</td><td>Reclamações de mais de 6% dos pedidos em 60 dias corridos geram alerta.</td></tr>
+      <tr id="pol-indicator-average-rating"><td>Indicador de nota média, de 1 a 5: meta 4,5, limite do indicador 3,8.</td><td>fornecedor</td><td>60 dias corridos</td><td>Nota média menor que 3,8 em 60 dias corridos gera alerta.</td></tr>
+      <tr id="pol-featured-badge"><td>Selo Destaque, para atendimento melhor que a média.</td><td>Solaria, fornecedor</td><td>60 dias corridos</td><td>Exige nota média de 4,5 ou mais, cancelamento menos de 2% e pelo menos 30 pedidos nos 60 dias corridos. O selo Destaque é revisto diariamente. Fornecedor novo ainda não tem volume para o selo Destaque, o que não indica atendimento ruim.</td></tr>
+      <tr id="pol-penalty-alert"><td>Primeira etapa da escada de penalidades: indicador fora do limite do indicador.</td><td>fornecedor</td><td>30 dias corridos</td><td>O fornecedor tem 30 dias corridos para corrigir e nada muda na conta.</td></tr>
+      <tr id="pol-penalty-badge-loss"><td>Segunda etapa da escada de penalidades.</td><td>Solaria</td><td>sem prazo</td><td>O fornecedor perde o selo Destaque e tem menos destaque na busca.</td></tr>
+      <tr id="pol-penalty-suspension"><td>Terceira etapa da escada de penalidades: suspensão.</td><td>Solaria</td><td>7 dias corridos</td><td>A suspensão dura 7 dias corridos e as novas vendas param.</td></tr>
+      <tr id="pol-penalty-delisting"><td>Quarta etapa da escada de penalidades: descredenciamento.</td><td>Solaria</td><td>12 meses</td><td>Depois de 3 suspensões em 12 meses, a conta deixa de vender.</td></tr>
+      <tr id="pol-penalty-contest"><td>Contestação de penalidade pelo fornecedor, com provas.</td><td>fornecedor</td><td>10 dias corridos</td><td>O fornecedor contesta em até 10 dias corridos depois do aviso. Fatores externos comprovados não contam nos indicadores. Para o critério de fatores externos comprovados, consulte o suporte.</td></tr>
+      <tr id="pol-penalty-contest-answer"><td>Resposta da Solaria à contestação de penalidade.</td><td>Solaria</td><td>5 dias úteis</td><td>A Solaria responde em até 5 dias úteis.</td></tr>
+      <tr id="pol-penalty-fraud"><td>Avaliação ou cancelamento forjado.</td><td>Solaria</td><td>sem prazo</td><td>É fraude e leva a descredenciamento imediato.</td></tr>
+      <tr id="pol-review-window"><td>Avaliação do pedido pelo comprador, com nota de 1 a 5 e comentário.</td><td>comprador</td><td>30 dias corridos para avaliar; 60 dias corridos de nota média</td><td>O comprador avalia em até 30 dias corridos depois da entrega. A nota média dos últimos 60 dias corridos aparece junto ao fornecedor. O fornecedor pode responder publicamente a cada avaliação uma vez. Só avalia quem comprou e recebeu o pedido.</td></tr>
+      <tr id="pol-review-removal"><td>Pedido de revisão de avaliação que viola as regras (por exemplo, ofensa ou dado pessoal).</td><td>fornecedor</td><td>15 dias corridos para pedir; 3 dias úteis para a análise</td><td>O fornecedor pede a revisão em até 15 dias corridos, e a Solaria analisa em até 3 dias úteis. Avaliação injusta que não viola as regras não é removida.</td></tr>
+      <tr id="pol-chat-prohibited"><td>Condutas proibidas no chat do pedido, para comprador e fornecedor: negociar por fora, trocar dados de pagamento e ofender a outra parte.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>O chat do pedido bloqueia o que traz dados de cartão, senhas ou códigos. Telefone, e-mail ou link de pagamento enviados para negociar por fora são removidos e podem levar à suspensão da conta.</td></tr>
+      <tr id="pol-report-analysis"><td>Denúncia de mensagem feita na própria conversa do chat do pedido, com o motivo.</td><td>Solaria</td><td>2 dias úteis</td><td>A análise sai em até 2 dias úteis. Quem denunciou não é identificado, e a Solaria informa o resultado.</td></tr>
+      <tr id="pol-report-outcome"><td>Denúncia com regra violada.</td><td>Solaria</td><td>sem prazo</td><td>A mensagem é removida e a conta denunciada recebe advertência. Casos graves ou repetidos, como tentativa de golpe, levam à suspensão da conta. Denúncias falsas também são punidas. O pedido em andamento segue protegido pela Compra Garantida. Para o critério de casos graves ou repetidos, consulte o suporte.</td></tr>
+      <tr id="pol-supplier-report-weekly"><td>Relatório semanal do fornecedor, com vendas e indicadores.</td><td>Solaria</td><td>toda segunda-feira</td><td>O fornecedor recebe o relatório semanal toda segunda-feira.</td></tr>
+      <tr id="pol-supplier-report-monthly"><td>Relatório mensal do fornecedor, com repasses e comissões.</td><td>Solaria</td><td>até o 5º dia útil</td><td>O relatório mensal sai até o 5º dia útil.</td></tr>
+      <tr id="pol-supplier-report-quarterly"><td>Relatório trimestral do fornecedor.</td><td>Solaria</td><td>sem prazo</td><td>O relatório trimestral existe só no plano Pro.</td></tr>
+      <tr id="pol-buyer-report"><td>Relatório mensal de compras do comprador.</td><td>Solaria</td><td>5 dias úteis</td><td>A Solaria envia até o 5º dia útil, com gastos por fornecedor, categoria e unidade, e os boletos faturados em aberto.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="suporte" data-title="Suporte" data-summary="Canais, horários, chamados, Ouvidoria, privacidade, chat do pedido e golpes">
+  <h2 class="title">Suporte</h2>
+  <div class="prose">
+    <p>Esta tabela reúne dia útil, canais e horários, chamados, Ouvidoria, privacidade, chat do pedido e orientações contra golpe. Os prazos vêm em minutos, horas, horas úteis, dias úteis, dias corridos e anos.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>situação</th><th>quem age</th><th>prazo</th><th>consequência</th></tr></thead>
+    <tbody>
+      <tr id="pol-business-day-definition"><td>Contagem de prazo em dias úteis ou dias corridos.</td><td>Solaria</td><td>sem prazo</td><td>Dia útil é segunda a sexta, exceto feriados nacionais, no horário de Brasília. Todo prazo em dias úteis conta só esses dias. Prazo em dias corridos conta todos os dias do calendário, inclusive fins de semana e feriados. Para feriados locais, consulte o suporte.</td></tr>
+      <tr id="pol-channel-help-center"><td>Central de ajuda, canal no app e no site.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>Funciona sempre, inclusive em domingos e feriados, com resposta imediata.</td></tr>
+      <tr id="pol-channel-support-chat"><td>Chat do suporte, no app e no site, no horário de Brasília.</td><td>comprador, fornecedor, suporte</td><td>10 minutos</td><td>Funciona de segunda a sexta, das 8h às 20h, e aos sábados, das 8h às 14h, com resposta em até 10 minutos. É o canal mais rápido. Para o horário do chat do suporte em feriados, consulte o suporte.</td></tr>
+      <tr id="pol-channel-phone"><td>Telefone 0800 000 0000, no horário de Brasília.</td><td>comprador, fornecedor, suporte</td><td>sem prazo</td><td>Funciona de segunda a sexta, das 8h às 18h, com resposta na ligação. Para o horário aos sábados e em feriados, consulte o suporte.</td></tr>
+      <tr id="pol-channel-email"><td>E-mail suporte@solaria.exemplo.</td><td>comprador, fornecedor, suporte</td><td>1 dia útil</td><td>Recebe sempre. A resposta vem em até 1 dia útil.</td></tr>
+      <tr id="pol-channel-security"><td>Atendimento de segurança, pelo chat do suporte, para golpe e acesso suspeito.</td><td>comprador, fornecedor, suporte</td><td>24 horas</td><td>Funciona 24 horas, com resposta imediata. Para atendimento de segurança por telefone, consulte o chat do suporte.</td></tr>
+      <tr id="pol-channel-privacy"><td>Privacidade, pelo e-mail dados@solaria.exemplo.</td><td>comprador, fornecedor, suporte</td><td>15 dias corridos</td><td>Recebe sempre. A resposta vem em até 15 dias corridos.</td></tr>
+      <tr id="pol-channel-ombudsman"><td>Ouvidoria, pelo e-mail ouvidoria@solaria.exemplo.</td><td>comprador, fornecedor</td><td>10 dias úteis</td><td>Recebe sempre. O comprador ou o fornecedor procura a Ouvidoria depois de um chamado encerrado sem acordo, escreve com o protocolo e o motivo da discordância, e a resposta vem em até 10 dias úteis.</td></tr>
+      <tr id="pol-after-hours-support"><td>Domingos, feriados e horários fora do atendimento.</td><td>Solaria</td><td>sem prazo</td><td>Só o atendimento de segurança responde em tempo real, para golpe e acesso suspeito. Os outros assuntos entram na fila e são atendidos no próximo horário. A Central de ajuda e os e-mails funcionam sempre.</td></tr>
+      <tr id="pol-ticket-open"><td>Abertura de chamado, por qualquer canal.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>O usuário informa o número do pedido quando houver, o que aconteceu, o que já tentou e o que espera, e anexa fotos ou documentos. O protocolo chega por e-mail na abertura.</td></tr>
+      <tr id="pol-ticket-tracking"><td>Acompanhamento do chamado.</td><td>comprador, fornecedor, suporte</td><td>sem prazo</td><td>O acompanhamento é pelo protocolo, em qualquer canal, com aviso por e-mail a cada mudança. Se o suporte pedir informação, o prazo fica parado até a resposta do usuário.</td></tr>
+      <tr id="pol-ticket-resolution-questions"><td>Chamado com dúvida.</td><td>suporte</td><td>3 dias úteis</td><td>O chamado é resolvido em até 3 dias úteis.</td></tr>
+      <tr id="pol-ticket-resolution-money"><td>Chamado com fornecedor ou dinheiro (estornos e cobranças).</td><td>suporte</td><td>5 dias úteis</td><td>O chamado é resolvido em até 5 dias úteis.</td></tr>
+      <tr id="pol-ticket-resolution-guarantee"><td>Chamado de mediação da Compra Garantida.</td><td>suporte</td><td>10 dias úteis</td><td>O chamado é resolvido em até 10 dias úteis.</td></tr>
+      <tr id="pol-ticket-reopen"><td>Chamado encerrado em que o problema voltou.</td><td>comprador, fornecedor</td><td>7 dias corridos</td><td>O usuário reabre em até 7 dias corridos depois do encerramento, e o chamado volta com todo o histórico. Depois disso, abre um chamado novo citando o protocolo antigo.</td></tr>
+      <tr id="pol-satisfaction-survey"><td>Pesquisa de satisfação depois do encerramento do chamado.</td><td>Solaria, comprador, fornecedor</td><td>menos de 1 minuto</td><td>A pesquisa chega por e-mail, tem duas perguntas e leva menos de 1 minuto. As respostas ajudam a melhorar o suporte.</td></tr>
+      <tr id="pol-privacy-request"><td>Pedido de cópia, correção ou exclusão de dados pessoais, ou de informação sobre com quem os dados são compartilhados, conforme a Lei Geral de Proteção de Dados.</td><td>comprador, fornecedor, Solaria</td><td>15 dias corridos</td><td>O titular escreve para dados@solaria.exemplo e recebe resposta em até 15 dias corridos. A Solaria confirma a identidade antes de atender.</td></tr>
+      <tr id="pol-order-chat-response"><td>Primeira resposta do fornecedor no chat do pedido.</td><td>fornecedor</td><td>4 horas úteis de meta; 1 dia útil de máximo</td><td>A meta é a primeira resposta em até 4 horas úteis, e o máximo é 1 dia útil. Hora útil vai de segunda a sexta, das 8h às 18h. Pergunta feita na sexta à noite pode ser respondida até segunda ao meio-dia dentro da meta. O tempo de resposta entra nos indicadores do fornecedor.</td></tr>
+      <tr id="pol-order-chat-files"><td>Arquivos enviados no chat do pedido.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>Fotos e PDF de até 10 MB. Outros tipos de arquivo são bloqueados por segurança. O suporte consegue ler a conversa quando o comprador abre chamado sobre o pedido.</td></tr>
+      <tr id="pol-order-chat-retention"><td>Conversa do chat do pedido guardada pela Solaria.</td><td>Solaria</td><td>2 anos</td><td>A conversa fica guardada por 2 anos e é apagada depois, mesmo com a conta ativa. O usuário salva o que for importante antes dos 2 anos.</td></tr>
+      <tr id="pol-scam-never-asks"><td>Pedido de senha, código de verificação ou pagamento por fora em nome da Solaria.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>A Solaria nunca pede esses dados por telefone, e-mail ou mensagem e nunca envia boleto à vista nem boleto faturado pelo chat do pedido. Quem pedir isso em nome da Solaria é golpe. O usuário não compartilha o código de verificação.</td></tr>
+      <tr id="pol-scam-suspicious-message"><td>Cobrança ou mensagem estranha recebida em nome da Solaria.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>O usuário não paga nem abre links e confere o pedido direto na conta. Todo boleto à vista ou faturado verdadeiro está ligado a um pedido, com o mesmo valor e vencimento. Se nada bater, avisa o atendimento de segurança pelo chat do suporte. Se já pagou, avisa também o banco.</td></tr>
+      <tr id="pol-suspicious-access"><td>Acesso suspeito: o usuário acha que alguém entrou na conta.</td><td>comprador, fornecedor</td><td>sem prazo</td><td>O usuário troca a senha imediatamente e encerra as sessões, ativa a verificação em duas etapas e avisa o atendimento de segurança, informando o que não reconhece. A Solaria bloqueia o que for suspeito.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="pontos-nao-definidos" data-title="Pontos não definidos" data-summary="Pontos sem definição, para consultar o suporte">
+  <h2 class="title">Pontos não definidos</h2>
+  <div class="prose">
+    <p>Esta tabela reúne os pontos que não estão definidos, sem prazo nem unidade de tempo. Para qualquer um, não estime o valor: consulte o suporte.</p>
+  </div>
+  <table class="data">
+    <thead><tr><th>ponto não definido</th><th>orientação</th></tr></thead>
+    <tbody>
+      <tr id="pol-undefined-free-shipping"><td>Valor a partir do qual o frete é grátis. Cada fornecedor define, sem valor padrão.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-credit-limit"><td>Valor do limite de crédito do boleto faturado e critérios da análise de crédito.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-guarantee-cap"><td>Valor máximo coberto pela Compra Garantida e prazo máximo do comprador para acioná-la.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-guarantee-decider"><td>Quem decide na Compra Garantida e com que critérios.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-late-vs-guarantee"><td>Se os 3 dias úteis de atraso de entrega somam ou substituem os 5 dias úteis da Compra Garantida.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-complaint-event"><td>Se a reclamação no pedido e o acionamento da Compra Garantida são o mesmo evento.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-support-hours"><td>Horário do chat do suporte e do telefone em feriados, horário do telefone aos sábados e atendimento de segurança por telefone.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-review-hours"><td>Horário de análise da Ouvidoria, do e-mail e da Privacidade; a Solaria diz só que recebem sempre.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-local-holidays"><td>Feriados locais para fins de dia útil.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-fees"><td>Valor da multa em R$, custo do reenvio, tarifa de boleto e cobrança do Pix ou do cartão para o comprador.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-buyer-cancel"><td>Como o comprador cancela antes do aceite e com quais prazos.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-late-supplier-response"><td>Prazo do fornecedor para responder à reclamação por atraso.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-made-to-order-term"><td>Prazo do anúncio para despacho de item sob encomenda, dentro do máximo de 10 dias úteis.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-prohibited-list"><td>Lista completa de produtos proibidos, que está nos termos de uso.</td><td>Para este ponto, consulte o suporte.</td></tr>
+      <tr id="pol-undefined-external-factors"><td>Critério de fatores externos comprovados na contestação de penalidade e de casos graves ou repetidos de denúncia.</td><td>Para este ponto, consulte o suporte.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Exclusivo de uso interno.</span>
+</section>
+
+</body>
+</html>

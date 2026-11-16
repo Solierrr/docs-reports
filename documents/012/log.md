@@ -39,3 +39,8 @@
 - **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão para reenvio em 12 de novembro de 2026
+
+O relatório mantém os seis mínimos e os quatro extras na ordem do enunciado. O extra de rotinas SQL descreve a chamada de cobrança e as funções de integridade acionadas por escritas, com referência separada às rotinas do schema regras. O capítulo de integração liga os fluxos aos repositórios que os implementam e aos serviços complementares.
+Os dois cenários de SubscriptionChargePostgresIntegrationTest passaram no PostgreSQL 18 local, com as sete migrations aplicadas pelo Flyway.

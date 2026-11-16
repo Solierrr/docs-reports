@@ -33,92 +33,125 @@
 <section class="chapter" id="visao" data-title="Visão geral" data-summary="O que a disciplina pede e como ler o documento">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">O projeto atende os 7 requisitos mínimos e os 7 extras de modelagem</h2>
+    <h2 class="title">A entrega cobre os 10 requisitos mínimos e os 4 extras</h2>
     <p class="question">O que a disciplina pede e como ler este documento?</p>
   </header>
   <div class="facts">
     <div><span>Disciplina</span><b>Modelagem de Dados</b></div>
-    <div><span>Requisitos mínimos</span><b>7 atendidos de 7</b></div>
-    <div><span>Requisitos extras</span><b>7 atendidos de 7</b></div>
+    <div><span>Requisitos mínimos</span><b>10 com evidência de 10</b></div>
+    <div><span>Requisitos extras</span><b>4 com evidência de 4</b></div>
   </div>
   <div class="prose">
     <h3>Resumo da entrega</h3>
-    <p>A disciplina de Modelagem de Dados pede um banco relacional normalizado, uma carga inicial, a migração de um banco legado, uma camada de BI em modelagem dimensional e transformações em SQL. Os 7 requisitos mínimos correspondem à nota 7,0, e os 7 extras tratam de SQL avançado, otimização, governança e monitoramento.</p>
+    <p>O enunciado de 14 de maio de 2026 reúne, no mínimo, modelagem relacional, engenharia de dados e objetos lógicos e otimização. Os extras abrangem catálogo, backup e recuperação, registro de usuários ativos e estruturas avançadas. As tabelas a seguir mostram a implementação, a evidência e, quando disponível, o resultado medido.</p>
     <p>A estrutura dos bancos principal e de autenticação pertence às migrations Flyway do api-core e do api-auth. O repositório database-console acrescenta, na pasta <code>db/modelagem</code>, os schemas, as views, as funções, os triggers e os índices, sem alterar as tabelas do Flyway. Para aplicar esses scripts a um banco, rode <code>make modelagem-apply</code> no database-console.</p>
   </div>
   <div class="prose">
     <h3>Como ler</h3>
+    <p>A entrega cobre os dez requisitos mínimos e os quatro extras do enunciado. M1 a M3 cobrem normalização, relacionamentos e carga de dados. M4 a M7 cobrem migração RPA, Data Mart, CTEs e funções de janela. M8 a M10 cobrem duas funções e dois procedimentos, auditoria em três tabelas e otimização medida com EXPLAIN ANALYZE. E1 a E4 cobrem catálogo, backup e recuperação, registro de usuários ativos por dia e CTE recursiva. Para conferir cada critério, consulte a linha com o mesmo código, a descrição da implementação e o link direto para a evidência.</p>
     <p>Cada requisito aparece com o código (M para mínimo, E para extra), o enunciado, a descrição do que o projeto entregou e até dois links de evidência, que abrem o arquivo na branch main. Quando o mesmo padrão existe em mais de um repositório, o documento mostra um exemplo e cita os outros pelo nome.</p>
-    <p>A tabela de repositórios, no último capítulo, indica o papel de cada um na disciplina.</p>
+    <p><strong>Resultados verificados.</strong> Passaram 18 testes em PostgreSQL 18. A auditoria cobre três tabelas, acima das duas solicitadas. Em QA com massa sintética, a consulta medida caiu de 62,1 ms para 3,7 ms após a indexação. O capítulo 5 detalha o trabalho adicional em Databricks e Neo4j.</p>
   </div>
 </section>
 
-<section class="chapter" id="minimos" data-title="Requisitos mínimos" data-summary="Os 7 requisitos para a nota 7,0">
+<section class="chapter" id="minimos" data-title="Modelagem e transformação" data-summary="Sete requisitos mínimos do banco relacional ao Data Mart">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Os 7 requisitos mínimos estão atendidos e documentados</h2>
+    <h2 class="title">O banco normalizado alimenta o Data Mart</h2>
     <p class="question">Como cada requisito mínimo foi atendido?</p>
   </header>
   <table class="data">
+    <colgroup><col width="8%"><col width="22%"><col width="49%"><col width="21%"></colgroup>
     <thead><tr><th>Código</th><th>Requisito</th><th>O que o projeto entregou</th><th>Evidência</th></tr></thead>
     <tbody>
-      <tr><td><b>M1</b></td><td>Criar um novo banco relacional PostgreSQL normalizado até a 3FN (ou 5FN, se necessário).</td><td>O banco principal é um PostgreSQL com 68 tabelas e 115 chaves estrangeiras, criado por migrations Flyway. A análise de 1FN a 3FN, com as exceções conscientes, está documentada e traz essa contagem.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/docs/NORMALIZACAO.md">NORMALIZACAO.md em database-console</a></td></tr>
-      <tr><td><b>M2</b></td><td>Definir PKs, FKs e cardinalidades (<code>1:1</code>, <code>1:N</code>, <code>N:N</code>).</td><td>O diagrama entidade-relacionamento do banco principal mostra as cardinalidades, e o SQL declara as chaves primárias, as chaves estrangeiras e as tabelas de relação <code>N:N</code>. O mesmo padrão aparece também em api-auth.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/database/POSTGRES.md">POSTGRES.md em api-core</a><br><a href="https://github.com/Solierrr/api-core/blob/main/src/main/resources/db/migration/V1__baseline.sql">V1__baseline.sql em api-core</a></td></tr>
-      <tr><td><b>M3</b></td><td>Carga inicial com pelo menos 500 registros verossímeis.</td><td>Um script de carga gera dados verossímeis com a biblioteca Faker. Na cópia restaurada do banco de QA, o <code>coredb</code> tinha 4.593 linhas vivas.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/scripts/dataload.py">dataload.py em database-console</a><br><a href="https://github.com/Solierrr/database-console/blob/main/flows/RESTORE.md">RESTORE.md em database-console</a></td></tr>
-      <tr><td><b>M4</b></td><td>Integração RPA para mover dados do banco legado para o novo banco normalizado, garantindo integridade e tratando falhas.</td><td>O database-rpa extrai os dados do banco legado e os carrega no banco normalizado de forma idempotente, com a tabela <code>rpa_id_mapping</code> para preservar as relações. Um workflow agenda a execução diária.</td><td><a href="https://github.com/Solierrr/database-rpa/blob/main/extended_migration.py">extended_migration.py em database-rpa</a><br><a href="https://github.com/Solierrr/database-rpa/blob/main/.github/workflows/scheduled-migration.yml">scheduled-migration.yml em database-rpa</a></td></tr>
-      <tr><td><b>M5</b></td><td>Camada de BI (Data Mart) com views analíticas em modelagem dimensional (Star Schema ou Snowflake).</td><td>O schema <code>bi</code> tem as dimensões tempo, fornecedor, demandante e modelo, os fatos de proposta, pedido e cobrança e as views analíticas sobre o esquema estrela. Os scripts foram validados numa cópia de QA.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/docs/DATAMART.md">DATAMART.md em database-console</a><br><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/10_star_schema.sql">10_star_schema.sql em database-console</a></td></tr>
-      <tr><td><b>M6</b></td><td>Transformação (ETL em SQL) com CTEs para organizar a lógica.</td><td>Todas as dimensões e fatos do esquema estrela são escritos com CTEs (<code>WITH ... AS</code>). As views de BI e a de usuários ativos também usam CTEs.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/10_star_schema.sql">10_star_schema.sql em database-console</a></td></tr>
-      <tr><td><b>M7</b></td><td>Transformação (ETL em SQL) com Window Functions nas views de BI (Running Total, Ranking).</td><td>As views de BI usam <code>SUM() OVER</code> para o acumulado, <code>LAG()</code>, <code>AVG() OVER</code> com janela de linhas, <code>RANK()</code> e <code>DENSE_RANK()</code>. A média móvel de 7 dias dos usuários ativos usa a mesma técnica.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/20_bi_views.sql">20_bi_views.sql em database-console</a><br><a href="https://github.com/Solierrr/database-console/blob/main/docs/DATAMART.md">DATAMART.md em database-console</a></td></tr>
+      <tr><td><b>M1</b></td><td>Criar um novo banco relacional PostgreSQL normalizado até a 3FN (ou 5FN, se necessário).</td><td>O banco principal é um PostgreSQL com 68 tabelas e 115 chaves estrangeiras, criado por migrations Flyway. A análise de 1FN a 3FN, com as exceções conscientes, está documentada e traz essa contagem.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/docs/NORMALIZACAO.md">Análise da 3FN</a></td></tr>
+      <tr><td><b>M2</b></td><td>Definir PKs, FKs e cardinalidades (<code>1:1</code>, <code>1:N</code>, <code>N:N</code>).</td><td>O diagrama entidade-relacionamento do banco principal mostra as cardinalidades, e o SQL declara as chaves primárias, as chaves estrangeiras e as tabelas de relação <code>N:N</code>. O mesmo padrão aparece também em api-auth.</td><td><a href="https://github.com/Solierrr/api-core/blob/main/database/POSTGRES.md">Diagrama ER</a><br><a href="https://github.com/Solierrr/api-core/blob/main/src/main/resources/db/migration/V1__baseline.sql">DDL inicial</a></td></tr>
+      <tr><td><b>M3</b></td><td>Carga inicial com pelo menos 500 registros verossímeis.</td><td>Um script de carga gera dados verossímeis com a biblioteca Faker. Na cópia restaurada do banco de QA, o <code>coredb</code> tinha 4.593 linhas vivas.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/scripts/dataload.py">Carga com Faker</a><br><a href="https://github.com/Solierrr/database-console/blob/main/flows/RESTORE.md">Restauração</a></td></tr>
+      <tr><td><b>M4</b></td><td>Integração RPA para mover dados do banco legado para o novo banco normalizado, garantindo integridade e tratando falhas.</td><td>O database-rpa preserva as relações ao mapear IDs de origem e destino na tabela <code>rpa_id_mapping</code>. Esse mapa permite repetir a carga sem duplicar entidades. O workflow permite execução manual e agenda configurável. A validação registrada em bases de teste documenta a reexecução sem duplicatas.</td><td><a href="https://github.com/Solierrr/database-rpa/blob/main/extended_migration.py">Mapeamento e migração</a><br><a href="https://github.com/Solierrr/database-rpa/blob/main/.github/workflows/scheduled-migration.yml">Workflow da migração</a><br><a href="https://github.com/Solierrr/database-rpa/blob/c298cdecba70a12ab506edfc926d4af07ad1e528/README.md">Validação em teste</a></td></tr>
+      <tr><td><b>M5</b></td><td>Camada de BI (Data Mart) com views analíticas em modelagem dimensional (Star Schema ou Snowflake).</td><td>O schema <code>bi</code> tem as dimensões tempo, fornecedor, demandante e modelo, os fatos de proposta, pedido e cobrança e as views analíticas sobre o esquema estrela. Os scripts foram validados numa cópia de QA.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/docs/DATAMART.md">Data Mart</a><br><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/10_star_schema.sql">Esquema estrela</a></td></tr>
+      <tr><td><b>M6</b></td><td>Transformação (ETL em SQL) com CTEs para organizar a lógica.</td><td>Todas as dimensões e fatos do esquema estrela são escritos com CTEs (<code>WITH ... AS</code>). As views de BI e a de usuários ativos também usam CTEs.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/10_star_schema.sql">Esquema estrela</a></td></tr>
+      <tr><td><b>M7</b></td><td>Transformação (ETL em SQL) com Window Functions nas views de BI (Running Total, Ranking).</td><td>As views de BI usam <code>SUM() OVER</code> para o acumulado, <code>LAG()</code>, <code>AVG() OVER</code> com janela de linhas, <code>RANK()</code> e <code>DENSE_RANK()</code>. A média móvel de 7 dias dos usuários ativos usa a mesma técnica.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/20_bi_views.sql">Views de BI</a><br><a href="https://github.com/Solierrr/database-console/blob/main/docs/DATAMART.md">Data Mart</a></td></tr>
     </tbody>
   </table>
 </section>
 
-<section class="chapter" id="extras" data-title="Requisitos extras" data-summary="Os 7 requisitos além do mínimo">
+<section class="chapter" id="objetos" data-title="Objetos lógicos e otimização" data-summary="Três requisitos mínimos de SQL avançado, auditoria e desempenho">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Os 7 requisitos extras cobrem SQL avançado, governança e monitoramento</h2>
+    <h2 class="title">O banco executa regras, registra mudanças e otimiza consultas</h2>
+    <p class="question">Como foram atendidos os requisitos mínimos de SQL avançado?</p>
+  </header>
+  <table class="data">
+    <colgroup><col width="8%"><col width="22%"><col width="49%"><col width="21%"></colgroup>
+    <thead><tr><th>Código</th><th>Requisito</th><th>O que o projeto entregou</th><th>Evidência</th></tr></thead>
+    <tbody>
+      <tr><td><b>M8</b></td><td>No mínimo duas funções e dois procedimentos para regras de negócio críticas.</td><td>As funções <code>regras.valor_proposta</code> e <code>regras.taxa_aceite</code> calculam valores e indicadores. Os procedimentos <code>regras.recalcular_total_proposta</code> e <code>regras.cancelar_propostas_paradas</code> mantêm o valor consolidado e tratam propostas sem andamento.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/30_procedures.sql">Rotinas SQL</a></td></tr>
+      <tr><td><b>M9</b></td><td>Triggers de auditoria com NEW, OLD, TG_OP e CURRENT_USER em pelo menos duas tabelas.</td><td>O trigger cobre três tabelas de negócio. Em <code>purchase_order</code>, <code>offer</code> e <code>proposal</code>, a auditoria registra operação, usuário do banco e imagens anterior e posterior conforme a operação.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/40_audit.sql">DDL de auditoria</a><br><a href="https://github.com/Solierrr/database-console/blob/main/tests/test_modelagem.py">Testes</a></td></tr>
+      <tr><td><b>M10</b></td><td>Analisar consultas lentas com EXPLAIN ANALYZE e aplicar índices.</td><td>Em uma cópia de QA com 150 mil propostas e 150 mil itens sintéticos, a consulta por situação e período passou de 62,1 ms a 3,7 ms, cerca de 17 vezes mais rápida. O plano passou a usar o índice <code>idx_proposal_status_created_at</code>.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/docs/OTIMIZACAO.md">Método e planos de execução</a><br><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/80_indexes.sql">DDL do índice</a></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section class="chapter" id="extras" data-title="Requisitos extras" data-summary="Quatro requisitos de governança, monitoramento e SQL recursivo">
+  <header class="band brand">
+    <span class="num"></span>
+    <h2 class="title">Os extras ampliam a governança e a análise do banco</h2>
     <p class="question">O que o projeto entregou além do mínimo?</p>
   </header>
   <table class="data">
+    <colgroup><col width="8%"><col width="22%"><col width="49%"><col width="21%"></colgroup>
     <thead><tr><th>Código</th><th>Requisito</th><th>O que o projeto entregou</th><th>Evidência</th></tr></thead>
     <tbody>
-      <tr><td><b>E1</b></td><td>SQL avançado, com no mínimo 2 Functions e 2 Procedures para regras de negócio críticas.</td><td>O projeto tem as functions <code>regras.valor_proposta</code> e <code>regras.taxa_aceite</code> e as procedures <code>regras.recalcular_total_proposta</code> e <code>regras.cancelar_propostas_paradas</code>.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/30_procedures.sql">30_procedures.sql em database-console</a></td></tr>
-      <tr><td><b>E2</b></td><td>Triggers de auditoria com NEW, OLD, TG_OP e CURRENT_USER em pelo menos 2 tabelas.</td><td>A tabela <code>audit.log</code> recebe os registros do trigger <code>audit.fn_audit</code>, aplicado às tabelas <code>purchase_order</code>, <code>offer</code> e <code>proposal</code>. Um teste automatizado exige o uso de <code>TG_OP</code>, <code>CURRENT_USER</code>, <code>OLD</code> e <code>NEW</code> em ao menos 2 tabelas.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/40_audit.sql">40_audit.sql em database-console</a><br><a href="https://github.com/Solierrr/database-console/blob/main/tests/test_modelagem.py">test_modelagem.py em database-console</a></td></tr>
-      <tr><td><b>E3</b></td><td>Otimização com análise de consultas lentas por EXPLAIN ANALYZE e aplicação de índices.</td><td>A análise foi feita numa cópia de QA com massa sintética. A consulta por situação e período caiu de 62,1 ms para 3,7 ms com o índice <code>idx_proposal_status_created_at</code>.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/docs/OTIMIZACAO.md">OTIMIZACAO.md em database-console</a><br><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/80_indexes.sql">80_indexes.sql em database-console</a></td></tr>
-      <tr><td><b>E4</b></td><td>Governança com catálogo de dados (tabela técnica de metadados com tabelas, colunas, regras de negócio e níveis de acesso).</td><td>A tabela <code>governance.data_catalog</code> guarda as regras por tabela e é atualizada pela procedure <code>refresh_data_catalog</code>. O contrato de acesso por consumidor, com os papéis de leitura, fica em <code>contracts.json</code>.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/50_data_catalog.sql">50_data_catalog.sql em database-console</a></td></tr>
-      <tr><td><b>E5</b></td><td>Governança com procedimentos documentados de backup e recuperação de falhas.</td><td>O fluxo de backup do PostgreSQL e a restauração passo a passo estão documentados, com a conferência de tabelas, migrations e linhas.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/flows/BACKUP.md">BACKUP.md em database-console</a><br><a href="https://github.com/Solierrr/database-console/blob/main/flows/RESTORE.md">RESTORE.md em database-console</a></td></tr>
-      <tr><td><b>E6</b></td><td>Monitoramento com registro automatizado de acessos DAU (Daily Active User) diretamente no Postgres.</td><td>A tabela <code>monitoring.daily_active_user</code> é preenchida por um trigger em <code>auth_session</code>, e a view <code>vw_dau</code> consulta os usuários ativos por dia.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/60_dau.sql">60_dau.sql em database-console</a></td></tr>
-      <tr><td><b>E7</b></td><td>Estruturas avançadas, com CTE recursiva ou herança de tabelas, onde fizer sentido.</td><td>A view <code>bi.vw_rede_conexoes</code> usa uma CTE recursiva para percorrer a rede de conexões até 3 graus, sem ciclos.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/70_recursiva.sql">70_recursiva.sql em database-console</a></td></tr>
+      <tr><td><b>E1</b></td><td>Catálogo de dados com tabelas, colunas, regras de negócio e níveis de acesso.</td><td>O catálogo tem uma linha por coluna nos schemas <code>public</code>, <code>export</code> e <code>bi</code>, com tipo, nulabilidade, nível de acesso e campos para descrição e regra de negócio. O refresh usa os metadados do PostgreSQL e preserva regras e níveis ajustados manualmente. Há regras predefinidas para 17 tabelas de negócio.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/50_data_catalog.sql">Catálogo e atualização</a></td></tr>
+      <tr><td><b>E2</b></td><td>Procedimentos documentados de backup e recuperação de falhas.</td><td>Os procedimentos cobrem geração do backup, restauração e conferência de tabelas, migrations e linhas. A documentação registra uma restauração da cópia de QA em que as contagens do destino bateram com as da origem nos bancos de negócio e autenticação.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/flows/BACKUP.md">Procedimento de backup</a><br><a href="https://github.com/Solierrr/database-console/blob/main/flows/RESTORE.md">Restauração validada</a></td></tr>
+      <tr><td><b>E3</b></td><td>Registrar usuários ativos por dia diretamente no PostgreSQL.</td><td>Um trigger em <code>auth_session</code> mantém um registro por usuário e dia, no fuso de São Paulo. O script também processa sessões históricas. A view <code>vw_dau</code> expõe usuários ativos, sessões e uma média móvel.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/60_dau.sql">Trigger, carga histórica e view</a></td></tr>
+      <tr><td><b>E4</b></td><td>CTE recursiva ou herança de tabelas onde fizer sentido.</td><td>A view <code>bi.vw_rede_conexoes</code> percorre conexões até três graus com uma CTE recursiva. O caminho visitado impede que a consulta volte a um usuário já percorrido no mesmo caminho.</td><td><a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/70_recursiva.sql">Consulta recursiva</a></td></tr>
     </tbody>
   </table>
 </section>
 
-<section class="chapter" id="adicionais" data-title="Entregas adicionais" data-summary="O que o projeto reúne nesta área">
+<section class="chapter" id="adicionais" data-title="Complexidade adicional" data-summary="Reprodução, isolamento de dados e projeções especializadas">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Entregas adicionais</h2>
-    <p class="question">O que o projeto reúne nesta disciplina?</p>
+    <h2 class="title">A entrega vai além do enunciado com dados reproduzíveis, BI e recomendações</h2>
+    <p class="question">Quais decisões ampliam a complexidade da entrega?</p>
   </header>
   <div class="prose">
-    <p>O projeto mantém um seed determinístico que povoa os bancos de negócio e de autenticação, o acervo mocks-warehouse, que fornece as imagens referenciadas pelas entidades dessa carga, views de exportação no schema export do banco de negócio, papéis de leitura por consumidor com privilégios declarados em contrato e um schema de indicadores com segurança por linha. Esses recursos ficam em database-console, api-core e mocks-warehouse.</p>
-    <p>Link de exemplo, <a href="https://github.com/Solierrr/database-console/blob/main/db/roles/contracts.json">contracts.json em database-console</a>.</p>
+    <h3>Cenários de teste reproduzíveis em dois bancos</h3>
+    <p>A carga determinística cria perfis, empresas, unidades, ofertas e propostas coerentes entre os bancos de negócio e autenticação. IDs estáveis permitem repetir a carga sem duplicar registros. O manifesto de imagens associa entidades da carga ao acervo visual. <a href="https://github.com/Solierrr/database-console/tree/main/seed">Carga determinística</a> e <a href="https://github.com/Solierrr/mocks-warehouse">acervo de imagens</a>.</p>
+    <h3>Contratos de leitura e indicadores por consumidor</h3>
+    <p>As views de exportação do api-core definem o contrato de saída do PostgreSQL. O database-console descreve os privilégios de leitura por consumidor. O databricks-stocker transforma os dados em Bronze, Silver e Gold, e o databricks-sync exporta as tabelas Gold para o banco de indicadores com controle de acesso por linha. <a href="https://github.com/Solierrr/api-core/blob/main/src/main/resources/db/migration/V2__export_views.sql">Views de exportação</a>, <a href="https://github.com/Solierrr/database-console/blob/main/db/roles/contracts.json">contratos de acesso</a>, <a href="https://github.com/Solierrr/databricks-stocker/tree/main/pipelines/medallion">pipeline</a> e <a href="https://github.com/Solierrr/databricks-sync/blob/main/gold_synchronizer.py">sincronização Gold</a>.</p>
+    <h3>Projeção em grafo para recomendações</h3>
+    <p>O database-bootstrap usa o cadastro de negócio do PostgreSQL para montar no Neo4j uma projeção de profissionais, fornecedores e ofertas. A rotina prepara uma nova versão do grafo e valida a carga antes de ativá-la. O PostgreSQL permanece como fonte do cadastro. <a href="https://github.com/Solierrr/database-bootstrap/blob/main/docs/ARCHITECTURE.md">Arquitetura da projeção</a>.</p>
+    <h3>Verificação das estruturas SQL</h3>
+    <p>O manifesto de modelagem registra os scripts e o banco de destino. Os comandos de aplicação e conferência verificam a presença dos objetos. Há testes para o manifesto, os requisitos de SQL e a aplicação da modelagem sobre a estrutura do api-core. <a href="https://github.com/Solierrr/database-console/blob/main/db/modelagem/manifest.json">Manifesto</a>, <a href="https://github.com/Solierrr/database-console/blob/main/scripts/modelagem.py">Aplicação e conferência</a> e <a href="https://github.com/Solierrr/database-console/blob/main/tests/test_modelagem.py">Testes de modelagem</a>.</p>
   </div>
 </section>
 
 <section class="chapter" id="repositorios" data-title="Repositórios da disciplina" data-summary="Onde está cada arquivo citado">
   <header class="band brand">
     <span class="num"></span>
-    <h2 class="title">Cinco repositórios guardam o banco, a carga, a migração e o Data Mart</h2>
+    <h2 class="title">Os repositórios ligam cada requisito ao código</h2>
     <p class="question">Em qual repositório está cada arquivo citado?</p>
   </header>
+  <h3>Repositórios que comprovam os critérios</h3>
   <table class="data">
     <thead><tr><th>Repositório</th><th>Papel na disciplina</th><th>Link</th></tr></thead>
     <tbody>
-      <tr><td><b>api-core</b></td><td>Banco principal, com as migrations Flyway, o diagrama do banco e as views de exportação.</td><td><a href="https://github.com/Solierrr/api-core">Abrir o repositório</a></td></tr>
-      <tr><td><b>api-auth</b></td><td>Banco de autenticação, com as próprias migrations Flyway e o diagrama.</td><td><a href="https://github.com/Solierrr/api-auth">Abrir o repositório</a></td></tr>
-      <tr><td><b>database-console</b></td><td>Normalização, carga inicial, Data Mart, SQL avançado, otimização, governança, monitoramento e backup.</td><td><a href="https://github.com/Solierrr/database-console">Abrir o repositório</a></td></tr>
-      <tr><td><b>database-rpa</b></td><td>Integração RPA que move os dados do banco legado para o banco normalizado.</td><td><a href="https://github.com/Solierrr/database-rpa">Abrir o repositório</a></td></tr>
-      <tr><td><b>mocks-warehouse</b></td><td>Acervo de imagens referenciadas pelas entidades da carga de dados.</td><td><a href="https://github.com/Solierrr/mocks-warehouse">Abrir o repositório</a></td></tr>
+      <tr><td><b>api-core</b></td><td>M1 e M2. Modelo de negócio, diagrama, constraints e migrations Flyway.</td><td><a href="https://github.com/Solierrr/api-core">Abrir o repositório</a></td></tr>
+      <tr><td><b>api-auth</b></td><td>M2 e E3. Modelo relacional de autenticação e tabela de sessões que alimenta a medição diária.</td><td><a href="https://github.com/Solierrr/api-auth">Abrir o repositório</a></td></tr>
+      <tr><td><b>database-console</b></td><td>M1, M3, M5 a M10 e E1 a E4. Normalização, carga inicial, Data Mart, SQL avançado, otimização, governança, monitoramento e backup.</td><td><a href="https://github.com/Solierrr/database-console">Abrir o repositório</a></td></tr>
+      <tr><td><b>database-rpa</b></td><td>M4. Migração do legado, mapeamento de entidades e execução automatizada.</td><td><a href="https://github.com/Solierrr/database-rpa">Abrir o repositório</a></td></tr>
+    </tbody>
+  </table>
+  <h3>Repositórios que ampliam a aplicação da modelagem</h3>
+  <table class="data">
+    <thead><tr><th>Repositório</th><th>Complexidade adicional</th><th>Link</th></tr></thead>
+    <tbody>
+      <tr><td><b>mocks-warehouse</b></td><td>Acervo visual com manifesto consumido por cargas de dados.</td><td><a href="https://github.com/Solierrr/mocks-warehouse">Abrir o repositório</a></td></tr>
+      <tr><td><b>databricks-stocker</b></td><td>Transformação dos dados da aplicação nas camadas Bronze, Silver e Gold.</td><td><a href="https://github.com/Solierrr/databricks-stocker">Abrir o repositório</a></td></tr>
+      <tr><td><b>databricks-sync</b></td><td>Sincronização dos indicadores Gold para PostgreSQL e controle de acesso por linha.</td><td><a href="https://github.com/Solierrr/databricks-sync">Abrir o repositório</a></td></tr>
+      <tr><td><b>database-bootstrap</b></td><td>Projeção do modelo relacional em um grafo de recomendações versionado.</td><td><a href="https://github.com/Solierrr/database-bootstrap">Abrir o repositório</a></td></tr>
     </tbody>
   </table>
 </section>

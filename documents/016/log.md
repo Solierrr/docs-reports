@@ -39,3 +39,7 @@
 - **Reviewer:** as pendências apontadas foram aplicadas e o texto do PDF confere com o do HTML.
 - **check.sh:** ok.
 - **PDF:** regerado.
+
+## Revisão para reenvio em 12 de novembro de 2026
+
+O relatório corrige a classificação para dez mínimos e quatro extras. A revisão inclui evidências de migração, auditoria, otimização, catálogo, backup, DAU, CTE recursiva, Databricks e Neo4j. Os dezoito testes de Modelagem passaram em uma instância PostgreSQL 18 descartável, incluindo a aplicação dos scripts após as migrations do api-core.

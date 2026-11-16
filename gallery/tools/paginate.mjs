@@ -126,6 +126,17 @@ function finish() {
   document.documentElement.setAttribute("data-paged", "done");
 }
 
+// O Paged.js 0.4.3 não repete o <thead> quando parte uma tabela. Copiar o cabeçalho só depois da paginação estoura a
+// folha (a última linha vai para fora dela); por isso ele entra durante o layout, e a altura dele conta na quebra.
+const repeatHead = `class RepeatHead extends Paged.Handler {
+  renderNode(node, source) {
+    const table = node.closest?.("table[data-split-from]");
+    const head = source.closest?.("table")?.tHead;
+    if (table && head && !table.tHead) table.insertBefore(head.cloneNode(true), table.firstChild);
+  }
+}
+Paged.registerHandlers(RepeatHead);`;
+
 const watch = [
   'window.onerror = (message) => document.documentElement.setAttribute("data-error", message);',
   'window.addEventListener("unhandledrejection", (event) => document.documentElement.setAttribute("data-error", String(event.reason)));',
@@ -136,7 +147,7 @@ export async function paginate(source) {
   const config = `window.PagedConfig = { auto: true, after: ${finish.toString()} };`;
   const ready = (await inline(source)).replace(
     "</head>",
-    () => `<script>\n${watch}\n${config}\n</script>\n<script>${polyfill}</script>\n</head>`,
+    () => `<script>\n${watch}\n${config}\n</script>\n<script>${polyfill}</script>\n<script>${repeatHead}</script>\n</head>`,
   );
   const folder = await mkdtemp(join(tmpdir(), "paginate-"));
   try {

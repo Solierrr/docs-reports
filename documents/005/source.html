@@ -1,0 +1,683 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manual do fornecedor da Solaria</title>
+<link rel="stylesheet" href="../../design/document.css">
+</head>
+<body>
+
+<section class="cover" id="capa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <div class="center">
+    <h1 class="title">Manual do fornecedor da Solaria</h1>
+    <p class="lead">Passo a passo para o fornecedor, do credenciamento ao repasse: anúncios, pedidos, nota fiscal, indicadores e devoluções.</p>
+    <span class="sample">Exemplo com dados fictícios</span>
+  </div>
+  <div class="meta">
+    <div><span>Para</span><b>fornecedores, atendentes e IA de atendimento</b></div>
+    <div><span>Cobre</span><b>Do credenciamento ao repasse</b></div>
+    <div><span>Versão</span><b>1.0 · 28/10/2026</b></div>
+  </div>
+</section>
+
+<section class="contents" id="sumario">
+  <div class="side">
+    <h2 class="title">Sumário</h2>
+    <p class="lead">Do credenciamento ao repasse</p>
+  </div>
+  <div class="main">
+    <nav class="toc"></nav>
+  </div>
+</section>
+
+<section class="chapter strip" id="sup-intro" data-title="Como usar este manual" data-summary="Para quem é o manual, prazos e canais do suporte">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Como usar este manual</h2>
+</div>
+</header>
+<div class="prose" id="sup-intro-when">
+<h3>Quando usar</h3>
+<p>Use este manual quando você, fornecedor, precisar saber o que fazer em cada etapa de venda na Solaria. Atendentes e IA de atendimento também podem usá-lo para orientar um fornecedor.</p>
+</div>
+<div class="prose" id="sup-intro-roles">
+<h3>Quem faz o quê</h3>
+<p>A Solaria é um marketplace de suprimentos para negócios. Quem vende é o fornecedor. O fornecedor responde por produto, estoque, nota fiscal e entrega. A Solaria responde pela plataforma, pelo pagamento e pela Compra Garantida.</p>
+<p>O comprador sempre paga à Solaria, e a Solaria faz o repasse ao fornecedor depois da entrega. Nenhum fornecedor deve pedir pagamento por fora da Solaria ao comprador.</p>
+<p>Neste manual, "você" é o fornecedor.</p>
+</div>
+<div class="prose" id="sup-intro-deadlines">
+<h3>Como ler os prazos</h3>
+<p>Dia útil é segunda a sexta, exceto feriados nacionais, no horário de Brasília. Dia corrido conta todos os dias do calendário. Hora útil vale só para o tempo de resposta do chat do pedido: segunda a sexta, das 8h às 18h. As 24 horas do aceite do pedido e dos perecíveis são horas corridas.</p>
+<p>Todo prazo deste manual traz a unidade. Quando a Solaria não define um valor ou uma regra, o texto diz "não definido pela Solaria" e manda você encaminhar ao suporte.</p>
+<p>Todos os contatos e valores deste manual são fictícios, como no restante da documentação da Solaria.</p>
+</div>
+<div id="sup-intro-channels">
+<div class="prose">
+<h3>Canais do suporte</h3>
+<p>Use o suporte quando este manual mandar encaminhar um ponto. O chat do suporte é o canal mais rápido. Horários de Brasília.</p>
+</div>
+<table class="data">
+<thead><tr><th>Canal</th><th>Quando atende</th><th>Resposta</th></tr></thead>
+<tbody>
+<tr><td>Central de ajuda, no app e no site</td><td>sempre</td><td>imediata</td></tr>
+<tr><td>Chat do suporte, no app e no site</td><td>segunda a sexta, das 8h às 20h, e sábado, das 8h às 14h</td><td>até 10 minutos</td></tr>
+<tr><td>Telefone, 0800 000 0000</td><td>segunda a sexta, das 8h às 18h</td><td>na ligação</td></tr>
+<tr><td>E-mail, suporte@solaria.exemplo</td><td>recebe sempre</td><td>até 1 dia útil</td></tr>
+<tr><td>Atendimento de segurança, pelo chat do suporte</td><td>24 horas, todos os dias</td><td>imediata</td></tr>
+<tr><td>Privacidade, dados@solaria.exemplo</td><td>recebe sempre</td><td>até 15 dias corridos</td></tr>
+<tr><td>Ouvidoria, ouvidoria@solaria.exemplo</td><td>recebe sempre</td><td>até 10 dias úteis</td></tr>
+</tbody>
+</table>
+<div class="prose">
+<p class="muted small">Contatos fictícios, criados para este exemplo.</p>
+<p>Em domingos e feriados, só o atendimento de segurança responde em tempo real. A Central de ajuda e os e-mails funcionam sempre.</p>
+</div>
+</div>
+<div class="prose" id="sup-intro-ticket">
+<h3>Como abrir um chamado</h3>
+<p>Abra o chamado por qualquer canal do suporte. Informe o número do pedido quando houver, o que aconteceu, o que você já tentou e o que espera como solução. Anexe fotos ou documentos. A Solaria envia o protocolo por e-mail na abertura, e você acompanha o chamado por ele em qualquer canal.</p>
+<p>O prazo de solução é de 3 dias úteis para dúvidas, 5 dias úteis para casos com fornecedor ou dinheiro, e 10 dias úteis para a Compra Garantida. Se o suporte pedir informação, o prazo fica parado até você responder. Você pode reabrir o chamado em até 7 dias corridos depois do encerramento. Passado esse prazo, abra um chamado novo citando o protocolo antigo.</p>
+<p>Se você não concordar com a solução do suporte, escreva para a Ouvidoria com o protocolo e o motivo. A Ouvidoria responde em até 10 dias úteis.</p>
+</div>
+<div class="prose" id="sup-intro-scam">
+<h3>Golpes</h3>
+<p>A Solaria nunca pede senha, código de verificação ou pagamento por fora, por telefone, e-mail ou mensagem. A Solaria nunca envia boleto pelo chat do pedido. Quem pedir isso em nome da Solaria é golpe.</p>
+<p>Se você receber um boleto ou uma mensagem estranha em nome da Solaria, não pague nem abra links. Avise o atendimento de segurança pelo chat do suporte. Se já pagou, avise também o banco.</p>
+</div>
+<div class="prose" id="sup-intro-after">
+<h3>O que acontece depois</h3>
+<p>Depois de conhecer os prazos, os canais e os golpes, a empresa começa pelo credenciamento. Com a análise de documentos aprovada, ela segue para anúncios, pedidos, nota fiscal, repasses, indicadores e devoluções.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-onboarding" data-title="Credenciamento" data-summary="Documentos, análise e conta da empresa">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Credenciamento</h2>
+</div>
+</header>
+<div class="prose" id="sup-onboarding-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo quando a empresa quiser começar a vender na Solaria, ou quando precisar reenviar um documento recusado. Todo fornecedor passa por análise de documentos antes da primeira venda.</p>
+</div>
+<div class="prose" id="sup-onboarding-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: CNPJ ativo há pelo menos 6 meses, emissão de nota fiscal eletrônica e conta bancária no mesmo CNPJ.</p>
+<p>Também precisa de: inscrição estadual e alvará sanitário, quando a atividade da empresa exigir, por exemplo alimentos e bebidas.</p>
+<p>Prazo da análise: até 5 dias úteis, contados a partir do envio de todos os documentos.</p>
+<p>Custo: cadastrar não custa nada. No plano Essencial, a Solaria cobra comissão só quando você vende.</p>
+</div>
+<div class="prose" id="sup-onboarding-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-onboarding-check-requirements"><div>
+<h3>Confira se a empresa cumpre os requisitos</h3>
+<p>Faça: compare a empresa com os requisitos de CNPJ, nota fiscal eletrônica, conta bancária, inscrição estadual e alvará sanitário.</p>
+<p class="result">Resultado esperado: você sabe se a empresa pode seguir para a análise de documentos.</p>
+</div></li>
+<li class="step" id="sup-onboarding-create-account"><div>
+<h3>Crie a conta da empresa</h3>
+<p>Faça: informe o CNPJ. A Solaria confere a situação do CNPJ em base pública e preenche a razão social. Depois, informe um e-mail e um celular e confirme os dois com o código enviado por SMS e por e-mail, válido por 10 minutos.</p>
+<p class="result">Resultado esperado: a conta da empresa fica ativa e a empresa fica identificada.</p>
+</div></li>
+<li class="step" id="sup-onboarding-enable-two-step"><div>
+<h3>Ative a verificação em duas etapas</h3>
+<p>Faça: ative a verificação em duas etapas, que é obrigatória para o fornecedor.</p>
+<p class="result">Resultado esperado: toda entrada em dispositivo novo pede, além da senha, um código enviado ao celular. Em dispositivo já conhecido, a sessão dura até 30 dias corridos sem uso.</p>
+</div></li>
+<li class="step" id="sup-onboarding-send-documents"><div>
+<h3>Envie os documentos da empresa</h3>
+<p>Faça: envie os quatro documentos básicos: contrato social atualizado ou certificado de MEI; documento oficial com foto do responsável legal; comprovante de endereço da empresa emitido nos últimos 90 dias corridos; comprovante da conta bancária no mesmo CNPJ. Se a empresa vende alimentos e bebidas, envie também o alvará sanitário.</p>
+<p class="result">Resultado esperado: a Solaria começa a contar o prazo de análise de até 5 dias úteis. Documentos legíveis e dentro da validade costumam ser aprovados na primeira análise.</p>
+</div></li>
+<li class="step" id="sup-onboarding-add-users"><div>
+<h3>Convide as pessoas da equipe</h3>
+<p>Faça: peça ao administrador da conta para convidar as pessoas e escolher o papel de cada uma. Os papéis do fornecedor são administrador, operador e financeiro. A empresa pode ter até 10 usuários.</p>
+<p class="result">Resultado esperado: cada pessoa tem um papel. Só o administrador altera os dados da empresa e gerencia os usuários.</p>
+</div></li>
+<li class="step" id="sup-onboarding-wait-approval"><div>
+<h3>Monte o catálogo enquanto a análise corre</h3>
+<p>Faça: cadastre os produtos durante a análise de documentos.</p>
+<p class="result">Resultado esperado: os produtos ficam prontos, mas só aparecem para os compradores depois da aprovação da análise de documentos.</p>
+</div></li>
+</ol>
+<div id="sup-onboarding-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>A análise de documentos recusou um documento</td><td>A Solaria envia o motivo da recusa por e-mail</td><td>Reenvie o documento corrigido quando quiser. A nova análise sai em até 3 dias úteis.</td></tr>
+<tr><td>Os produtos não aparecem para os compradores</td><td>A análise de documentos ainda não terminou</td><td>Aguarde a aprovação, que sai em até 5 dias úteis depois do envio de todos os documentos.</td></tr>
+<tr><td>A empresa tem CNPJ ativo há menos de 6 meses</td><td>Requisito de credenciamento não cumprido</td><td>Exceção não definida pela Solaria. Encaminhe ao suporte.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-onboarding-after">
+<h3>O que acontece depois</h3>
+<p>Com a análise de documentos aprovada, os produtos do catálogo podem aparecer para os compradores. Cada anúncio passa por revisão em até 1 dia útil. Depois disso, a empresa pode receber pedidos.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-listings" data-title="Anúncios e preços" data-summary="Cadastro de produtos, preço, estoque e cotação">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Anúncios e preços</h2>
+</div>
+</header>
+<div class="prose" id="sup-listings-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo quando for cadastrar um produto, mudar um preço, atualizar o estoque, definir a área de entrega ou responder a uma cotação.</p>
+</div>
+<div class="prose" id="sup-listings-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: título, descrição, de 1 a 8 fotos, NCM, peso e medidas da embalagem, e código de barras quando o produto tiver.</p>
+<p>Limite do plano: o plano Essencial aceita até 500 produtos ativos. O plano Pro não tem limite de produtos.</p>
+<p>Prazo da revisão: todo anúncio passa por revisão em até 1 dia útil.</p>
+</div>
+<div class="prose" id="sup-listings-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-listings-write-listing"><div>
+<h3>Escreva o título e a descrição do produto</h3>
+<p>Faça: escreva um título que diga o que é o produto, a marca e a quantidade. Escreva a descrição do produto.</p>
+<p class="result">Resultado esperado: o anúncio tem título e descrição completos.</p>
+</div></li>
+<li class="step" id="sup-listings-add-photos"><div>
+<h3>Envie de 1 a 8 fotos do produto real</h3>
+<p>Faça: use fotos do produto real, sem contato, sem marca d'água e sem texto promocional.</p>
+<p class="result">Resultado esperado: o anúncio tem de 1 a 8 fotos dentro das regras de anúncio.</p>
+</div></li>
+<li class="step" id="sup-listings-fill-logistics"><div>
+<h3>Informe NCM, peso e medidas da embalagem</h3>
+<p>Faça: informe o NCM, o peso e as medidas da embalagem, e o código de barras quando houver. Confira os valores antes de enviar.</p>
+<p class="result">Resultado esperado: o anúncio tem todos os dados obrigatórios. Peso e medidas errados podem gerar cobrança da diferença de frete ao fornecedor.</p>
+</div></li>
+<li class="step" id="sup-listings-set-price"><div>
+<h3>Defina o preço do produto</h3>
+<p>Faça: defina o preço com os impostos incluídos e sem o frete. A Solaria mostra o frete separado ao comprador. Se quiser vender por volume, crie até 4 faixas de preço por quantidade. Se quiser fazer promoção, use um período de 1 a 30 dias corridos.</p>
+<p class="result">Resultado esperado: o preço e as faixas de preço por volume aparecem no anúncio. A mudança de preço vale só para pedidos novos. O pedido já confirmado mantém o preço do momento em que o comprador o confirmou, mesmo que a promoção termine depois.</p>
+</div></li>
+<li class="step" id="sup-listings-set-minimum"><div>
+<h3>Defina o pedido mínimo</h3>
+<p>Faça: defina o pedido mínimo do seu anúncio, de R$ 0 a R$ 500. O pedido mínimo é o menor valor que você aceita por pedido, sem contar o frete.</p>
+<p class="result">Resultado esperado: o pedido mínimo aparece no anúncio. O comprador não conclui um pedido com valor menor que o pedido mínimo. A regra vale por fornecedor, não para o carrinho inteiro.</p>
+</div></li>
+<li class="step" id="sup-listings-set-delivery"><div>
+<h3>Defina a área de entrega e o frete</h3>
+<p>Faça: informe as regiões ou os CEPs que você atende, o prazo de transporte e o valor do frete ou a transportadora de cada região. Se quiser oferecer frete grátis, consulte o suporte.</p>
+<p class="result">Resultado esperado: o comprador vê o frete calculado para o CEP dele, separado do preço, antes de confirmar o pedido. A comissão não incide sobre o frete, e a Solaria repassa o frete integralmente.</p>
+</div></li>
+<li class="step" id="sup-listings-submit-review"><div>
+<h3>Envie o anúncio para revisão</h3>
+<p>Faça: envie o anúncio completo para a revisão.</p>
+<p class="result">Resultado esperado: a revisão responde em até 1 dia útil. Se o anúncio for recusado, o motivo vem junto com a recusa.</p>
+</div></li>
+<li class="step" id="sup-listings-keep-stock"><div>
+<h3>Atualize o estoque todos os dias</h3>
+<p>Faça: confira e atualize o estoque de cada produto todos os dias.</p>
+<p class="result">Resultado esperado: você evita vender sem estoque. Venda sem estoque obriga a cancelar o pedido, e esse cancelamento entra nos indicadores de atendimento. Quando o indicador de cancelamentos passa de 5% em 60 dias corridos, a conta recebe um alerta.</p>
+</div></li>
+<li class="step" id="sup-listings-answer-quote"><div>
+<h3>Responda a cotação em até 2 dias úteis</h3>
+<p>Faça: quando um comprador pedir cotação, envie sua proposta em até 2 dias úteis. O comprador pode enviar a mesma cotação a até 5 fornecedores ao mesmo tempo.</p>
+<p class="result">Resultado esperado: a proposta vale por 7 dias corridos. Se o comprador aceitar a proposta, ela vira um pedido com o preço e o prazo combinados. Desconto combinado no chat do pedido só vale se estiver registrado na cotação ou no pedido.</p>
+</div></li>
+</ol>
+<div class="prose" id="sup-listings-prohibited">
+<h3>Produtos que você não pode vender</h3>
+<p>Não anuncie produtos sem nota fiscal, falsificados, controlados ou proibidos pelos termos de uso. A lista inclui medicamentos, armas e produtos sem registro quando o registro for exigido. A lista completa de produtos proibidos não é definida neste manual. Consulte os termos de uso ou encaminhe ao suporte.</p>
+<p>Quem anuncia um produto proibido tem o anúncio removido. Em caso de repetição ou golpe, a Solaria descredencia o fornecedor.</p>
+</div>
+<div id="sup-listings-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>O anúncio foi recusado</td><td>Faltou informação obrigatória ou o anúncio violou as regras de anúncio. Motivos comuns: foto fora das regras, NCM incompatível, falta do alvará sanitário para alimentos, produto proibido</td><td>Leia o motivo enviado com a recusa, corrija o anúncio e envie de novo.</td></tr>
+<tr><td>A Solaria cobrou diferença de frete</td><td>Peso ou medidas da embalagem errados no anúncio</td><td>Corrija o peso e as medidas da embalagem.</td></tr>
+<tr><td>O plano Essencial chegou a 500 produtos ativos</td><td>O plano Essencial aceita até 500 produtos ativos</td><td>Mude para o plano Pro, que não tem limite de produtos. A troca de plano vale a partir do dia 1 do mês seguinte.</td></tr>
+<tr><td>Um pedido já confirmado está com preço antigo</td><td>A mudança de preço vale só para pedidos novos</td><td>Nada a fazer. O pedido segue com o preço do momento em que o comprador o confirmou.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-listings-after">
+<h3>O que acontece depois</h3>
+<p>Com o anúncio aprovado e o estoque atualizado, o comprador pode confirmar um pedido. Quando a Solaria confirma o pagamento, o pedido segue para você, e começa o prazo de 24 horas corridas para o aceite do pedido.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-orders" data-title="Aceitar e despachar pedido" data-summary="Do aceite ao rastreio e ao cancelamento">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Aceitar e despachar pedido</h2>
+</div>
+</header>
+<div class="prose" id="sup-orders-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo toda vez que um pedido pago chegar, e quando precisar cancelar um pedido, tratar um atraso ou responder o comprador no chat do pedido.</p>
+</div>
+<div class="prose" id="sup-orders-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: avisos de pedido ativos para todos os usuários com papel de operador, inclusive em fim de semana e feriado, e a nota fiscal do pedido pronta para ser emitida no despacho.</p>
+<p>Prazo do aceite do pedido: até 24 horas corridas depois da confirmação do pagamento.</p>
+<p>Prazo do despacho: até 2 dias úteis depois do aceite do pedido.</p>
+<p>Prazo do rastreio: até 1 dia útil depois do despacho.</p>
+</div>
+<div class="prose" id="sup-orders-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-orders-enable-alerts"><div>
+<h3>Ative os avisos de pedido para os operadores</h3>
+<p>Faça: ative os avisos de pedido para todos os usuários com papel de operador.</p>
+<p class="result">Resultado esperado: os operadores são avisados de pedido novo também no fim de semana e no feriado, e o prazo do aceite do pedido não passa sem ninguém ver.</p>
+</div></li>
+<li class="step" id="sup-orders-accept-order"><div>
+<h3>Aceite o pedido em até 24 horas corridas</h3>
+<p>Faça: aceite o pedido em até 24 horas corridas depois da confirmação do pagamento. O pedido só segue para você depois dessa confirmação: Pix e cartão confirmam em minutos, e o boleto à vista confirma em até 2 dias úteis.</p>
+<p class="result">Resultado esperado: o pedido fica aceito e pronto para o despacho. Sem o aceite do pedido no prazo, a Solaria cancela o pedido automaticamente, reembolsa o comprador, e o cancelamento conta contra você no indicador de cancelamentos.</p>
+</div></li>
+<li class="step" id="sup-orders-answer-chat"><div>
+<h3>Responda o comprador no chat do pedido</h3>
+<p>Faça: responda a primeira mensagem do comprador no chat do pedido em até 4 horas úteis. O máximo é 1 dia útil. Hora útil é de segunda a sexta, das 8h às 18h. Combine preço, prazo e condição de entrega só na cotação ou no pedido.</p>
+<p class="result">Resultado esperado: o tempo de resposta entra nos indicadores de atendimento dentro da meta. É proibido negociar fora da Solaria, trocar dados de pagamento ou ofender a outra parte. Telefone, e-mail ou link de pagamento enviados para negociar por fora são removidos e podem levar à suspensão da conta.</p>
+</div></li>
+<li class="step" id="sup-orders-issue-invoice"><div>
+<h3>Emita a nota fiscal do pedido</h3>
+<p>Faça: emita a nota fiscal no nome do CNPJ que comprou, no momento do despacho.</p>
+<p class="result">Resultado esperado: a nota fiscal fica disponível na conta do comprador e vai para o e-mail dos usuários dele com papel de financeiro.</p>
+</div></li>
+<li class="step" id="sup-orders-ship-order"><div>
+<h3>Despache o pedido em até 2 dias úteis</h3>
+<p>Faça: despache o pedido em até 2 dias úteis depois do aceite do pedido. Despachar é entregar o pedido à transportadora ou sair para a entrega própria, com a nota fiscal emitida. Para item sob encomenda, use o prazo do anúncio, no máximo 10 dias úteis.</p>
+<p class="result">Resultado esperado: o pedido fica despachado. Depois do despacho, o endereço de entrega não muda e valem as regras de devolução.</p>
+</div></li>
+<li class="step" id="sup-orders-send-tracking"><div>
+<h3>Informe o rastreio em até 1 dia útil</h3>
+<p>Faça: informe o código de rastreio em até 1 dia útil depois do despacho. Se a entrega for com veículo próprio, atualize o andamento do pedido.</p>
+<p class="result">Resultado esperado: o comprador recebe o código de rastreio e um aviso a cada mudança importante: despacho, saída para entrega e entrega concluída.</p>
+</div></li>
+<li class="step" id="sup-orders-cancel-order"><div>
+<h3>Cancele o pedido só se for preciso</h3>
+<p>Faça: se não puder atender, cancele o pedido antes do despacho e informe o motivo. Antes do aceite do pedido, o comprador cancela livremente. Depois do aceite do pedido e até o despacho, o cancelamento depende da concordância do fornecedor.</p>
+<p class="result">Resultado esperado: o pedido fica cancelado e o comprador é reembolsado. O cancelamento conta no indicador de cancelamentos, exceto quando o comprador pediu. Contam contra o fornecedor: falta de estoque, erro de preço e endereço fora da área de entrega. Depois do despacho, valem as regras de devolução.</p>
+</div></li>
+</ol>
+<div id="sup-orders-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>O pedido foi cancelado sem aceite</td><td>O prazo de 24 horas corridas do aceite do pedido terminou</td><td>O comprador foi reembolsado e o cancelamento conta contra você. Ative os avisos de pedido para os operadores.</td></tr>
+<tr><td>O pedido ainda não chegou ao fornecedor</td><td>O pagamento ainda não foi confirmado. O boleto à vista confirma em até 2 dias úteis</td><td>Aguarde a confirmação do pagamento. O prazo de entrega conta a partir dela.</td></tr>
+<tr><td>O comprador pede para mudar o endereço de entrega</td><td>O pedido ainda não foi despachado</td><td>Atenda pelo chat do pedido antes do despacho. Se o frete ficar maior, a Solaria cobra a diferença. Se ficar menor, o valor volta como estorno. Depois do despacho, o endereço não muda.</td></tr>
+<tr><td>O pedido está atrasado</td><td>O despacho ou o transporte passou da data prometida</td><td>Responda o comprador no chat do pedido. Se passar mais de 3 dias úteis da data prometida, o comprador escolhe entre cancelar com reembolso integral ou abrir reclamação pela Compra Garantida. Nos dois casos, o atraso conta contra você nos indicadores de atendimento.</td></tr>
+<tr><td>A transportadora não conseguiu entregar</td><td>Ninguém havia para receber</td><td>A transportadora faz até 3 tentativas e depois devolve o pedido ao fornecedor. O comprador recebe reembolso dos produtos, mas não do frete de ida. Para receber mesmo assim, combine um novo despacho com o comprador, que paga o frete de reenvio.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-orders-after">
+<h3>O que acontece depois</h3>
+<p>Com o pedido despachado, o comprador recebe a nota fiscal e o rastreio. Quando a entrega é confirmada, começa a contagem do repasse: 14 dias corridos. Se o comprador pedir devolução ou abrir reclamação, valem as regras de devolução, e o repasse do pedido pode ficar retido até a solução.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-invoice" data-title="Nota fiscal" data-summary="Emissão e correção da nota fiscal">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Nota fiscal</h2>
+</div>
+</header>
+<div class="prose" id="sup-invoice-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo quando for emitir a nota fiscal de um pedido, quando o comprador pedir correção de uma nota fiscal, ou quando a nota de serviço das comissões chegar.</p>
+</div>
+<div class="prose" id="sup-invoice-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: o CNPJ do comprador, que está no pedido, e a emissão de nota fiscal eletrônica ativa. O fornecedor responde pela nota fiscal. A Solaria não emite nota fiscal dos produtos, porque não é ela quem vende.</p>
+<p>Prazo para corrigir: até 3 dias úteis depois do pedido de correção.</p>
+<p>Prazo de pedido de correção do comprador: até 30 dias corridos da emissão da nota fiscal.</p>
+</div>
+<div class="prose" id="sup-invoice-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-invoice-issue-invoice"><div>
+<h3>Emita a nota fiscal no despacho</h3>
+<p>Faça: emita a nota fiscal do pedido no momento do despacho, no nome do CNPJ que comprou.</p>
+<p class="result">Resultado esperado: a nota fiscal fica disponível na conta do comprador e vai para o e-mail dos usuários dele com papel de financeiro.</p>
+</div></li>
+<li class="step" id="sup-invoice-issue-per-order"><div>
+<h3>Emita uma nota fiscal para cada pedido</h3>
+<p>Faça: quando o comprador comprar de vários fornecedores, emita só a nota fiscal do seu pedido. A Solaria divide a compra em um pedido por fornecedor, e cada fornecedor emite a sua nota fiscal.</p>
+<p class="result">Resultado esperado: a nota fiscal cobre só o seu pedido, que tem prazo, frete e rastreio próprios.</p>
+</div></li>
+<li class="step" id="sup-invoice-read-correction-request"><div>
+<h3>Leia o pedido de correção no chat do pedido</h3>
+<p>Faça: leia o pedido de correção que o comprador fez no chat do pedido. O comprador diz o que está errado: CNPJ, endereço, quantidade ou valor.</p>
+<p class="result">Resultado esperado: você sabe qual dado da nota fiscal precisa mudar.</p>
+</div></li>
+<li class="step" id="sup-invoice-fix-invoice"><div>
+<h3>Corrija ou emita nova nota fiscal em até 3 dias úteis</h3>
+<p>Faça: corrija a nota fiscal ou emita uma nota fiscal nova em até 3 dias úteis depois do pedido de correção.</p>
+<p class="result">Resultado esperado: o comprador recebe uma nota fiscal que bate com o valor pago. O comprador não deve registrar na contabilidade uma nota fiscal que não bate com o valor pago, e por isso espera a nota fiscal corrigida.</p>
+</div></li>
+<li class="step" id="sup-invoice-check-service-invoice"><div>
+<h3>Confira a nota de serviço das comissões</h3>
+<p>Faça: até o 5º dia útil do mês seguinte, confira a nota de serviço que a Solaria emite com as comissões do mês. A mensalidade do plano Pro também entra nessa nota de serviço.</p>
+<p class="result">Resultado esperado: os usuários com papel de financeiro recebem por e-mail a nota de serviço e o relatório mensal de repasses.</p>
+</div></li>
+</ol>
+<div id="sup-invoice-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>O comprador pediu correção e o prazo de 3 dias úteis terminou sem resposta</td><td>A correção não foi feita</td><td>O comprador abre chamado com o número do pedido e a Solaria cobra a correção. Corrija a nota fiscal o quanto antes.</td></tr>
+<tr><td>O comprador pede correção depois de mais de 30 dias corridos da emissão</td><td>O pedido de correção passou do prazo de 30 dias corridos</td><td>A Solaria não define como tratar esse caso. Encaminhe ao suporte.</td></tr>
+<tr><td>A nota de serviço das comissões não chegou até o 5º dia útil do mês seguinte</td><td>Prazo de emissão da Solaria</td><td>Abra um chamado no suporte.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-invoice-after">
+<h3>O que acontece depois</h3>
+<p>A nota fiscal acompanha o pedido até a entrega. Quando a entrega é confirmada, começa a contagem do repasse: 14 dias corridos. A nota de serviço das comissões e o relatório mensal de repasses chegam por e-mail aos usuários com papel de financeiro.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-payouts" data-title="Repasses e antecipação" data-summary="Prazo, comissão, antecipação e plano">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Repasses e antecipação</h2>
+</div>
+</header>
+<div class="prose" id="sup-payouts-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo para saber quando o dinheiro das vendas cai, para decidir se vale antecipar o repasse, para entender por que um repasse ficou retido e para escolher o plano.</p>
+</div>
+<div class="prose" id="sup-payouts-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: pedidos com entrega confirmada e usuários com papel de financeiro cadastrados.</p>
+<p>Prazo do repasse: 14 dias corridos depois da entrega confirmada.</p>
+<p>Prazo da antecipação de repasse: 1 dia útil.</p>
+<p>Custo da antecipação de repasse: taxa de antecipação de 1,9% sobre o valor antecipado.</p>
+</div>
+<div class="prose" id="sup-payouts-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-payouts-check-date"><div>
+<h3>Confira a data do repasse</h3>
+<p>Faça: conte 14 dias corridos a partir da entrega confirmada. Se o dia não for útil, a data passa para o próximo dia útil.</p>
+<p class="result">Resultado esperado: você sabe quando o repasse cai. O prazo é o mesmo para todas as formas de pagamento, inclusive o boleto faturado: a Solaria faz o repasse mesmo que o comprador ainda não tenha pago o boleto faturado.</p>
+</div></li>
+<li class="step" id="sup-payouts-check-commission"><div>
+<h3>Confira a comissão do repasse</h3>
+<p>Faça: calcule o repasse dos produtos: preço dos produtos menos a comissão, que é 12% no plano Essencial e 9% no plano Pro. Some o frete, que a Solaria repassa integralmente.</p>
+<p class="result">Resultado esperado: o repasse já vem sem a comissão. Exemplo de cálculo próprio, com valores ilustrativos: em um pedido com R$ 1.000,00 em produtos no plano Essencial, a comissão é R$ 1.000,00 vezes 12%, ou R$ 120,00, e o repasse dos produtos é R$ 880,00, mais o frete.</p>
+</div></li>
+<li class="step" id="sup-payouts-advance-payout"><div>
+<h3>Antecipe o repasse se precisar do dinheiro antes</h3>
+<p>Faça: escolha os pedidos com entrega confirmada que quer antecipar. Você pode antecipar um pedido, vários ou todo o saldo disponível.</p>
+<p class="result">Resultado esperado: o dinheiro cai em 1 dia útil, e a Solaria cobra a taxa de antecipação de 1,9% sobre o valor antecipado. Exemplo de cálculo próprio, com valor ilustrativo: antecipar R$ 880,00 tem taxa de antecipação de R$ 880,00 vezes 1,9%, ou R$ 16,72. O restante do saldo segue o prazo normal de 14 dias corridos.</p>
+</div></li>
+<li class="step" id="sup-payouts-check-statement"><div>
+<h3>Confira o extrato dos repasses</h3>
+<p>Faça: confira o extrato dos repasses e procure descontos de devolução, que aparecem com o número do pedido.</p>
+<p class="result">Resultado esperado: você sabe quanto foi descontado e de qual pedido.</p>
+</div></li>
+<li class="step" id="sup-payouts-protect-bank-account"><div>
+<h3>Proteja a conta bancária do repasse</h3>
+<p>Faça: peça ao administrador para trocar a conta bancária do repasse só quando for necessário. Só o administrador troca a conta bancária, com a verificação em duas etapas.</p>
+<p class="result">Resultado esperado: depois da troca, todos os repasses ficam retidos por 48 horas, e a Solaria avisa por e-mail. Se a troca de conta bancária não foi feita por você, procure na hora o atendimento de segurança, que atende 24 horas.</p>
+</div></li>
+<li class="step" id="sup-payouts-choose-plan"><div>
+<h3>Escolha o plano que combina com suas vendas</h3>
+<p>Faça: compare o plano Essencial (sem mensalidade, comissão de 12%, até 500 produtos ativos) com o plano Pro (R$ 149 por mês, comissão de 9%, sem limite de produtos). O plano Pro compensa a partir de cerca de R$ 5.000 por mês em vendas. Peça a troca de plano quando fizer sentido.</p>
+<p class="result">Resultado esperado: a troca de plano vale a partir do dia 1 do mês seguinte. A comissão incide só sobre os produtos.</p>
+</div></li>
+</ol>
+<div id="sup-payouts-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>O repasse de um pedido não caiu</td><td>Reclamação aberta no pedido, devolução em andamento, troca recente da conta bancária ou bloqueio preventivo da conta</td><td>Resolva a reclamação ou a devolução. Depois da troca de conta bancária, espere 48 horas. No bloqueio preventivo, confirme a identidade com o suporte; o desbloqueio sai em até 1 dia útil.</td></tr>
+<tr><td>O repasse veio com valor menor</td><td>A Solaria descontou uma devolução já repassada. Exemplos: defeito registrado em até 30 dias corridos, decisão da Compra Garantida contra o fornecedor</td><td>Confira o extrato dos repasses, que mostra o número do pedido.</td></tr>
+<tr><td>A data do repasse caiu em dia não útil</td><td>Regra de dia útil</td><td>O repasse passa para o próximo dia útil.</td></tr>
+<tr><td>Houve contestação de cartão sobre um pedido</td><td>O titular do cartão contestou a cobrança</td><td>A Solaria cobre o valor se o fornecedor comprovar a entrega. A forma de comprovar a entrega não é definida pela Solaria. Encaminhe ao suporte.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-payouts-after">
+<h3>O que acontece depois</h3>
+<p>Quando o repasse cai, o valor vem sem a comissão. Se o comprador pedir devolução depois do repasse, o valor devolvido é descontado dos próximos repasses. Até o 5º dia útil do mês seguinte, a Solaria envia a nota de serviço das comissões e o relatório mensal de repasses aos usuários com papel de financeiro.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-indicators" data-title="Indicadores e penalidades" data-summary="Metas, avaliações e escada de penalidades">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Indicadores e penalidades</h2>
+</div>
+</header>
+<div class="prose" id="sup-indicators-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo para acompanhar o atendimento da sua conta, quando receber um alerta, quando uma avaliação parecer injusta ou quando precisar contestar uma penalidade.</p>
+</div>
+<div class="prose" id="sup-indicators-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: acesso aos relatórios e saber que os indicadores de atendimento são calculados sobre os pedidos dos últimos 60 dias corridos, com atualização diária.</p>
+<p>Regra de volume: alertas e penalidades só valem com pelo menos 10 pedidos no período.</p>
+</div>
+<div id="sup-indicators-table">
+<div class="prose">
+<h3>Indicadores de atendimento, metas e limites</h3>
+<p>A Solaria acompanha cinco indicadores de atendimento do fornecedor. Cada indicador tem meta e limite do indicador. Fora do limite do indicador, a conta recebe alerta.</p>
+</div>
+<table class="data">
+<thead><tr><th>Indicador</th><th>Meta</th><th>Limite do indicador</th></tr></thead>
+<tbody>
+<tr><td>Cancelamentos</td><td>menor que 2% dos pedidos</td><td>5%</td></tr>
+<tr><td>Despacho no prazo</td><td>95% dos pedidos</td><td>85%</td></tr>
+<tr><td>Resposta no chat do pedido em 4 horas úteis</td><td>90%</td><td>70%</td></tr>
+<tr><td>Reclamações</td><td>menor que 3% dos pedidos</td><td>6%</td></tr>
+<tr><td>Nota média, de 1 a 5</td><td>4,5</td><td>3,8</td></tr>
+</tbody>
+</table>
+<div class="prose">
+<p class="muted small">Regras de atendimento da Solaria, com valores fictícios.</p>
+</div>
+</div>
+<div class="prose" id="sup-indicators-badge">
+<h3>Selo Destaque</h3>
+<p>O selo Destaque mostra atendimento melhor que a média nos últimos 60 dias corridos. Os requisitos são nota média de 4,5 ou mais, cancelamento menor que 2% e pelo menos 30 pedidos no período. A Solaria revê o selo Destaque todos os dias. O fornecedor novo ainda não tem volume para o selo Destaque, o que não quer dizer que atenda mal.</p>
+</div>
+<div id="sup-indicators-ladder">
+<div class="prose">
+<h3>Escada de penalidades</h3>
+<p>Fornecedor com indicador fora do limite do indicador passa pela escada de penalidades, que tem quatro etapas.</p>
+</div>
+<table class="data">
+<thead><tr><th>Etapa</th><th>O que acontece</th><th>Prazo</th></tr></thead>
+<tbody>
+<tr><td>Alerta</td><td>Você tem tempo para corrigir. Nada muda na conta</td><td>30 dias corridos para corrigir</td></tr>
+<tr><td>Perda do selo Destaque</td><td>A conta tem menos destaque na busca</td><td>Prazo não definido pela Solaria</td></tr>
+<tr><td>Suspensão</td><td>As novas vendas param</td><td>7 dias corridos</td></tr>
+<tr><td>Descredenciamento</td><td>A conta deixa de vender</td><td>Depois de 3 suspensões em 12 meses</td></tr>
+</tbody>
+</table>
+<div class="prose">
+<p>Além das etapas e dos prazos da escada de penalidades, os critérios para passar de uma etapa para a próxima não são definidos pela Solaria. Encaminhe ao suporte. Avaliação ou cancelamento forjado é fraude e leva a descredenciamento imediato.</p>
+</div>
+</div>
+<div class="prose" id="sup-indicators-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-indicators-watch-indicators"><div>
+<h3>Acompanhe os cinco indicadores de atendimento</h3>
+<p>Faça: confira os cinco indicadores de atendimento de tempos em tempos e compare cada um com a meta e com o limite do indicador.</p>
+<p class="result">Resultado esperado: você percebe qualquer indicador se aproximando do limite do indicador antes de a conta receber alerta.</p>
+</div></li>
+<li class="step" id="sup-indicators-read-reports"><div>
+<h3>Leia os relatórios do fornecedor</h3>
+<p>Faça: leia o relatório semanal, que chega toda segunda-feira com vendas e indicadores, e o relatório mensal, que chega até o 5º dia útil com repasses e comissões. No plano Pro, leia também o relatório trimestral.</p>
+<p class="result">Resultado esperado: você acompanha vendas, indicadores, repasses e comissões. O conteúdo do relatório trimestral não é definido pela Solaria. Encaminhe ao suporte.</p>
+</div></li>
+<li class="step" id="sup-indicators-answer-reviews"><div>
+<h3>Responda as avaliações dos compradores</h3>
+<p>Faça: responda publicamente a cada avaliação, uma vez por avaliação. O comprador avalia em até 30 dias corridos depois da entrega, com nota de 1 a 5 e comentário.</p>
+<p class="result">Resultado esperado: a nota média dos últimos 60 dias corridos aparece no perfil do fornecedor, junto com as suas respostas.</p>
+</div></li>
+<li class="step" id="sup-indicators-request-review-removal"><div>
+<h3>Peça a revisão de uma avaliação que viole as regras</h3>
+<p>Faça: se a avaliação tiver ofensa ou dado pessoal, peça a revisão dela em até 15 dias corridos.</p>
+<p class="result">Resultado esperado: a Solaria analisa o pedido em até 3 dias úteis. Só avaliação que viola as regras pode ser removida; avaliação apenas injusta não é removida.</p>
+</div></li>
+<li class="step" id="sup-indicators-fix-indicator"><div>
+<h3>Corrija o indicador depois do alerta</h3>
+<p>Faça: ao receber o alerta, corrija o indicador em até 30 dias corridos.</p>
+<p class="result">Resultado esperado: durante o alerta, nada muda na conta. Se o indicador não for corrigido, a conta segue na escada de penalidades.</p>
+</div></li>
+<li class="step" id="sup-indicators-contest-penalty"><div>
+<h3>Conteste a penalidade com provas</h3>
+<p>Faça: se discordar de uma penalidade, conteste em até 10 dias corridos depois do aviso, com provas.</p>
+<p class="result">Resultado esperado: a Solaria responde em até 5 dias úteis. Fatores externos comprovados não contam nos indicadores. O critério de fatores externos comprovados não é definido pela Solaria. Encaminhe ao suporte.</p>
+</div></li>
+</ol>
+<div id="sup-indicators-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>A conta recebeu alerta de cancelamentos</td><td>O indicador de cancelamentos passou de 5% em 60 dias corridos</td><td>Mantenha o estoque atualizado todos os dias e evite cancelar. Corrija em até 30 dias corridos.</td></tr>
+<tr><td>A conta não recebeu alerta mesmo com indicador fora do limite do indicador</td><td>Menos de 10 pedidos no período</td><td>Alertas e penalidades só valem com pelo menos 10 pedidos no período.</td></tr>
+<tr><td>A conta não tem o selo Destaque</td><td>Menos de 30 pedidos no período, ou nota média e cancelamento fora dos requisitos</td><td>Atenda os requisitos do selo Destaque. Fornecedor novo ainda não tem volume.</td></tr>
+<tr><td>O fornecedor foi suspenso</td><td>Indicador fora do limite do indicador</td><td>Conteste em até 10 dias corridos depois do aviso, com provas. As novas vendas ficam paradas por 7 dias corridos.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-indicators-after">
+<h3>O que acontece depois</h3>
+<p>A Solaria recalcula os indicadores todos os dias e revê o selo Destaque todos os dias. A escada de penalidades tem quatro etapas, alerta, perda do selo Destaque, suspensão e descredenciamento, e a Solaria não define outra. A resposta de uma contestação de penalidade sai em até 5 dias úteis.</p>
+</div>
+</section>
+
+<section class="chapter strip" id="sup-returns" data-title="Responder devolução" data-summary="Prazos, trocas, reembolsos e descontos">
+<header class="opener">
+<span class="num"></span>
+<div>
+<h2 class="title">Responder devolução</h2>
+</div>
+</header>
+<div class="prose" id="sup-returns-when">
+<h3>Quando usar</h3>
+<p>Use este capítulo quando o comprador pedir uma devolução, registrar avaria, informar produto faltando ou trocado, ou desistir da compra.</p>
+</div>
+<div class="prose" id="sup-returns-prepare">
+<h3>Antes de começar</h3>
+<p>Você precisa de: o pedido, a nota fiscal e as fotos que o comprador enviou.</p>
+<p>Prazos do comprador para registrar:</p>
+<ul>
+<li>Desistência: até 7 dias corridos do recebimento, com o produto lacrado. Não vale para perecíveis, itens sob encomenda e itens personalizados.</li>
+<li>Avaria e produto faltando ou trocado: até 7 dias corridos do recebimento.</li>
+<li>Defeito de funcionamento: até 30 dias corridos.</li>
+<li>Perecíveis: só por avaria, validade vencida ou produto trocado, em até 24 horas corridas.</li>
+</ul>
+<p>Prazo do fornecedor para responder: até 2 dias úteis.</p>
+<p>Frete: na desistência, o comprador paga o frete de volta. Em defeito, avaria e produto faltando ou trocado, o frete é do fornecedor.</p>
+</div>
+<div class="prose" id="sup-returns-steps">
+<h3>Passo a passo</h3>
+</div>
+<ol class="steps">
+<li class="step" id="sup-returns-answer-request"><div>
+<h3>Responda o pedido de devolução em até 2 dias úteis</h3>
+<p>Faça: responda o pedido de devolução do comprador em até 2 dias úteis, aprovando ou recusando.</p>
+<p class="result">Resultado esperado: o comprador sabe o que fazer. Sem resposta do fornecedor em 2 dias úteis, a Solaria aprova a devolução automaticamente. Depois da aprovação, o comprador tem até 5 dias úteis para postar o produto, embalado com a nota fiscal, ou o pedido de devolução expira.</p>
+</div></li>
+<li class="step" id="sup-returns-resolve-damage-or-missing"><div>
+<h3>Resolva avaria, produto faltando ou produto trocado em até 2 dias úteis</h3>
+<p>Faça: na avaria, proponha troca ou reembolso em até 2 dias úteis. Em produto faltando ou trocado, envie o que faltou, troque o item trocado ou reembolse a diferença em até 2 dias úteis.</p>
+<p class="result">Resultado esperado: o problema fica resolvido sem custo de frete para o comprador. Em produto faltando ou trocado, o comprador não deve usar o produto trocado, para poder devolvê-lo sem desconto.</p>
+</div></li>
+<li class="step" id="sup-returns-decide-perishable"><div>
+<h3>Informe se o perecível volta ou é descartado</h3>
+<p>Faça: em devolução de perecível, informe ao comprador se o perecível volta ou é descartado. Em geral, o fornecedor reembolsa sem pedir a volta do produto.</p>
+<p class="result">Resultado esperado: o comprador só devolve o perecível com acordo. Sem acordo, a devolução do perecível pode ser recusada.</p>
+</div></li>
+<li class="step" id="sup-returns-offer-exchange-or-refund"><div>
+<h3>Atenda a escolha entre troca e reembolso</h3>
+<p>Faça: ofereça a troca quando o comprador pedir e você tiver o produto em estoque. Sem estoque, converta a devolução em reembolso.</p>
+<p class="result">Resultado esperado: o comprador recebe a troca ou o reembolso. Se o problema foi do fornecedor, o frete da troca também é do fornecedor.</p>
+</div></li>
+<li class="step" id="sup-returns-accept-partial-return"><div>
+<h3>Aceite a devolução parcial</h3>
+<p>Faça: aceite devolução de um item, de parte da quantidade ou do pedido inteiro.</p>
+<p class="result">Resultado esperado: o reembolso é proporcional aos itens devolvidos. Na desistência parcial, o frete de volta continua por conta do comprador. O pedido mínimo não impede a devolução parcial.</p>
+</div></li>
+<li class="step" id="sup-returns-confirm-receipt"><div>
+<h3>Confirme o recebimento da devolução em até 3 dias úteis</h3>
+<p>Faça: quando o produto devolvido chegar, confira o produto e confirme o recebimento da devolução em até 3 dias úteis.</p>
+<p class="result">Resultado esperado: o estorno começa quando você confirma o recebimento. Depois, o estorno chega ao comprador em até 2 dias úteis no Pix, em até 2 faturas no cartão e em até 5 dias úteis no boleto. Se você não conferir no prazo, a Solaria libera o reembolso pelo rastreio.</p>
+</div></li>
+<li class="step" id="sup-returns-expect-discount"><div>
+<h3>Espere o desconto no repasse</h3>
+<p>Faça: confira no extrato dos repasses o desconto da devolução, que aparece com o número do pedido.</p>
+<p class="result">Resultado esperado: se a devolução ocorrer depois do repasse, o valor devolvido ao comprador é descontado dos próximos repasses.</p>
+</div></li>
+</ol>
+<div id="sup-returns-problems">
+<div class="prose">
+<h3>Se algo der errado</h3>
+</div>
+<table class="data">
+<thead><tr><th>Situação</th><th>Causa provável</th><th>O que fazer</th></tr></thead>
+<tbody>
+<tr><td>O comprador discorda da recusa da devolução</td><td>O comprador não aceita o motivo da recusa</td><td>O comprador pode acionar a Compra Garantida. Sem solução do fornecedor em 5 dias úteis, a Solaria analisa o caso e decide em até 10 dias úteis.</td></tr>
+<tr><td>A Compra Garantida decidiu a favor do comprador</td><td>O fornecedor não resolveu o problema</td><td>O comprador recebe o reembolso mesmo que o fornecedor não devolva o valor. O valor é descontado dos próximos repasses do fornecedor.</td></tr>
+<tr><td>O prazo máximo do comprador para acionar a Compra Garantida e o valor máximo coberto</td><td>Pontos que a Solaria não define</td><td>Não definido pela Solaria. Encaminhe ao suporte.</td></tr>
+<tr><td>O produto devolvido é um perecível</td><td>A devolução de perecível exige acordo</td><td>Informe ao comprador se o perecível volta ou é descartado. Sem acordo, a devolução pode ser recusada.</td></tr>
+<tr><td>O fornecedor não tem o produto em estoque para a troca</td><td>A troca exige estoque</td><td>A devolução vira reembolso.</td></tr>
+</tbody>
+</table>
+</div>
+<div class="prose" id="sup-returns-after">
+<h3>O que acontece depois</h3>
+<p>Depois que o fornecedor confirma o recebimento da devolução, o estorno começa e chega ao comprador no prazo de cada forma de pagamento. O valor devolvido ao comprador é descontado dos próximos repasses do fornecedor, e o desconto aparece no extrato com o número do pedido. A Solaria não define quais registros contam como reclamação no indicador de reclamações. Encaminhe ao suporte.</p>
+</div>
+</section>
+
+<section class="back brand page" id="contracapa">
+  <img class="logo" src="../../design/logos/elos.svg" alt="Elos">
+  <span class="rule"></span>
+  <span class="legal">Exclusivo de uso interno.</span>
+</section>
+
+</body>
+</html>
